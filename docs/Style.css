@@ -4,6 +4,7 @@
 				margin:0;
 			}
 			html {
+				height: 100%;
 				background-color:#f1f1f1;
 			}
 			body {
@@ -12,24 +13,25 @@
 				margin:auto;
 			}
 			header {
-				width: 100%;
-                height: 26%;
+				height: 100%;
                 background-color: #ff5100;
-                display: flex;
+			}
+			.header {
+				width:100%;
+				height:26vh;
+				display: flex;
                 justify-content: center;
                 align-items: center;
-			}
-			header a {
 				transition:transform 0.5s;
 			}
-			header a:hover {
+			.header:hover {
 				transform:scale(1.2,1.2);
 			}
 			nav {
 				align-items: center;
                 justify-content: center;
 				width:100%;
-				height:5%;
+				height:5vh;
 				background-color:#f1f1f1;
 				border-top: 3px solid black;
 				border-bottom: 3px solid black;
@@ -128,6 +130,15 @@
 			}
             main h3 {
 				font-size:25px;
+			}
+			main ul {
+				border-left: 3px solid #ff4d36;
+  				background-color: #c2887e;
+  				list-style-type: none;
+  				padding: 10px 20px;
+			}
+			.myDiv {
+				width: 20%;
 			}
 			footer {
 				border-top: 3px solid black;
