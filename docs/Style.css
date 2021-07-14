@@ -9,12 +9,15 @@
 			}
 			body {
 				width:100%;
-				background-color:#ff5100;
+				background-color:#1e0b01;
 				margin:auto;
 			}
 			header {
 				height: 100%;
-                background-color: #ff5100;
+			}
+			header a{
+				text-decoration: none;
+				color:#e6e6e6;
 			}
 			.header {
 				width:100%;
@@ -30,16 +33,16 @@
 			nav {
 				align-items: center;
                 justify-content: center;
-				width:100%;
+				width:66%;
+				margin:auto;
 				height:5vh;
-				background-color:#f1f1f1;
-				border-top: 3px solid black;
-				border-bottom: 3px solid black;
+				background-color:#ff5100;
+				border: 3px solid black;
 				display: flex;
 			}
 			nav a {
-				font-family: 'Comic Sans MS', 'Oswald', sans-serif;
-				font-weight:500;
+				font-family: sans-serif, 'Oswald';
+				font-weight: bold;
 				text-transform:uppercase;
 				text-decoration:none;
 				color:#16151b;
@@ -52,7 +55,7 @@
 			}
 			nav a:hover {
 				font-size:17px;
-				color:#ff5100;
+				color:#c52008;
 			}
 			nav a:before{
 				content:'';
@@ -109,10 +112,15 @@
 				margin:auto;
 				padding:3%;
 				width: 60%;
-				background-color:#f1f1f1;
+				background-color:#ff5100;
 				text-align: justify;
 				justify-content: justify;
 				font-size:15px;
+				border-left: 2px solid #000;
+				border-right: 2px solid #000
+			}
+			main hr {
+				border: 1px solid #000;
 			}
 			main p {
 				text-indent:5%;
@@ -132,24 +140,62 @@
 				font-size:25px;
 			}
 			main ul {
-				border-left: 3px solid #ff4d36;
-  				background-color: #c2887e;
+				border-left: 3px solid #b9531c;
+  				background-color: #c34808;
   				list-style-type: none;
   				padding: 10px 20px;
 			}
+			main li a {
+				color: #000000;
+				text-decoration: none;
+				transition:font-size 0.5s;
+			}
+			main li a:hover {
+				font-size: 14px;
+				color: #c52008;
+			}
+			section{
+				margin: 2em auto;
+				width: 800px;
+			
+				padding: 3px 10px;
+				  border: PowderBlue 5px;
+				  border-top-left-radius: 20px;
+				  border-bottom-right-radius: 20px;
+			
+				border: #DFA447 8px outset;
+				background: #FFC263;
+			
+			
+				-ms-word-break: break-all;
+				 word-break: break-all;
+				 word-break: break-word;
+			
+				-webkit-hyphens: auto;
+				   -moz-hyphens: auto;
+				-ms-hyphens: auto;
+				hyphens: auto;
+			}
+			section h3 {
+				color:rgb(0, 0, 0);
+			}
 			.myDiv {
 				width: 20%;
+				border: 2px solid #000;
 			}
 			footer {
-				border-top: 3px solid black;
 				border-bottom: 3px solid black;
 				padding-left:3%;
                 padding-right:3%;
                 padding-top:1%;
                 padding-bottom:1%;
 				margin:auto;
-				width: 60%;
-				background-color:#f1f1f1;
 				align-items: center;
 				justify-content: center;
+				background-color:#1e120c;
+				color: #000;
+				text-align: right;
+			}
+			footer p{
+				color: #e6e6e6;
 			}
