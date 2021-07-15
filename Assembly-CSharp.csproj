@@ -616,9 +616,6 @@
     <Reference Include="Unity.VisualStudio.Editor">
         <HintPath>C:/Users/kakar/Documents/Unity/Proyecto_Manhattan/Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Timeline.Editor">
-        <HintPath>C:/Users/kakar/Documents/Unity/Proyecto_Manhattan/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.Timeline">
         <HintPath>C:/Users/kakar/Documents/Unity/Proyecto_Manhattan/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
@@ -628,14 +625,17 @@
     <Reference Include="UnityEditor.UI">
         <HintPath>C:/Users/kakar/Documents/Unity/Proyecto_Manhattan/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.PlasticSCM.Editor">
-        <HintPath>C:/Users/kakar/Documents/Unity/Proyecto_Manhattan/Library/ScriptAssemblies/Unity.PlasticSCM.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.Rider.Editor">
         <HintPath>C:/Users/kakar/Documents/Unity/Proyecto_Manhattan/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.PlasticSCM.Editor">
+        <HintPath>C:/Users/kakar/Documents/Unity/Proyecto_Manhattan/Library/ScriptAssemblies/Unity.PlasticSCM.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI">
         <HintPath>C:/Users/kakar/Documents/Unity/Proyecto_Manhattan/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Timeline.Editor">
+        <HintPath>C:/Users/kakar/Documents/Unity/Proyecto_Manhattan/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
