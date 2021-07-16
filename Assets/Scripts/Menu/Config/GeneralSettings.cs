@@ -14,8 +14,14 @@ public class GeneralSettings : MonoBehaviour
     [SerializeField] bool fullScreen;
     [SerializeField] Text resolutionText;
 
+    [SerializeField] Text qualityText;
+    [SerializeField] int newQuality = 3;
+    string qualityNames;
+
+
     void Start()
     {
+        Qualities();
         Resolutions();
         Apply();
     }
@@ -45,6 +51,7 @@ public class GeneralSettings : MonoBehaviour
     public void Apply()
     {
         Screen.SetResolution(width, height, fullScreen);
+        QualitySettings.SetQualityLevel(newQuality, true);
     }
 
     private void Resolutions()
@@ -86,5 +93,44 @@ public class GeneralSettings : MonoBehaviour
                 break;
         }
         resolutionText.text = width.ToString() + " x " + height.ToString();
+    }
+
+    public void NextQuality()
+    {
+        newQuality++;
+        Qualities();
+    }
+
+    public void PreviousQuality()
+    {
+        newQuality--;
+        Qualities();
+    }
+
+    private void Qualities()
+    {
+        newQuality = Mathf.Clamp(newQuality, 0, 5);
+        switch (newQuality)
+        {
+            case 0:
+                qualityNames = "Very Low";
+                break;
+            case 1:
+                qualityNames = "Low";
+                break;
+            case 2:
+                qualityNames = "Medium";
+                break;
+            case 3:
+                qualityNames = "High";
+                break;
+            case 4:
+                qualityNames = "Very High";
+                break;
+            case 5:
+                qualityNames = "Ultra";
+                break;
+        }
+        qualityText.text = qualityNames;
     }
 }
