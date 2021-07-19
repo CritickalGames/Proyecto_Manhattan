@@ -3,24 +3,54 @@ using UnityEngine.InputSystem;
 
 public class PlayerInput : MonoBehaviour
 {
-    [SerializeField] float movementSpeed;
-    [SerializeField] float jumpSpeed;
+    public Rigidbody2D rb;
+    public Transform groundCheck;
+    public LayerMask groundLayerMask;
 
-    GameObject player;
+    private float horizontal;
+    [SerializeField]private float movementSpeed;
+    [SerializeField]private float jumpStrength;
+    private bool isFacingRight = true;
 
-    void Start()
+    public void OnMovement(InputAction.CallbackContext context)
     {
-        player = this.gameObject;
+        horizontal = context.ReadValue<Vector2>().x;
     }
-
-    public void OnMovement()
+    public void OnJump(InputAction.CallbackContext context)
     {
-        SideMove();
+        if (context.performed && IsInGround())
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpStrength);
+        }
+        if (context.canceled && !IsInGround())
+        {
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+        }
     }
-    
-
-    void SideMove()
+    void Update()
     {
-        player.transform.position = new Vector2((player.transform.position.x + movementSpeed),player.transform.position.y);
+        rb.velocity = new Vector2(horizontal * movementSpeed, rb.velocity.y);
+        ChangeFacingDirection();
+    }
+    void ChangeFacingDirection()
+    {
+        if(!isFacingRight && horizontal > 0f)
+        {
+            FlipCharacter();
+        } else if (isFacingRight && horizontal < 0f)
+        {
+            FlipCharacter();
+        }
+    }
+    private bool IsInGround()
+    {
+        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayerMask);
+    }
+    private void FlipCharacter()
+    {
+        isFacingRight = !isFacingRight;
+        Vector2 localScale = transform.localScale;
+        localScale.x = -1f;
+        transform.localScale = localScale;
     }
 }
