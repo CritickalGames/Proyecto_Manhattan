@@ -134,9 +134,9 @@ GameObject:
   - component: {fileID: 149024059}
   - component: {fileID: 149024061}
   - component: {fileID: 149024062}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -780,7 +780,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 5
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -972,6 +972,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6ef6d1c6a4f11e42b953f3821cb2acb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementSpeed: 500
+  jumpSpeed: 400
 --- !u!1 &1568152928
 GameObject:
   m_ObjectHideFlags: 0

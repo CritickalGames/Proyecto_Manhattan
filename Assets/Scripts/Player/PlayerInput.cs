@@ -21,4 +21,9 @@ public class PlayerInput : MonoBehaviour
             playerScript.movementScript.StopMoving();
         }
     }
+
+    void OnJump()
+    {
+        playerScript.movementScript.Jump();
+    }
 }
