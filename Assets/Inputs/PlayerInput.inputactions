@@ -73,17 +73,6 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "up",
-                    "id": "6ce15eda-286d-406c-af92-00199146dbe2",
-                    "path": "<Keyboard>/w",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
                     "name": "down",
                     "id": "6d6f3263-611b-4070-a686-5e6bde19393e",
                     "path": "",
