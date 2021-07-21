@@ -16,25 +16,18 @@ public class PlayerInput : MonoBehaviour
 
     void Update()
     {
-        if (held || jump)
-            playerScript.movementScript.Move(horizontalMove, jump);
+        if (held)
+            playerScript.movementScript.Move(horizontalMove);
     }
 
     void OnMovement(InputValue value)
     {
         horizontalMove = ((Vector2)value.Get()).x;
-        if (horizontalMove != 0f)
-        {
-            held = true;
-        }
-        if (horizontalMove == 0f)
-        {
-            held = false;
-        }
+        playerScript.movementScript.movementDir = (int)horizontalMove;
     }
 
     void OnJump()
     {
-        jump = !jump;
+        playerScript.movementScript.jumping = true;
     }
 }

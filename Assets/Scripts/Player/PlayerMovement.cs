@@ -1,72 +1,64 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class PlayerMovement : MonoBehaviour
 {
     private Player playerScript;
-
     [SerializeField] private float jumpSpeed = 400f;
     [SerializeField] private float movementSpeed = 40f;
-    [Range(0, .3f)] [SerializeField] private float movementSmooth = .05f;
-    [SerializeField] private bool airControl = false;
     [SerializeField] private LayerMask groundLayer;
-    [SerializeField] private Transform groundCheck;
-
-    const float groundCheckRadius = .2f;
+    [SerializeField] private float maxTimeOnAir;
+    [System.NonSerialized]public bool jumping = false;
+    [System.NonSerialized]public int movementDir;
+    private float timeOnAir;
     private bool grounded;
     private Rigidbody2D playerRb;
     private bool facingRight = true;
-    private Vector3 movementVelocity = Vector3.zero;
 
-    public UnityEvent OnLandEvent;
-
+    private Transform downleft;
+    private Transform downcenter;
+    private Transform downright; 
     void Start()
     {
         playerScript = GetComponent<Player>();
         playerRb = GetComponent<Rigidbody2D>();
-
+        downleft = GameObject.Find("/Player/Player/Rays/Down/DownLeft").transform;
+        downcenter = GameObject.Find("/Player/Player/Rays/Down/DownCenter").transform;
+        downright = GameObject.Find("/Player/Player/Rays/Down/DownRight").transform;
     }
 
     void FixedUpdate()
     {
-        bool wasGrounded = grounded;
-        grounded = false;
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.position, groundCheckRadius, groundLayer);
-        for (int i = 0; i < colliders.Length; i++)
-		{
-			if (colliders[i].gameObject != gameObject)
-			{
-				grounded = true;
-				if (!wasGrounded)
-					OnLandEvent.Invoke();
-			}
-		}
-    }
-
-    public void Move(float internalDirection, bool jump)
-    {
-        float movementStrength = internalDirection * movementSpeed;
-        float fixedMovement = movementStrength * Time.fixedDeltaTime;
-        if (grounded || airControl)
-		{
-            Vector3 targetVelocity = new Vector2(fixedMovement * 10f, playerRb.velocity.y);
-            playerRb.velocity = Vector3.SmoothDamp(playerRb.velocity, targetVelocity, ref movementVelocity, movementSmooth);
-
-            if (fixedMovement > 0 && !facingRight)
-			{
-				Flip();
-			}else if (fixedMovement < 0 && facingRight)
-			{
-				Flip();
-			}
+        if (jumping == true )
+        {
+            Jump();
         }
-        if (grounded && jump)
-		{
-			grounded = false;
-			playerRb.AddForce(new Vector2(0f, jumpSpeed));
-		}
+        Move(movementDir);
+    }
+    void Jump()
+    {
+        RaycastHit2D groundLeftRaycast = Physics2D.Raycast(downleft.position,Vector2.down,0.1f,groundLayer);
+        RaycastHit2D groundCenterRaycast = Physics2D.Raycast(downcenter.position,Vector2.down,0.1f,groundLayer);
+        RaycastHit2D groundRightRaycast = Physics2D.Raycast(downright.position,Vector2.down,0.1f,groundLayer);
+        
+        if (groundLeftRaycast || groundCenterRaycast || groundRightRaycast)
+        {
+            playerRb.velocity = new Vector2(playerRb.velocity.x, jumpSpeed);
+        } else
+        {
+            jumping = false;
+        }
+    }
+    public void Move(float direction)
+    {
+        playerRb.velocity = new Vector2(movementSpeed * direction, playerRb.velocity.y);
+        if (direction < 0 && facingRight)
+        {
+            Flip();
+        } else if (direction > 0 && !facingRight)
+        {
+            Flip();
+        }
+
     }
     private void Flip()
 	{
