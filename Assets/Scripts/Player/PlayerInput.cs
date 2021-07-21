@@ -5,25 +5,36 @@ public class PlayerInput : MonoBehaviour
 {
     private Player playerScript;
 
+    bool held = false;
+    bool jump = false;
+    float horizontalMove = 0f;
+
     void Start()
     {
         playerScript = GetComponent<Player>();
     }
 
+    void Update()
+    {
+        if (held || jump)
+            playerScript.movementScript.Move(horizontalMove, jump);
+    }
+
     void OnMovement(InputValue value)
     {
-        if (((Vector2)value.Get()).x != 0)
+        horizontalMove = ((Vector2)value.Get()).x;
+        if (horizontalMove != 0f)
         {
-            playerScript.movementScript.Move(((Vector2)value.Get()).x);
+            held = true;
         }
-        if (((Vector2)value.Get()).x == 0)
+        if (horizontalMove == 0f)
         {
-            playerScript.movementScript.StopMoving();
+            held = false;
         }
     }
 
     void OnJump()
     {
-        playerScript.movementScript.Jump();
+        jump = !jump;
     }
 }

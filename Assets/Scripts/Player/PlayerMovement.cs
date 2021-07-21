@@ -1,57 +1,78 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerMovement : MonoBehaviour
 {
     private Player playerScript;
 
-    [SerializeField] float movementSpeed;
-    [SerializeField] float jumpSpeed;
-    float xVelocity = 0;
-    bool jumping = false;
+    [SerializeField] private float jumpSpeed = 400f;
+    [SerializeField] private float movementSpeed = 40f;
+    [Range(0, .3f)] [SerializeField] private float movementSmooth = .05f;
+    [SerializeField] private bool airControl = false;
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private Transform groundCheck;
+
+    const float groundCheckRadius = .2f;
+    private bool grounded;
+    private Rigidbody2D playerRb;
+    private bool facingRight = true;
+    private Vector3 movementVelocity = Vector3.zero;
+
+    public UnityEvent OnLandEvent;
 
     void Start()
     {
         playerScript = GetComponent<Player>();
+        playerRb = GetComponent<Rigidbody2D>();
+
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(xVelocity , this.gameObject.GetComponent<Rigidbody2D>().velocity.y);
+        bool wasGrounded = grounded;
+        grounded = false;
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.position, groundCheckRadius, groundLayer);
+        for (int i = 0; i < colliders.Length; i++)
+		{
+			if (colliders[i].gameObject != gameObject)
+			{
+				grounded = true;
+				if (!wasGrounded)
+					OnLandEvent.Invoke();
+			}
+		}
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void Move(float internalDirection, bool jump)
     {
-        if (collision.transform.tag == "Ground")
-        {
-            jumping = false;
+        float movementStrength = internalDirection * movementSpeed;
+        float fixedMovement = movementStrength * Time.fixedDeltaTime;
+        if (grounded || airControl)
+		{
+            Vector3 targetVelocity = new Vector2(fixedMovement * 10f, playerRb.velocity.y);
+            playerRb.velocity = Vector3.(playerRb.velocity, targetVelocity, ref movementVelocity, movementSmooth);
+
+            if (fixedMovement > 0 && !facingRight)
+			{
+				Flip();
+			}else if (fixedMovement < 0 && facingRight)
+			{
+				Flip();
+			}
         }
+        if (grounded && jump)
+		{
+			grounded = false;
+			playerRb.AddForce(new Vector2(0f, jumpSpeed));
+		}
     }
-
-    public void Move(float internalDirection)
-    {
-        if(internalDirection > 0f && internalDirection <= 1f)
-        {
-            xVelocity = movementSpeed * Time.fixedDeltaTime;
-        }
-        if(internalDirection < 0f && internalDirection >= -1f)
-        {
-            xVelocity = movementSpeed * -1 * Time.fixedDeltaTime;
-        }
-    }
-    public void StopMoving()
-    {
-        xVelocity = 0;
-    }
-
-    public void Jump()
-    {
-        if(!jumping)
-        {
-            jumping = true;
-            this.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(xVelocity,jumpSpeed));
-        }
-    }
-
+    private void Flip()
+	{
+		facingRight = !facingRight;
+		Vector3 theScale = transform.localScale;
+		theScale.x *= -1;
+		transform.localScale = theScale;
+	}
 }

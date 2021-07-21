@@ -134,9 +134,9 @@ GameObject:
   - component: {fileID: 149024059}
   - component: {fileID: 149024061}
   - component: {fileID: 149024062}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ground
-  m_TagString: Ground
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -678,7 +678,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1184433182}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -746,7 +746,7 @@ GameObject:
   - component: {fileID: 1443192987}
   - component: {fileID: 1443192989}
   - component: {fileID: 1443192988}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -783,7 +783,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 3
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -798,7 +798,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1443192981}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 27873eb871f50c241b1f583a7d465620, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -972,8 +972,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6ef6d1c6a4f11e42b953f3821cb2acb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 500
-  jumpSpeed: 400
+  jumpSpeed: 200
+  movementSpeed: 40
+  movementSmooth: 0.05
+  airControl: 1
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  groundCheck: {fileID: 1184433182}
+  OnLandEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1568152928
 GameObject:
   m_ObjectHideFlags: 0

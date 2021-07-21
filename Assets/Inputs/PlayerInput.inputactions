@@ -32,10 +32,10 @@
                 {
                     "name": "Jump",
                     "type": "Button",
-                    "id": "61825892-0a9a-4d98-88bb-df904f07f6ba",
+                    "id": "707f665b-7ea4-42c6-83ed-5e3be95f56df",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Press(behavior=2)"
                 }
             ],
             "bindings": [
@@ -62,17 +62,6 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "",
-                    "id": "202078a1-6f92-431e-a8cc-fb8b5ad911dd",
-                    "path": "<Keyboard>/w",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
                     "name": "2D Vector",
                     "id": "abda338a-df11-4ca8-ac02-0bb637166692",
                     "path": "2DVector",
@@ -86,7 +75,7 @@
                 {
                     "name": "up",
                     "id": "6ce15eda-286d-406c-af92-00199146dbe2",
-                    "path": "",
+                    "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -126,6 +115,17 @@
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "54a3ca11-ae81-4c98-8914-f1b9d45c3dfc",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
