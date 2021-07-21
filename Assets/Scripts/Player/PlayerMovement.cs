@@ -52,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
         if (grounded || airControl)
 		{
             Vector3 targetVelocity = new Vector2(fixedMovement * 10f, playerRb.velocity.y);
-            playerRb.velocity = Vector3.(playerRb.velocity, targetVelocity, ref movementVelocity, movementSmooth);
+            playerRb.velocity = Vector3.SmoothDamp(playerRb.velocity, targetVelocity, ref movementVelocity, movementSmooth);
 
             if (fixedMovement > 0 && !facingRight)
 			{
