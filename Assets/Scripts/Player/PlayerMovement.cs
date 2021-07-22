@@ -22,19 +22,10 @@ public class PlayerMovement : MonoBehaviour
         raycasts[1] = false;
         raycasts[2] = false;
     }
-    void FixedUpdate()
+    void Update()
     {
-        raycasts[0] = Physics2D.Raycast(transform.position + new Vector3(-0.5f, -0.7f,0),Vector2.down,0.1f,groundLayer);
-        raycasts[1] = Physics2D.Raycast(transform.position + new Vector3(-0f, -0.7f,0),Vector2.down,0.1f,groundLayer);
-        raycasts[2] = Physics2D.Raycast(transform.position + new Vector3(0.5f, -0.7f,0),Vector2.down,0.1f,groundLayer);
-        if (raycasts[0] || raycasts[1] || raycasts[2])
-        {
-            grounded = true;
-            timeOnAir = 0;
-        } else
-        {
-            timeOnAir += Time.fixedDeltaTime;
-        }
+        RaycastValues();
+        VerifyRaycasts();
         if (jumping == true)
         {
             Jump();
@@ -43,11 +34,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void Jump()
     {
-        if (raycasts[0] || raycasts[1] || raycasts[2])
-        {
-            grounded = false;
-            playerRb.velocity = new Vector2(playerRb.velocity.x, jumpSpeed);
-        } else if (timeOnAir < maxTimeOnAir && grounded == true) 
+        if ((raycasts[0] || raycasts[1] || raycasts[2]) || (timeOnAir < maxTimeOnAir && grounded == true))
         {
             grounded = false;
             playerRb.velocity = new Vector2(playerRb.velocity.x, jumpSpeed);
@@ -74,4 +61,21 @@ public class PlayerMovement : MonoBehaviour
 		theScale.x *= -1;
 		transform.localScale = theScale;
 	}
+    private void RaycastValues()
+    {
+        raycasts[0] = Physics2D.Raycast(transform.position + new Vector3(-0.4f, -0.75f,0),Vector2.down,0.05f,groundLayer);
+        raycasts[1] = Physics2D.Raycast(transform.position + new Vector3(-0f, -0.75f,0),Vector2.down,0.05f,groundLayer);
+        raycasts[2] = Physics2D.Raycast(transform.position + new Vector3(0.4f, -0.75f,0),Vector2.down,0.05f,groundLayer);
+    }
+    private void VerifyRaycasts()
+    {
+        if (raycasts[0] || raycasts[1] || raycasts[2])
+        {
+            grounded = true;
+            timeOnAir = 0;
+        } else
+        {
+            timeOnAir += Time.deltaTime;
+        }
+    }
 }
