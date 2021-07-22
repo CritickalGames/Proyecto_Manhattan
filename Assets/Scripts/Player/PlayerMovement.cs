@@ -13,30 +13,20 @@ public class PlayerMovement : MonoBehaviour
     private bool grounded;
     private Rigidbody2D playerRb;
     private bool facingRight = true;
-
-    private Transform downleft;
-    private Transform downcenter;
-    private Transform downright;
     private bool[] raycasts = new bool[3];
     void Start()
     {
         playerScript = GetComponent<Player>();
         playerRb = GetComponent<Rigidbody2D>();
-        downleft = GameObject.Find("/Player/Player/Rays/Down/DownLeft").transform;
-        downcenter = GameObject.Find("/Player/Player/Rays/Down/DownCenter").transform;
-        downright = GameObject.Find("/Player/Player/Rays/Down/DownRight").transform;
-        
         raycasts[0] = false;
         raycasts[1] = false;
         raycasts[2] = false;
-
     }
-
     void FixedUpdate()
     {
-        raycasts[0] = Physics2D.Raycast(downleft.position,Vector2.down,0.1f,groundLayer);
-        raycasts[1] = Physics2D.Raycast(downcenter.position,Vector2.down,0.1f,groundLayer);
-        raycasts[2] = Physics2D.Raycast(downright.position,Vector2.down,0.1f,groundLayer);
+        raycasts[0] = Physics2D.Raycast(transform.position + new Vector3(-0.5f, -0.7f,0),Vector2.down,0.1f,groundLayer);
+        raycasts[1] = Physics2D.Raycast(transform.position + new Vector3(-0f, -0.7f,0),Vector2.down,0.1f,groundLayer);
+        raycasts[2] = Physics2D.Raycast(transform.position + new Vector3(0.5f, -0.7f,0),Vector2.down,0.1f,groundLayer);
         if (raycasts[0] || raycasts[1] || raycasts[2])
         {
             grounded = true;
