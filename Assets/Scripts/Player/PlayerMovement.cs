@@ -46,10 +46,7 @@ public class PlayerMovement : MonoBehaviour
     public void Move(float direction)
     {
         playerRb.velocity = new Vector2(movementSpeed * direction, playerRb.velocity.y);
-        if (direction < 0 && facingRight)
-        {
-            Flip();
-        } else if (direction > 0 && !facingRight)
+        if ((direction < 0 && facingRight) || (direction > 0 && !facingRight))
         {
             Flip();
         }
