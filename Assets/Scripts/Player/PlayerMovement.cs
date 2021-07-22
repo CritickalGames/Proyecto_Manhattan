@@ -16,7 +16,8 @@ public class PlayerMovement : MonoBehaviour
 
     private Transform downleft;
     private Transform downcenter;
-    private Transform downright; 
+    private Transform downright;
+    private bool[] raycasts = new bool[3];
     void Start()
     {
         playerScript = GetComponent<Player>();
@@ -24,11 +25,27 @@ public class PlayerMovement : MonoBehaviour
         downleft = GameObject.Find("/Player/Player/Rays/Down/DownLeft").transform;
         downcenter = GameObject.Find("/Player/Player/Rays/Down/DownCenter").transform;
         downright = GameObject.Find("/Player/Player/Rays/Down/DownRight").transform;
+        
+        raycasts[0] = false;
+        raycasts[1] = false;
+        raycasts[2] = false;
+
     }
 
     void FixedUpdate()
     {
-        if (jumping == true )
+        raycasts[0] = Physics2D.Raycast(downleft.position,Vector2.down,0.1f,groundLayer);
+        raycasts[1] = Physics2D.Raycast(downcenter.position,Vector2.down,0.1f,groundLayer);
+        raycasts[2] = Physics2D.Raycast(downright.position,Vector2.down,0.1f,groundLayer);
+        if (raycasts[0] || raycasts[1] || raycasts[2])
+        {
+            grounded = true;
+            timeOnAir = 0;
+        } else
+        {
+            timeOnAir += Time.fixedDeltaTime;
+        }
+        if (jumping == true)
         {
             Jump();
         }
@@ -36,12 +53,13 @@ public class PlayerMovement : MonoBehaviour
     }
     void Jump()
     {
-        RaycastHit2D groundLeftRaycast = Physics2D.Raycast(downleft.position,Vector2.down,0.1f,groundLayer);
-        RaycastHit2D groundCenterRaycast = Physics2D.Raycast(downcenter.position,Vector2.down,0.1f,groundLayer);
-        RaycastHit2D groundRightRaycast = Physics2D.Raycast(downright.position,Vector2.down,0.1f,groundLayer);
-        
-        if (groundLeftRaycast || groundCenterRaycast || groundRightRaycast)
+        if (raycasts[0] || raycasts[1] || raycasts[2])
         {
+            grounded = false;
+            playerRb.velocity = new Vector2(playerRb.velocity.x, jumpSpeed);
+        } else if (timeOnAir < maxTimeOnAir && grounded == true) 
+        {
+            grounded = false;
             playerRb.velocity = new Vector2(playerRb.velocity.x, jumpSpeed);
         } else
         {
@@ -58,7 +76,6 @@ public class PlayerMovement : MonoBehaviour
         {
             Flip();
         }
-
     }
     private void Flip()
 	{

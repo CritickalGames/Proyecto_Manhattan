@@ -1177,11 +1177,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpSpeed: 12
-  movementSpeed: 7
+  movementSpeed: 8
   groundLayer:
     serializedVersion: 2
     m_Bits: 183
-  maxTimeOnAir: 0
+  maxTimeOnAir: 0.1
 --- !u!58 &1443192990
 CircleCollider2D:
   m_ObjectHideFlags: 0
