@@ -20,4 +20,12 @@ public class PlayerInput : MonoBehaviour
     {
         playerScript.movementScript.jumping = true;
     }
+    void OnAtack()
+    {
+        playerScript.atackScript.TestAtack();
+    }
+    void OnSpecialAtack()
+    {
+        playerScript.atackScript.TestSpecialAtack();
+    }
 }
