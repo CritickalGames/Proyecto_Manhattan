@@ -5,13 +5,14 @@ public class PlayerMovement : MonoBehaviour
     private Player playerScript;
     [SerializeField] private float jumpSpeed = 400f;
     [SerializeField] private float movementSpeed = 40f;
-    [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float maxTimeOnAir;
-    [System.NonSerialized]public bool jumping = false;
+    [SerializeField] private float inertiaSpeed;
     [System.NonSerialized]public int movementDir;
+    [SerializeField] private LayerMask groundLayer;
+    [System.NonSerialized]public bool jumping = false;
     private float timeOnAir;
-    private bool grounded;
     private Rigidbody2D playerRb;
+    private bool grounded;
     private bool facingRight = true;
     private bool[] raycasts = new bool[3];
     void Start()
@@ -30,25 +31,48 @@ public class PlayerMovement : MonoBehaviour
         {
             Jump();
         }
-        Move(movementDir);
-    }
+        ManageMovement();
+    }  
     void Jump()
     {
         if ((raycasts[0] || raycasts[1] || raycasts[2]) || (timeOnAir < maxTimeOnAir && grounded == true))
         {
             grounded = false;
-            playerRb.velocity = new Vector2(playerRb.velocity.x, jumpSpeed);
+            SetVelocity(playerRb.velocity.x, jumpSpeed);
         } else
         {
             jumping = false;
         }
     }
-    public void Move(float direction)
+    void ManageMovement()
     {
-        playerRb.velocity = new Vector2(movementSpeed * direction, playerRb.velocity.y);
-        if ((direction < 0 && facingRight) || (direction > 0 && !facingRight))
+        if (movementDir != 0)
+        {
+            Move();
+        } else
+        {
+            Inertia();
+        }
+    }
+    private void Move()
+    {
+        SetVelocity(movementSpeed * movementDir, playerRb.velocity.y);
+        if ((movementDir < 0 && facingRight) || (movementDir > 0 && !facingRight))
         {
             Flip();
+        }
+    }
+    private void Inertia()
+    {
+        if (playerRb.velocity.x > 0 && facingRight)
+        {
+            SetVelocity(playerRb.velocity.x - inertiaSpeed * Time.deltaTime, playerRb.velocity.y);
+        } else if (playerRb.velocity.x < 0 && !facingRight)
+        {
+            SetVelocity(playerRb.velocity.x + inertiaSpeed * Time.deltaTime, playerRb.velocity.y);
+        } else 
+        {
+            SetVelocity(0, playerRb.velocity.y);
         }
     }
     private void Flip()
@@ -58,6 +82,10 @@ public class PlayerMovement : MonoBehaviour
 		theScale.x *= -1;
 		transform.localScale = theScale;
 	}
+    private void SetVelocity(float x, float y)
+    {
+        playerRb.velocity = new Vector2(x, y);
+    }
     private void RaycastValues()
     {
         raycasts[0] = Physics2D.Raycast(transform.position + new Vector3(-0.4f, -0.75f,0),Vector2.down,0.05f,groundLayer);
