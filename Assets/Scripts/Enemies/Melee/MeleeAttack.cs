@@ -9,12 +9,4 @@ public class MeleeAttack : MonoBehaviour
     {
         enemyScript = GetComponent<Melee>();
     }
-    void Update()
-    {
-        
-    }
-    public void Attack()
-    {
-        
-    }
 }

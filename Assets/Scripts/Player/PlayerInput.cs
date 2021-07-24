@@ -4,9 +4,9 @@ using UnityEngine.InputSystem;
 public class PlayerInput : MonoBehaviour
 {
     private Player playerScript;
-
+    [SerializeField] private float hitRate = 2f;
+    private float nextHit;
     float horizontalMove = 0f;
-
     void Start()
     {
         playerScript = GetComponent<Player>();
@@ -20,12 +20,16 @@ public class PlayerInput : MonoBehaviour
     {
         playerScript.movementScript.jumping = true;
     }
-    void OnAtack()
+    void OnAttack()
     {
-        playerScript.atackScript.TestAtack();
+        if (Time.time >= nextHit)
+        {
+            nextHit = Time.time + 1f / hitRate;
+            playerScript.attackScript.Attack();
+        }
     }
-    void OnSpecialAtack()
+    void OnSpecialAttack()
     {
-        playerScript.atackScript.TestSpecialAtack();
+        playerScript.attackScript.TestSpecialAttack();
     }
 }

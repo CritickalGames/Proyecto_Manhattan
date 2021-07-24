@@ -14,7 +14,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Atack",
+                    "name": "Attack",
                     "type": "Button",
                     "id": "ecdfc238-5b7c-4cdb-b989-6dcd966afeb1",
                     "expectedControlType": "Button",
@@ -22,7 +22,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "SpecialAtack",
+                    "name": "SpecialAttack",
                     "type": "Button",
                     "id": "570c3818-1147-4abd-80d4-d7c5d5791169",
                     "expectedControlType": "Button",
@@ -46,7 +46,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Atack",
+                    "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -57,7 +57,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "SpecialAtack",
+                    "action": "SpecialAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

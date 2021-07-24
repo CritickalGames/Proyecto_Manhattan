@@ -4,29 +4,23 @@ public class Melee : MonoBehaviour
 {
     [System.NonSerialized]public MeleeMovement movementScript;
     [System.NonSerialized]public MeleeAttack attackScript;
-    [SerializeField] private float followRange;
-    [SerializeField] private GameObject followObject;
-    private bool attacking;
+    [SerializeField] public int maxHealth = 100;
+    private int currentHealth;
     private GameObject target;
     void Start()
     {
         movementScript = GetComponent<MeleeMovement>();
         attackScript = GetComponent<MeleeAttack>();
-        target = GameObject.Find("/Player/Player");;
+        target = GameObject.Find("/Player/Player");
+        currentHealth = maxHealth;
     }
-    void Update()
+    public void Damaged(int damage)
     {
-        DetectPlayer();
-    }
-    void DetectPlayer()
-    {
-        if (Mathf.Abs(transform.position.x - target.transform.position.x) < followRange && !attacking)
+        currentHealth -= damage;
+
+        if (currentHealth <= 0)
         {
-            if ((transform.position.x - target.transform.position.x) < 0)
-                movementScript.direction = -1;
-            if ((transform.position.x - target.transform.position.x) > 0)
-                movementScript.direction = 1;
-            movementScript.FollowPlayer();
+            Destroy(this.gameObject);
         }
     }
 }
