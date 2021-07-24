@@ -12,6 +12,4 @@ public class Player : MonoBehaviour
         movementScript = GetComponent<PlayerMovement>();
         atackScript = GetComponent<PlayerAtack>();
     }
-
-    
 }

@@ -58,9 +58,8 @@ public class PlayerMovement : MonoBehaviour
     {
         SetVelocity(movementSpeed * movementDir, playerRb.velocity.y);
         if ((movementDir < 0 && facingRight) || (movementDir > 0 && !facingRight))
-        {
             Flip();
-        }
+        
     }
     private void Inertia()
     {
