@@ -38,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
         if ((raycasts[0] || raycasts[1] || raycasts[2]) || (timeOnAir < maxTimeOnAir && grounded == true))
         {
             grounded = false;
+            playerScript.playerAnimator.SetBool("Jumping", true);
             SetVelocity(playerRb.velocity.x, jumpSpeed);
         } else
         {
@@ -56,6 +57,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Move()
     {
+        playerScript.playerAnimator.SetBool("Running", true);
         SetVelocity(movementSpeed * movementDir, playerRb.velocity.y);
         if ((movementDir < 0 && facingRight) || (movementDir > 0 && !facingRight))
             Flip();
@@ -71,6 +73,7 @@ public class PlayerMovement : MonoBehaviour
             SetVelocity(playerRb.velocity.x + inertiaSpeed * Time.deltaTime, playerRb.velocity.y);
         } else 
         {
+            playerScript.playerAnimator.SetBool("Running", false);
             SetVelocity(0, playerRb.velocity.y);
         }
     }
@@ -97,6 +100,7 @@ public class PlayerMovement : MonoBehaviour
         {
             grounded = true;
             timeOnAir = 0;
+            playerScript.playerAnimator.SetBool("Jumping", false);
         } else
         {
             timeOnAir += Time.deltaTime;
