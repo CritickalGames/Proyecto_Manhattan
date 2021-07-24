@@ -14,10 +14,15 @@ public class PlayerAttack : MonoBehaviour
     }
     public void Attack()
     {
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(hitPoint.position, hitRange, enemyLayers);
-        foreach (Collider2D enemy in hitEnemies)
+        if (playerScript.playerAnimator.GetBool("Jumping") == false)
         {
-            enemy.GetComponent<Melee>().Damaged(normalDamage);
+            playerScript.playerAnimator.SetTrigger("Attacking");
+            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(hitPoint.position, hitRange, enemyLayers);
+            foreach (Collider2D enemy in hitEnemies)
+            {
+                Debug.Log("Hit enemy: " + enemy.name);
+                enemy.GetComponent<Melee>().Damaged(normalDamage);
+            }
         }
     }
     public void TestSpecialAttack()
