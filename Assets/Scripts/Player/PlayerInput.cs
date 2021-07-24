@@ -22,7 +22,7 @@ public class PlayerInput : MonoBehaviour
     }
     void OnAttack()
     {
-        if (Time.time >= nextHit)
+        if (Time.time >= nextHit && playerScript.playerAnimator.GetBool("Jumping") == false)
         {
             nextHit = Time.time + 1f / hitRate;
             playerScript.attackScript.Attack();

@@ -37,7 +37,9 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Enemies\Melee\MeleeMovement.cs" />
+     <Compile Include="Assets\3rdParty\Bandits - Pixel Art\Demo\Bandit.cs" />
      <Compile Include="Assets\Scripts\Menu\MenuManager.cs" />
+     <Compile Include="Assets\3rdParty\Bandits - Pixel Art\Demo\Sensor_Bandit.cs" />
      <Compile Include="Assets\Scripts\Enemies\Melee\Melee.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
