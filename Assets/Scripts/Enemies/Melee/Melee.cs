@@ -11,7 +11,8 @@ public class Melee : MonoBehaviour
     [SerializeField] private float caughtRange;
     [SerializeField] public int maxHealth = 100;
     private int currentHealth;
-    private int direction;
+    private int faceDirection;
+    private int moveDirection;
     private float distanceEnemyPlayer;
     private bool attacking;
     [SerializeField] private float hitRate = 2.5f;
@@ -35,17 +36,16 @@ public class Melee : MonoBehaviour
                 nextHit = Time.time + 1f / hitRate;
                 attackScript.Attack();
             }
-        } else {movementScript.ManageMovement(0);}
+        } else {
+            movementScript.ManageMovement(0);
+        }
     }
     bool PlayerIsAlive()
     {
         if (target.GetComponent<Animator>().GetBool("IsDead") == true)
-        {
-                return false;
-        } else 
-        {
+            return false;
+        else
             return true;
-        }
     }
     public void Damaged(int damage)
     {
@@ -65,18 +65,11 @@ public class Melee : MonoBehaviour
     }
     private void DetectPlayer()
     {
-        float absoluteValue = Mathf.Abs(distanceEnemyPlayer);
-        CheckCaught(absoluteValue);
-        CheckDirection();
-        if  (absoluteValue < followRange && !attacking && !caught)
-        {
-            movementScript.ManageFlip(direction);
-            movementScript.ManageMovement(direction);
-        } else
-        {
-            movementScript.ManageFlip(direction);
-            movementScript.ManageMovement(0);
-        }
+        float absoluteDistance = Mathf.Abs(distanceEnemyPlayer);
+        CheckCaught(absoluteDistance);
+        SetDirection(absoluteDistance);
+        movementScript.ManageFlip(faceDirection);
+        movementScript.ManageMovement(moveDirection);
     }
     void CheckCaught(float absoluteValue)
     {
@@ -85,11 +78,15 @@ public class Melee : MonoBehaviour
         else 
             caught = false;
     }
-    void CheckDirection()
+    void SetDirection(float absoluteDistance)
     {
         if (distanceEnemyPlayer > 0)
-            direction = 1;
+            faceDirection = 1;
         else if (distanceEnemyPlayer < 0)
-            direction = -1;
+            faceDirection = -1;
+        if (absoluteDistance < followRange && !attacking && !caught)
+            moveDirection = faceDirection;
+        else
+            moveDirection = 0;
     }
 }

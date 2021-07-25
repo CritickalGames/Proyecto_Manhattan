@@ -11,18 +11,19 @@ public class MeleeMovement : MonoBehaviour
         enemyScript = GetComponent<Melee>();
         enemyRb = GetComponent<Rigidbody2D>();
     }
-    public void ManageMovement(int direction) => Move(direction);
-    
-    void Move(int internalDirection)
-    {
-        internalDirection = -internalDirection;
-        if (internalDirection == 0)
-            enemyScript.enemyAnimator.SetBool("Running", false);
-        if (internalDirection != 0)
+    public void ManageMovement(int direction)
+    {  
+        direction = -direction;
+        if (direction != 0)
         {
             enemyScript.enemyAnimator.SetBool("Running", true);
-            SetVelocity(movementSpeed * internalDirection, enemyRb.velocity.y);
-        }
+            Move(direction);
+        } else
+            enemyScript.enemyAnimator.SetBool("Running", false);
+    }
+    void Move(int internalDirection)
+    {
+        enemyRb.velocity = new Vector2(movementSpeed * internalDirection, enemyRb.velocity.y);
     }
     public void ManageFlip(int internalDirection)
     {
@@ -37,8 +38,4 @@ public class MeleeMovement : MonoBehaviour
 		theScale.x *= -1;
 		transform.localScale = theScale;
 	}
-    private void SetVelocity(float x, float y)
-    {
-        enemyRb.velocity = new Vector2(x, y);
-    }
 }
