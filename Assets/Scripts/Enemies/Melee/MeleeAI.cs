@@ -7,6 +7,7 @@ public class MeleeAI : MonoBehaviour
     [System.NonSerialized]public Melee enemyScript;
     [System.NonSerialized]public GameObject target;
     [System.NonSerialized]public bool caught = false;
+    [SerializeField]public LayerMask obstacleLayer;
     [SerializeField]private float followRange;
     [SerializeField] private float caughtRange;
     [SerializeField] private float hitRate = 2.5f;
@@ -15,6 +16,7 @@ public class MeleeAI : MonoBehaviour
     private int faceDirection;
     private int moveDirection;
     private bool attacking;
+    private bool raycast = false;
     void Start()
     {
         enemyScript = GetComponent<Melee>();
@@ -22,15 +24,10 @@ public class MeleeAI : MonoBehaviour
     }
     void Update()
     {
+        
         if (PlayerIsAlive())
         {
-            distanceEnemyPlayer = transform.position.x - target.transform.position.x;
-            DetectPlayer();
-            if (caught && Time.time >= nextHit && enemyScript.enemyAnimator.GetBool("Jumping") == false)
-            {
-                nextHit = Time.time + 1f / hitRate;
-                enemyScript.attackScript.Attack();
-            }
+            ManageAI();
         } else {
             enemyScript.movementScript.ManageMovement(0);
         }
@@ -42,13 +39,30 @@ public class MeleeAI : MonoBehaviour
         else
             return true;
     }
+    void ManageAI()
+    {
+        distanceEnemyPlayer = transform.position.x - target.transform.position.x;
+        DetectPlayer();
+        if (caught && Time.time >= nextHit && enemyScript.enemyAnimator.GetBool("Jumping") == false)
+        {
+            nextHit = Time.time + 1f / hitRate;
+            enemyScript.attackScript.Attack();
+        }
+    }
     private void DetectPlayer()
     {
         float absoluteDistance = Mathf.Abs(distanceEnemyPlayer);
         CheckCaught(absoluteDistance);
         SetDirection(absoluteDistance);
+        DetectObstacle();
         enemyScript.movementScript.ManageFlip(faceDirection);
         enemyScript.movementScript.ManageMovement(moveDirection);
+    }
+    void DetectObstacle()
+    {
+        raycast = Physics2D.Raycast(transform.position + new Vector3(0,1,0),new Vector2(-faceDirection,0),1.5f,obstacleLayer);
+        if (raycast)
+            enemyScript.movementScript.ManageJump();
     }
     void CheckCaught(float absoluteValue)
     {
@@ -68,4 +82,11 @@ public class MeleeAI : MonoBehaviour
         else
             moveDirection = 0;
     }
+/*    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.layer == obstacleLayer)
+        {
+            enemyScript.movementScript.ManageJump();
+        }
+    }*/
 }
