@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 5616440117558290482}
   - component: {fileID: 5616440117558290485}
   - component: {fileID: 5616440117558290484}
+  - component: {fileID: 2513137296674884863}
   m_Layer: 7
   m_Name: Melee
   m_TagString: Untagged
@@ -187,10 +188,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79a12e5056c01874893b49df617acc9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  followRange: 6
   caughtRange: 1.5
   maxHealth: 40
-  hitRate: 1
 --- !u!114 &5616440117558290485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,3 +221,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 5
+--- !u!114 &2513137296674884863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5616440117558290491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7ad9c663ce7d084fa5e197259281033, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  followRange: 5
+  caughtRange: 1.5
+  hitRate: 1
