@@ -1142,7 +1142,7 @@ MonoBehaviour:
   jumpSpeed: 12
   movementSpeed: 9
   maxTimeOnAir: 0.1
-  inertiaSpeed: 25
+  inertiaSpeed: 20
   groundLayer:
     serializedVersion: 2
     m_Bits: 311
