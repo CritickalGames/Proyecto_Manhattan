@@ -16,6 +16,11 @@ public class PlayerInput : MonoBehaviour
         horizontalMove = ((Vector2)value.Get()).x;
         playerScript.movementScript.movementDir = (int)horizontalMove;
     }
+    void OnDash()
+    {
+        playerScript.movementScript.dash = true;
+    }
+
     void OnJump()
     {
         playerScript.movementScript.jumping = true;
