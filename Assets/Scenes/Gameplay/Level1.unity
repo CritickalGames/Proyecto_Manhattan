@@ -968,13 +968,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6ef6d1c6a4f11e42b953f3821cb2acb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpSpeed: 12
-  movementSpeed: 9
-  maxTimeOnAir: 0.1
-  inertiaSpeed: 25
   groundLayer:
     serializedVersion: 2
     m_Bits: 311
+  jumpSpeed: 12
+  movementSpeed: 9
+  inertiaSpeed: 25
+  dashDistance: 3
+  maxTimeOnAir: 0.1
+  dashCooldown: 0.5
 --- !u!95 &1443192990
 Animator:
   serializedVersion: 3
