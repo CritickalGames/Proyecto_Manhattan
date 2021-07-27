@@ -17,14 +17,11 @@ public class PlayerAttack : MonoBehaviour
         playerScript.playerAnimator.SetTrigger("Attacking");
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(hitPoint.position, hitRange, enemyLayers);
         foreach (Collider2D enemy in hitEnemies)
-        {
-            Debug.Log("Hit enemy: " + enemy.name);
             enemy.GetComponent<Melee>().Damaged(normalDamage);
-        }
+        
     }
     public void TestSpecialAttack()
     {
-        Debug.Log("Test2Working");
     }
     void OnDrawGizmosSelected()
     {
