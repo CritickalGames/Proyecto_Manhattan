@@ -6,13 +6,13 @@ public class PlayerMovement : MonoBehaviour
     [System.NonSerialized]public bool jumping = false;
     [System.NonSerialized]public bool dash = false;
     [System.NonSerialized]public int movementDir;
-    [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float jumpSpeed = 400f;
     [SerializeField] private float movementSpeed = 40f;
     [SerializeField] private float inertiaSpeed;
     [SerializeField] private float dashDistance = 20f;
     [SerializeField] private float maxTimeOnAir;
     [SerializeField] private float dashCooldown = 2f;
+    [SerializeField] private LayerMask groundLayer;
     private float nextDash;
     private float timeOnAir;
     private Rigidbody2D playerRb;

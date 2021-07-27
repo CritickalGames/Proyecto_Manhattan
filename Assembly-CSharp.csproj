@@ -48,6 +48,7 @@
      <Compile Include="Assets\Scripts\Menu\Config\GeneralSettings.cs" />
      <Compile Include="Assets\Scripts\Enemies\Melee\MeleeAttack.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerAttack.cs" />
+     <Compile Include="Assets\Scripts\Enemies\Melee\MeleeAI.cs" />
     <Reference Include="UnityEngine">
         <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.14f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
