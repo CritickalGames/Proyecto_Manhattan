@@ -928,6 +928,8 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 823
+  dashDistance: 3
+  dashCooldown: 0.5
 --- !u!95 &1443192990
 Animator:
   serializedVersion: 3

@@ -3,13 +3,17 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private Player playerScript;
-    [SerializeField] private float jumpSpeed = 400f;
-    [SerializeField] private float movementSpeed = 40f;
-    [SerializeField] private float maxTimeOnAir;
-    [SerializeField] private float inertiaSpeed;
+    [System.NonSerialized]public bool jumping = false;
+    [System.NonSerialized]public bool dash = false;
     [System.NonSerialized]public int movementDir;
     [SerializeField] private LayerMask groundLayer;
-    [System.NonSerialized]public bool jumping = false;
+    [SerializeField] private float jumpSpeed = 400f;
+    [SerializeField] private float movementSpeed = 40f;
+    [SerializeField] private float inertiaSpeed;
+    [SerializeField] private float dashDistance = 20f;
+    [SerializeField] private float maxTimeOnAir;
+    [SerializeField] private float dashCooldown = 2f;
+    private float nextDash;
     private float timeOnAir;
     private Rigidbody2D playerRb;
     private bool grounded;
@@ -54,6 +58,9 @@ public class PlayerMovement : MonoBehaviour
         {
             Inertia();
         }
+        if (dash && nextDash <= Time.time)
+            Dash();
+        dash = false;
     }
     private void Move()
     {
@@ -84,6 +91,16 @@ public class PlayerMovement : MonoBehaviour
 		theScale.x *= -1;
 		transform.localScale = theScale;
 	}
+    private void Dash()
+    {
+        RaycastHit2D hitRaycast = Physics2D.Raycast(transform.position + new Vector3(0f, 0.5f, 0),new Vector2(movementDir, 0),dashDistance,groundLayer);
+        float distance = dashDistance;
+        if(hitRaycast)
+            distance = hitRaycast.distance;
+        float transformX = transform.position.x + (movementDir * distance);
+        transform.position = new Vector2(transformX,transform.position.y);
+        nextDash = Time.time + dashCooldown;
+    }
     private void SetVelocity(float x, float y)
     {
         playerRb.velocity = new Vector2(x, y);
