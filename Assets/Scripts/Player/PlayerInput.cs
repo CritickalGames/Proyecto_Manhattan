@@ -4,6 +4,8 @@ using UnityEngine.InputSystem;
 public class PlayerInput : MonoBehaviour
 {
     private Player playerScript;
+    [SerializeField] private float dashCooldown = 0.5f;
+    private float nextDash;
     [SerializeField] private float hitRate = 2f;
     private float nextHit;
     float horizontalMove = 0f;
@@ -18,12 +20,16 @@ public class PlayerInput : MonoBehaviour
     }
     void OnDash()
     {
-        playerScript.movementScript.dash = true;
+        if (Time.time >= nextDash)
+        {
+            nextDash = Time.time + dashCooldown;
+            playerScript.movementScript.Dash();
+        }
     }
 
     void OnJump()
     {
-        playerScript.movementScript.jumping = true;
+        playerScript.movementScript.Jump();
     }
     void OnAttack()
     {
