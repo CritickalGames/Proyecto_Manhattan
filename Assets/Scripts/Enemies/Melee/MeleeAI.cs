@@ -7,7 +7,9 @@ public class MeleeAI : MonoBehaviour
     [System.NonSerialized]public Melee enemyScript;
     [System.NonSerialized]public GameObject target;
     [System.NonSerialized]public bool caught = false;
+    [SerializeField]public Transform groundCheck;
     [SerializeField]public LayerMask obstacleLayer;
+    [SerializeField] private LayerMask groundLayer;
     [SerializeField]private float followRange;
     [SerializeField] private float caughtRange;
     [SerializeField] private float hitRate = 2.5f;
@@ -15,8 +17,8 @@ public class MeleeAI : MonoBehaviour
     private float distanceEnemyPlayer;
     private int faceDirection;
     private int moveDirection;
-    private bool attacking;
     private bool raycast = false;
+    private bool grounded;
     void Start()
     {
         enemyScript = GetComponent<Melee>();
@@ -24,7 +26,7 @@ public class MeleeAI : MonoBehaviour
     }
     void Update()
     {
-        
+        grounded = Physics2D.OverlapCircle(groundCheck.position, 0.05f, groundLayer);
         if (PlayerIsAlive())
         {
             ManageAI();
@@ -62,7 +64,7 @@ public class MeleeAI : MonoBehaviour
     {
         raycast = Physics2D.Raycast(transform.position + new Vector3(0,1,0),new Vector2(-faceDirection,0),1.5f,obstacleLayer);
         if (raycast)
-            enemyScript.movementScript.ManageJump();
+            moveDirection = 0;
     }
     void CheckCaught(float absoluteValue)
     {
@@ -77,16 +79,10 @@ public class MeleeAI : MonoBehaviour
             faceDirection = 1;
         else if (distanceEnemyPlayer < 0)
             faceDirection = -1;
-        if (absoluteDistance < followRange && !attacking && !caught)
+        bool isBelow = transform.position.y <= target.transform.position.y;
+        if (absoluteDistance < followRange && isBelow && !caught && grounded)
             moveDirection = faceDirection;
         else
             moveDirection = 0;
     }
-/*    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.layer == obstacleLayer)
-        {
-            enemyScript.movementScript.ManageJump();
-        }
-    }*/
 }
