@@ -10,7 +10,8 @@ public class MeleeAI : MonoBehaviour
     [SerializeField]public Transform groundCheck;
     [SerializeField]public LayerMask obstacleLayer;
     [SerializeField] private LayerMask groundLayer;
-    [SerializeField]private float followRange;
+    [SerializeField]private float followXRange;
+    [SerializeField]private float followYRange;
     [SerializeField] private float caughtRange;
     [SerializeField] private float hitRate = 2.5f;
     private float nextHit;
@@ -19,6 +20,7 @@ public class MeleeAI : MonoBehaviour
     private int moveDirection;
     private bool raycast = false;
     private bool grounded;
+    private bool isInRange;
     void Start()
     {
         enemyScript = GetComponent<Melee>();
@@ -44,6 +46,7 @@ public class MeleeAI : MonoBehaviour
     void ManageAI()
     {
         distanceEnemyPlayer = transform.position.x - target.transform.position.x;
+        isInRange = (transform.position.y <= target.transform.position.y + followYRange) && (transform.position.y >= target.transform.position.y - followYRange);
         DetectPlayer();
         if (caught && Time.time >= nextHit && enemyScript.enemyAnimator.GetBool("Jumping") == false)
         {
@@ -68,7 +71,7 @@ public class MeleeAI : MonoBehaviour
     }
     void CheckCaught(float absoluteValue)
     {
-        if (absoluteValue < caughtRange)
+        if (absoluteValue < caughtRange && isInRange)
             caught = true;
         else 
             caught = false;
@@ -79,8 +82,7 @@ public class MeleeAI : MonoBehaviour
             faceDirection = 1;
         else if (distanceEnemyPlayer < 0)
             faceDirection = -1;
-        bool isBelow = transform.position.y <= target.transform.position.y;
-        if (absoluteDistance < followRange && isBelow && !caught && grounded)
+        if (absoluteDistance < followXRange && isInRange && !caught && grounded)
             moveDirection = faceDirection;
         else
             moveDirection = 0;

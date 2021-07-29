@@ -288,6 +288,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 823
-  followRange: 5
+  followXRange: 3
+  followYRange: 2
   caughtRange: 1
   hitRate: 1
