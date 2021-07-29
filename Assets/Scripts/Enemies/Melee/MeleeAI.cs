@@ -78,9 +78,9 @@ public class MeleeAI : MonoBehaviour
     }
     void SetDirection(float absoluteDistance)
     {
-        if (distanceEnemyPlayer > 0)
+        if (distanceEnemyPlayer > 0 && isInRange)
             faceDirection = 1;
-        else if (distanceEnemyPlayer < 0)
+        else if (distanceEnemyPlayer < 0 && isInRange)
             faceDirection = -1;
         if (absoluteDistance < followXRange && isInRange && !caught && grounded)
             moveDirection = faceDirection;
