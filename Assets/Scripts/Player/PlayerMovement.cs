@@ -3,50 +3,37 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private Player playerScript;
-    [System.NonSerialized]public bool jumping = false;
-    [System.NonSerialized]public bool dash = false;
     [System.NonSerialized]public int movementDir;
+    [SerializeField] private int extraJumps = 1;
+    [SerializeField] private float dashDistance = 3f;
     [SerializeField] private float jumpSpeed = 400f;
     [SerializeField] private float movementSpeed = 40f;
     [SerializeField] private float inertiaSpeed;
-    [SerializeField] private float dashDistance = 20f;
     [SerializeField] private float maxTimeOnAir;
-    [SerializeField] private float dashCooldown = 2f;
+    [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
-    private float nextDash;
     private float timeOnAir;
     private Rigidbody2D playerRb;
     private bool grounded;
     private bool facingRight = true;
-    private bool[] raycasts = new bool[3];
     void Start()
     {
         playerScript = GetComponent<Player>();
         playerRb = GetComponent<Rigidbody2D>();
-        raycasts[0] = false;
-        raycasts[1] = false;
-        raycasts[2] = false;
     }
     void Update()
     {
-        RaycastValues();
-        VerifyRaycasts();
-        if (jumping == true)
-        {
-            Jump();
-        }
+        grounded = Physics2D.OverlapCircle(groundCheck.position, 0.05f, groundLayer);
+        VerifyGround();
         ManageMovement();
     }  
-    void Jump()
+    public void Jump()
     {
-        if ((raycasts[0] || raycasts[1] || raycasts[2]) || (timeOnAir < maxTimeOnAir && grounded == true))
+        if ((timeOnAir < maxTimeOnAir) || extraJumps > 0)
         {
-            grounded = false;
-            playerScript.playerAnimator.SetBool("Jumping", true);
             SetVelocity(playerRb.velocity.x, jumpSpeed);
-        } else
-        {
-            jumping = false;
+            if (!(timeOnAir < maxTimeOnAir) && extraJumps > 0)
+                extraJumps--;
         }
     }
     void ManageMovement()
@@ -58,9 +45,6 @@ public class PlayerMovement : MonoBehaviour
         {
             Inertia();
         }
-        if (dash && nextDash <= Time.time)
-            Dash();
-        dash = false;
     }
     private void Move()
     {
@@ -91,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
 		theScale.x *= -1;
 		transform.localScale = theScale;
 	}
-    private void Dash()
+    public void Dash()
     {
         RaycastHit2D hitRaycast = Physics2D.Raycast(transform.position + new Vector3(0f, 0.5f, 0),new Vector2(movementDir, 0),dashDistance,groundLayer);
         float distance = dashDistance;
@@ -99,27 +83,21 @@ public class PlayerMovement : MonoBehaviour
             distance = hitRaycast.distance;
         float transformX = transform.position.x + (movementDir * distance);
         transform.position = new Vector2(transformX,transform.position.y);
-        nextDash = Time.time + dashCooldown;
     }
     private void SetVelocity(float x, float y)
     {
         playerRb.velocity = new Vector2(x, y);
     }
-    private void RaycastValues()
+    private void VerifyGround()
     {
-        raycasts[0] = Physics2D.Raycast(transform.position + new Vector3(-0.4f, -0.75f,0),Vector2.down,0.05f,groundLayer);
-        raycasts[1] = Physics2D.Raycast(transform.position + new Vector3(-0f, -0.75f,0),Vector2.down,0.05f,groundLayer);
-        raycasts[2] = Physics2D.Raycast(transform.position + new Vector3(0.4f, -0.75f,0),Vector2.down,0.05f,groundLayer);
-    }
-    private void VerifyRaycasts()
-    {
-        if (raycasts[0] || raycasts[1] || raycasts[2])
+        if (grounded)
         {
-            grounded = true;
             timeOnAir = 0;
             playerScript.playerAnimator.SetBool("Jumping", false);
+            extraJumps = 1;
         } else
         {
+            playerScript.playerAnimator.SetBool("Jumping", true);
             timeOnAir += Time.deltaTime;
         }
     }
