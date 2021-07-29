@@ -958,7 +958,7 @@ MonoBehaviour:
   jumpSpeed: 12
   movementSpeed: 9
   inertiaSpeed: 20
-  maxTimeOnAir: 0.1
+  maxTimeOnAir: 0.15
   groundCheck: {fileID: 680682628}
   groundLayer:
     serializedVersion: 2
