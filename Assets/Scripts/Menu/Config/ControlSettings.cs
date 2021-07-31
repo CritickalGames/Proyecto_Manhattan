@@ -12,7 +12,6 @@ public class ControlSettings : MonoBehaviour
 
     void Start()
     {
-        
         int bindingIndex = action.action.GetBindingIndexForControl(action.action.controls[0]);
         displayControl.text = InputControlPath.ToHumanReadableString(
             action.action.bindings[bindingIndex].effectivePath,
