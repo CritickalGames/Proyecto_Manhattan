@@ -36,7 +36,7 @@ public class PlayerInput : MonoBehaviour
         if (Time.time >= nextHit && playerScript.playerAnimator.GetBool("Jumping") == false)
         {
             nextHit = Time.time + 1f / hitRate;
-            playerScript.attackScript.Attack();
+            playerScript.playerAnimator.SetTrigger("Attacking");
         }
     }
     void OnSpecialAttack()
