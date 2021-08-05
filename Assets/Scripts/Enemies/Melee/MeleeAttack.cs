@@ -13,12 +13,9 @@ public class MeleeAttack : MonoBehaviour
     }
     public void Attack()
     {
-        enemyScript.enemyAnimator.SetTrigger("Attacking");
         Collider2D[] hitPlayer = Physics2D.OverlapCircleAll(hitTransform.position, attackRange, playerMask);
         foreach (Collider2D player in hitPlayer)
-        {
             player.GetComponent<Player>().Damaged(normalDamage);
-        }
     }
     void OnDrawGizmosSelected()
     {

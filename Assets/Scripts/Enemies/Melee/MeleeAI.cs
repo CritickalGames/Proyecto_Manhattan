@@ -51,7 +51,7 @@ public class MeleeAI : MonoBehaviour
         if (caught && Time.time >= nextHit && enemyScript.enemyAnimator.GetBool("Jumping") == false)
         {
             nextHit = Time.time + 1f / hitRate;
-            enemyScript.attackScript.Attack();
+            enemyScript.enemyAnimator.SetTrigger("Attacking");
         }
     }
     private void DetectPlayer()
