@@ -961,7 +961,7 @@ MonoBehaviour:
   dashDistance: 3
   jumpSpeed: 12
   movementSpeed: 9
-  inertiaSpeed: 5
+  inertiaSpeed: 10
   maxTimeOnAir: 0.15
   groundCheck: {fileID: 680682628}
   groundLayer:
