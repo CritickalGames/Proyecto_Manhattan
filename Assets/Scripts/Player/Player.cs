@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [System.NonSerialized]public PlayerInput inputScript;
     [System.NonSerialized]public PlayerMovement movementScript;
     [System.NonSerialized]public PlayerAttack attackScript;
     [System.NonSerialized] public Animator playerAnimator;
@@ -11,7 +10,6 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        inputScript = GetComponent<PlayerInput>();
         movementScript = GetComponent<PlayerMovement>();
         attackScript = GetComponent<PlayerAttack>();
         playerAnimator = GetComponent<Animator>();
@@ -33,7 +31,6 @@ public class Player : MonoBehaviour
         this.GetComponent<CapsuleCollider2D>().enabled = false;
         attackScript.enabled = false;
         movementScript.enabled = false;
-        inputScript.enabled = false;
         this.enabled = false;
     }
 }
