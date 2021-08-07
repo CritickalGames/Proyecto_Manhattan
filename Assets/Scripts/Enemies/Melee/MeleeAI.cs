@@ -24,16 +24,17 @@ public class MeleeAI : MonoBehaviour
     void Start()
     {
         enemyScript = GetComponent<Melee>();
-        target = GameObject.Find("/Player/Player");
     }
     void Update()
     {
         grounded = Physics2D.OverlapCircle(groundCheck.position, 0.05f, groundLayer);
-        if (PlayerIsAlive())
+        if (GameManager.gM.playerObject != null)
         {
-            ManageAI();
-        } else {
-            enemyScript.movementScript.ManageMovement(0);
+            target = GameManager.gM.playerObject;
+            if (PlayerIsAlive())
+                ManageAI();
+            else 
+                enemyScript.movementScript.ManageMovement(0);
         }
     }
     bool PlayerIsAlive()

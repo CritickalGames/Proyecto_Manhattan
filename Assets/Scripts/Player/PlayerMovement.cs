@@ -101,4 +101,10 @@ public class PlayerMovement : MonoBehaviour
             timeOnAir += Time.deltaTime;
         }
     }
+    void OnDrawGizmosSelected()
+    {
+        if (groundCheck == null)
+            return;
+        Gizmos.DrawWireSphere(groundCheck.position, 0.05f);
+    }
 }

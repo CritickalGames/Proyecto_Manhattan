@@ -15,7 +15,10 @@ public class MeleeAttack : MonoBehaviour
     {
         Collider2D[] hitPlayer = Physics2D.OverlapCircleAll(hitTransform.position, attackRange, playerMask);
         foreach (Collider2D player in hitPlayer)
-            player.GetComponent<Player>().Damaged(normalDamage);
+        {
+            if (player.gameObject.GetComponent<Animator>().GetBool("IsDead") == false)
+                player.GetComponent<Player>().Damaged(normalDamage);
+        }
     }
     void OnDrawGizmosSelected()
     {

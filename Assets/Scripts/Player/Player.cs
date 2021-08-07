@@ -27,10 +27,6 @@ public class Player : MonoBehaviour
     void Die()
     {
         playerAnimator.SetBool("IsDead", true);
-        Destroy(this.GetComponent<Rigidbody2D>());
-        this.GetComponent<CapsuleCollider2D>().enabled = false;
-        attackScript.enabled = false;
-        movementScript.enabled = false;
-        this.enabled = false;
+        GameManager.gM.SpawnPlayer();
     }
 }

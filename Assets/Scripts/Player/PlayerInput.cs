@@ -1,61 +1,53 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-
 public class PlayerInput : MonoBehaviour
 {
-    private GameManager gameManager;
     [SerializeField] private float dashCooldown = 0.5f;
     private float nextDash;
     [SerializeField] private float hitRate = 2f;
     private float nextHit;
     float horizontalMove = 0f;
-    void Start()
-    {
-        gameManager = GetComponent<GameManager>();
-    }
 
-    void FixedUpdate()
+    void Update()
     {
-        if (!gameManager.pauseScript.isPaused)
-            gameManager.playerScript.movementScript.movementDir = (int)horizontalMove;
+        if (!GameManager.gM.pauseScript.isPaused && GameManager.gM.playerObject != null)
+            GameManager.gM.playerScript.movementScript.movementDir = (int)horizontalMove;
     }
-
     void OnMovement(InputValue value)
     {
         horizontalMove = ((Vector2)value.Get()).x;
     }
     void OnDash()
     {
-        if (Time.time >= nextDash && !gameManager.pauseScript.isPaused)
+        if (Time.time >= nextDash && !GameManager.gM.pauseScript.isPaused)
         {
             nextDash = Time.time + dashCooldown;
-            gameManager.playerScript.movementScript.Dash();
+            GameManager.gM.playerScript.movementScript.Dash();
         }
     }
-
     void OnJump()
     {
-        if (!gameManager.pauseScript.isPaused)
-            gameManager.playerScript.movementScript.Jump();
+        if (!GameManager.gM.pauseScript.isPaused)
+            GameManager.gM.playerScript.movementScript.Jump();
     }
     void OnAttack()
     {
-        if (Time.time >= nextHit && gameManager.playerScript.playerAnimator.GetBool("Jumping") == false && !gameManager.pauseScript.isPaused)
+        if (Time.time >= nextHit && GameManager.gM.playerScript.playerAnimator.GetBool("Jumping") == false && !GameManager.gM.pauseScript.isPaused)
         {
             nextHit = Time.time + 1f / hitRate;
-            gameManager.playerScript.playerAnimator.SetTrigger("Attacking");
+            GameManager.gM.playerScript.playerAnimator.SetTrigger("Attacking");
         }
     }
     void OnSpecialAttack()
     {
-        if (!gameManager.pauseScript.isPaused)
-            gameManager.playerScript.attackScript.TestSpecialAttack();
+        if (!GameManager.gM.pauseScript.isPaused)
+            GameManager.gM.playerScript.attackScript.TestSpecialAttack();
     }
     void OnPause()
     {
-        if (gameManager.pauseScript.isPaused)
-            gameManager.pauseScript.Resume();
-        else if (!gameManager.pauseScript.isPaused)
-            gameManager.pauseScript.Pause();
+        if (GameManager.gM.pauseScript.isPaused)
+            GameManager.gM.pauseScript.Resume();
+        else if (!GameManager.gM.pauseScript.isPaused)
+            GameManager.gM.pauseScript.Pause();
     }
 }
