@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class PauseController : MonoBehaviour
 {
-    public bool isPaused = false;
+    [System.NonSerialized]public bool isPaused = false;
     [SerializeField] private GameObject pauseObject;
     public void Pause()
     {
