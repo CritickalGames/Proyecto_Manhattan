@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerInput : MonoBehaviour
 {
-    private Player playerScript;
+    private GameManager gameManager;
     [SerializeField] private float dashCooldown = 0.5f;
     private float nextDash;
     [SerializeField] private float hitRate = 2f;
@@ -11,36 +11,51 @@ public class PlayerInput : MonoBehaviour
     float horizontalMove = 0f;
     void Start()
     {
-        playerScript = GetComponent<Player>();
+        gameManager = GetComponent<GameManager>();
     }
+
+    void FixedUpdate()
+    {
+        if (!gameManager.pauseScript.isPaused)
+            gameManager.playerScript.movementScript.movementDir = (int)horizontalMove;
+    }
+
     void OnMovement(InputValue value)
     {
         horizontalMove = ((Vector2)value.Get()).x;
-        playerScript.movementScript.movementDir = (int)horizontalMove;
     }
     void OnDash()
     {
-        if (Time.time >= nextDash)
+        if (Time.time >= nextDash && !gameManager.pauseScript.isPaused)
         {
             nextDash = Time.time + dashCooldown;
-            playerScript.movementScript.Dash();
+            gameManager.playerScript.movementScript.Dash();
         }
     }
 
     void OnJump()
     {
-        playerScript.movementScript.Jump();
+        if (!gameManager.pauseScript.isPaused)
+            gameManager.playerScript.movementScript.Jump();
     }
     void OnAttack()
     {
-        if (Time.time >= nextHit && playerScript.playerAnimator.GetBool("Jumping") == false)
+        if (Time.time >= nextHit && gameManager.playerScript.playerAnimator.GetBool("Jumping") == false && !gameManager.pauseScript.isPaused)
         {
             nextHit = Time.time + 1f / hitRate;
-            playerScript.playerAnimator.SetTrigger("Attacking");
+            gameManager.playerScript.playerAnimator.SetTrigger("Attacking");
         }
     }
     void OnSpecialAttack()
     {
-        playerScript.attackScript.TestSpecialAttack();
+        if (!gameManager.pauseScript.isPaused)
+            gameManager.playerScript.attackScript.TestSpecialAttack();
+    }
+    void OnPause()
+    {
+        if (gameManager.pauseScript.isPaused)
+            gameManager.pauseScript.Resume();
+        else if (!gameManager.pauseScript.isPaused)
+            gameManager.pauseScript.Pause();
     }
 }
