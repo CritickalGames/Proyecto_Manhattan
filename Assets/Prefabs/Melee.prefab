@@ -72,8 +72,8 @@ GameObject:
   - component: {fileID: 5616440117558290486}
   - component: {fileID: 5616440117558290489}
   - component: {fileID: 5616440117558290488}
-  - component: {fileID: 2884446742313741904}
   - component: {fileID: 5616440117558290483}
+  - component: {fileID: 847321635384321467}
   - component: {fileID: 5616440117558290482}
   - component: {fileID: 5616440117558290485}
   - component: {fileID: 5616440117558290484}
@@ -189,22 +189,6 @@ CapsuleCollider2D:
   m_Offset: {x: -0.002334595, y: 0.6431922}
   m_Size: {x: 0.528038, y: 1.151091}
   m_Direction: 0
---- !u!58 &2884446742313741904
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5616440117558290491}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.5128191, y: 0.5044245}
-  serializedVersion: 2
-  m_Radius: 0.0782792
 --- !u!95 &5616440117558290483
 Animator:
   serializedVersion: 3
@@ -224,6 +208,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &847321635384321467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5616440117558290491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 638e052c69715614eb7f96dc09167c75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 40
 --- !u!114 &5616440117558290482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,8 +233,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79a12e5056c01874893b49df617acc9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  caughtRange: 1.5
-  maxHealth: 40
 --- !u!114 &5616440117558290485
 MonoBehaviour:
   m_ObjectHideFlags: 0

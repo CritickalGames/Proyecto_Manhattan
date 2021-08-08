@@ -2,15 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TakeDamage : MonoBehaviour
+public class HealthManage : MonoBehaviour
 {
-    [System.NonSerialized]public FirstBossAI iaScript;
     [System.NonSerialized]public Animator enemyAnimator;
     [SerializeField] public int maxHealth = 100;
     private int currentHealth;
     void Awake()
     {
-        this.iaScript = this.GetComponent<FirstBossAI>();
         this.enemyAnimator = this.GetComponent<Animator>();
     }
     void Start()
@@ -29,7 +27,6 @@ public class TakeDamage : MonoBehaviour
     void Die()
     {
         this.enemyAnimator.SetBool("IsDead", true);
-        this.iaScript.enabled = false;
         this.enabled = false;
     }
 }
