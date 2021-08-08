@@ -7,15 +7,13 @@ using UnityEngine.Audio;
 public class GeneralSettings : MonoBehaviour
 {
     [SerializeField] AudioMixer audioControl;
-
-    int width;
-    int height;
     [SerializeField] int newResolution = 2;
     [SerializeField] bool fullScreen;
     [SerializeField] Text resolutionText;
-
     [SerializeField] Text qualityText;
     [SerializeField] int newQuality = 3;
+    int width;
+    int height;
     string qualityNames;
 
 
@@ -28,109 +26,109 @@ public class GeneralSettings : MonoBehaviour
 
     public void Volume(float sliderValue)
     {
-        audioControl.SetFloat("MasterSound", Mathf.Log10(sliderValue) * 20);
+        this.audioControl.SetFloat("MasterSound", Mathf.Log10(sliderValue) * 20);
     }
 
     public void NextResolution()
     {
-        newResolution++;
+        this.newResolution++;
         Resolutions();
     }
 
     public void PreviousResolution()
     {
-        newResolution--;
+        this.newResolution--;
         Resolutions();
     }
 
     public void FullScreen()
     {
-        fullScreen = !fullScreen;
+        this.fullScreen = !this.fullScreen;
     }
 
     public void Apply()
     {
-        Screen.SetResolution(width, height, fullScreen);
-        QualitySettings.SetQualityLevel(newQuality, true);
+        Screen.SetResolution(this.width, this.height, this.fullScreen);
+        QualitySettings.SetQualityLevel(this.newQuality, true);
     }
 
     private void Resolutions()
     {
-        newResolution = Mathf.Clamp(newResolution, 0, 7);
-        switch (newResolution)
+        this.newResolution = Mathf.Clamp(this.newResolution, 0, 7);
+        switch (this.newResolution)
         {
             case 0:
-                width = 1024;
-                height = 576;
+                this.width = 1024;
+                this.height = 576;
                 break;
             case 1:
-                width = 1152;
-                height = 648;
+                this.width = 1152;
+                this.height = 648;
                 break;
             case 2:
-                width = 1280;
-                height = 720;
+                this.width = 1280;
+                this.height = 720;
                 break;
             case 3:
-                width = 1366;
-                height = 768;
+                this.width = 1366;
+                this.height = 768;
                 break;
             case 4:
-                width = 1600;
-                height = 900;
+                this.width = 1600;
+                this.height = 900;
                 break;
             case 5:
-                width = 1920;
-                height = 1080;
+                this.width = 1920;
+                this.height = 1080;
                 break;
             case 6:
-                width = 2560;
-                height = 1440;
+                this.width = 2560;
+                this.height = 1440;
                 break;
             case 7:
-                width = 3840;
-                height = 2160;
+                this.width = 3840;
+                this.height = 2160;
                 break;
         }
-        resolutionText.text = width.ToString() + " x " + height.ToString();
+        this.resolutionText.text = this.width.ToString() + " x " + this.height.ToString();
     }
 
     public void NextQuality()
     {
-        newQuality++;
+        this.newQuality++;
         Qualities();
     }
 
     public void PreviousQuality()
     {
-        newQuality--;
+        this.newQuality--;
         Qualities();
     }
 
     private void Qualities()
     {
-        newQuality = Mathf.Clamp(newQuality, 0, 5);
-        switch (newQuality)
+        this.newQuality = Mathf.Clamp(this.newQuality, 0, 5);
+        switch (this.newQuality)
         {
             case 0:
-                qualityNames = "Very Low";
+                this.qualityNames = "Very Low";
                 break;
             case 1:
-                qualityNames = "Low";
+                this.qualityNames = "Low";
                 break;
             case 2:
-                qualityNames = "Medium";
+                this.qualityNames = "Medium";
                 break;
             case 3:
-                qualityNames = "High";
+                this.qualityNames = "High";
                 break;
             case 4:
-                qualityNames = "Very High";
+                this.qualityNames = "Very High";
                 break;
             case 5:
-                qualityNames = "Ultra";
+                this.qualityNames = "Ultra";
                 break;
         }
-        qualityText.text = qualityNames;
+        this.qualityText.text = this.qualityNames;
     }
 }

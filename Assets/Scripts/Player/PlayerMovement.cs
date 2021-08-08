@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private Player playerScript;
     [System.NonSerialized]public int movementDir;
     [SerializeField] private int extraJumps = 1;
     [SerializeField] private float dashDistance = 3f;
@@ -12,33 +11,35 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float maxTimeOnAir;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
+    private Player playerScript;
     private float timeOnAir;
     private Rigidbody2D playerRb;
     private bool grounded;
     private bool facingRight = true;
-    void Start()
+    void Awake()
     {
-        playerScript = GetComponent<Player>();
-        playerRb = GetComponent<Rigidbody2D>();
+        this.playerScript = GetComponent<Player>();
+        this.playerRb = GetComponent<Rigidbody2D>();
     }
     void Update()
     {
-        grounded = Physics2D.OverlapCircle(groundCheck.position, 0.05f, groundLayer);
+
+        this.grounded = Physics2D.OverlapCircle(this.groundCheck.position, 0.05f, this.groundLayer);
         VerifyGround();
         ManageMovement();
     }  
     public void Jump()
     {
-        if ((timeOnAir < maxTimeOnAir) || extraJumps > 0)
+        if ((this.timeOnAir < this.maxTimeOnAir) || this.extraJumps > 0)
         {
-            SetVelocity(playerRb.velocity.x, jumpSpeed);
-            if (!(timeOnAir < maxTimeOnAir) && extraJumps > 0)
-                extraJumps--;
+            SetVelocity(this.playerRb.velocity.x, this.jumpSpeed);
+            if (!(this.timeOnAir < this.maxTimeOnAir) && this.extraJumps > 0)
+                this.extraJumps--;
         }
     }
     void ManageMovement()
     {
-        if (movementDir != 0)
+        if (this.movementDir != 0)
         {
             Move();
         } else
@@ -48,57 +49,63 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Move()
     {
-        playerScript.playerAnimator.SetBool("Running", true);
-        SetVelocity(movementSpeed * movementDir, playerRb.velocity.y);
-        if ((movementDir < 0 && facingRight) || (movementDir > 0 && !facingRight))
+        this.playerScript.playerAnimator.SetBool("Running", true);
+        SetVelocity(this.movementSpeed * this.movementDir, this.playerRb.velocity.y);
+        if ((this.movementDir < 0 && this.facingRight) || (this.movementDir > 0 && !this.facingRight))
             Flip();
         
     }
     private void Inertia()
     {
-        if (playerRb.velocity.x > 0 && facingRight)
+        if (this.playerRb.velocity.x > 0 && this.facingRight)
         {
-            SetVelocity(playerRb.velocity.x - inertiaSpeed * Time.deltaTime, playerRb.velocity.y);
-        } else if (playerRb.velocity.x < 0 && !facingRight)
+            SetVelocity(this.playerRb.velocity.x - this.inertiaSpeed * Time.deltaTime, this.playerRb.velocity.y);
+        } else if (this.playerRb.velocity.x < 0 && !this.facingRight)
         {
-            SetVelocity(playerRb.velocity.x + inertiaSpeed * Time.deltaTime, playerRb.velocity.y);
+            SetVelocity(this.playerRb.velocity.x + this.inertiaSpeed * Time.deltaTime, this.playerRb.velocity.y);
         } else 
         {
-            playerScript.playerAnimator.SetBool("Running", false);
-            SetVelocity(0, playerRb.velocity.y);
+            this.playerScript.playerAnimator.SetBool("Running", false);
+            SetVelocity(0, this.playerRb.velocity.y);
         }
     }
     private void Flip()
 	{
-		facingRight = !facingRight;
-		Vector3 theScale = transform.localScale;
+		this.facingRight = !this.facingRight;
+		Vector3 theScale = this.transform.localScale;
 		theScale.x *= -1;
-		transform.localScale = theScale;
+		this.transform.localScale = theScale;
 	}
     public void Dash()
     {
-        RaycastHit2D hitRaycast = Physics2D.Raycast(transform.position + new Vector3(0f, 0.5f, 0),new Vector2(movementDir, 0),dashDistance,groundLayer);
-        float distance = dashDistance;
+        RaycastHit2D hitRaycast = Physics2D.Raycast(this.transform.position + new Vector3(0f, 0.5f, 0),new Vector2(this.movementDir, 0),this.dashDistance,this.groundLayer);
+        float distance = this.dashDistance;
         if(hitRaycast)
             distance = hitRaycast.distance;
-        float transformX = transform.position.x + (movementDir * distance);
-        transform.position = new Vector2(transformX,transform.position.y);
+        float transformX = this.transform.position.x + (this.movementDir * distance);
+        this.transform.position = new Vector2(transformX,this.transform.position.y);
     }
     private void SetVelocity(float x, float y)
     {
-        playerRb.velocity = new Vector2(x, y);
+        this.playerRb.velocity = new Vector2(x, y);
     }
     private void VerifyGround()
     {
-        if (grounded)
+        if (this.grounded)
         {
-            timeOnAir = 0;
-            playerScript.playerAnimator.SetBool("Jumping", false);
-            extraJumps = 1;
+            this.timeOnAir = 0;
+            this.playerScript.playerAnimator.SetBool("Jumping", false);
+            this.extraJumps = 1;
         } else
         {
-            playerScript.playerAnimator.SetBool("Jumping", true);
-            timeOnAir += Time.deltaTime;
+            this.playerScript.playerAnimator.SetBool("Jumping", true);
+            this.timeOnAir += Time.deltaTime;
         }
+    }
+    void OnDrawGizmosSelected()
+    {
+        if (this.groundCheck == null)
+            return;
+        Gizmos.DrawWireSphere(this.groundCheck.position, 0.05f);
     }
 }

@@ -8,29 +8,32 @@ public class Player : MonoBehaviour
     [SerializeField] public int maxHealth = 100;
     private int currentHealth;
 
+    void Awake()
+    {
+        this.movementScript = this.GetComponent<PlayerMovement>();
+        this.attackScript = this.GetComponent<PlayerAttack>();
+        this.playerAnimator = this.GetComponent<Animator>();
+    }
     void Start()
     {
-        movementScript = GetComponent<PlayerMovement>();
-        attackScript = GetComponent<PlayerAttack>();
-        playerAnimator = GetComponent<Animator>();
-        currentHealth = maxHealth;
+        this.currentHealth = this.maxHealth;
     }
     public void Damaged(int damage)
     {
-        playerAnimator.SetTrigger("Hurt");
-        currentHealth -= damage;
-        if (currentHealth <= 0)
+        this.playerAnimator.SetTrigger("Hurt");
+        this.currentHealth -= damage;
+        if (this.currentHealth <= 0)
         {
             Die();
         }
     }
     void Die()
     {
-        playerAnimator.SetBool("IsDead", true);
-        Destroy(this.GetComponent<Rigidbody2D>());
-        this.GetComponent<CapsuleCollider2D>().enabled = false;
-        attackScript.enabled = false;
-        movementScript.enabled = false;
-        this.enabled = false;
+        this.playerAnimator.SetBool("IsDead", true);
+        GameManager.gM.playerObject = null;
+    }
+    public void EndDie()
+    {
+        GameManager.gM.SpawnPlayer();
     }
 }
