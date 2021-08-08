@@ -39,13 +39,26 @@ public class PlayerMovement : MonoBehaviour
     }
     void ManageMovement()
     {
-        if (this.movementDir != 0)
+        if (!Colliding())
         {
-            Move();
+            if (this.movementDir != 0)
+                Move();
+            else
+                Inertia();
         } else
         {
-            Inertia();
+            SetVelocity(0, this.playerRb.velocity.y);
         }
+    }
+    bool Colliding()
+    {
+        RaycastHit2D hitRaycast1 = Physics2D.Raycast(this.playerScript.attackScript.hitPoint.position + new Vector3(0,0.5f,0), new Vector2(this.movementDir, 0), 0.1f,this.groundLayer);
+        RaycastHit2D hitRaycast2 = Physics2D.Raycast(this.playerScript.attackScript.hitPoint.position, new Vector2(this.movementDir, 0), 0.1f,this.groundLayer);
+        RaycastHit2D hitRaycast3 = Physics2D.Raycast(this.playerScript.attackScript.hitPoint.position - new Vector3(0,0.5f,0), new Vector2(this.movementDir, 0), 0.1f,this.groundLayer);
+        if (hitRaycast1 || hitRaycast2 || hitRaycast3)
+            return true;
+        else
+            return false;
     }
     private void Move()
     {

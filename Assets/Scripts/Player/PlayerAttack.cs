@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    [SerializeField] private Transform hitPoint;
+    [SerializeField] public Transform hitPoint;
     [SerializeField] private float hitRange;
     [SerializeField] private LayerMask enemyLayers;
     [SerializeField] private int normalDamage = 20;
