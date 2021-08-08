@@ -12,29 +12,29 @@ public class ControlSettings : MonoBehaviour
 
     void Start()
     {
-        int bindingIndex = action.action.GetBindingIndexForControl(action.action.controls[0]);
-        displayControl.text = InputControlPath.ToHumanReadableString(
-            action.action.bindings[bindingIndex].effectivePath,
+        int bindingIndex = this.action.action.GetBindingIndexForControl(this.action.action.controls[0]);
+        this.displayControl.text = InputControlPath.ToHumanReadableString(
+            this.action.action.bindings[bindingIndex].effectivePath,
             InputControlPath.HumanReadableStringOptions.OmitDevice);
     }
 
     public void StartedRebind()
     {
-        button.SetActive(false);
-        waiting.SetActive(true);
-        operation =action.action.PerformInteractiveRebinding()
+        this.button.SetActive(false);
+        this.waiting.SetActive(true);
+        this.operation = this.action.action.PerformInteractiveRebinding()
             .OnMatchWaitForAnother(0.1f)
             .OnComplete(operation => FinishedRebind())
             .Start();
     }
     private void FinishedRebind()
     {
-        int bindingIndex = action.action.GetBindingIndexForControl(action.action.controls[0]);
-        displayControl.text = InputControlPath.ToHumanReadableString(
-            action.action.bindings[bindingIndex].effectivePath,
+        int bindingIndex = this.action.action.GetBindingIndexForControl(this.action.action.controls[0]);
+        this.displayControl.text = InputControlPath.ToHumanReadableString(
+            this.action.action.bindings[bindingIndex].effectivePath,
             InputControlPath.HumanReadableStringOptions.OmitDevice);
-        operation.Dispose();
-        waiting.SetActive(false);
-        button.SetActive(true);
+        this.operation.Dispose();
+        this.waiting.SetActive(false);
+        this.button.SetActive(true);
     }
 }

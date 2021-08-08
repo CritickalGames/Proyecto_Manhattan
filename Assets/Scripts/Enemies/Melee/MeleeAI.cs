@@ -21,71 +21,71 @@ public class MeleeAI : MonoBehaviour
     private bool raycast = false;
     private bool grounded;
     private bool isInRange;
-    void Start()
+    void Awake()
     {
-        enemyScript = GetComponent<Melee>();
+        this.enemyScript = this.GetComponent<Melee>();
     }
     void Update()
     {
-        grounded = Physics2D.OverlapCircle(groundCheck.position, 0.05f, groundLayer);
+        this.grounded = Physics2D.OverlapCircle(this.groundCheck.position, 0.05f, this.groundLayer);
         if (GameManager.gM.playerObject != null)
         {
-            target = GameManager.gM.playerObject;
+            this.target = GameManager.gM.playerObject;
             if (PlayerIsAlive())
                 ManageAI();
             else 
-                enemyScript.movementScript.ManageMovement(0);
+                this.enemyScript.movementScript.ManageMovement(0);
         }
     }
     bool PlayerIsAlive()
     {
-        if (target.GetComponent<Animator>().GetBool("IsDead") == true)
+        if (this.target.GetComponent<Animator>().GetBool("IsDead") == true)
             return false;
         else
             return true;
     }
     void ManageAI()
     {
-        distanceEnemyPlayer = transform.position.x - target.transform.position.x;
-        isInRange = (transform.position.y <= target.transform.position.y + followYRange) && (transform.position.y >= target.transform.position.y - followYRange);
+        this.distanceEnemyPlayer = this.transform.position.x - this.target.transform.position.x;
+        this.isInRange = (this.transform.position.y <= this.target.transform.position.y + this.followYRange) && (this.transform.position.y >= this.target.transform.position.y - this.followYRange);
         DetectPlayer();
-        if (caught && Time.time >= nextHit && enemyScript.enemyAnimator.GetBool("Jumping") == false)
+        if (this.caught && Time.time >= this.nextHit && this.enemyScript.enemyAnimator.GetBool("Jumping") == false)
         {
-            nextHit = Time.time + 1f / hitRate;
-            enemyScript.enemyAnimator.SetTrigger("Attacking");
+            this.nextHit = Time.time + 1f / this.hitRate;
+            this.enemyScript.enemyAnimator.SetTrigger("Attacking");
         }
     }
     private void DetectPlayer()
     {
-        float absoluteDistance = Mathf.Abs(distanceEnemyPlayer);
+        float absoluteDistance = Mathf.Abs(this.distanceEnemyPlayer);
         CheckCaught(absoluteDistance);
         SetDirection(absoluteDistance);
         DetectObstacle();
-        enemyScript.movementScript.ManageFlip(faceDirection);
-        enemyScript.movementScript.ManageMovement(moveDirection);
+        this.enemyScript.movementScript.ManageFlip(this.faceDirection);
+        this.enemyScript.movementScript.ManageMovement(this.moveDirection);
     }
     void DetectObstacle()
     {
-        raycast = Physics2D.Raycast(transform.position + new Vector3(0,1,0),new Vector2(-faceDirection,0),1.5f,obstacleLayer);
-        if (raycast)
-            moveDirection = 0;
+        this.raycast = Physics2D.Raycast(this.transform.position + new Vector3(0,1,0),new Vector2(-this.faceDirection,0),1.5f,this.obstacleLayer);
+        if (this.raycast)
+            this.moveDirection = 0;
     }
     void CheckCaught(float absoluteValue)
     {
-        if (absoluteValue < caughtRange && isInRange)
-            caught = true;
+        if (absoluteValue < this.caughtRange && this.isInRange)
+            this.caught = true;
         else 
-            caught = false;
+            this.caught = false;
     }
     void SetDirection(float absoluteDistance)
     {
-        if (distanceEnemyPlayer > 0 && isInRange)
-            faceDirection = 1;
-        else if (distanceEnemyPlayer < 0 && isInRange)
-            faceDirection = -1;
-        if (absoluteDistance < followXRange && isInRange && !caught && grounded)
-            moveDirection = faceDirection;
+        if (this.distanceEnemyPlayer > 0 && this.isInRange)
+            this.faceDirection = 1;
+        else if (this.distanceEnemyPlayer < 0 && this.isInRange)
+            this.faceDirection = -1;
+        if (absoluteDistance < this.followXRange && this.isInRange && !this.caught && this.grounded)
+            this.moveDirection = this.faceDirection;
         else
-            moveDirection = 0;
+            this.moveDirection = 0;
     }
 }

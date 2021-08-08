@@ -7,23 +7,23 @@ public class MeleeAttack : MonoBehaviour
     [SerializeField] private LayerMask playerMask;
     [SerializeField] private float attackRange;
     [SerializeField] private int normalDamage = 20;
-    void Start()
+    void Awake()
     {
-        enemyScript = GetComponent<Melee>();
+        this.enemyScript = GetComponent<Melee>();
     }
     public void Attack()
     {
-        Collider2D[] hitPlayer = Physics2D.OverlapCircleAll(hitTransform.position, attackRange, playerMask);
+        Collider2D[] hitPlayer = Physics2D.OverlapCircleAll(this.hitTransform.position, this.attackRange, this.playerMask);
         foreach (Collider2D player in hitPlayer)
         {
             if (player.gameObject.GetComponent<Animator>().GetBool("IsDead") == false)
-                player.GetComponent<Player>().Damaged(normalDamage);
+                player.GetComponent<Player>().Damaged(this.normalDamage);
         }
     }
     void OnDrawGizmosSelected()
     {
-        if (hitTransform == null)
+        if (this.hitTransform == null)
             return;
-        Gizmos.DrawWireSphere(hitTransform.position, attackRange);
+        Gizmos.DrawWireSphere(this.hitTransform.position, this.attackRange);
     }
 }

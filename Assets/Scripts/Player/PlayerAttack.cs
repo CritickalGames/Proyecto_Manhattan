@@ -2,29 +2,32 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    private Player playerScript;
     [SerializeField] private Transform hitPoint;
     [SerializeField] private float hitRange;
     [SerializeField] private LayerMask enemyLayers;
     [SerializeField] private int normalDamage = 20;
     [SerializeField] private int specialDamage = 50;
-    void Start()
+    private Player playerScript;
+    void Awake()
     {
-        playerScript = GetComponent<Player>();
+        this.playerScript = GetComponent<Player>();
     }
     public void Attack()
     {
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(hitPoint.position, hitRange, enemyLayers);
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(this.hitPoint.position, this.hitRange, this.enemyLayers);
         foreach (Collider2D enemy in hitEnemies)
-            enemy.GetComponent<Melee>().Damaged(normalDamage);
+        {
+            if (enemy.gameObject.GetComponent<Animator>().GetBool("IsDead") == false)
+                enemy.GetComponent<Melee>().Damaged(this.normalDamage);
+        }
     }
     public void TestSpecialAttack()
     {
     }
     void OnDrawGizmosSelected()
     {
-        if (hitPoint == null)
+        if (this.hitPoint == null)
             return;
-        Gizmos.DrawWireSphere(hitPoint.position, hitRange);
+        Gizmos.DrawWireSphere(this.hitPoint.position, this.hitRange);
     }
 }

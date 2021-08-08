@@ -7,15 +7,15 @@ public class PauseController : MonoBehaviour
     [SerializeField] private GameObject pauseObject;
     public void Pause()
     {
-        pauseObject.SetActive(true);
+        this.pauseObject.SetActive(true);
         Time.timeScale = 0f;
-        isPaused = true;
+        this.isPaused = true;
     }
     public void Resume()
     {
-        pauseObject.SetActive(false);
+        this.pauseObject.SetActive(false);
         Time.timeScale = 1f;
-        isPaused = false;
+        this.isPaused = false;
         GameManager.gM.playerScript.movementScript.movementDir = 0;
     }
     public void Menu()

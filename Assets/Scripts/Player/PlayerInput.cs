@@ -3,25 +3,25 @@ using UnityEngine.InputSystem;
 public class PlayerInput : MonoBehaviour
 {
     [SerializeField] private float dashCooldown = 0.5f;
-    private float nextDash;
     [SerializeField] private float hitRate = 2f;
+    private float nextDash;
     private float nextHit;
     float horizontalMove = 0f;
 
     void Update()
     {
         if (!GameManager.gM.pauseScript.isPaused && GameManager.gM.playerObject != null)
-            GameManager.gM.playerScript.movementScript.movementDir = (int)horizontalMove;
+            GameManager.gM.playerScript.movementScript.movementDir = (int)this.horizontalMove;
     }
     void OnMovement(InputValue value)
     {
-        horizontalMove = ((Vector2)value.Get()).x;
+        this.horizontalMove = ((Vector2)value.Get()).x;
     }
     void OnDash()
     {
-        if (Time.time >= nextDash && !GameManager.gM.pauseScript.isPaused && GameManager.gM.playerObject != null)
+        if (Time.time >= this.nextDash && !GameManager.gM.pauseScript.isPaused && GameManager.gM.playerObject != null)
         {
-            nextDash = Time.time + dashCooldown;
+            this.nextDash = Time.time + this.dashCooldown;
             GameManager.gM.playerScript.movementScript.Dash();
         }
     }
@@ -32,9 +32,9 @@ public class PlayerInput : MonoBehaviour
     }
     void OnAttack()
     {
-        if (Time.time >= nextHit && GameManager.gM.playerScript.playerAnimator.GetBool("Jumping") == false && !GameManager.gM.pauseScript.isPaused && GameManager.gM.playerObject != null)
+        if (Time.time >= this.nextHit && GameManager.gM.playerScript.playerAnimator.GetBool("Jumping") == false && !GameManager.gM.pauseScript.isPaused && GameManager.gM.playerObject != null)
         {
-            nextHit = Time.time + 1f / hitRate;
+            this.nextHit = Time.time + 1f / this.hitRate;
             GameManager.gM.playerScript.playerAnimator.SetTrigger("Attacking");
         }
     }
