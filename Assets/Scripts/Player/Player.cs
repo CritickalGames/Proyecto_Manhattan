@@ -18,6 +18,10 @@ public class Player : MonoBehaviour
     {
         this.currentHealth = this.maxHealth;
     }
+    public void GetItem()
+    {
+        Debug.Log("Got it");
+    }
     public void Damaged(int damage)
     {
         this.playerAnimator.SetTrigger("Hurt");
