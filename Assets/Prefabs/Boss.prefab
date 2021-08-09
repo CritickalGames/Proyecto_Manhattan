@@ -73,13 +73,13 @@ GameObject:
   - component: {fileID: 5616440117558290489}
   - component: {fileID: 5616440117558290488}
   - component: {fileID: 5616440117558290483}
-  - component: {fileID: 847321635384321467}
-  - component: {fileID: 5616440117558290482}
-  - component: {fileID: 5616440117558290485}
-  - component: {fileID: 5616440117558290484}
-  - component: {fileID: 2513137296674884863}
+  - component: {fileID: 5317833267564553040}
+  - component: {fileID: 4707489595860535264}
+  - component: {fileID: 186034373289119512}
+  - component: {fileID: 2785248090633218504}
+  - component: {fileID: 5358993212435779142}
   m_Layer: 7
-  m_Name: Melee
+  m_Name: Boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -94,7 +94,7 @@ Transform:
   m_GameObject: {fileID: 5616440117558290491}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -2.35, y: -1.39, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 5616440117451525384}
   - {fileID: 7071514334901810746}
@@ -208,7 +208,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &847321635384321467
+--- !u!114 &5317833267564553040
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -220,8 +220,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638e052c69715614eb7f96dc09167c75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 40
---- !u!114 &5616440117558290482
+  maxHealth: 150
+--- !u!114 &4707489595860535264
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -230,10 +230,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5616440117558290491}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79a12e5056c01874893b49df617acc9a, type: 3}
+  m_Script: {fileID: 11500000, guid: c9ffce3b78352e048a80d7ad4c8323e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5616440117558290485
+--- !u!114 &186034373289119512
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -242,16 +242,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 5616440117558290491}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f476d240f1f0b1342b7b9e0bc5aa07c0, type: 3}
+  m_Script: {fileID: 11500000, guid: 668be226b573ac945a2089c6b0747cba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hitTransform: {fileID: 5616440117451525384}
   playerMask:
     serializedVersion: 2
     m_Bits: 64
-  attackRange: 0.5
-  normalDamage: 20
---- !u!114 &5616440117558290484
+  attackRange: 1.15
+  normalDamage: 40
+--- !u!114 &2785248090633218504
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -260,11 +260,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5616440117558290491}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69cac7ed4647b984692bc1f4581bb22f, type: 3}
+  m_Script: {fileID: 11500000, guid: afe7a1e1e5eb53842997f688ac0ea8a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 5
---- !u!114 &2513137296674884863
+  movementSpeed: 3
+--- !u!114 &5358993212435779142
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -273,7 +273,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5616440117558290491}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7ad9c663ce7d084fa5e197259281033, type: 3}
+  m_Script: {fileID: 11500000, guid: b49c0df71ea9c8247bd66ae67525f3fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   groundCheck: {fileID: 7071514334901810746}
@@ -283,7 +283,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 823
-  followXRange: 5
-  followYRange: 2
-  caughtRange: 1
-  hitRate: 1
+  followXRange: 10
+  followYRange: 5
+  caughtRange: 2
+  hitRate: 0.5
