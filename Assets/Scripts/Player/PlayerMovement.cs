@@ -23,7 +23,6 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {
-
         this.grounded = Physics2D.OverlapCircle(this.groundCheck.position, 0.05f, this.groundLayer);
         VerifyGround();
         ManageMovement();

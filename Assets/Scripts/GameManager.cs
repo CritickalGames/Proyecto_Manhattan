@@ -22,6 +22,14 @@ public class GameManager : MonoBehaviour
     {
         SpawnPlayer();
     }
+    public void Update()
+    {
+        if (playerObject.transform.position.y <= -15)
+        {
+            Destroy(this.playerObject);
+            SpawnPlayer();
+        }
+    }
     public void SpawnPlayer()
     {
         CinemachineVirtualCamera vcam = GameObject.Find("CM vcam1").GetComponent<CinemachineVirtualCamera>();
