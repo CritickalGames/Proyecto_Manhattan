@@ -20,7 +20,7 @@ public class Dash : MonoBehaviour
         int mask = target.gameObject.layer;
         if (mask == playerMask)
         {
-            GameManager.gM.playerScript.GetItem();
+            GameManager.gM.playerScript.SetItem(0, true);
             Destroy(this.gameObject);
         }
     }
