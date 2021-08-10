@@ -19,7 +19,7 @@ public class PlayerInput : MonoBehaviour
     }
     void OnDash()
     {
-        if (Time.time >= this.nextDash && !GameManager.gM.pauseScript.isPaused && GameManager.gM.playerObject != null)
+        if (Time.time >= this.nextDash && !GameManager.gM.pauseScript.isPaused && GameManager.gM.playerObject != null && GameManager.gM.playerScript.CheckItem(0))
         {
             this.nextDash = Time.time + this.dashCooldown;
             GameManager.gM.playerScript.movementScript.Dash();

@@ -46,6 +46,7 @@ public class PlayerMovement : MonoBehaviour
                 Inertia();
         } else
         {
+            this.playerScript.playerAnimator.SetBool("Running", false);
             SetVelocity(0, this.playerRb.velocity.y);
         }
     }
@@ -90,7 +91,12 @@ public class PlayerMovement : MonoBehaviour
 	}
     public void Dash()
     {
-        RaycastHit2D hitRaycast = Physics2D.Raycast(this.transform.position + new Vector3(0f, 0.5f, 0),new Vector2(this.movementDir, 0),this.dashDistance,this.groundLayer);
+        int facingDir = 0;
+        if (this.facingRight)
+            facingDir = 1;
+        if (!this.facingRight)
+            facingDir = -1;
+        RaycastHit2D hitRaycast = Physics2D.Raycast(this.transform.position + new Vector3(0f, 0.5f, 0),new Vector2(facingDir, 0),this.dashDistance,this.groundLayer);
         float distance = this.dashDistance;
         if(hitRaycast)
             distance = hitRaycast.distance;

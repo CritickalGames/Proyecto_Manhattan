@@ -60,6 +60,7 @@
      <Compile Include="Assets\Scripts\Enemies\HealthManage.cs" />
      <Compile Include="Assets\Scripts\Enemies\Melee\MeleeAttack.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerAttack.cs" />
+     <Compile Include="Assets\Scripts\SpecialAbilities\Dash.cs" />
      <Compile Include="Assets\Scripts\Enemies\Melee\MeleeAI.cs" />
      <Compile Include="Assets\Scripts\Enemies\Boss\First Boss\FirstBossAttack.cs" />
  <Reference Include="Unity.2D.Animation.Editor">
