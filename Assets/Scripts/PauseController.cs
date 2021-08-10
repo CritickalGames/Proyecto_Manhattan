@@ -3,8 +3,16 @@ using UnityEngine.SceneManagement;
 
 public class PauseController : MonoBehaviour
 {
-    [System.NonSerialized]public bool isPaused = false;
     [SerializeField] private GameObject pauseObject;
+    private bool isPaused = false;
+
+    #region Getters & Setters
+    public bool GetPause()
+    {
+        return this.isPaused;
+    }
+    #endregion
+
     public void Pause()
     {
         this.pauseObject.SetActive(true);
@@ -16,7 +24,7 @@ public class PauseController : MonoBehaviour
         this.pauseObject.SetActive(false);
         Time.timeScale = 1f;
         this.isPaused = false;
-        GameManager.gM.playerScript.movementScript.movementDir = 0;
+        GameManager.gM.playerScript.movementScript.SetMoveDir(0);
     }
     public void Menu()
     {

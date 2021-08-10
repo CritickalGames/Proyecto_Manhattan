@@ -28,9 +28,9 @@ public class FirstBossAI : MonoBehaviour
     void Update()
     {
         this.grounded = Physics2D.OverlapCircle(this.groundCheck.position, 0.05f, this.groundLayer);
-        if (GameManager.gM.playerObject != null)
+        if (GameManager.gM.GetPlayerObject() != null)
         {
-            this.target = GameManager.gM.playerObject;
+            this.target = GameManager.gM.GetPlayerObject();
             if (PlayerIsAlive())
                 ManageAI();
             else 

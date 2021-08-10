@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [System.NonSerialized]public int movementDir;
     [SerializeField] private int extraJumps = 1;
     [SerializeField] private float dashDistance = 3f;
     [SerializeField] private float jumpSpeed = 400f;
@@ -16,6 +15,15 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D playerRb;
     private bool grounded;
     private bool facingRight = true;
+    private int movementDir;
+
+    #region Getters & Setters
+    public void SetMoveDir(int value)
+    {
+        this.movementDir = value;
+    }
+    #endregion
+
     void Awake()
     {
         this.playerScript = GetComponent<Player>();
@@ -36,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
                 this.extraJumps--;
         }
     }
-    void ManageMovement()
+    private void ManageMovement()
     {
         if (!Colliding())
         {
@@ -50,11 +58,11 @@ public class PlayerMovement : MonoBehaviour
             SetVelocity(0, this.playerRb.velocity.y);
         }
     }
-    bool Colliding()
+    private bool Colliding()
     {
-        RaycastHit2D hitRaycast1 = Physics2D.Raycast(this.playerScript.attackScript.hitPoint.position + new Vector3(0,0.5f,0), new Vector2(this.movementDir, 0), 0.1f,this.groundLayer);
-        RaycastHit2D hitRaycast2 = Physics2D.Raycast(this.playerScript.attackScript.hitPoint.position, new Vector2(this.movementDir, 0), 0.1f,this.groundLayer);
-        RaycastHit2D hitRaycast3 = Physics2D.Raycast(this.playerScript.attackScript.hitPoint.position - new Vector3(0,0.5f,0), new Vector2(this.movementDir, 0), 0.1f,this.groundLayer);
+        RaycastHit2D hitRaycast1 = Physics2D.Raycast(this.playerScript.attackScript.GetHitPoint().position + new Vector3(0,0.5f,0), new Vector2(this.movementDir, 0), 0.1f,this.groundLayer);
+        RaycastHit2D hitRaycast2 = Physics2D.Raycast(this.playerScript.attackScript.GetHitPoint().position, new Vector2(this.movementDir, 0), 0.1f,this.groundLayer);
+        RaycastHit2D hitRaycast3 = Physics2D.Raycast(this.playerScript.attackScript.GetHitPoint().position - new Vector3(0,0.5f,0), new Vector2(this.movementDir, 0), 0.1f,this.groundLayer);
         if (hitRaycast1 || hitRaycast2 || hitRaycast3)
             return true;
         else
@@ -100,7 +108,7 @@ public class PlayerMovement : MonoBehaviour
         float distance = this.dashDistance;
         if(hitRaycast)
             distance = hitRaycast.distance;
-        float transformX = this.transform.position.x + (this.movementDir * distance);
+        float transformX = this.transform.position.x + (facingDir * distance);
         this.transform.position = new Vector2(transformX,this.transform.position.y);
     }
     private void SetVelocity(float x, float y)

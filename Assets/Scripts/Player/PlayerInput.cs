@@ -10,8 +10,8 @@ public class PlayerInput : MonoBehaviour
 
     void Update()
     {
-        if (!GameManager.gM.pauseScript.isPaused && GameManager.gM.playerObject != null)
-            GameManager.gM.playerScript.movementScript.movementDir = (int)this.horizontalMove;
+        if (!GameManager.gM.pauseScript.GetPause() && GameManager.gM.GetPlayerObject() != null)
+            GameManager.gM.playerScript.movementScript.SetMoveDir((int)this.horizontalMove);
     }
     void OnMovement(InputValue value)
     {
@@ -19,7 +19,7 @@ public class PlayerInput : MonoBehaviour
     }
     void OnDash()
     {
-        if (Time.time >= this.nextDash && !GameManager.gM.pauseScript.isPaused && GameManager.gM.playerObject != null && GameManager.gM.playerScript.CheckItem(0))
+        if (Time.time >= this.nextDash && !GameManager.gM.pauseScript.GetPause() && GameManager.gM.GetPlayerObject() != null && GameManager.gM.playerScript.GetItem(0))
         {
             this.nextDash = Time.time + this.dashCooldown;
             GameManager.gM.playerScript.movementScript.Dash();
@@ -27,12 +27,12 @@ public class PlayerInput : MonoBehaviour
     }
     void OnJump()
     {
-        if (!GameManager.gM.pauseScript.isPaused && GameManager.gM.playerObject != null)
+        if (!GameManager.gM.pauseScript.GetPause() && GameManager.gM.GetPlayerObject() != null)
             GameManager.gM.playerScript.movementScript.Jump();
     }
     void OnAttack()
     {
-        if (Time.time >= this.nextHit && GameManager.gM.playerScript.playerAnimator.GetBool("Jumping") == false && !GameManager.gM.pauseScript.isPaused && GameManager.gM.playerObject != null)
+        if (Time.time >= this.nextHit && GameManager.gM.playerScript.playerAnimator.GetBool("Jumping") == false && !GameManager.gM.pauseScript.GetPause() && GameManager.gM.GetPlayerObject() != null)
         {
             this.nextHit = Time.time + 1f / this.hitRate;
             GameManager.gM.playerScript.playerAnimator.SetTrigger("Attacking");
@@ -40,14 +40,14 @@ public class PlayerInput : MonoBehaviour
     }
     void OnSpecialAttack()
     {
-        if (!GameManager.gM.pauseScript.isPaused && GameManager.gM.playerObject != null)
+        if (!GameManager.gM.pauseScript.GetPause() && GameManager.gM.GetPlayerObject() != null)
             GameManager.gM.playerScript.attackScript.TestSpecialAttack();
     }
     void OnPause()
     {
-        if (GameManager.gM.pauseScript.isPaused && GameManager.gM.playerObject != null)
+        if (GameManager.gM.pauseScript.GetPause() && GameManager.gM.GetPlayerObject() != null)
             GameManager.gM.pauseScript.Resume();
-        else if (!GameManager.gM.pauseScript.isPaused)
+        else if (!GameManager.gM.pauseScript.GetPause())
             GameManager.gM.pauseScript.Pause();
     }
 }
