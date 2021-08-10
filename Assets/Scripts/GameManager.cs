@@ -6,9 +6,20 @@ public class GameManager : MonoBehaviour
 {
     [System.NonSerialized]public Player playerScript;
     [System.NonSerialized]public PauseController pauseScript;
-    [System.NonSerialized]public GameObject playerObject;
     [System.NonSerialized]public static GameManager gM;
     [SerializeField]private GameObject playerPrefab;
+    private GameObject playerObject;
+
+    #region Getters & Setters
+    public void SetPlayerObject(GameObject newObject)
+    {
+        this.playerObject = newObject;
+    }
+    public GameObject GetPlayerObject()
+    {
+        return this.playerObject;
+    }
+    #endregion
 
     void Awake()
     {

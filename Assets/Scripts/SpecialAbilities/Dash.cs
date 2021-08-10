@@ -9,12 +9,6 @@ public class Dash : MonoBehaviour
     {
         playerMask = LayerMask.NameToLayer("Player");
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     void OnTriggerEnter2D(Collider2D target)
     {
         int mask = target.gameObject.layer;

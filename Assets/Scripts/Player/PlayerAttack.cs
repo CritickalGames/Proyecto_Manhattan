@@ -2,12 +2,20 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    [SerializeField] public Transform hitPoint;
+    [SerializeField] private Transform hitPoint;
     [SerializeField] private float hitRange;
     [SerializeField] private LayerMask enemyLayers;
     [SerializeField] private int normalDamage = 20;
     [SerializeField] private int specialDamage = 50;
     private Player playerScript;
+
+    #region Getters & Setters
+    public Transform GetHitPoint()
+    {
+        return hitPoint;
+    }
+    #endregion
+
     void Awake()
     {
         this.playerScript = GetComponent<Player>();
