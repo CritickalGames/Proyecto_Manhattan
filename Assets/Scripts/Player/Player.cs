@@ -2,11 +2,12 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [System.NonSerialized]public PlayerMovement movementScript;
-    [System.NonSerialized]public PlayerAttack attackScript;
+    [System.NonSerialized] public PlayerMovement movementScript;
+    [System.NonSerialized] public PlayerAttack attackScript;
     [System.NonSerialized] public Animator playerAnimator;
     [SerializeField] public int maxHealth = 100;
     private int currentHealth;
+    [SerializeField]private bool[] items;
 
     void Awake()
     {
@@ -16,7 +17,16 @@ public class Player : MonoBehaviour
     }
     void Start()
     {
+        items = new bool[1];
         this.currentHealth = this.maxHealth;
+    }
+    public void SetItem(int index, bool value)
+    {
+        this.items[index] = value;
+    }
+    public bool CheckItem(int index)
+    {
+        return this.items[index];
     }
     public void Damaged(int damage)
     {

@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     }
     public void Update()
     {
-        if (playerObject.transform.position.y <= -15)
+        if (playerObject != null && playerObject.transform.position.y <= -15)
         {
             Destroy(this.playerObject);
             SpawnPlayer();
