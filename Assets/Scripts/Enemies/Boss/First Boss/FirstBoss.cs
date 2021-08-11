@@ -6,6 +6,7 @@ public class FirstBoss : MonoBehaviour
     [System.NonSerialized]public FirstBossAttack attackScript;
     [System.NonSerialized]public FirstBossAI iaScript;
     [System.NonSerialized]public Animator enemyAnimator;
+    [SerializeField]private GameObject itemPrefab;
     private bool dead;
     void Awake()
     {
@@ -21,5 +22,11 @@ public class FirstBoss : MonoBehaviour
             this.dead = true;
             iaScript.enabled = false;
         } 
+    }
+    public void BossDeath()
+    {
+        Transform spawnLocation = this.transform;
+        GameObject item = Instantiate(itemPrefab, spawnLocation.position + new Vector3(0,1.5f,0), Quaternion.identity);
+        item.transform.parent = GameObject.Find("ObjectContainer").transform;
     }
 }
