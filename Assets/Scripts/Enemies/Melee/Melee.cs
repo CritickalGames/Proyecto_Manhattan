@@ -6,6 +6,7 @@ public class Melee : MonoBehaviour
     [System.NonSerialized]public MeleeAttack attackScript;
     [System.NonSerialized]public MeleeAI iaScript;
     [System.NonSerialized]public Animator enemyAnimator;
+    private bool dead;
     void Awake()
     {
         this.movementScript = this.GetComponent<MeleeMovement>();
@@ -15,7 +16,10 @@ public class Melee : MonoBehaviour
     }
     void Update()
     {
-        if (enemyAnimator.GetBool("IsDead"))
+        if (enemyAnimator.GetBool("IsDead") && !dead)
+        {
+            dead = true;
             iaScript.enabled = false;
+        }
     }
 }

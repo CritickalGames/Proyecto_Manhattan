@@ -9,6 +9,17 @@ public class Player : MonoBehaviour
     private int currentHealth;
     [SerializeField]private bool[] items;
 
+    #region Getters & Setters
+    public void SetItem(int index, bool value)
+    {
+        this.items[index] = value;
+    }
+    public bool GetItem(int index)
+    {
+        return this.items[index];
+    }
+    #endregion
+
     void Awake()
     {
         this.movementScript = this.GetComponent<PlayerMovement>();
@@ -19,14 +30,6 @@ public class Player : MonoBehaviour
     {
         items = new bool[1];
         this.currentHealth = this.maxHealth;
-    }
-    public void SetItem(int index, bool value)
-    {
-        this.items[index] = value;
-    }
-    public bool CheckItem(int index)
-    {
-        return this.items[index];
     }
     public void Damaged(int damage)
     {
@@ -40,7 +43,7 @@ public class Player : MonoBehaviour
     void Die()
     {
         this.playerAnimator.SetBool("IsDead", true);
-        GameManager.gM.playerObject = null;
+        GameManager.gM.SetPlayerObject(null);
     }
     public void EndDie()
     {

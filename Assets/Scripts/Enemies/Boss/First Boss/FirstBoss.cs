@@ -6,6 +6,7 @@ public class FirstBoss : MonoBehaviour
     [System.NonSerialized]public FirstBossAttack attackScript;
     [System.NonSerialized]public FirstBossAI iaScript;
     [System.NonSerialized]public Animator enemyAnimator;
+    private bool dead;
     void Awake()
     {
         this.movementScript = this.GetComponent<FirstBossMovement>();
@@ -15,7 +16,10 @@ public class FirstBoss : MonoBehaviour
     }
     void Update()
     {
-        if (enemyAnimator.GetBool("IsDead"))
+        if (enemyAnimator.GetBool("IsDead") && !dead)
+        {
+            this.dead = true;
             iaScript.enabled = false;
+        } 
     }
 }
