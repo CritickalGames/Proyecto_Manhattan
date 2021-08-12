@@ -22,4 +22,8 @@ public class Melee : MonoBehaviour
             iaScript.enabled = false;
         }
     }
+    public void PlayFootstep()
+    {
+        this.GetComponent<AudioSource>().Play();
+    }
 }

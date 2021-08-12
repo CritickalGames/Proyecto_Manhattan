@@ -49,4 +49,8 @@ public class Player : MonoBehaviour
     {
         GameManager.gM.SpawnPlayer();
     }
+    public void PlayFootstep()
+    {
+        this.GetComponent<AudioSource>().Play();
+    }
 }

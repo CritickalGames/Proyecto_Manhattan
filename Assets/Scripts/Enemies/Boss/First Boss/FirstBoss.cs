@@ -29,4 +29,8 @@ public class FirstBoss : MonoBehaviour
         GameObject item = Instantiate(itemPrefab, spawnLocation.position + new Vector3(0,1.5f,0), Quaternion.identity);
         item.transform.parent = GameObject.Find("ObjectContainer").transform;
     }
+    public void PlayFootstep()
+    {
+        this.GetComponent<AudioSource>().Play();
+    }
 }
