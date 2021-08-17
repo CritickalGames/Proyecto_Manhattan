@@ -63,27 +63,10 @@ public class PlayerMovement : MonoBehaviour
     }
     private void ManageMovement()
     {
-        /*if (!Colliding())
-        {*/
-            if (this.movementDir != 0)
-                Move();
-            else
-                Inertia();
-        /*} else
-        {
-            this.playerScript.playerAnimator.SetBool("Running", false);
-            SetVelocity(0, this.playerRb.velocity.y);
-        }*/
-    }
-    private bool Colliding()
-    {
-        RaycastHit2D hitRaycast1 = Physics2D.Raycast(this.playerScript.attackScript.GetHitPoint().position + new Vector3(0,0.5f,0), new Vector2(this.movementDir, 0), 0.1f,this.groundLayer);
-        RaycastHit2D hitRaycast2 = Physics2D.Raycast(this.playerScript.attackScript.GetHitPoint().position, new Vector2(this.movementDir, 0), 0.1f,this.groundLayer);
-        RaycastHit2D hitRaycast3 = Physics2D.Raycast(this.playerScript.attackScript.GetHitPoint().position - new Vector3(0,0.5f,0), new Vector2(this.movementDir, 0), 0.1f,this.groundLayer);
-        if (hitRaycast1 || hitRaycast2 || hitRaycast3)
-            return true;
+        if (this.movementDir != 0)
+            Move();
         else
-            return false;
+            Inertia();
     }
     private void Move()
     {
@@ -91,7 +74,6 @@ public class PlayerMovement : MonoBehaviour
         SetVelocity(this.movementSpeed * this.movementDir, this.playerRb.velocity.y);
         if ((this.movementDir < 0 && this.facingRight) || (this.movementDir > 0 && !this.facingRight))
             Flip();
-        
     }
     private void Inertia()
     {

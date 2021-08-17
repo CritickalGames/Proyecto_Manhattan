@@ -8,6 +8,7 @@ public class MeleeAI : MonoBehaviour
     [System.NonSerialized]public GameObject target;
     [System.NonSerialized]public bool caught = false;
     [SerializeField]public Transform groundCheck;
+    [SerializeField]private float checkDistance;
     [SerializeField]public LayerMask obstacleLayer;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField]private float followXRange;
@@ -27,7 +28,7 @@ public class MeleeAI : MonoBehaviour
     }
     void Update()
     {
-        this.grounded = Physics2D.OverlapCircle(this.groundCheck.position, 0.05f, this.groundLayer);
+        this.grounded = Physics2D.OverlapCircle(this.groundCheck.position, checkDistance, this.groundLayer);
         if (GameManager.gM.GetPlayerObject() != null)
         {
             this.target = GameManager.gM.GetPlayerObject();
@@ -87,5 +88,11 @@ public class MeleeAI : MonoBehaviour
             this.moveDirection = this.faceDirection;
         else
             this.moveDirection = 0;
+    }
+    void OnDrawGizmosSelected()
+    {
+         if (this.groundCheck == null)
+            return;
+        Gizmos.DrawWireSphere(this.groundCheck.position, this.checkDistance);
     }
 }
