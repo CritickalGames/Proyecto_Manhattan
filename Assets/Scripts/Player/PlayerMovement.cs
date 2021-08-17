@@ -13,9 +13,13 @@ public class PlayerMovement : MonoBehaviour
     private Player playerScript;
     private float timeOnAir;
     private Rigidbody2D playerRb;
+    private Collider2D playerCol;
+    private bool detectGround;
     private bool grounded;
     private bool facingRight = true;
     private int movementDir;
+    private int platformLayer;
+    private int playerLayer;
 
     #region Getters & Setters
     public void SetMoveDir(int value)
@@ -29,12 +33,25 @@ public class PlayerMovement : MonoBehaviour
         this.playerScript = GetComponent<Player>();
         this.playerRb = GetComponent<Rigidbody2D>();
     }
+    void Start()
+    {
+        platformLayer = LayerMask.NameToLayer("Platform");
+        playerLayer = LayerMask.NameToLayer("Player");
+        playerCol = this.gameObject.GetComponent<CapsuleCollider2D>();
+    }
     void Update()
     {
-        this.grounded = Physics2D.OverlapCircle(this.groundCheck.position, 0.05f, this.groundLayer);
         VerifyGround();
         ManageMovement();
-    }  
+        JumpingCollision();
+    }
+    void JumpingCollision()
+    {
+        if (this.playerRb.velocity.y > 0 || !grounded)
+            Physics2D.IgnoreLayerCollision(this.playerLayer, this.platformLayer, true);
+        else
+            Physics2D.IgnoreLayerCollision(this.playerLayer, this.platformLayer, false);
+    }
     public void Jump()
     {
         if ((this.timeOnAir < this.maxTimeOnAir) || this.extraJumps > 0)
@@ -46,17 +63,17 @@ public class PlayerMovement : MonoBehaviour
     }
     private void ManageMovement()
     {
-        if (!Colliding())
-        {
+        /*if (!Colliding())
+        {*/
             if (this.movementDir != 0)
                 Move();
             else
                 Inertia();
-        } else
+        /*} else
         {
             this.playerScript.playerAnimator.SetBool("Running", false);
             SetVelocity(0, this.playerRb.velocity.y);
-        }
+        }*/
     }
     private bool Colliding()
     {
@@ -117,6 +134,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void VerifyGround()
     {
+        this.grounded = Physics2D.OverlapCircle(this.groundCheck.position, 0.05f, this.groundLayer);
         if (this.grounded)
         {
             this.timeOnAir = 0;
