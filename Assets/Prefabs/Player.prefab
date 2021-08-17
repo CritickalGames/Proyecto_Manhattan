@@ -54,7 +54,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5497455151100570259}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.269, y: 0.67, z: 0}
+  m_LocalPosition: {x: -0.278, y: 0.821, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5497455151813261262}
@@ -163,8 +163,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0023345947, y: 0.6431922}
-  m_Size: {x: 0.528038, y: 1.151091}
+  m_Offset: {x: -0.0023345947, y: 0.6420646}
+  m_Size: {x: 0.5039182, y: 1.1488361}
   m_Direction: 0
 --- !u!50 &5497455151813261263
 Rigidbody2D:
@@ -200,6 +200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  items: 
 --- !u!114 &5497455151813261253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,7 +215,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   extraJumps: 1
   dashDistance: 3
-  jumpSpeed: 12
+  jumpSpeed: 11
   movementSpeed: 9
   inertiaSpeed: 10
   maxTimeOnAir: 0.15
@@ -235,7 +236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitPoint: {fileID: 5497455151100570260}
-  hitRange: 0.55
+  hitRange: 0.5
   enemyLayers:
     serializedVersion: 2
     m_Bits: 128
