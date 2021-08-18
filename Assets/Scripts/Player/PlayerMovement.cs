@@ -14,7 +14,6 @@ public class PlayerMovement : MonoBehaviour
     private float timeOnAir;
     private Rigidbody2D playerRb;
     private Collider2D playerCol;
-    private bool detectGround;
     private bool grounded;
     private bool facingRight = true;
     private int movementDir;
