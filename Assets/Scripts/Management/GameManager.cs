@@ -6,9 +6,12 @@ public class GameManager : MonoBehaviour
 {
     [System.NonSerialized]public Player playerScript;
     [System.NonSerialized]public PauseController pauseScript;
+    [System.NonSerialized]public EnemyCounter counterScript;
     [System.NonSerialized]public static GameManager gM;
     [SerializeField]private GameObject playerPrefab;
+    [SerializeField]private Sprite trafficGreenLight;
     private GameObject playerObject;
+    private bool levelPassed;
 
     #region Getters & Setters
     public void SetPlayerObject(GameObject newObject)
@@ -28,6 +31,7 @@ public class GameManager : MonoBehaviour
         else
             gM = this;
         this.pauseScript = GameObject.Find("/UI/Canvas/Pause").GetComponent<PauseController>();
+        this.counterScript = GameObject.Find("/Management").GetComponent<EnemyCounter>();
     }
     void Start()
     {
@@ -50,5 +54,11 @@ public class GameManager : MonoBehaviour
         this.playerObject.transform.parent = GameObject.Find("Player").transform;
         this.playerScript = playerObject.GetComponent<Player>();
         vcam.m_Follow = playerObject.transform;
+    }
+    public void LevelFinished()
+    {
+        SpriteRenderer spriteRenderer = GameObject.Find("/World/TrafficLights").GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = trafficGreenLight;
+        levelPassed = true;
     }
 }
