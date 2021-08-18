@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private float timeOnAir;
     private Rigidbody2D playerRb;
     private Collider2D playerCol;
+    private bool pressedDown = false;
     private bool grounded;
     private bool facingRight = true;
     private int movementDir;
@@ -25,6 +26,10 @@ public class PlayerMovement : MonoBehaviour
     public void SetMoveDir(int value)
     {
         this.movementDir = value;
+    }
+    public void SetPressedDown(bool value)
+    {
+        this.pressedDown = value;
     }
     #endregion
 
@@ -47,10 +52,14 @@ public class PlayerMovement : MonoBehaviour
     }
     void JumpingCollision()
     {
-        if (this.playerRb.velocity.y > 0 || !grounded)
-            Physics2D.IgnoreLayerCollision(this.playerLayer, this.platformLayer, true);
+        if (this.playerRb.velocity.y > 0 || !grounded || pressedDown)
+            IgnoreCollisions(true);
         else
-            Physics2D.IgnoreLayerCollision(this.playerLayer, this.platformLayer, false);
+            IgnoreCollisions(false);
+    }
+    public void IgnoreCollisions(bool ignore)
+    {
+        Physics2D.IgnoreLayerCollision(this.playerLayer, this.platformLayer, ignore);
     }
     public void Jump()
     {
