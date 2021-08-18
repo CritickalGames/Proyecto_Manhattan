@@ -13,9 +13,12 @@ public class PlayerMovement : MonoBehaviour
     private Player playerScript;
     private float timeOnAir;
     private Rigidbody2D playerRb;
+    private Collider2D playerCol;
     private bool grounded;
     private bool facingRight = true;
     private int movementDir;
+    private int platformLayer;
+    private int playerLayer;
 
     #region Getters & Setters
     public void SetMoveDir(int value)
@@ -29,12 +32,25 @@ public class PlayerMovement : MonoBehaviour
         this.playerScript = GetComponent<Player>();
         this.playerRb = GetComponent<Rigidbody2D>();
     }
+    void Start()
+    {
+        platformLayer = LayerMask.NameToLayer("Platform");
+        playerLayer = LayerMask.NameToLayer("Player");
+        playerCol = this.gameObject.GetComponent<CapsuleCollider2D>();
+    }
     void Update()
     {
-        this.grounded = Physics2D.OverlapCircle(this.groundCheck.position, 0.05f, this.groundLayer);
         VerifyGround();
         ManageMovement();
-    }  
+        JumpingCollision();
+    }
+    void JumpingCollision()
+    {
+        if (this.playerRb.velocity.y > 0 || !grounded)
+            Physics2D.IgnoreLayerCollision(this.playerLayer, this.platformLayer, true);
+        else
+            Physics2D.IgnoreLayerCollision(this.playerLayer, this.platformLayer, false);
+    }
     public void Jump()
     {
         if ((this.timeOnAir < this.maxTimeOnAir) || this.extraJumps > 0)
@@ -46,27 +62,10 @@ public class PlayerMovement : MonoBehaviour
     }
     private void ManageMovement()
     {
-        if (!Colliding())
-        {
-            if (this.movementDir != 0)
-                Move();
-            else
-                Inertia();
-        } else
-        {
-            this.playerScript.playerAnimator.SetBool("Running", false);
-            SetVelocity(0, this.playerRb.velocity.y);
-        }
-    }
-    private bool Colliding()
-    {
-        RaycastHit2D hitRaycast1 = Physics2D.Raycast(this.playerScript.attackScript.GetHitPoint().position + new Vector3(0,0.5f,0), new Vector2(this.movementDir, 0), 0.1f,this.groundLayer);
-        RaycastHit2D hitRaycast2 = Physics2D.Raycast(this.playerScript.attackScript.GetHitPoint().position, new Vector2(this.movementDir, 0), 0.1f,this.groundLayer);
-        RaycastHit2D hitRaycast3 = Physics2D.Raycast(this.playerScript.attackScript.GetHitPoint().position - new Vector3(0,0.5f,0), new Vector2(this.movementDir, 0), 0.1f,this.groundLayer);
-        if (hitRaycast1 || hitRaycast2 || hitRaycast3)
-            return true;
+        if (this.movementDir != 0)
+            Move();
         else
-            return false;
+            Inertia();
     }
     private void Move()
     {
@@ -74,7 +73,6 @@ public class PlayerMovement : MonoBehaviour
         SetVelocity(this.movementSpeed * this.movementDir, this.playerRb.velocity.y);
         if ((this.movementDir < 0 && this.facingRight) || (this.movementDir > 0 && !this.facingRight))
             Flip();
-        
     }
     private void Inertia()
     {
@@ -117,6 +115,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void VerifyGround()
     {
+        this.grounded = Physics2D.OverlapCircle(this.groundCheck.position, 0.05f, this.groundLayer);
         if (this.grounded)
         {
             this.timeOnAir = 0;
