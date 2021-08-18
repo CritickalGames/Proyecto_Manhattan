@@ -4,6 +4,7 @@ public class PlayerInput : MonoBehaviour
 {
     [SerializeField] private float dashCooldown = 0.5f;
     [SerializeField] private float hitRate = 2f;
+    bool ignoring = false;
     private float nextDash;
     private float nextHit;
     float horizontalMove = 0f;
@@ -49,5 +50,11 @@ public class PlayerInput : MonoBehaviour
             GameManager.gM.pauseScript.Resume();
         else if (!GameManager.gM.pauseScript.GetPause())
             GameManager.gM.pauseScript.Pause();
+    }
+    void OnDown()
+    {
+        ignoring = !ignoring;
+        if (!GameManager.gM.pauseScript.GetPause() && GameManager.gM.GetPlayerObject() != null)
+            GameManager.gM.playerScript.movementScript.SetPressedDown(ignoring);
     }
 }

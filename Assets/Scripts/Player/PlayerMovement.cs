@@ -10,10 +10,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float maxTimeOnAir;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private LayerMask dashLayer;
     private Player playerScript;
     private float timeOnAir;
     private Rigidbody2D playerRb;
     private Collider2D playerCol;
+    private bool pressedDown = false;
     private bool grounded;
     private bool facingRight = true;
     private int movementDir;
@@ -24,6 +26,10 @@ public class PlayerMovement : MonoBehaviour
     public void SetMoveDir(int value)
     {
         this.movementDir = value;
+    }
+    public void SetPressedDown(bool value)
+    {
+        this.pressedDown = value;
     }
     #endregion
 
@@ -46,10 +52,14 @@ public class PlayerMovement : MonoBehaviour
     }
     void JumpingCollision()
     {
-        if (this.playerRb.velocity.y > 0 || !grounded)
-            Physics2D.IgnoreLayerCollision(this.playerLayer, this.platformLayer, true);
+        if (this.playerRb.velocity.y > 0 || !grounded || pressedDown)
+            IgnoreCollisions(true);
         else
-            Physics2D.IgnoreLayerCollision(this.playerLayer, this.platformLayer, false);
+            IgnoreCollisions(false);
+    }
+    public void IgnoreCollisions(bool ignore)
+    {
+        Physics2D.IgnoreLayerCollision(this.playerLayer, this.platformLayer, ignore);
     }
     public void Jump()
     {
@@ -102,7 +112,7 @@ public class PlayerMovement : MonoBehaviour
             facingDir = 1;
         if (!this.facingRight)
             facingDir = -1;
-        RaycastHit2D hitRaycast = Physics2D.Raycast(this.transform.position + new Vector3(0f, 0.5f, 0),new Vector2(facingDir, 0),this.dashDistance,this.groundLayer);
+        RaycastHit2D hitRaycast = Physics2D.Raycast(this.transform.position + new Vector3(0f, 0.5f, 0),new Vector2(facingDir, 0),this.dashDistance,this.dashLayer);
         float distance = this.dashDistance;
         if(hitRaycast)
             distance = hitRaycast.distance;

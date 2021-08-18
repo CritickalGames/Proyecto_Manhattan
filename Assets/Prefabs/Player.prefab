@@ -223,12 +223,9 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 823
-  platformLayer:
+  dashLayer:
     serializedVersion: 2
-    m_Bits: 512
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 2304
 --- !u!114 &5497455151813261255
 MonoBehaviour:
   m_ObjectHideFlags: 0
