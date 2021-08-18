@@ -280,10 +280,11 @@ MonoBehaviour:
   checkDistance: 0.22
   obstacleLayer:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 2048
   groundLayer:
     serializedVersion: 2
-    m_Bits: 823
+    m_Bits: 2304
+  colideWithPlatforms: 0
   followXRange: 5
   followYRange: 2
   caughtRange: 1

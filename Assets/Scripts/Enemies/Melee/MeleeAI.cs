@@ -10,11 +10,12 @@ public class MeleeAI : MonoBehaviour
     [SerializeField]public Transform groundCheck;
     [SerializeField]private float checkDistance;
     [SerializeField]public LayerMask obstacleLayer;
-    [SerializeField] private LayerMask groundLayer;
+    [SerializeField]private LayerMask groundLayer;
+    [SerializeField]private bool colideWithPlatforms;
     [SerializeField]private float followXRange;
     [SerializeField]private float followYRange;
-    [SerializeField] private float caughtRange;
-    [SerializeField] private float hitRate = 2.5f;
+    [SerializeField]private float caughtRange;
+    [SerializeField]private float hitRate = 2.5f;
     private float nextHit;
     private float distanceEnemyPlayer;
     private int faceDirection;
@@ -88,6 +89,11 @@ public class MeleeAI : MonoBehaviour
             this.moveDirection = this.faceDirection;
         else
             this.moveDirection = 0;
+    }
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Platform")  && !colideWithPlatforms)
+            Physics2D.IgnoreCollision(collision.collider, this.gameObject.GetComponent<Collider2D>());
     }
     void OnDrawGizmosSelected()
     {
