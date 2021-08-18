@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float maxTimeOnAir;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private LayerMask dashLayer;
     private Player playerScript;
     private float timeOnAir;
     private Rigidbody2D playerRb;
@@ -102,7 +103,7 @@ public class PlayerMovement : MonoBehaviour
             facingDir = 1;
         if (!this.facingRight)
             facingDir = -1;
-        RaycastHit2D hitRaycast = Physics2D.Raycast(this.transform.position + new Vector3(0f, 0.5f, 0),new Vector2(facingDir, 0),this.dashDistance,this.groundLayer);
+        RaycastHit2D hitRaycast = Physics2D.Raycast(this.transform.position + new Vector3(0f, 0.5f, 0),new Vector2(facingDir, 0),this.dashDistance,this.dashLayer);
         float distance = this.dashDistance;
         if(hitRaycast)
             distance = hitRaycast.distance;
