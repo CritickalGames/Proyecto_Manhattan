@@ -284,7 +284,7 @@ MonoBehaviour:
     m_Bits: 2048
   groundLayer:
     serializedVersion: 2
-    m_Bits: 2304
+    m_Bits: 2816
   colideWithPlatforms: 0
   followXRange: 10
   followYRange: 5
