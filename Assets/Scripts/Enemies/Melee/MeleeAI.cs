@@ -8,12 +8,14 @@ public class MeleeAI : MonoBehaviour
     [System.NonSerialized]public GameObject target;
     [System.NonSerialized]public bool caught = false;
     [SerializeField]public Transform groundCheck;
+    [SerializeField]private float checkDistance;
     [SerializeField]public LayerMask obstacleLayer;
-    [SerializeField] private LayerMask groundLayer;
+    [SerializeField]private LayerMask groundLayer;
+    [SerializeField]private bool colideWithPlatforms;
     [SerializeField]private float followXRange;
     [SerializeField]private float followYRange;
-    [SerializeField] private float caughtRange;
-    [SerializeField] private float hitRate = 2.5f;
+    [SerializeField]private float caughtRange;
+    [SerializeField]private float hitRate = 2.5f;
     private float nextHit;
     private float distanceEnemyPlayer;
     private int faceDirection;
@@ -27,7 +29,7 @@ public class MeleeAI : MonoBehaviour
     }
     void Update()
     {
-        this.grounded = Physics2D.OverlapCircle(this.groundCheck.position, 0.05f, this.groundLayer);
+        this.grounded = Physics2D.OverlapCircle(this.groundCheck.position, checkDistance, this.groundLayer);
         if (GameManager.gM.GetPlayerObject() != null)
         {
             this.target = GameManager.gM.GetPlayerObject();
@@ -87,5 +89,16 @@ public class MeleeAI : MonoBehaviour
             this.moveDirection = this.faceDirection;
         else
             this.moveDirection = 0;
+    }
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Platform")  && !colideWithPlatforms)
+            Physics2D.IgnoreCollision(collision.collider, this.gameObject.GetComponent<Collider2D>());
+    }
+    void OnDrawGizmosSelected()
+    {
+         if (this.groundCheck == null)
+            return;
+        Gizmos.DrawWireSphere(this.groundCheck.position, this.checkDistance);
     }
 }
