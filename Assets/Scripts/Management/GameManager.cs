@@ -33,7 +33,6 @@ public class GameManager : MonoBehaviour
             gM = this;
         DontDestroyOnLoad(this);
         this.pauseScript = GameObject.Find("/UI/Canvas/Pause").GetComponent<PauseController>();
-        this.counterScript = GameObject.Find("/Management").GetComponent<EnemyCounter>();
     }
     public void Update()
     {
@@ -68,5 +67,9 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(nextLevel);
         else
             SceneManager.LoadScene(0);
+    }
+    public void SetCounterScript()
+    {
+        this.counterScript = GameObject.Find("/Management").GetComponent<EnemyCounter>();
     }
 }
