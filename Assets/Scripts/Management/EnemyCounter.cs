@@ -13,7 +13,6 @@ public class EnemyCounter : MonoBehaviour
     public void SubtractEnemy()
     {
         this.enemiesLeft--;
-        Debug.Log(this.enemiesLeft);
         if (this.enemiesLeft <= 0)
             GameManager.gM.LevelFinished();
     }
