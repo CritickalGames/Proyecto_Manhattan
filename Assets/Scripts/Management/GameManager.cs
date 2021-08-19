@@ -58,8 +58,15 @@ public class GameManager : MonoBehaviour
     }
     public void LevelFinished()
     {
-        SpriteRenderer spriteRenderer = GameObject.Find("/World/TrafficLights").GetComponent<SpriteRenderer>();
+        SpriteRenderer spriteRenderer = GameObject.Find("/World/Terrain/TrafficLights").GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = trafficGreenLight;
         levelPassed = true;
+    }
+    public void NextLevel(int nextLevel)
+    {
+        if(nextLevel < SceneManager.sceneCountInBuildSettings)
+            SceneManager.LoadScene(nextLevel);
+        else
+            SceneManager.LoadScene(0);
     }
 }
