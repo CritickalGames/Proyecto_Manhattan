@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Cinemachine;
 
 
@@ -27,21 +28,21 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         if (gM != null)
-            GameObject.Destroy(gM);
+            Destroy(this.gameObject);
         else
             gM = this;
+        DontDestroyOnLoad(this);
         this.pauseScript = GameObject.Find("/UI/Canvas/Pause").GetComponent<PauseController>();
         this.counterScript = GameObject.Find("/Management").GetComponent<EnemyCounter>();
-    }
-    void Start()
-    {
-        SpawnPlayer();
     }
     public void Update()
     {
         if (playerObject != null && playerObject.transform.position.y <= -15)
         {
             Destroy(this.playerObject);
+        }
+        if (playerObject == null && SceneManager.GetActiveScene().buildIndex != 0)
+        {
             SpawnPlayer();
         }
     }
