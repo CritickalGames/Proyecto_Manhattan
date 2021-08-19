@@ -7,11 +7,13 @@ public class EnemyCounter : MonoBehaviour
     int enemiesLeft;
     void Start()
     {
+        GameManager.gM.SetCounterScript();
         this.enemiesLeft = (GameObject.FindGameObjectsWithTag("HasToBeKilled")).Length;
     }
     public void SubtractEnemy()
     {
         this.enemiesLeft--;
+        Debug.Log(this.enemiesLeft);
         if (this.enemiesLeft <= 0)
             GameManager.gM.LevelFinished();
     }
