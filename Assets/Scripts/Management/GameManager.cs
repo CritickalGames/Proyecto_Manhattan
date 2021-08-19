@@ -57,16 +57,25 @@ public class GameManager : MonoBehaviour
     }
     public void LevelFinished()
     {
-        SpriteRenderer spriteRenderer = GameObject.Find("/World/Terrain/TrafficLights").GetComponent<SpriteRenderer>();
-        spriteRenderer.sprite = trafficGreenLight;
+        GameObject trafficLights = GameObject.Find("World/Terrain/TrafficLights");
+        if (trafficLights != null)
+        {
+            SpriteRenderer spriteRenderer = trafficLights.GetComponent<SpriteRenderer>();
+            spriteRenderer.sprite = trafficGreenLight;
+        }
         levelPassed = true;
     }
     public void NextLevel(int nextLevel)
     {
-        if(nextLevel < SceneManager.sceneCountInBuildSettings)
+        if(nextLevel < SceneManager.sceneCountInBuildSettings && levelPassed)
+        {
+            levelPassed = false;
             SceneManager.LoadScene(nextLevel);
-        else
+        } else if (levelPassed)
+        {
+            levelPassed = false;
             SceneManager.LoadScene(0);
+        }
     }
     public void SetCounterScript()
     {
