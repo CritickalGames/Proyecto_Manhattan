@@ -28,5 +28,6 @@ public class HealthManage : MonoBehaviour
     {
         this.enemyAnimator.SetBool("IsDead", true);
         this.enabled = false;
+        GameManager.gM.counterScript.SubtractEnemy();
     }
 }

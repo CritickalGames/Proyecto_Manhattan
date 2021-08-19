@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Cinemachine;
 
 
@@ -6,9 +7,12 @@ public class GameManager : MonoBehaviour
 {
     [System.NonSerialized]public Player playerScript;
     [System.NonSerialized]public PauseController pauseScript;
+    [System.NonSerialized]public EnemyCounter counterScript;
     [System.NonSerialized]public static GameManager gM;
     [SerializeField]private GameObject playerPrefab;
+    [SerializeField]private Sprite trafficGreenLight;
     private GameObject playerObject;
+    private bool levelPassed;
 
     #region Getters & Setters
     public void SetPlayerObject(GameObject newObject)
@@ -24,20 +28,21 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         if (gM != null)
-            GameObject.Destroy(gM);
+            Destroy(this.gameObject);
         else
             gM = this;
+        DontDestroyOnLoad(this);
         this.pauseScript = GameObject.Find("/UI/Canvas/Pause").GetComponent<PauseController>();
-    }
-    void Start()
-    {
-        SpawnPlayer();
+        this.counterScript = GameObject.Find("/Management").GetComponent<EnemyCounter>();
     }
     public void Update()
     {
         if (playerObject != null && playerObject.transform.position.y <= -15)
         {
             Destroy(this.playerObject);
+        }
+        if (playerObject == null && SceneManager.GetActiveScene().buildIndex != 0)
+        {
             SpawnPlayer();
         }
     }
@@ -50,5 +55,11 @@ public class GameManager : MonoBehaviour
         this.playerObject.transform.parent = GameObject.Find("Player").transform;
         this.playerScript = playerObject.GetComponent<Player>();
         vcam.m_Follow = playerObject.transform;
+    }
+    public void LevelFinished()
+    {
+        SpriteRenderer spriteRenderer = GameObject.Find("/World/TrafficLights").GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = trafficGreenLight;
+        levelPassed = true;
     }
 }

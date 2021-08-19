@@ -43,10 +43,9 @@ public class Player : MonoBehaviour
     void Die()
     {
         this.playerAnimator.SetBool("IsDead", true);
-        GameManager.gM.SetPlayerObject(null);
     }
     public void EndDie()
     {
-        GameManager.gM.SpawnPlayer();
+        GameManager.gM.SetPlayerObject(null);
     }
 }

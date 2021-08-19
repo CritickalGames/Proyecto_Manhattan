@@ -29,6 +29,7 @@ public class PauseController : MonoBehaviour
     public void Menu()
     {
         Time.timeScale = 1f;
+        this.isPaused = false;
         SceneManager.LoadScene(0);
     }
 }
