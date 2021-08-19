@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Cinemachine;
+using System.Collections.Generic;
 
 
 public class GameManager : MonoBehaviour
@@ -13,6 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]private Sprite trafficGreenLight;
     private GameObject playerObject;
     private bool levelPassed;
+    Dictionary<string, bool> abilities = new Dictionary<string, bool>();
 
     #region Getters & Setters
     public void SetPlayerObject(GameObject newObject)
@@ -22,6 +24,17 @@ public class GameManager : MonoBehaviour
     public GameObject GetPlayerObject()
     {
         return this.playerObject;
+    }
+    public void SetAbilitiesDictionary(string name, bool value)
+    {
+        this.abilities.Add(name, value);
+    }
+    public bool GetAbilitiesDictionary(string name)
+    {
+        if (this.abilities.ContainsKey(name))
+            return this.abilities[name];
+        else
+            return false;
     }
     #endregion
 

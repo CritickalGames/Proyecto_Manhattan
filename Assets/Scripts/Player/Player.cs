@@ -7,18 +7,6 @@ public class Player : MonoBehaviour
     [System.NonSerialized] public Animator playerAnimator;
     [SerializeField] public int maxHealth = 100;
     private int currentHealth;
-    [SerializeField]private bool[] items;
-
-    #region Getters & Setters
-    public void SetItem(int index, bool value)
-    {
-        this.items[index] = value;
-    }
-    public bool GetItem(int index)
-    {
-        return this.items[index];
-    }
-    #endregion
 
     void Awake()
     {
@@ -28,7 +16,6 @@ public class Player : MonoBehaviour
     }
     void Start()
     {
-        items = new bool[1];
         this.currentHealth = this.maxHealth;
     }
     public void Damaged(int damage)
