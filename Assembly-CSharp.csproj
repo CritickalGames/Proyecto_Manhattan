@@ -44,7 +44,8 @@
     <ImplicitlyExpandNETStandardFacades>false</ImplicitlyExpandNETStandardFacades>
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
-  <ItemGroup>     <Compile Include="Assets\Scripts\Enemies\Melee\MeleeMovement.cs" />
+  <ItemGroup>     <Compile Include="Assets\Scripts\UI\MessageBar.cs" />
+     <Compile Include="Assets\Scripts\Enemies\Melee\MeleeMovement.cs" />
      <Compile Include="Assets\Scripts\Enemies\Boss\First Boss\FirstBossAI.cs" />
      <Compile Include="Assets\Scripts\Menu\MenuManager.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerState.cs" />
@@ -67,7 +68,6 @@
      <Compile Include="Assets\Scripts\SpecialAbilities\Dash.cs" />
      <Compile Include="Assets\Scripts\Enemies\Melee\MeleeAI.cs" />
      <Compile Include="Assets\Scripts\Enemies\Boss\First Boss\FirstBossAttack.cs" />
-     <Compile Include="Assets\Scripts\UI\MessageBar.cs" />
  <Reference Include="Unity.2D.Animation.Editor">
  <HintPath>C:/Users/kakar/Documents/Unity/Proyecto_Manhattan/Library/ScriptAssemblies/Unity.2D.Animation.Editor.dll</HintPath>
  </Reference>
