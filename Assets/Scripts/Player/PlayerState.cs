@@ -12,8 +12,8 @@ public class PlayerState : MonoBehaviour
     {
         if (this.state[name] != value)
             this.state[name] = value;
-        if (this.playerScript.GetAnimationBool(name) != this.state[name])
-            UpdateState(name);
+        if (name != "Grounded")
+            this.playerScript.SetAnimationBool(name, state[name]);
     }
     public bool GetState(string name)
     {
@@ -36,8 +36,5 @@ public class PlayerState : MonoBehaviour
         this.state.Add("Grounded", true);
         this.state.Add("IsDead", false);
     }
-    void UpdateState(string name)
-    {
-        this.playerScript.SetAnimationBool(name, state[name]);
-    }
+
 }
