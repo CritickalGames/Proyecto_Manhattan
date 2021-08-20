@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
     [System.NonSerialized] public PlayerMovement movementScript;
     [System.NonSerialized] public PlayerAttack attackScript;
     [System.NonSerialized] public Animator playerAnimator;
+    private HealthBar healthBar;
 
 #region 
 public bool GetAnimationBool(string name)
@@ -23,11 +24,17 @@ public void SetAnimationBool(string name, bool value)
         this.movementScript = this.GetComponent<PlayerMovement>();
         this.attackScript = this.GetComponent<PlayerAttack>();
         this.playerAnimator = this.GetComponent<Animator>();
+        this.healthBar = GameObject.Find("/UI/Canvas/HealthBar").GetComponent<HealthBar>();
+    }
+    void Start()
+    {
+        this.healthBar.SetMaxHealth(GameManager.gM.GetMaxHealth());
     }
     public void Damaged(int damage)
     {
         this.playerAnimator.SetTrigger("Hurt");
         GameManager.gM.SetPlayerHealth(GameManager.gM.GetPlayerHealth() - damage);
+        this.healthBar.SetHealth(GameManager.gM.GetPlayerHealth());
         if (GameManager.gM.GetPlayerHealth() <= 0)
         {
             Die();
