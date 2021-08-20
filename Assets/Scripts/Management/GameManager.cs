@@ -31,6 +31,10 @@ public class GameManager : MonoBehaviour
     {
         this.currentPlayerHealth = this.maxPlayerHealth;
     }
+    public int GetMaxHealth()
+    {
+        return this.maxPlayerHealth;
+    }
     public void SetPlayerObject(GameObject newObject)
     {
         this.playerObject = newObject;
