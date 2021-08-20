@@ -92,6 +92,10 @@ public class GameManager : MonoBehaviour
         {
             levelPassed = false;
             SceneManager.LoadScene(0);
+        } else if (!levelPassed)
+        {
+            MessageBar messageScript = GameObject.Find("/UI/Canvas/Message/Image").GetComponent<MessageBar>();
+            messageScript.SetTrueBool();
         }
     }
     public void SetCounterScript()
