@@ -7,8 +7,6 @@ public class Player : MonoBehaviour
     [System.NonSerialized] public PlayerAttack attackScript;
     [System.NonSerialized] public Animator playerAnimator;
     private HealthBar healthBar;
-    [SerializeField] private int maxHealth = 100;
-    private int currentHealth;
 
 #region 
 public bool GetAnimationBool(string name)
@@ -30,15 +28,14 @@ public void SetAnimationBool(string name, bool value)
     }
     void Start()
     {
-        this.currentHealth = this.maxHealth;
-        this.healthBar.SetMaxHealth(this.maxHealth);
+        this.healthBar.SetMaxHealth(GameManager.gM.GetMaxHealth());
     }
     public void Damaged(int damage)
     {
         this.playerAnimator.SetTrigger("Hurt");
-        this.currentHealth -= damage;
-        this.healthBar.SetHealth(this.currentHealth);
-        if (this.currentHealth <= 0)
+        GameManager.gM.SetPlayerHealth(GameManager.gM.GetPlayerHealth() - damage);
+        this.healthBar.SetHealth(GameManager.gM.GetPlayerHealth());
+        if (GameManager.gM.GetPlayerHealth() <= 0)
         {
             Die();
         }
@@ -49,6 +46,7 @@ public void SetAnimationBool(string name, bool value)
     }
     public void EndDie()
     {
+        GameManager.gM.SetMaxHealth();
         GameManager.gM.RestartLevel();
     }
 }
