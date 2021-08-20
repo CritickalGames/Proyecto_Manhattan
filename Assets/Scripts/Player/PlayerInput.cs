@@ -3,10 +3,8 @@ using UnityEngine.InputSystem;
 public class PlayerInput : MonoBehaviour
 {
     [SerializeField] private float dashCooldown = 0.5f;
-    [SerializeField] private float hitRate = 2f;
     bool ignoring = false;
     private float nextDash;
-    private float nextHit;
     float horizontalMove = 0f;
 
     void Update()
@@ -20,7 +18,7 @@ public class PlayerInput : MonoBehaviour
     }
     void OnDash()
     {
-        if (Time.time >= this.nextDash && !GameManager.gM.pauseScript.GetPause() && GameManager.gM.GetPlayerObject() != null && GameManager.gM.playerScript.GetItem(0))
+        if (Time.time >= this.nextDash && !GameManager.gM.pauseScript.GetPause() && GameManager.gM.GetPlayerObject() != null && GameManager.gM.GetAbilitiesDictionary("Dash"))
         {
             this.nextDash = Time.time + this.dashCooldown;
             GameManager.gM.playerScript.movementScript.Dash();
@@ -33,11 +31,8 @@ public class PlayerInput : MonoBehaviour
     }
     void OnAttack()
     {
-        if (Time.time >= this.nextHit && GameManager.gM.playerScript.playerAnimator.GetBool("Jumping") == false && !GameManager.gM.pauseScript.GetPause() && GameManager.gM.GetPlayerObject() != null)
-        {
-            this.nextHit = Time.time + 1f / this.hitRate;
-            GameManager.gM.playerScript.playerAnimator.SetTrigger("Attacking");
-        }
+        if (GameManager.gM.playerScript.stateScript.GetState("Attacking") == false && !GameManager.gM.pauseScript.GetPause() && GameManager.gM.GetPlayerObject() != null)
+            GameManager.gM.playerScript.stateScript.SetState("Attacking", true);
     }
     void OnSpecialAttack()
     {
