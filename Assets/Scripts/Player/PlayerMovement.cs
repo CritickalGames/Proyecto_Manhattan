@@ -16,7 +16,6 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D playerRb;
     private Collider2D playerCol;
     private bool pressedDown = false;
-    private bool grounded;
     private bool facingRight = true;
     private int movementDir;
     private int platformLayer;
@@ -52,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void JumpingCollision()
     {
-        if (this.playerRb.velocity.y > 0 || !grounded || pressedDown)
+        if (this.playerRb.velocity.y > 0 || !this.playerScript.stateScript.GetState("Grounded") || pressedDown)
             IgnoreCollisions(true);
         else
             IgnoreCollisions(false);
@@ -79,7 +78,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Move()
     {
-        this.playerScript.playerAnimator.SetBool("Running", true);
+        this.playerScript.stateScript.SetState("Running", true);
         SetVelocity(this.movementSpeed * this.movementDir, this.playerRb.velocity.y);
         if ((this.movementDir < 0 && this.facingRight) || (this.movementDir > 0 && !this.facingRight))
             Flip();
@@ -94,7 +93,7 @@ public class PlayerMovement : MonoBehaviour
             SetVelocity(this.playerRb.velocity.x + this.inertiaSpeed * Time.deltaTime, this.playerRb.velocity.y);
         } else 
         {
-            this.playerScript.playerAnimator.SetBool("Running", false);
+            this.playerScript.stateScript.SetState("Running", false);
             SetVelocity(0, this.playerRb.velocity.y);
         }
     }
@@ -125,15 +124,16 @@ public class PlayerMovement : MonoBehaviour
     }
     private void VerifyGround()
     {
-        this.grounded = Physics2D.OverlapCircle(this.groundCheck.position, 0.05f, this.groundLayer);
-        if (this.grounded)
+        bool grounded = Physics2D.OverlapCircle(this.groundCheck.position, 0.05f, this.groundLayer);
+        this.playerScript.stateScript.SetState("Grounded", grounded);
+        if (this.playerScript.stateScript.GetState("Grounded"))
         {
             this.timeOnAir = 0;
-            this.playerScript.playerAnimator.SetBool("Jumping", false);
+            this.playerScript.stateScript.SetState("Jumping", false);
             this.extraJumps = 1;
         } else
         {
-            this.playerScript.playerAnimator.SetBool("Jumping", true);
+            this.playerScript.stateScript.SetState("Jumping", true);
             this.timeOnAir += Time.deltaTime;
         }
     }

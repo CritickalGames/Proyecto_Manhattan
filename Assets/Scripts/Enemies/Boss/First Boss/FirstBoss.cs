@@ -25,8 +25,11 @@ public class FirstBoss : MonoBehaviour
     }
     public void BossDeath()
     {
-        Transform spawnLocation = this.transform;
-        GameObject item = Instantiate(itemPrefab, spawnLocation.position + new Vector3(0,1.5f,0), Quaternion.identity);
-        item.transform.parent = GameObject.Find("ObjectContainer").transform;
+        if (!GameManager.gM.GetAbilitiesDictionary("Dash"))
+        {
+            Transform spawnLocation = this.transform;
+            GameObject item = Instantiate(itemPrefab, spawnLocation.position + new Vector3(0,1.5f,0), Quaternion.identity);
+            item.transform.parent = GameObject.Find("ObjectContainer").transform;
+        }
     }
 }
