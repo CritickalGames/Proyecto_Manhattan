@@ -15,8 +15,26 @@ public class GameManager : MonoBehaviour
     private GameObject playerObject;
     private bool levelPassed;
     Dictionary<string, bool> abilities = new Dictionary<string, bool>();
+    [SerializeField] private int maxPlayerHealth = 100;
+    private int currentPlayerHealth;
 
     #region Getters & Setters
+    public int GetPlayerHealth()
+    {
+        return this.currentPlayerHealth;
+    }
+    public void SetPlayerHealth(int playerHealth)
+    {
+        this.currentPlayerHealth = playerHealth;
+    }
+    public void SetMaxHealth()
+    {
+        this.currentPlayerHealth = this.maxPlayerHealth;
+    }
+    public int GetMaxHealth()
+    {
+        return this.maxPlayerHealth;
+    }
     public void SetPlayerObject(GameObject newObject)
     {
         this.playerObject = newObject;
@@ -47,16 +65,16 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this);
         this.pauseScript = GameObject.Find("/UI/Canvas/Pause").GetComponent<PauseController>();
     }
-    public void Update()
+    void Start()
+    {
+        SetMaxHealth();
+    }
+    void Update()
     {
         if (playerObject != null && playerObject.transform.position.y <= -15)
-        {
             Destroy(this.playerObject);
-        }
         if (playerObject == null && SceneManager.GetActiveScene().buildIndex != 0)
-        {
             SpawnPlayer();
-        }
     }
     public void RestartLevel()
     {
@@ -92,6 +110,10 @@ public class GameManager : MonoBehaviour
         {
             levelPassed = false;
             SceneManager.LoadScene(0);
+        } else if (!levelPassed)
+        {
+            MessageBar messageScript = GameObject.Find("/UI/Canvas/Message/Image").GetComponent<MessageBar>();
+            messageScript.SetTrueBool();
         }
     }
     public void SetCounterScript()
