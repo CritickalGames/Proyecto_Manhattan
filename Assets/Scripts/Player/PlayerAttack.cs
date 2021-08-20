@@ -32,6 +32,10 @@ public class PlayerAttack : MonoBehaviour
     public void TestSpecialAttack()
     {
     }
+    public void EndAttack()
+    {
+        this.playerScript.stateScript.SetState("Attacking", false);
+    }
     void OnDrawGizmosSelected()
     {
         if (this.hitPoint == null)
