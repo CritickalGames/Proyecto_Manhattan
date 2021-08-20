@@ -235,10 +235,10 @@ MonoBehaviour:
   groundCheck: {fileID: 5497455150042674140}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 823
+    m_Bits: 2816
   dashLayer:
     serializedVersion: 2
-    m_Bits: 2304
+    m_Bits: 6400
 --- !u!114 &5497455151813261255
 MonoBehaviour:
   m_ObjectHideFlags: 0
