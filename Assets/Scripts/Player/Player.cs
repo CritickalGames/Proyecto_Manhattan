@@ -6,8 +6,6 @@ public class Player : MonoBehaviour
     [System.NonSerialized] public PlayerMovement movementScript;
     [System.NonSerialized] public PlayerAttack attackScript;
     [System.NonSerialized] public Animator playerAnimator;
-    [SerializeField] private int maxHealth = 100;
-    private int currentHealth;
 
 #region 
 public bool GetAnimationBool(string name)
@@ -26,15 +24,11 @@ public void SetAnimationBool(string name, bool value)
         this.attackScript = this.GetComponent<PlayerAttack>();
         this.playerAnimator = this.GetComponent<Animator>();
     }
-    void Start()
-    {
-        this.currentHealth = this.maxHealth;
-    }
     public void Damaged(int damage)
     {
         this.playerAnimator.SetTrigger("Hurt");
-        this.currentHealth -= damage;
-        if (this.currentHealth <= 0)
+        GameManager.gM.SetPlayerHealth(GameManager.gM.GetPlayerHealth() - damage);
+        if (GameManager.gM.GetPlayerHealth() <= 0)
         {
             Die();
         }
@@ -45,6 +39,7 @@ public void SetAnimationBool(string name, bool value)
     }
     public void EndDie()
     {
+        GameManager.gM.SetMaxHealth();
         GameManager.gM.RestartLevel();
     }
 }
