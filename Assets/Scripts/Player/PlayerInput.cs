@@ -27,18 +27,12 @@ public class PlayerInput : MonoBehaviour
     void OnJump()
     {
         if (!GameManager.gM.pauseScript.GetPause() && GameManager.gM.GetPlayerObject() != null)
-        {
             GameManager.gM.playerScript.movementScript.Jump();
-            Debug.Log("Salta");
-        }
     }
     void OnAttack()
     {
         if (GameManager.gM.playerScript.stateScript.GetState("Attacking") == false && !GameManager.gM.pauseScript.GetPause() && GameManager.gM.GetPlayerObject() != null)
-        {
             GameManager.gM.playerScript.stateScript.SetState("Attacking", true);
-            Debug.Log("Ataca");
-        }
     }
     void OnSpecialAttack()
     {

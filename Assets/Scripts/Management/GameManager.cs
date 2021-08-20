@@ -58,6 +58,10 @@ public class GameManager : MonoBehaviour
             SpawnPlayer();
         }
     }
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene(1);
+    }
     public void SpawnPlayer()
     {
         CinemachineVirtualCamera vcam = GameObject.Find("CM vcam1").GetComponent<CinemachineVirtualCamera>();

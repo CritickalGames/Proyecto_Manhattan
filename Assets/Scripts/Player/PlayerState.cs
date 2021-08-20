@@ -17,8 +17,6 @@ public class PlayerState : MonoBehaviour
     }
     public bool GetState(string name)
     {
-        /*if (name == "Attacking")
-            Debug.Log("Entró");*/
         if (this.state.ContainsKey(name))
             return this.state[name];
         else
@@ -40,8 +38,6 @@ public class PlayerState : MonoBehaviour
     }
     void UpdateState(string name)
     {
-        /*if (name == "Attacking")
-            Debug.Log(state[name]);*/
         this.playerScript.SetAnimationBool(name, state[name]);
     }
 }

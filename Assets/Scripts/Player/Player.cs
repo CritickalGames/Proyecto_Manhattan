@@ -45,6 +45,6 @@ public void SetAnimationBool(string name, bool value)
     }
     public void EndDie()
     {
-        GameManager.gM.SetPlayerObject(null);
+        GameManager.gM.RestartLevel();
     }
 }
