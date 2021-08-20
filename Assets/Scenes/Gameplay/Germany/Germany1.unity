@@ -3166,6 +3166,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5616440117558290488, guid: 64fd369568ce6264084302f9dce0b8aa, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5616440117558290491, guid: 64fd369568ce6264084302f9dce0b8aa, type: 3}
       propertyPath: m_Name
       value: Melee
@@ -3589,6 +3593,10 @@ PrefabInstance:
     - target: {fileID: 8058584533287176277, guid: 2420771597fe11b4fb16b616557c94e1, type: 3}
       propertyPath: message
       value: "No puedo cruzar con la luz roja, quiz\xE1s deber\xEDa hacer tiempo"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8058584533546602960, guid: 2420771597fe11b4fb16b616557c94e1, type: 3}
+      propertyPath: m_Text
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2420771597fe11b4fb16b616557c94e1, type: 3}
@@ -4271,6 +4279,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 5497455151813261261, guid: b3805bcb81720a642b69d475fe036f81, type: 3}
   trafficGreenLight: {fileID: 21300000, guid: 029d7d5a4bcb02e44b99fa5c3aebf385, type: 3}
+  maxPlayerHealth: 100
 --- !u!1 &1603165975
 GameObject:
   m_ObjectHideFlags: 0
@@ -15011,6 +15020,10 @@ PrefabInstance:
     - target: {fileID: 4897755924884574082, guid: a81a2efa63036d447858385f2de1710b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4897755924884574083, guid: a81a2efa63036d447858385f2de1710b, type: 3}
+      propertyPath: m_Value
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4897755924884574085, guid: a81a2efa63036d447858385f2de1710b, type: 3}
       propertyPath: m_Name
