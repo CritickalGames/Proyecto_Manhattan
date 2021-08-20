@@ -102,12 +102,13 @@ public class GameManager : MonoBehaviour
     }
     public void NextLevel(int nextLevel)
     {
-        if(nextLevel < SceneManager.sceneCountInBuildSettings && levelPassed)
+        if(nextLevel < SceneManager.sceneCountInBuildSettings && levelPassed && nextLevel != 0)
         {
             levelPassed = false;
             SceneManager.LoadScene(nextLevel);
         } else if (levelPassed)
         {
+            this.SetMaxHealth();
             levelPassed = false;
             SceneManager.LoadScene(0);
         } else if (!levelPassed)
