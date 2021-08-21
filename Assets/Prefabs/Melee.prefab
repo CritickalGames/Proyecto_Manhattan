@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638e052c69715614eb7f96dc09167c75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 40
+  maxHealth: 20
 --- !u!114 &5616440117558290482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,8 +249,8 @@ MonoBehaviour:
   playerMask:
     serializedVersion: 2
     m_Bits: 64
-  attackRange: 0.5
-  normalDamage: 20
+  attackRange: 0.45
+  normalDamage: 15
 --- !u!114 &5616440117558290484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -287,5 +287,5 @@ MonoBehaviour:
   colideWithPlatforms: 0
   followXRange: 5
   followYRange: 2
-  caughtRange: 1
-  hitRate: 1
+  caughtRange: 0.7
+  hitRate: 1.2
