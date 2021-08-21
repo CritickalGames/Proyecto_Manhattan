@@ -33,6 +33,7 @@ public class PauseController : MonoBehaviour
     }
     public void Menu()
     {
+        GameManager.gM.SetMaxHealth();
         Time.timeScale = 1f;
         this.isPaused = false;
         SceneManager.LoadScene(0);
