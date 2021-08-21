@@ -13,21 +13,27 @@ public class PauseController : MonoBehaviour
     }
     #endregion
 
+    void Start()
+    {
+        GameManager.gM.SetPauseScript();
+        this.pauseObject.SetActive(false);
+    }
     public void Pause()
     {
-        this.pauseObject.SetActive(true);
         Time.timeScale = 0f;
         this.isPaused = true;
+        this.pauseObject.SetActive(true);
     }
     public void Resume()
     {
-        this.pauseObject.SetActive(false);
         Time.timeScale = 1f;
         this.isPaused = false;
         GameManager.gM.playerScript.movementScript.SetMoveDir(0);
+        this.pauseObject.SetActive(false);
     }
     public void Menu()
     {
+        GameManager.gM.SetMaxHealth();
         Time.timeScale = 1f;
         this.isPaused = false;
         SceneManager.LoadScene(0);

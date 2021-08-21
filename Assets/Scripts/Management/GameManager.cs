@@ -54,6 +54,14 @@ public class GameManager : MonoBehaviour
         else
             return false;
     }
+    public void SetCounterScript()
+    {
+        this.counterScript = GameObject.Find("/Management").GetComponent<EnemyCounter>();
+    }
+    public void SetPauseScript()
+    {
+        this.pauseScript = GameObject.Find("/UI/Canvas/Pause").GetComponent<PauseController>();
+    }
     #endregion
 
     void Awake()
@@ -63,7 +71,6 @@ public class GameManager : MonoBehaviour
         else
             gM = this;
         DontDestroyOnLoad(this);
-        this.pauseScript = GameObject.Find("/UI/Canvas/Pause").GetComponent<PauseController>();
     }
     void Start()
     {
@@ -116,9 +123,5 @@ public class GameManager : MonoBehaviour
             MessageBar messageScript = GameObject.Find("/UI/Canvas/Message/Image").GetComponent<MessageBar>();
             messageScript.SetTrueBool();
         }
-    }
-    public void SetCounterScript()
-    {
-        this.counterScript = GameObject.Find("/Management").GetComponent<EnemyCounter>();
     }
 }
