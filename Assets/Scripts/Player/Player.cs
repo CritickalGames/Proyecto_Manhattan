@@ -8,16 +8,13 @@ public class Player : MonoBehaviour
     [System.NonSerialized] public Animator playerAnimator;
     private HealthBar healthBar;
 
-#region 
-public bool GetAnimationBool(string name)
-{
-    return playerAnimator.GetBool(name);
-}
-public void SetAnimationBool(string name, bool value)
-{
-    playerAnimator.SetBool(name, value);
-}
-#endregion
+    #region Getters & Setters
+    public void SetAnimationBool(string name, bool value)
+    {
+        playerAnimator.SetBool(name, value);
+    }
+    #endregion
+
     void Awake()
     {
         this.stateScript = this.GetComponent<PlayerState>();
