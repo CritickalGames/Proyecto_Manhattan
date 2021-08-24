@@ -20,6 +20,11 @@ public class MeleeAttack : MonoBehaviour
                 player.GetComponent<Player>().Damaged(this.normalDamage);
         }
     }
+    public void EndAttack()
+    {
+        Debug.Log("a");
+        this.enemyScript.stateScript.SetState("Attacking", false);
+    }
     void OnDrawGizmosSelected()
     {
         if (this.hitTransform == null)

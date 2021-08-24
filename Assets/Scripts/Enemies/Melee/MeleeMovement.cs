@@ -14,21 +14,17 @@ public class MeleeMovement : MonoBehaviour
     public void ManageMovement(int direction)
     {  
         direction = -direction;
-        Debug.Log((direction != 0));
         if (direction != 0)
         {
-            Debug.Log("entró");
             this.enemyScript.stateScript.SetState("Running", true);
         } else
         {
             this.enemyScript.stateScript.SetState("Running", false);
         }
-        Debug.Log("b");
         Move(direction);
     }
     void Move(int internalDirection)
     {
-        Debug.Log("Moviendose " + this.movementSpeed * internalDirection);
         SetVelocity(this.movementSpeed * internalDirection, this.enemyRb.velocity.y);
     }
     public void ManageFlip(int internalDirection)

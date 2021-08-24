@@ -78,10 +78,10 @@ GameObject:
   - component: {fileID: 5616440117558290485}
   - component: {fileID: 5616440117558290484}
   - component: {fileID: 2513137296674884863}
-  - component: {fileID: 5658750684825387909}
+  - component: {fileID: 486918426285508251}
   m_Layer: 7
   m_Name: Melee
-  m_TagString: HasToBeKilled
+  m_TagString: Melee
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -290,7 +290,7 @@ MonoBehaviour:
   followYRange: 2
   caughtRange: 0.7
   hitRate: 1.2
---- !u!114 &5658750684825387909
+--- !u!114 &486918426285508251
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -302,3 +302,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c484e3bffcc5b740a307f0da9a95fff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: Melee
