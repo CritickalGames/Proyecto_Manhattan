@@ -25,7 +25,7 @@ public class PlayerAttack : MonoBehaviour
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(this.hitPoint.position, this.hitRange, this.enemyLayers);
         foreach (Collider2D enemy in hitEnemies)
         {
-            if (enemy.gameObject.GetComponent<Animator>().GetBool("IsDead") == false)
+            if (enemy.gameObject.GetComponent<EnemyState>().GetState("IsDead") == false)
                 enemy.GetComponent<HealthManage>().Damaged(this.normalDamage);
         }
     }
@@ -35,6 +35,10 @@ public class PlayerAttack : MonoBehaviour
     public void EndAttack()
     {
         this.playerScript.stateScript.SetState("Attacking", false);
+    }
+    public void CanAttack()
+    {
+        this.playerScript.stateScript.SetState("CanAttack", true);
     }
     void OnDrawGizmosSelected()
     {
