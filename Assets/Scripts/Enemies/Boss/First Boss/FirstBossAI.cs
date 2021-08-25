@@ -21,7 +21,6 @@ public class FirstBossAI : MonoBehaviour
     private int faceDirection;
     private int moveDirection;
     private bool raycast = false;
-    private bool grounded;
     private bool isInRange;
     void Awake()
     {
@@ -29,7 +28,8 @@ public class FirstBossAI : MonoBehaviour
     }
     void Update()
     {
-        this.grounded = Physics2D.OverlapCircle(this.groundCheck.position, checkDistance, this.groundLayer);
+        bool grounded = Physics2D.OverlapCircle(this.groundCheck.position, checkDistance, this.groundLayer);
+        this.enemyScript.stateScript.SetState("Grounded", grounded);
         if (GameManager.gM.GetPlayerObject() != null)
         {
             this.target = GameManager.gM.GetPlayerObject();
@@ -41,7 +41,7 @@ public class FirstBossAI : MonoBehaviour
     }
     bool PlayerIsAlive()
     {
-        if (this.target.GetComponent<Animator>().GetBool("IsDead") == true)
+        if (this.target.GetComponent<PlayerState>().GetState("IsDead") == true)
             return false;
         else
             return true;
@@ -51,10 +51,11 @@ public class FirstBossAI : MonoBehaviour
         this.distanceEnemyPlayer = this.transform.position.x - this.target.transform.position.x;
         this.isInRange = (this.transform.position.y <= this.target.transform.position.y + this.followYRange) && (this.transform.position.y >= this.target.transform.position.y - this.followYRange);
         DetectPlayer();
-        if (this.caught && Time.time >= this.nextHit && this.enemyScript.enemyAnimator.GetBool("Jumping") == false)
+        if (this.caught && Time.time >= this.nextHit && this.enemyScript.stateScript.GetState("CanAttack") == true)
         {
             this.nextHit = Time.time + 1f / this.hitRate;
-            this.enemyScript.enemyAnimator.SetTrigger("Attacking");
+            this.enemyScript.stateScript.SetState("Attacking", true);
+            this.enemyScript.stateScript.SetState("CanAttack", false);
         }
     }
     private void DetectPlayer()
@@ -85,7 +86,7 @@ public class FirstBossAI : MonoBehaviour
             this.faceDirection = 1;
         else if (this.distanceEnemyPlayer < 0 && this.isInRange)
             this.faceDirection = -1;
-        if (absoluteDistance < this.followXRange && this.isInRange && !this.caught && this.grounded)
+        if (absoluteDistance < this.followXRange && this.isInRange && !this.caught && this.enemyScript.stateScript.GetState("Grounded"))
             this.moveDirection = this.faceDirection;
         else
             this.moveDirection = 0;
