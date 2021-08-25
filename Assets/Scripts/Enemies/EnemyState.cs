@@ -13,7 +13,7 @@ public class EnemyState : MonoBehaviour
     {
         if (this.state[name] != value)
             this.state[name] = value;
-        if (name != "Grounded")
+        if (name != "Grounded" && name != "CanAttack")
             this.SetAnimator(name);
     }
     public bool GetState(string name)
@@ -31,7 +31,7 @@ public class EnemyState : MonoBehaviour
                 this.meleeScript.SetAnimationBool(name, state[name]);
                 break;
             case "FirstBoss":
-                //this.bossScript.SetAnimationBool(name, state[name]);
+                this.bossScript.SetAnimationBool(name, state[name]);
                 break;
         }
     }
@@ -43,7 +43,7 @@ public class EnemyState : MonoBehaviour
                 this.meleeScript.SetAnimationTrigger(name);
                 break;
             case "FirstBoss":
-                //this.bossScript.SetAnimationTrigger(name);
+                this.bossScript.SetAnimationTrigger(name);
                 break;
         }
     }
@@ -59,6 +59,7 @@ public class EnemyState : MonoBehaviour
         this.state.Add("Idle", true);
         this.state.Add("Running", false);
         this.state.Add("Attacking", false);
+        this.state.Add("CanAttack", true);
         this.state.Add("Jumping", false);
         this.state.Add("Grounded", true);
         this.state.Add("IsDead", false);
@@ -66,5 +67,6 @@ public class EnemyState : MonoBehaviour
     public void EndHurt()
     {
         SetState("Attacking", false);
+        SetState("CanAttack", true);
     }
 }

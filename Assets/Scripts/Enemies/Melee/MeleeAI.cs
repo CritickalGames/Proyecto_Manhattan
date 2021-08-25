@@ -29,7 +29,7 @@ public class MeleeAI : MonoBehaviour
     void Update()
     {
         bool grounded = Physics2D.OverlapCircle(this.groundCheck.position, checkDistance, this.groundLayer);
-        enemyScript.stateScript.SetState("Grounded", grounded);
+        this.enemyScript.stateScript.SetState("Grounded", grounded);
         if (GameManager.gM.GetPlayerObject() != null)
         {
             this.target = GameManager.gM.GetPlayerObject();
@@ -51,10 +51,11 @@ public class MeleeAI : MonoBehaviour
         this.distanceEnemyPlayer = this.transform.position.x - this.target.transform.position.x;
         this.isInRange = (this.transform.position.y <= this.target.transform.position.y + this.followYRange) && (this.transform.position.y >= this.target.transform.position.y - this.followYRange);
         DetectPlayer();
-        if (this.caught && Time.time >= this.nextHit && this.enemyScript.stateScript.GetState("Attacking") == false)
+        if (this.caught && this.enemyScript.stateScript.GetState("CanAttack") == true)
         {
             this.nextHit = Time.time + 1f / this.hitRate;
             this.enemyScript.stateScript.SetState("Attacking", true);
+            this.enemyScript.stateScript.SetState("CanAttack", false);
         }
     }
     private void DetectPlayer()
@@ -85,7 +86,7 @@ public class MeleeAI : MonoBehaviour
             this.faceDirection = 1;
         else if (this.distanceEnemyPlayer < 0 && this.isInRange)
             this.faceDirection = -1;
-        if (absoluteDistance < this.followXRange && this.isInRange && !this.caught && enemyScript.stateScript.GetState("Grounded"))
+        if (absoluteDistance < this.followXRange && this.isInRange && !this.caught && this.enemyScript.stateScript.GetState("Grounded"))
             this.moveDirection = this.faceDirection;
         else
             this.moveDirection = 0;

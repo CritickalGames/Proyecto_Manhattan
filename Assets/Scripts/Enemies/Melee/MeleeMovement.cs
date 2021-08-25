@@ -15,12 +15,9 @@ public class MeleeMovement : MonoBehaviour
     {  
         direction = -direction;
         if (direction != 0)
-        {
             this.enemyScript.stateScript.SetState("Running", true);
-        } else
-        {
+        else
             this.enemyScript.stateScript.SetState("Running", false);
-        }
         Move(direction);
     }
     void Move(int internalDirection)

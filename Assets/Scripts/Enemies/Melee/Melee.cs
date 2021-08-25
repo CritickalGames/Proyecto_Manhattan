@@ -12,11 +12,11 @@ public class Melee : MonoBehaviour
     #region Getters & Setters
     public void SetAnimationBool(string name, bool value)
     {
-        enemyAnimator.SetBool(name, value);
+        this.enemyAnimator.SetBool(name, value);
     }
     public void SetAnimationTrigger(string name)
     {
-        enemyAnimator.SetTrigger(name);
+        this.enemyAnimator.SetTrigger(name);
     }
     #endregion
 
@@ -30,10 +30,10 @@ public class Melee : MonoBehaviour
     }
     void Update()
     {
-        if (enemyAnimator.GetBool("IsDead") && !dead)
+        if (!this.dead && this.stateScript.GetState("IsDead"))
         {
-            dead = true;
-            iaScript.enabled = false;
+            this.dead = true;
+            this.iaScript.enabled = false;
         }
     }
 }

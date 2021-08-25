@@ -78,6 +78,7 @@ GameObject:
   - component: {fileID: 186034373289119512}
   - component: {fileID: 2785248090633218504}
   - component: {fileID: 5358993212435779142}
+  - component: {fileID: 3549047055372503461}
   m_Layer: 7
   m_Name: Boss
   m_TagString: Boss
@@ -221,7 +222,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  enemyType: 100
 --- !u!114 &4707489595860535264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -291,3 +291,16 @@ MonoBehaviour:
   followYRange: 5
   caughtRange: 1.5
   hitRate: 1.5
+--- !u!114 &3549047055372503461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5616440117558290491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c484e3bffcc5b740a307f0da9a95fff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: FirstBoss
