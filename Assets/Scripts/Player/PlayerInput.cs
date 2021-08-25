@@ -31,8 +31,11 @@ public class PlayerInput : MonoBehaviour
     }
     void OnAttack()
     {
-        if (GameManager.gM.playerScript.stateScript.GetState("Attacking") == false && !GameManager.gM.pauseScript.GetPause() && GameManager.gM.GetPlayerObject() != null)
+        if (GameManager.gM.playerScript.stateScript.GetState("CanAttack") == true && !GameManager.gM.pauseScript.GetPause() && GameManager.gM.GetPlayerObject() != null)
+        {
             GameManager.gM.playerScript.stateScript.SetState("Attacking", true);
+            GameManager.gM.playerScript.stateScript.SetState("CanAttack", false);
+        }
     }
     void OnSpecialAttack()
     {
