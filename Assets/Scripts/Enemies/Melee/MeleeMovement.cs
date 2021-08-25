@@ -15,9 +15,9 @@ public class MeleeMovement : MonoBehaviour
     {  
         direction = -direction;
         if (direction != 0)
-            this.enemyScript.enemyAnimator.SetBool("Running", true);
+            this.enemyScript.stateScript.SetState("Running", true);
         else
-            this.enemyScript.enemyAnimator.SetBool("Running", false);
+            this.enemyScript.stateScript.SetState("Running", false);
         Move(direction);
     }
     void Move(int internalDirection)
