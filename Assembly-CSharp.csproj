@@ -44,31 +44,32 @@
     <ImplicitlyExpandNETStandardFacades>false</ImplicitlyExpandNETStandardFacades>
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
-  <ItemGroup>     <Compile Include="Assets\Scripts\UI\MessageBar.cs" />
-     <Compile Include="Assets\Scripts\Enemies\Melee\MeleeMovement.cs" />
-     <Compile Include="Assets\Scripts\Enemies\Boss\First Boss\FirstBossAI.cs" />
-     <Compile Include="Assets\Scripts\Enemies\EnemyState.cs" />
+  <ItemGroup>     <Compile Include="Assets\Scripts\Game\UI\MessageBar.cs" />
+     <Compile Include="Assets\Scripts\Game\Enemies\Melee\MeleeMovement.cs" />
+     <Compile Include="Assets\Scripts\Game\Enemies\Boss\First Boss\FirstBossAI.cs" />
+     <Compile Include="Assets\Scripts\Game\Enemies\EnemyState.cs" />
      <Compile Include="Assets\Scripts\Menu\MenuManager.cs" />
-     <Compile Include="Assets\Scripts\Player\PlayerState.cs" />
-     <Compile Include="Assets\Scripts\Enemies\Melee\Melee.cs" />
+     <Compile Include="Assets\Scripts\Game\Player\PlayerState.cs" />
+     <Compile Include="Assets\Scripts\Game\Enemies\Melee\Melee.cs" />
      <Compile Include="Assets\Scripts\Management\PauseController.cs" />
-     <Compile Include="Assets\Scripts\UI\HealthBar.cs" />
+     <Compile Include="Assets\Scripts\Game\UI\HealthBar.cs" />
      <Compile Include="Assets\Scripts\Management\EnemyCounter.cs" />
      <Compile Include="Assets\Scripts\Menu\Config\ControlSettings.cs" />
-     <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
+     <Compile Include="Assets\Scripts\Game\Player\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\Management\GameManager.cs" />
-     <Compile Include="Assets\Scripts\Enemies\Boss\First Boss\FirstBoss.cs" />
-     <Compile Include="Assets\Scripts\Player\Player.cs" />
-     <Compile Include="Assets\Scripts\Player\PlayerInput.cs" />
+     <Compile Include="Assets\Scripts\Game\Enemies\Boss\First Boss\FirstBoss.cs" />
+     <Compile Include="Assets\Scripts\Game\Player\Player.cs" />
+     <Compile Include="Assets\Scripts\Game\Player\PlayerInput.cs" />
      <Compile Include="Assets\Scripts\Management\LevelPassed.cs" />
      <Compile Include="Assets\Scripts\Menu\Config\GeneralSettings.cs" />
-     <Compile Include="Assets\Scripts\Enemies\Boss\First Boss\FirstBossMovement.cs" />
-     <Compile Include="Assets\Scripts\Enemies\HealthManage.cs" />
-     <Compile Include="Assets\Scripts\Enemies\Melee\MeleeAttack.cs" />
-     <Compile Include="Assets\Scripts\Player\PlayerAttack.cs" />
-     <Compile Include="Assets\Scripts\SpecialAbilities\Dash.cs" />
-     <Compile Include="Assets\Scripts\Enemies\Melee\MeleeAI.cs" />
-     <Compile Include="Assets\Scripts\Enemies\Boss\First Boss\FirstBossAttack.cs" />
+     <Compile Include="Assets\Scripts\Game\Enemies\Boss\First Boss\FirstBossMovement.cs" />
+     <Compile Include="Assets\Scripts\Game\Enemies\HealthManage.cs" />
+     <Compile Include="Assets\Scripts\Game\Enemies\Melee\MeleeAttack.cs" />
+     <Compile Include="Assets\Scripts\Game\Player\PlayerAttack.cs" />
+     <Compile Include="Assets\Scripts\Game\SpecialAbilities\Dash.cs" />
+     <Compile Include="Assets\Scripts\Game\Enemies\Melee\MeleeAI.cs" />
+     <Compile Include="Assets\Scripts\Game\Enemies\Boss\First Boss\FirstBossAttack.cs" />
+     <Compile Include="Assets\Scripts\LevelSelector\LevelController.cs" />
  <Reference Include="Unity.2D.Animation.Editor">
  <HintPath>C:/Users/kakar/Documents/Unity/Proyecto_Manhattan/Library/ScriptAssemblies/Unity.2D.Animation.Editor.dll</HintPath>
  </Reference>

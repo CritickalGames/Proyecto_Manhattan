@@ -80,7 +80,7 @@ public class GameManager : MonoBehaviour
     {
         if (playerObject != null && playerObject.transform.position.y <= -15)
             Destroy(this.playerObject);
-        if (playerObject == null && SceneManager.GetActiveScene().buildIndex != 0)
+        if (playerObject == null && SceneManager.GetActiveScene().buildIndex > 1)
             SpawnPlayer();
     }
     public void RestartLevel()
@@ -109,7 +109,7 @@ public class GameManager : MonoBehaviour
     }
     public void NextLevel(int nextLevel)
     {
-        if(nextLevel < SceneManager.sceneCountInBuildSettings && levelPassed && nextLevel != 0)
+        if(nextLevel < SceneManager.sceneCountInBuildSettings && levelPassed && nextLevel > 1)
         {
             levelPassed = false;
             SceneManager.LoadScene(nextLevel);
@@ -117,7 +117,7 @@ public class GameManager : MonoBehaviour
         {
             this.SetMaxHealth();
             levelPassed = false;
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(1);
         } else if (!levelPassed)
         {
             MessageBar messageScript = GameObject.Find("/UI/Canvas/Message/Image").GetComponent<MessageBar>();
