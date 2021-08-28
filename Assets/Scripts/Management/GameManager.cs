@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Cinemachine;
 using System.Collections.Generic;
-
+using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,9 +12,10 @@ public class GameManager : MonoBehaviour
     [System.NonSerialized]public static GameManager gM;
     [SerializeField]private GameObject playerPrefab;
     [SerializeField]private Sprite trafficGreenLight;
+    Dictionary<string, bool> abilities = new Dictionary<string, bool>();
+    Dictionary<string, bool> countriesUnlocked = new Dictionary<string, bool>();
     private GameObject playerObject;
     private bool levelPassed;
-    Dictionary<string, bool> abilities = new Dictionary<string, bool>();
     [SerializeField] private int maxPlayerHealth = 100;
     private int currentPlayerHealth;
 
@@ -43,14 +44,33 @@ public class GameManager : MonoBehaviour
     {
         return this.playerObject;
     }
-    public void SetAbilitiesDictionary(string name, bool value)
+    public Dictionary<string,bool> GetAbilitiesDictionary()
     {
-        this.abilities.Add(name, value);
+        return this.abilities;
     }
-    public bool GetAbilitiesDictionary(string name)
+    public Dictionary<string,bool> GetCountryDictionary()
+    {
+            return this.countriesUnlocked;
+    }
+    public void SetAbilities(string name, bool value)
+    {
+        this.abilities[name] = value;
+    }
+    public bool GetAbilities(string name)
     {
         if (this.abilities.ContainsKey(name))
             return this.abilities[name];
+        else
+            return false;
+    }
+    public void SetCountry(string name, bool value)
+    {
+        this.countriesUnlocked[name] = value;
+    }
+    public bool GetCountry(string name)
+    {
+        if (this.countriesUnlocked.ContainsKey(name))
+            return this.countriesUnlocked[name];
         else
             return false;
     }
@@ -75,17 +95,18 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         SetMaxHealth();
+        LoadGame();
     }
     void Update()
     {
         if (playerObject != null && playerObject.transform.position.y <= -15)
-            Destroy(this.playerObject);
-        if (playerObject == null && SceneManager.GetActiveScene().buildIndex != 0)
+            RestartLevel();
+        if (playerObject == null && SceneManager.GetActiveScene().buildIndex > 1)
             SpawnPlayer();
     }
     public void RestartLevel()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
     public void SpawnPlayer()
     {
@@ -109,7 +130,7 @@ public class GameManager : MonoBehaviour
     }
     public void NextLevel(int nextLevel)
     {
-        if(nextLevel < SceneManager.sceneCountInBuildSettings && levelPassed && nextLevel != 0)
+        if(nextLevel < SceneManager.sceneCountInBuildSettings && levelPassed && nextLevel > 1)
         {
             levelPassed = false;
             SceneManager.LoadScene(nextLevel);
@@ -117,11 +138,41 @@ public class GameManager : MonoBehaviour
         {
             this.SetMaxHealth();
             levelPassed = false;
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(1);
         } else if (!levelPassed)
         {
             MessageBar messageScript = GameObject.Find("/UI/Canvas/Message/Image").GetComponent<MessageBar>();
             messageScript.SetTrueBool();
+        }
+    }
+    public void InstantiateDictionaries()
+    {
+        countriesUnlocked.Add("Germany", true);
+        countriesUnlocked.Add("Poland", false);
+        countriesUnlocked.Add("Ukraine", false);
+        countriesUnlocked.Add("Russia", false);
+        abilities.Add("Dash", false);
+        abilities.Add("Vodka", false);
+        abilities.Add("Saber", false);
+        abilities.Add("Arquebus", false);
+    }
+    private void SaveGame()
+    {
+        SaveAndLoadGame.Save();
+    }
+    private void LoadGame()
+    {
+        InstantiateDictionaries();
+        GameData data = SaveAndLoadGame.Load();
+        if (data != null)
+        {
+            for (int i = 0 ; i < data.abilitiesBool.Length ; i++)
+                this.abilities[this.abilities.Keys.ElementAt(i)] = data.abilitiesBool[i];
+            for (int i = 0 ; i < data.countriesBool.Length ; i++)
+                this.countriesUnlocked[this.countriesUnlocked.Keys.ElementAt(i)] = data.countriesBool[i];
+        } else
+        {
+            SaveAndLoadGame.Save();
         }
     }
 }
