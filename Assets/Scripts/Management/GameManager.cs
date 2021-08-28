@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Cinemachine;
 using System.Collections.Generic;
-
+using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,10 +12,10 @@ public class GameManager : MonoBehaviour
     [System.NonSerialized]public static GameManager gM;
     [SerializeField]private GameObject playerPrefab;
     [SerializeField]private Sprite trafficGreenLight;
-    private GameObject playerObject;
-    private bool levelPassed;
     Dictionary<string, bool> abilities = new Dictionary<string, bool>();
     Dictionary<string, bool> countriesUnlocked = new Dictionary<string, bool>();
+    private GameObject playerObject;
+    private bool levelPassed;
     [SerializeField] private int maxPlayerHealth = 100;
     private int currentPlayerHealth;
 
@@ -44,22 +44,30 @@ public class GameManager : MonoBehaviour
     {
         return this.playerObject;
     }
-    public void SetAbilitiesDictionary(string name, bool value)
+    public Dictionary<string,bool> GetAbilitiesDictionary()
     {
-        this.abilities.Add(name, value);
+        return this.abilities;
     }
-    public bool GetAbilitiesDictionary(string name)
+    public Dictionary<string,bool> GetCountryDictionary()
+    {
+            return this.countriesUnlocked;
+    }
+    public void SetAbilities(string name, bool value)
+    {
+        this.abilities[name] = value;
+    }
+    public bool GetAbilities(string name)
     {
         if (this.abilities.ContainsKey(name))
             return this.abilities[name];
         else
             return false;
     }
-    public void SetCountryDictionary(string name, bool value)
+    public void SetCountry(string name, bool value)
     {
-        this.countriesUnlocked.Add(name, value);
+        this.countriesUnlocked[name] = value;
     }
-    public bool GetCountryDictionary(string name)
+    public bool GetCountry(string name)
     {
         if (this.countriesUnlocked.ContainsKey(name))
             return this.countriesUnlocked[name];
@@ -83,16 +91,16 @@ public class GameManager : MonoBehaviour
         else
             gM = this;
         DontDestroyOnLoad(this);
-        countriesUnlocked.Add("Germany", true);
     }
     void Start()
     {
         SetMaxHealth();
+        LoadGame();
     }
     void Update()
     {
         if (playerObject != null && playerObject.transform.position.y <= -15)
-            Destroy(this.playerObject);
+            RestartLevel();
         if (playerObject == null && SceneManager.GetActiveScene().buildIndex > 1)
             SpawnPlayer();
     }
@@ -135,6 +143,38 @@ public class GameManager : MonoBehaviour
         {
             MessageBar messageScript = GameObject.Find("/UI/Canvas/Message/Image").GetComponent<MessageBar>();
             messageScript.SetTrueBool();
+        }
+    }
+    public void InstantiateDictionaries()
+    {
+        countriesUnlocked.Add("Germany", true);
+        countriesUnlocked.Add("Poland", false);
+        countriesUnlocked.Add("Ukraine", false);
+        countriesUnlocked.Add("Russia", false);
+        abilities.Add("Dash", false);
+        abilities.Add("Vodka", false);
+        abilities.Add("Saber", false);
+        abilities.Add("Arquebus", false);
+    }
+    private void SaveGame()
+    {
+        SaveGame save = new SaveGame();
+        save.Save();
+    }
+    private void LoadGame()
+    {
+        InstantiateDictionaries();
+        SaveGame save = new SaveGame();
+        GameData data = save.Load();
+        if (data != null)
+        {
+            for (int i = 0 ; i < data.abilitiesBool.Length ; i++)
+                this.abilities[this.abilities.Keys.ElementAt(i)] = data.abilitiesBool[i];
+            for (int i = 0 ; i < data.countriesBool.Length ; i++)
+                this.countriesUnlocked[this.countriesUnlocked.Keys.ElementAt(i)] = data.countriesBool[i];
+        } else
+        {
+            save.Save();
         }
     }
 }

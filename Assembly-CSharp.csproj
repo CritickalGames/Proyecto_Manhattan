@@ -47,6 +47,7 @@
   <ItemGroup>     <Compile Include="Assets\Scripts\Game\UI\MessageBar.cs" />
      <Compile Include="Assets\Scripts\Game\Enemies\Melee\MeleeMovement.cs" />
      <Compile Include="Assets\Scripts\Game\Enemies\Boss\First Boss\FirstBossAI.cs" />
+     <Compile Include="Assets\Scripts\LevelSelector\LevelController.cs" />
      <Compile Include="Assets\Scripts\Game\Enemies\EnemyState.cs" />
      <Compile Include="Assets\Scripts\Menu\MenuManager.cs" />
      <Compile Include="Assets\Scripts\Game\Player\PlayerState.cs" />
@@ -69,7 +70,8 @@
      <Compile Include="Assets\Scripts\Game\SpecialAbilities\Dash.cs" />
      <Compile Include="Assets\Scripts\Game\Enemies\Melee\MeleeAI.cs" />
      <Compile Include="Assets\Scripts\Game\Enemies\Boss\First Boss\FirstBossAttack.cs" />
-     <Compile Include="Assets\Scripts\LevelSelector\LevelController.cs" />
+     <Compile Include="Assets\Scripts\Management\Data\SaveGame.cs" />
+     <Compile Include="Assets\Scripts\Management\Data\GameData.cs" />
  <Reference Include="Unity.2D.Animation.Editor">
  <HintPath>C:/Users/kakar/Documents/Unity/Proyecto_Manhattan/Library/ScriptAssemblies/Unity.2D.Animation.Editor.dll</HintPath>
  </Reference>

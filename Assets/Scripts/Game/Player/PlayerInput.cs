@@ -19,7 +19,7 @@ public class PlayerInput : MonoBehaviour
     }
     void OnDash()
     {
-        if (Time.time >= this.nextDash && SceneManager.GetActiveScene().buildIndex > 1 && !GameManager.gM.pauseScript.GetPause() && GameManager.gM.GetPlayerObject() != null && GameManager.gM.GetAbilitiesDictionary("Dash"))
+        if (Time.time >= this.nextDash && SceneManager.GetActiveScene().buildIndex > 1 && !GameManager.gM.pauseScript.GetPause() && GameManager.gM.GetPlayerObject() != null && GameManager.gM.GetAbilities("Dash"))
         {
             this.nextDash = Time.time + this.dashCooldown;
             GameManager.gM.playerScript.movementScript.Dash();
