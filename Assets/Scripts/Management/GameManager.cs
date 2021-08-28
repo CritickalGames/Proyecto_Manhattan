@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     private GameObject playerObject;
     private bool levelPassed;
     Dictionary<string, bool> abilities = new Dictionary<string, bool>();
+    Dictionary<string, bool> countriesUnlocked = new Dictionary<string, bool>();
     [SerializeField] private int maxPlayerHealth = 100;
     private int currentPlayerHealth;
 
@@ -54,6 +55,17 @@ public class GameManager : MonoBehaviour
         else
             return false;
     }
+    public void SetCountryDictionary(string name, bool value)
+    {
+        this.countriesUnlocked.Add(name, value);
+    }
+    public bool GetCountryDictionary(string name)
+    {
+        if (this.countriesUnlocked.ContainsKey(name))
+            return this.countriesUnlocked[name];
+        else
+            return false;
+    }
     public void SetCounterScript()
     {
         this.counterScript = GameObject.Find("/Management").GetComponent<EnemyCounter>();
@@ -71,6 +83,7 @@ public class GameManager : MonoBehaviour
         else
             gM = this;
         DontDestroyOnLoad(this);
+        countriesUnlocked.Add("Germany", true);
     }
     void Start()
     {

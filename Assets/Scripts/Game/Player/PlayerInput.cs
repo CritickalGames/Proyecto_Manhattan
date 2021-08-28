@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 public class PlayerInput : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class PlayerInput : MonoBehaviour
 
     void Update()
     {
-        if (!GameManager.gM.pauseScript.GetPause() && GameManager.gM.GetPlayerObject() != null)
+        if (SceneManager.GetActiveScene().buildIndex > 1 && !GameManager.gM.pauseScript.GetPause() && GameManager.gM.GetPlayerObject() != null)
             GameManager.gM.playerScript.movementScript.SetMoveDir((int)this.horizontalMove);
     }
     void OnMovement(InputValue value)
@@ -18,7 +19,7 @@ public class PlayerInput : MonoBehaviour
     }
     void OnDash()
     {
-        if (Time.time >= this.nextDash && !GameManager.gM.pauseScript.GetPause() && GameManager.gM.GetPlayerObject() != null && GameManager.gM.GetAbilitiesDictionary("Dash"))
+        if (Time.time >= this.nextDash && SceneManager.GetActiveScene().buildIndex > 1 && !GameManager.gM.pauseScript.GetPause() && GameManager.gM.GetPlayerObject() != null && GameManager.gM.GetAbilitiesDictionary("Dash"))
         {
             this.nextDash = Time.time + this.dashCooldown;
             GameManager.gM.playerScript.movementScript.Dash();
@@ -26,12 +27,12 @@ public class PlayerInput : MonoBehaviour
     }
     void OnJump()
     {
-        if (!GameManager.gM.pauseScript.GetPause() && GameManager.gM.GetPlayerObject() != null)
+        if (SceneManager.GetActiveScene().buildIndex > 1 && !GameManager.gM.pauseScript.GetPause() && GameManager.gM.GetPlayerObject() != null)
             GameManager.gM.playerScript.movementScript.Jump();
     }
     void OnAttack()
     {
-        if (GameManager.gM.playerScript.stateScript.GetState("CanAttack") == true && !GameManager.gM.pauseScript.GetPause() && GameManager.gM.GetPlayerObject() != null)
+        if (SceneManager.GetActiveScene().buildIndex > 1 && GameManager.gM.playerScript.stateScript.GetState("CanAttack") == true && !GameManager.gM.pauseScript.GetPause() && GameManager.gM.GetPlayerObject() != null)
         {
             GameManager.gM.playerScript.stateScript.SetState("Attacking", true);
             GameManager.gM.playerScript.stateScript.SetState("CanAttack", false);
@@ -39,20 +40,20 @@ public class PlayerInput : MonoBehaviour
     }
     void OnSpecialAttack()
     {
-        if (!GameManager.gM.pauseScript.GetPause() && GameManager.gM.GetPlayerObject() != null)
+        if (SceneManager.GetActiveScene().buildIndex > 1 && !GameManager.gM.pauseScript.GetPause() && GameManager.gM.GetPlayerObject() != null)
             GameManager.gM.playerScript.attackScript.TestSpecialAttack();
     }
     void OnPause()
     {
-        if (GameManager.gM.pauseScript.GetPause() && GameManager.gM.GetPlayerObject() != null)
+        if (SceneManager.GetActiveScene().buildIndex > 1 && GameManager.gM.pauseScript.GetPause() && GameManager.gM.GetPlayerObject() != null)
             GameManager.gM.pauseScript.Resume();
-        else if (!GameManager.gM.pauseScript.GetPause())
+        else if (SceneManager.GetActiveScene().buildIndex > 1 && !GameManager.gM.pauseScript.GetPause())
             GameManager.gM.pauseScript.Pause();
     }
     void OnDown()
     {
         ignoring = !ignoring;
-        if (!GameManager.gM.pauseScript.GetPause() && GameManager.gM.GetPlayerObject() != null)
+        if (SceneManager.GetActiveScene().buildIndex > 1 && !GameManager.gM.pauseScript.GetPause() && GameManager.gM.GetPlayerObject() != null)
             GameManager.gM.playerScript.movementScript.SetPressedDown(ignoring);
     }
 }
