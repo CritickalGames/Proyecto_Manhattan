@@ -2,9 +2,9 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using UnityEngine;
 
-public class SaveGame
+public static class SaveGame
 {
-    public void Save()
+    public static void Save()
     {
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + "/data";
@@ -16,7 +16,7 @@ public class SaveGame
         formatter.Serialize(stream, data);
         stream.Close();
     }
-    public GameData Load()
+    public static GameData Load()
     {
         string path = Application.persistentDataPath + "/data";
         if (File.Exists(path + "/Data.haste"))
