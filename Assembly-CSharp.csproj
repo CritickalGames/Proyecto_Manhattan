@@ -70,7 +70,7 @@
      <Compile Include="Assets\Scripts\Game\SpecialAbilities\Dash.cs" />
      <Compile Include="Assets\Scripts\Game\Enemies\Melee\MeleeAI.cs" />
      <Compile Include="Assets\Scripts\Game\Enemies\Boss\First Boss\FirstBossAttack.cs" />
-     <Compile Include="Assets\Scripts\Management\Data\SaveGame.cs" />
+     <Compile Include="Assets\Scripts\Management\Data\SaveAndLoadGame.cs" />
      <Compile Include="Assets\Scripts\Management\Data\GameData.cs" />
  <Reference Include="Unity.2D.Animation.Editor">
  <HintPath>C:/Users/kakar/Documents/Unity/Proyecto_Manhattan/Library/ScriptAssemblies/Unity.2D.Animation.Editor.dll</HintPath>

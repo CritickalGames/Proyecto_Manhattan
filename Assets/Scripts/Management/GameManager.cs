@@ -158,12 +158,12 @@ public class GameManager : MonoBehaviour
     }
     private void SaveGame()
     {
-        SaveGame.Save();
+        SaveAndLoadGame.Save();
     }
     private void LoadGame()
     {
         InstantiateDictionaries();
-        GameData data = SaveGame.Load();
+        GameData data = SaveAndLoadGame.Load();
         if (data != null)
         {
             for (int i = 0 ; i < data.abilitiesBool.Length ; i++)
@@ -172,7 +172,7 @@ public class GameManager : MonoBehaviour
                 this.countriesUnlocked[this.countriesUnlocked.Keys.ElementAt(i)] = data.countriesBool[i];
         } else
         {
-            SaveGame.Save();
+            SaveAndLoadGame.Save();
         }
     }
 }
