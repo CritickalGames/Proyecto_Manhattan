@@ -106,7 +106,7 @@ public class GameManager : MonoBehaviour
     }
     public void RestartLevel()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
     public void SpawnPlayer()
     {
