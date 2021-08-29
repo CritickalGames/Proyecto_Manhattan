@@ -155,10 +155,10 @@ public class GameManager : MonoBehaviour
         countriesUnlocked.Add("Poland", false);
         countriesUnlocked.Add("Ukraine", false);
         countriesUnlocked.Add("Russia", false);
-        abilities.Add("Dash", true);
-        abilities.Add("Vodka", false);
+        abilities.Add("Dash", false);
+        abilities.Add("Vodka", true);
         abilities.Add("Saber", true);
-        abilities.Add("Arquebus", false);
+        abilities.Add("Arquebus", true);
     }
     private void SaveGame()
     {

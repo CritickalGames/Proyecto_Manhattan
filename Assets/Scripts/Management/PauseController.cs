@@ -48,17 +48,34 @@ public class PauseController : MonoBehaviour
     }
     public void NextAbility()
     {
-        this.abilityNum++;
+        int nextNum = this.abilityNum + 1;
+        while (nextNum != this.abilityNum)
+        {
+            if (nextNum >= GameManager.gM.GetAbilitiesDictionary().Count)
+                nextNum = 0;
+            if (nextNum != 0 && GameManager.gM.GetAbilityAt(nextNum))
+                this.abilityNum = nextNum;
+            else
+                nextNum++;
+        }
         Abilities();
     }
     public void PreviousAbility()
     {
-        this.abilityNum--;
+        int nextNum = this.abilityNum - 1;
+        while (nextNum != this.abilityNum)
+        {
+            if (nextNum < 0)
+                nextNum = 3;
+            if (nextNum != 0 && GameManager.gM.GetAbilityAt(nextNum))
+                this.abilityNum = nextNum;
+            else
+                nextNum--;
+        }
         Abilities();
     }
     private void Abilities()
     {
-        this.abilityNum = Mathf.Clamp(this.abilityNum, 0, 3);
         switch (this.abilityNum)
         {
             case 0:
@@ -77,7 +94,6 @@ public class PauseController : MonoBehaviour
                 this.abilityImage.sprite  = arquebusSprite;
                 selectedItem = "Arquebus";
                 break;
-            
         }
     }
 }
