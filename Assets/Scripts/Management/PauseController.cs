@@ -33,6 +33,7 @@ public class PauseController : MonoBehaviour
     void Start()
     {
         GameManager.gM.SetPauseScript(this);
+        GameManager.gM.LoadPause();
         this.pauseObject.SetActive(false);
     }
     public void Pause()
@@ -57,30 +58,42 @@ public class PauseController : MonoBehaviour
     }
     public void NextAbility()
     {
-        int nextNum = this.abilityNum + 1;
-        while (nextNum != this.abilityNum)
+        if (GameManager.gM.GetAbilityCount() > 0)
         {
-            if (nextNum >= GameManager.gM.GetAbilitiesDictionary().Count)
-                nextNum = 0;
-            if (nextNum != 0 && GameManager.gM.GetAbilityAt(nextNum))
-                this.abilityNum = nextNum;
-            else
-                nextNum++;
+            int nextNum = this.abilityNum + 1;
+            while (nextNum != this.abilityNum)
+            {
+                if (nextNum >= GameManager.gM.GetAbilitiesDictionary().Count)
+                    nextNum = 0;
+                if (nextNum != 0 && GameManager.gM.GetAbilityAt(nextNum))
+                    this.abilityNum = nextNum;
+                else
+                    nextNum++;
+            }
+        } else
+        {
+            this.abilityNum = 0;
         }
         GameManager.gM.SaveGame();
         Abilities();
     }
     public void PreviousAbility()
     {
-        int nextNum = this.abilityNum - 1;
-        while (nextNum != this.abilityNum)
+        if (GameManager.gM.GetAbilityCount() > 0)
         {
-            if (nextNum < 0)
-                nextNum = GameManager.gM.GetAbilitiesDictionary().Count - 1;
-            if (nextNum != 0 && GameManager.gM.GetAbilityAt(nextNum))
-                this.abilityNum = nextNum;
-            else
-                nextNum--;
+            int nextNum = this.abilityNum - 1;
+            while (nextNum != this.abilityNum)
+            {
+                if (nextNum < 0)
+                    nextNum = GameManager.gM.GetAbilitiesDictionary().Count - 1;
+                if (nextNum != 0 && GameManager.gM.GetAbilityAt(nextNum))
+                    this.abilityNum = nextNum;
+                else
+                    nextNum--;
+            }
+        } else
+        {
+            this.abilityNum = 0;
         }
         GameManager.gM.SaveGame();
         Abilities();

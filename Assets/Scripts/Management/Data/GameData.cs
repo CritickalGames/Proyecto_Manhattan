@@ -7,16 +7,18 @@ using UnityEngine;
     public bool[] abilitiesBool = new bool[4];
     public bool[] countriesBool = new bool[4];
     public int selectedItem;
+    public int abilityCount;
 
     public GameData()
     {
         Dictionary<string, bool> abilities = GameManager.gM.GetAbilitiesDictionary();
         for (int i = 0 ; i < abilities.Count ; i++)
-            abilitiesBool[i] = abilities.Values.ElementAt(i);
+            this.abilitiesBool[i] = abilities.Values.ElementAt(i);
         
         Dictionary<string, bool> countriesUnlocked = GameManager.gM.GetCountryDictionary();
         for (int i = 0 ; i < countriesUnlocked.Count ; i++)
-            countriesBool[i] = countriesUnlocked.Values.ElementAt(i);
-        selectedItem = GameManager.gM.pauseScript.GetSelectedItem();
+            this.countriesBool[i] = countriesUnlocked.Values.ElementAt(i);
+        this.selectedItem = GameManager.gM.pauseScript.GetSelectedItem();
+        this.abilityCount = GameManager.gM.GetAbilityCount();
     }
 }
