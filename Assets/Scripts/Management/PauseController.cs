@@ -58,7 +58,7 @@ public class PauseController : MonoBehaviour
     }
     private void Abilities()
     {
-        this.abilityNum = Mathf.Clamp(this.abilityNum, 0, 3);;
+        this.abilityNum = Mathf.Clamp(this.abilityNum, 0, 3);
         switch (this.abilityNum)
         {
             case 0:
