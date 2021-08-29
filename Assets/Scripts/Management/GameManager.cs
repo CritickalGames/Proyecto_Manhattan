@@ -63,6 +63,10 @@ public class GameManager : MonoBehaviour
         else
             return false;
     }
+    public bool GetAbilityAt(int pos)
+    {
+            return abilities.Values.ElementAt(pos);
+    }
     public void SetCountry(string name, bool value)
     {
         this.countriesUnlocked[name] = value;
@@ -151,9 +155,9 @@ public class GameManager : MonoBehaviour
         countriesUnlocked.Add("Poland", false);
         countriesUnlocked.Add("Ukraine", false);
         countriesUnlocked.Add("Russia", false);
-        abilities.Add("Dash", false);
+        abilities.Add("Dash", true);
         abilities.Add("Vodka", false);
-        abilities.Add("Saber", false);
+        abilities.Add("Saber", true);
         abilities.Add("Arquebus", false);
     }
     private void SaveGame()

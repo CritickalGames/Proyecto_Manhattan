@@ -1,10 +1,18 @@
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class PauseController : MonoBehaviour
 {
     [SerializeField] private GameObject pauseObject;
+    [SerializeField] private Image abilityImage;
+    [SerializeField] private Sprite noneSprite;
+    [SerializeField] private Sprite vodkaSprite;
+    [SerializeField] private Sprite saberSprite;
+    [SerializeField] private Sprite arquebusSprite;
     private bool isPaused = false;
+    private int abilityNum = 0;
+    private string selectedItem = "none";
 
     #region Getters & Setters
     public bool GetPause()
@@ -37,5 +45,39 @@ public class PauseController : MonoBehaviour
         Time.timeScale = 1f;
         this.isPaused = false;
         SceneManager.LoadScene(0);
+    }
+    public void NextAbility()
+    {
+        this.abilityNum++;
+        Abilities();
+    }
+    public void PreviousAbility()
+    {
+        this.abilityNum--;
+        Abilities();
+    }
+    private void Abilities()
+    {
+        this.abilityNum = Mathf.Clamp(this.abilityNum, 0, 3);;
+        switch (this.abilityNum)
+        {
+            case 0:
+                this.abilityImage.sprite  = noneSprite;
+                selectedItem = "None";
+                break;
+            case 1:
+                this.abilityImage.sprite  = vodkaSprite;
+                selectedItem = "Vodka";
+                break;
+            case 2:
+                this.abilityImage.sprite  = saberSprite;
+                selectedItem = "Saber";
+                break;
+            case 3:
+                this.abilityImage.sprite  = arquebusSprite;
+                selectedItem = "Arquebus";
+                break;
+            
+        }
     }
 }
