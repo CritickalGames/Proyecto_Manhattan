@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]private GameObject playerPrefab;
     [SerializeField]private Sprite trafficGreenLight;
     Dictionary<string, bool> abilities = new Dictionary<string, bool>();
+    int abilityCount = 0;
     Dictionary<string, bool> countriesUnlocked = new Dictionary<string, bool>();
     private GameObject playerObject;
     private bool levelPassed;
@@ -55,6 +56,17 @@ public class GameManager : MonoBehaviour
     public void SetAbilities(string name, bool value)
     {
         this.abilities[name] = value;
+        if (name != "Dash")
+            SetAbilityCount();
+        this.SaveGame();
+    }
+    public int GetAbilityCount()
+    {
+        return this.abilityCount;
+    }
+    public void SetAbilityCount()
+    {
+        this.abilityCount++;
     }
     public bool GetAbilities(string name)
     {
@@ -62,6 +74,10 @@ public class GameManager : MonoBehaviour
             return this.abilities[name];
         else
             return false;
+    }
+    public bool GetAbilityAt(int pos)
+    {
+        return abilities.Values.ElementAt(pos);
     }
     public void SetCountry(string name, bool value)
     {
@@ -78,9 +94,9 @@ public class GameManager : MonoBehaviour
     {
         this.counterScript = GameObject.Find("/Management").GetComponent<EnemyCounter>();
     }
-    public void SetPauseScript()
+    public void SetPauseScript(PauseController script)
     {
-        this.pauseScript = GameObject.Find("/UI/Canvas/Pause").GetComponent<PauseController>();
+        this.pauseScript = script;
     }
     #endregion
 
@@ -156,7 +172,7 @@ public class GameManager : MonoBehaviour
         abilities.Add("Saber", false);
         abilities.Add("Arquebus", false);
     }
-    private void SaveGame()
+    public void SaveGame()
     {
         SaveAndLoadGame.Save();
     }
@@ -170,9 +186,18 @@ public class GameManager : MonoBehaviour
                 this.abilities[this.abilities.Keys.ElementAt(i)] = data.abilitiesBool[i];
             for (int i = 0 ; i < data.countriesBool.Length ; i++)
                 this.countriesUnlocked[this.countriesUnlocked.Keys.ElementAt(i)] = data.countriesBool[i];
+            this.abilityCount = data.abilityCount;
         } else
         {
             SaveAndLoadGame.Save();
+        }
+    }
+    public void LoadPause()
+    {
+        GameData data = SaveAndLoadGame.Load();
+        if (data != null)
+        {
+            this.pauseScript.SetSelectedItem(data.selectedItem);
         }
     }
 }

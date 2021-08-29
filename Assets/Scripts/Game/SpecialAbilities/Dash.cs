@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Dash : MonoBehaviour
 {
-    [SerializeField] int playerMask;
+    int playerMask;
     void Start()
     {
         playerMask = LayerMask.NameToLayer("Player");
