@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
     }
     public bool GetAbilityAt(int pos)
     {
-            return abilities.Values.ElementAt(pos);
+        return abilities.Values.ElementAt(pos);
     }
     public void SetCountry(string name, bool value)
     {
@@ -82,9 +82,9 @@ public class GameManager : MonoBehaviour
     {
         this.counterScript = GameObject.Find("/Management").GetComponent<EnemyCounter>();
     }
-    public void SetPauseScript()
+    public void SetPauseScript(PauseController script)
     {
-        this.pauseScript = GameObject.Find("/UI/Canvas/Pause").GetComponent<PauseController>();
+        this.pauseScript = script;
     }
     #endregion
 
@@ -156,11 +156,11 @@ public class GameManager : MonoBehaviour
         countriesUnlocked.Add("Ukraine", false);
         countriesUnlocked.Add("Russia", false);
         abilities.Add("Dash", false);
-        abilities.Add("Vodka", true);
-        abilities.Add("Saber", true);
-        abilities.Add("Arquebus", true);
+        abilities.Add("Vodka", false);
+        abilities.Add("Saber", false);
+        abilities.Add("Arquebus", false);
     }
-    private void SaveGame()
+    public void SaveGame()
     {
         SaveAndLoadGame.Save();
     }
@@ -174,6 +174,7 @@ public class GameManager : MonoBehaviour
                 this.abilities[this.abilities.Keys.ElementAt(i)] = data.abilitiesBool[i];
             for (int i = 0 ; i < data.countriesBool.Length ; i++)
                 this.countriesUnlocked[this.countriesUnlocked.Keys.ElementAt(i)] = data.countriesBool[i];
+            this.pauseScript.SetSelectedItem(data.selectedItem);
         } else
         {
             SaveAndLoadGame.Save();

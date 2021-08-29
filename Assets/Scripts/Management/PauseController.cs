@@ -11,7 +11,7 @@ public class PauseController : MonoBehaviour
     [SerializeField] private Sprite saberSprite;
     [SerializeField] private Sprite arquebusSprite;
     private bool isPaused = false;
-    private int abilityNum = 0;
+    private int abilityNum;
     private string selectedItem = "none";
 
     #region Getters & Setters
@@ -19,11 +19,20 @@ public class PauseController : MonoBehaviour
     {
         return this.isPaused;
     }
+    public int GetSelectedItem()
+    {
+        return this.abilityNum;
+    }
+    public void SetSelectedItem(int value)
+    {
+        this.abilityNum = value;
+        Abilities();
+    }
     #endregion
 
     void Start()
     {
-        GameManager.gM.SetPauseScript();
+        GameManager.gM.SetPauseScript(this);
         this.pauseObject.SetActive(false);
     }
     public void Pause()
@@ -58,6 +67,7 @@ public class PauseController : MonoBehaviour
             else
                 nextNum++;
         }
+        GameManager.gM.SaveGame();
         Abilities();
     }
     public void PreviousAbility()
@@ -66,12 +76,13 @@ public class PauseController : MonoBehaviour
         while (nextNum != this.abilityNum)
         {
             if (nextNum < 0)
-                nextNum = 3;
+                nextNum = GameManager.gM.GetAbilitiesDictionary().Count - 1;
             if (nextNum != 0 && GameManager.gM.GetAbilityAt(nextNum))
                 this.abilityNum = nextNum;
             else
                 nextNum--;
         }
+        GameManager.gM.SaveGame();
         Abilities();
     }
     private void Abilities()

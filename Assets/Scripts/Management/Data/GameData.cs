@@ -6,6 +6,7 @@ using UnityEngine;
 {
     public bool[] abilitiesBool = new bool[4];
     public bool[] countriesBool = new bool[4];
+    public int selectedItem;
 
     public GameData()
     {
@@ -16,5 +17,6 @@ using UnityEngine;
         Dictionary<string, bool> countriesUnlocked = GameManager.gM.GetCountryDictionary();
         for (int i = 0 ; i < countriesUnlocked.Count ; i++)
             countriesBool[i] = countriesUnlocked.Values.ElementAt(i);
+        selectedItem = GameManager.gM.pauseScript.GetSelectedItem();
     }
 }
