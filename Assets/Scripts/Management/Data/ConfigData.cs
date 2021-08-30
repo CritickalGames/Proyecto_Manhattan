@@ -7,8 +7,9 @@ using UnityEngine;
     public int resolutionIndex;
     public int qualityIndex;
 
-    public ConfigData()
+    public ConfigData(GeneralSettings settings)
     {
-        
+        resolutionIndex = settings.GetResolutionIndex();
+        qualityIndex = settings.GetQualityIndex();
     }
 }

@@ -11,9 +11,33 @@ public class GeneralSettings : MonoBehaviour
     [SerializeField] bool fullScreen;
     [SerializeField] TMP_Dropdown resolutionDropDown;
 
+    #region Getters & Setters
+    public int GetQualityIndex()
+    {
+        return QualitySettings.GetQualityLevel();
+    }
+    public int GetResolutionIndex()
+    {
+        return resolutionDropDown.value;
+    }
+    #endregion
+
     void Start()
     {
+        LoadConfiguration();
+    }
+    void LoadConfiguration()
+    {
         LoadResolutionDropDown();
+        ConfigData data = SaveAndLoadGame.LoadConfig();
+        if (data != null)
+        {
+            resolutionDropDown.value = data.resolutionIndex;
+            QualitySettings.SetQualityLevel(data.qualityIndex);
+        } else
+        {
+            SaveAndLoadGame.SaveConfig(this);
+        }
     }
     void LoadResolutionDropDown()
     {
@@ -28,7 +52,7 @@ public class GeneralSettings : MonoBehaviour
             options.Add(Screen.resolutions[i].width + " x " + Screen.resolutions[i].height);
         return options;
     }
-    int GetCurrentResolutionIndex(){
+    public int GetCurrentResolutionIndex(){
         int resolutionIndex = 0;
         for (int i = 0; i < Screen.resolutions.Length; i++)
             if (IsCurrentResolution(i)) resolutionIndex = i;
@@ -42,17 +66,21 @@ public class GeneralSettings : MonoBehaviour
     public void SetResolution(int resolutionIndex)
     {
         Screen.SetResolution(Screen.resolutions[resolutionIndex].width,Screen.resolutions[resolutionIndex].height, Screen.fullScreen);
+        SaveAndLoadGame.SaveConfig(this);
     }
     public void SetQuality(int qualityIndex)
     {
         QualitySettings.SetQualityLevel(qualityIndex);
+        SaveAndLoadGame.SaveConfig(this);
     }
     public void Volume(float sliderValue)
     {
-        this.audioControl.SetFloat("MasterSound", Mathf.Log10(sliderValue) * 20); 
+        this.audioControl.SetFloat("MasterSound", Mathf.Log10(sliderValue) * 20);
+        SaveAndLoadGame.SaveConfig(this);
     }
     public void FullScreen(bool fullscreen)
     {
         Screen.fullScreen = fullscreen;
+        SaveAndLoadGame.SaveConfig(this);
     }
 }
