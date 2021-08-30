@@ -44,7 +44,6 @@ public class GeneralSettings : MonoBehaviour
         {
             resolutionDropDown.value = data.resolutionIndex;
             qualityDropDown.value = data.qualityIndex;
-            volumeSlider.maxValue = 1.0f;
             volumeSlider.value = data.volume;
             fullScreenToggle.isOn = data.fullScreen;
         } else

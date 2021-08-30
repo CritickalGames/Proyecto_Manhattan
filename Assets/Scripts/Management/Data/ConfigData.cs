@@ -13,5 +13,7 @@ using UnityEngine;
     {
         resolutionIndex = settings.GetResolutionIndex();
         qualityIndex = settings.GetQualityIndex();
+        fullScreen = settings.GetFullScreen();
+        volume = settings.GetVolume();
     }
 }
