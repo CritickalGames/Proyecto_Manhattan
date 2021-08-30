@@ -40,8 +40,6 @@ public static class SaveAndLoadGame
             Directory.CreateDirectory(path);
         FileStream stream = new FileStream(path + "/Config.haste", FileMode.Create);
         ConfigData data = new ConfigData(settings);
-        Debug.Log(data.resolutionIndex);
-        Debug.Log(data.qualityIndex);
         formatter.Serialize(stream, data);
         stream.Close();
     }
