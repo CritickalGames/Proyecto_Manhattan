@@ -6,6 +6,8 @@ using UnityEngine;
 {
     public int resolutionIndex;
     public int qualityIndex;
+    public bool fullScreen;
+    public float volume;
 
     public ConfigData(GeneralSettings settings)
     {
