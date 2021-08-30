@@ -24,7 +24,7 @@ public class GeneralSettings : MonoBehaviour
     }
     public bool GetFullScreen()
     {
-        return Screen.fullScreen;
+        return fullScreenToggle.isOn;
     }
     public float GetVolume()
     {
