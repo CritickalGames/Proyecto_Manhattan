@@ -24,7 +24,7 @@ public class GeneralSettings : MonoBehaviour
     }
     public bool GetFullScreen()
     {
-        return fullScreenToggle.isOn;
+        return Screen.fullScreen;
     }
     public float GetVolume()
     {
@@ -87,11 +87,11 @@ public class GeneralSettings : MonoBehaviour
     {
         this.audioControl.SetFloat("MasterSound", Mathf.Log10(sliderValue) * 20);
     }
-    public void FullScreen(bool fullscreen)
+    public void FullScreen(bool fullScreen)
     {
-        Screen.fullScreen = fullscreen;
+        Screen.fullScreen = fullScreen;
     }
-    public void Back()
+    public void SaveConfiguration()
     {
         SaveAndLoadGame.SaveConfig(this);
     }
