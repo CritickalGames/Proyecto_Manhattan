@@ -18,7 +18,8 @@ using UnityEngine;
         Dictionary<string, bool> countriesUnlocked = GameManager.gM.GetCountryDictionary();
         for (int i = 0 ; i < countriesUnlocked.Count ; i++)
             this.countriesBool[i] = countriesUnlocked.Values.ElementAt(i);
-        this.selectedItem = GameManager.gM.pauseScript.GetSelectedItem();
+        if (GameManager.gM.pauseScript != null)
+            this.selectedItem = GameManager.gM.pauseScript.GetSelectedItem();
         this.abilityCount = GameManager.gM.GetAbilityCount();
     }
 }
