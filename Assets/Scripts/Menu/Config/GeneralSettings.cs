@@ -42,10 +42,10 @@ public class GeneralSettings : MonoBehaviour
         ConfigData data = SaveAndLoadGame.LoadConfig();
         if (data != null)
         {
-            resolutionDropDown.value = data.resolutionIndex;
-            qualityDropDown.value = data.qualityIndex;
-            volumeSlider.value = data.volume;
-            fullScreenToggle.isOn = data.fullScreen;
+            SetResolution(data.resolutionIndex);
+            SetQuality(data.qualityIndex);
+            Volume(data.volume);
+            FullScreen(data.fullScreen);
         } else
         {
             SaveAndLoadGame.SaveConfig(this);
@@ -94,5 +94,14 @@ public class GeneralSettings : MonoBehaviour
     public void SaveConfiguration()
     {
         SaveAndLoadGame.SaveConfig(this);
+    }
+    public void LoadData()
+    {
+        resolutionDropDown.value = GetCurrentResolutionIndex();
+        qualityDropDown.value = QualitySettings.GetQualityLevel();
+        float volume;
+        this.audioControl.GetFloat("MasterSound", out volume);
+        volumeSlider.value = Mathf.Pow(10, volume / 20) ;
+        fullScreenToggle.isOn = Screen.fullScreen;
     }
 }

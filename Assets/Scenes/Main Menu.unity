@@ -230,6 +230,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 254532911}
+        m_TargetAssemblyTypeName: GeneralSettings, Assembly-CSharp
+        m_MethodName: LoadData
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &7257180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -827,7 +839,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 585464872}
+      - m_Target: {fileID: 254532911}
         m_TargetAssemblyTypeName: GeneralSettings, Assembly-CSharp
         m_MethodName: SaveConfiguration
         m_Mode: 1
@@ -1323,6 +1335,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 254532911}
+        m_TargetAssemblyTypeName: GeneralSettings, Assembly-CSharp
+        m_MethodName: LoadData
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2140,6 +2164,7 @@ GameObject:
   - component: {fileID: 254532909}
   - component: {fileID: 254532908}
   - component: {fileID: 254532907}
+  - component: {fileID: 254532911}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2259,6 +2284,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &254532911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 254532906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b8edfa2c84edab408112d25ec570dfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioControl: {fileID: 24100000, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
+  resolutionDropDown: {fileID: 1822830310}
+  qualityDropDown: {fileID: 1638734523}
+  volumeSlider: {fileID: 335440413}
+  fullScreenToggle: {fileID: 803577080}
 --- !u!1 &256327126
 GameObject:
   m_ObjectHideFlags: 0
@@ -2790,7 +2832,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 585464872}
+      - m_Target: {fileID: 254532911}
         m_TargetAssemblyTypeName: GeneralSettings, Assembly-CSharp
         m_MethodName: Volume
         m_Mode: 0
@@ -3289,7 +3331,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 585464871}
-  - component: {fileID: 585464872}
   m_Layer: 5
   m_Name: ConfigMenu
   m_TagString: Untagged
@@ -3323,23 +3364,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &585464872
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 585464870}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b8edfa2c84edab408112d25ec570dfa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioControl: {fileID: 24100000, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
-  resolutionDropDown: {fileID: 1822830310}
-  qualityDropDown: {fileID: 1638734523}
-  volumeSlider: {fileID: 335440413}
-  fullScreenToggle: {fileID: 803577080}
 --- !u!1 &677407889
 GameObject:
   m_ObjectHideFlags: 0
@@ -3642,7 +3666,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 585464872}
+      - m_Target: {fileID: 254532911}
         m_TargetAssemblyTypeName: GeneralSettings, Assembly-CSharp
         m_MethodName: FullScreen
         m_Mode: 0
@@ -6816,7 +6840,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 585464872}
+      - m_Target: {fileID: 254532911}
         m_TargetAssemblyTypeName: GeneralSettings, Assembly-CSharp
         m_MethodName: SetQuality
         m_Mode: 0
@@ -7782,7 +7806,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 585464872}
+      - m_Target: {fileID: 254532911}
         m_TargetAssemblyTypeName: GeneralSettings, Assembly-CSharp
         m_MethodName: SetResolution
         m_Mode: 0
@@ -8531,7 +8555,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 585464872}
+      - m_Target: {fileID: 254532911}
         m_TargetAssemblyTypeName: GeneralSettings, Assembly-CSharp
         m_MethodName: SaveConfiguration
         m_Mode: 1
