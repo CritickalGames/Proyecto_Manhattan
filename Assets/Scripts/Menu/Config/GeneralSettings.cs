@@ -12,15 +12,16 @@ public class GeneralSettings : MonoBehaviour
     [SerializeField] TMP_Dropdown qualityDropDown;
     [SerializeField] Slider volumeSlider;
     [SerializeField] Toggle fullScreenToggle;
+    int savedRes;
 
     #region Getters & Setters
     public int GetQualityIndex()
     {
-        return qualityDropDown.value;
+        return this.qualityDropDown.value;
     }
     public int GetResolutionIndex()
     {
-        return resolutionDropDown.value;
+        return this.resolutionDropDown.value;
     }
     public bool GetFullScreen()
     {
@@ -28,7 +29,7 @@ public class GeneralSettings : MonoBehaviour
     }
     public float GetVolume()
     {
-        return volumeSlider.value;
+        return this.volumeSlider.value;
     }
     #endregion
 
@@ -43,6 +44,7 @@ public class GeneralSettings : MonoBehaviour
         if (data != null)
         {
             SetResolution(data.resolutionIndex);
+            this.savedRes = data.resolutionIndex;
             SetQuality(data.qualityIndex);
             Volume(data.volume);
             FullScreen(data.fullScreen);
@@ -56,6 +58,7 @@ public class GeneralSettings : MonoBehaviour
         resolutionDropDown.ClearOptions();
         resolutionDropDown.AddOptions(GetScreenResolutions());
         resolutionDropDown.value = GetCurrentResolutionIndex();
+        this.savedRes = resolutionDropDown.value;
         resolutionDropDown.RefreshShownValue();
     }
     List<string> GetScreenResolutions(){
@@ -77,6 +80,7 @@ public class GeneralSettings : MonoBehaviour
     }
     public void SetResolution(int resolutionIndex)
     {
+        Debug.Log(resolutionIndex);
         Screen.SetResolution(Screen.resolutions[resolutionIndex].width,Screen.resolutions[resolutionIndex].height, Screen.fullScreen);
     }
     public void SetQuality(int qualityIndex)
@@ -97,11 +101,11 @@ public class GeneralSettings : MonoBehaviour
     }
     public void LoadData()
     {
-        resolutionDropDown.value = GetCurrentResolutionIndex();
-        qualityDropDown.value = QualitySettings.GetQualityLevel();
+        this.resolutionDropDown.value = this.savedRes;
+        this.qualityDropDown.value = QualitySettings.GetQualityLevel();
         float volume;
         this.audioControl.GetFloat("MasterSound", out volume);
-        volumeSlider.value = Mathf.Pow(10, volume / 20) ;
-        fullScreenToggle.isOn = Screen.fullScreen;
+        this.volumeSlider.value = Mathf.Pow(10, volume / 20) ;
+        this.fullScreenToggle.isOn = Screen.fullScreen;
     }
 }
