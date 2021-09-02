@@ -1,15 +1,15 @@
 using UnityEngine;
 
-public class FirstBossAttack : MonoBehaviour
+public class MeleeAttack : MonoBehaviour
 {
-    [System.NonSerialized]public FirstBoss enemyScript;
+    [System.NonSerialized]public EnemyController enemyScript;
     [SerializeField] private Transform hitTransform;
     [SerializeField] private LayerMask playerMask;
     [SerializeField] private float attackRange;
     [SerializeField] private int normalDamage = 20;
     void Awake()
     {
-        this.enemyScript = GetComponent<FirstBoss>();
+        this.enemyScript = GetComponent<EnemyController>();
     }
     public void Attack()
     {

@@ -5,8 +5,7 @@ using UnityEngine;
 public class EnemyState : MonoBehaviour
 {
     [SerializeField] private string type;
-    private Melee meleeScript;
-    private FirstBoss bossScript;
+    private EnemyController enemyScript;
     private Dictionary<string, bool> state = new Dictionary<string, bool>();
     #region Getters & Setters
     public void SetState(string name, bool value)
@@ -25,34 +24,21 @@ public class EnemyState : MonoBehaviour
     }
     private void SetAnimator(string name)
     {
-        switch (this.type)
-        {
-            case "Melee":
-                this.meleeScript.SetAnimationBool(name, state[name]);
-                break;
-            case "FirstBoss":
-                this.bossScript.SetAnimationBool(name, state[name]);
-                break;
-        }
+        this.enemyScript.SetAnimationBool(name, state[name]);
     }
     public void SetTriggerState(string name)
     {
-        switch (this.type)
-        {
-            case "Melee":
-                this.meleeScript.SetAnimationTrigger(name);
-                break;
-            case "FirstBoss":
-                this.bossScript.SetAnimationTrigger(name);
-                break;
-        }
+        this.enemyScript.SetAnimationTrigger(name);
+    }
+    public string GetEnemyType()
+    {
+        return this.type;
     }
     #endregion
 
     void Awake()
     {
-        this.meleeScript = GetComponent<Melee>();
-        this.bossScript = GetComponent<FirstBoss>();
+        enemyScript = this.GetComponent<EnemyController>();
     }
     void Start()
     {

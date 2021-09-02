@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MeleeAI : MonoBehaviour
 {
-    [System.NonSerialized]public Melee enemyScript;
+    [System.NonSerialized]public EnemyController enemyScript;
     [System.NonSerialized]public GameObject target;
     [System.NonSerialized]public bool caught = false;
     [SerializeField]public Transform groundCheck;
@@ -24,7 +24,7 @@ public class MeleeAI : MonoBehaviour
     private bool isInRange;
     void Awake()
     {
-        this.enemyScript = this.GetComponent<Melee>();
+        this.enemyScript = this.GetComponent<EnemyController>();
     }
     void Update()
     {

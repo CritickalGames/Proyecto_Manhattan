@@ -74,9 +74,9 @@ GameObject:
   - component: {fileID: 5616440117558290488}
   - component: {fileID: 5616440117558290483}
   - component: {fileID: 847321635384321467}
-  - component: {fileID: 5616440117558290482}
+  - component: {fileID: 5016984439398839411}
+  - component: {fileID: 5400162075633504282}
   - component: {fileID: 5616440117558290485}
-  - component: {fileID: 5616440117558290484}
   - component: {fileID: 2513137296674884863}
   - component: {fileID: 486918426285508251}
   m_Layer: 7
@@ -222,7 +222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 20
---- !u!114 &5616440117558290482
+--- !u!114 &5016984439398839411
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -231,9 +231,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 5616440117558290491}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79a12e5056c01874893b49df617acc9a, type: 3}
+  m_Script: {fileID: 11500000, guid: b3a2501b6dd9c1c43becc42ca2c4c9fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemPrefab: {fileID: 5524144755834015241, guid: 911737d9a56d95241918d8e187f393b0, type: 3}
+--- !u!114 &5400162075633504282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5616440117558290491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69cac7ed4647b984692bc1f4581bb22f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 5
 --- !u!114 &5616440117558290485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,19 +266,6 @@ MonoBehaviour:
     m_Bits: 64
   attackRange: 0.45
   normalDamage: 15
---- !u!114 &5616440117558290484
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5616440117558290491}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69cac7ed4647b984692bc1f4581bb22f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementSpeed: 5
 --- !u!114 &2513137296674884863
 MonoBehaviour:
   m_ObjectHideFlags: 0

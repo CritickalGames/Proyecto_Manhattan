@@ -74,10 +74,10 @@ GameObject:
   - component: {fileID: 5616440117558290488}
   - component: {fileID: 5616440117558290483}
   - component: {fileID: 5317833267564553040}
-  - component: {fileID: 4707489595860535264}
-  - component: {fileID: 186034373289119512}
-  - component: {fileID: 2785248090633218504}
-  - component: {fileID: 5358993212435779142}
+  - component: {fileID: 5207579521629715332}
+  - component: {fileID: 7947430761055602344}
+  - component: {fileID: 3215434967194457763}
+  - component: {fileID: 4909721093531988929}
   - component: {fileID: 3549047055372503461}
   m_Layer: 7
   m_Name: Boss
@@ -222,7 +222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
---- !u!114 &4707489595860535264
+--- !u!114 &5207579521629715332
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -231,11 +231,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5616440117558290491}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9ffce3b78352e048a80d7ad4c8323e4, type: 3}
+  m_Script: {fileID: 11500000, guid: b3a2501b6dd9c1c43becc42ca2c4c9fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   itemPrefab: {fileID: 5524144755834015241, guid: 911737d9a56d95241918d8e187f393b0, type: 3}
---- !u!114 &186034373289119512
+--- !u!114 &7947430761055602344
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -244,7 +244,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 5616440117558290491}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 668be226b573ac945a2089c6b0747cba, type: 3}
+  m_Script: {fileID: 11500000, guid: 69cac7ed4647b984692bc1f4581bb22f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 4
+--- !u!114 &3215434967194457763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5616440117558290491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f476d240f1f0b1342b7b9e0bc5aa07c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hitTransform: {fileID: 5616440117451525384}
@@ -253,7 +266,7 @@ MonoBehaviour:
     m_Bits: 64
   attackRange: 1
   normalDamage: 30
---- !u!114 &2785248090633218504
+--- !u!114 &4909721093531988929
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -262,20 +275,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5616440117558290491}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afe7a1e1e5eb53842997f688ac0ea8a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementSpeed: 3
---- !u!114 &5358993212435779142
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5616440117558290491}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b49c0df71ea9c8247bd66ae67525f3fd, type: 3}
+  m_Script: {fileID: 11500000, guid: c7ad9c663ce7d084fa5e197259281033, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   groundCheck: {fileID: 7071514334901810746}
