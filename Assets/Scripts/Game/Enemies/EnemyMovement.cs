@@ -33,9 +33,7 @@ public class EnemyMovement : MonoBehaviour
     private void Flip()
 	{
 		this.facingRight = !this.facingRight;
-		Vector3 theScale = this.transform.localScale;
-		theScale.x *= -1;
-		this.transform.localScale = theScale;
+		this.transform.Rotate(0f, 180f, 0f);
 	}
     void SetVelocity(float x, float y)
     {

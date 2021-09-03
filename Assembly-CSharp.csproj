@@ -104,6 +104,8 @@
      <Compile Include="Assets\Scripts\Game\Enemies\DifferentialScripts\MeleeScripts\MeleeAI.cs" />
      <Compile Include="Assets\3rdParty\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
      <Compile Include="Assets\3rdParty\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
+     <Compile Include="Assets\Scripts\Game\Enemies\DifferentialScripts\DistanceScripts\DistanceAI.cs" />
+     <Compile Include="Assets\Scripts\Game\Enemies\DifferentialScripts\DistanceScripts\DistanceAttack.cs" />
      <None Include="Assets\3rdParty\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\3rdParty\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\3rdParty\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

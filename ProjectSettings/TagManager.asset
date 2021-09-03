@@ -59,6 +59,9 @@ TagManager:
   - name: WorldObjects
     uniqueID: 2936354435
     locked: 0
+  - name: Trails
+    uniqueID: 3921155719
+    locked: 0
   - name: Enemies
     uniqueID: 1247447039
     locked: 0
