@@ -28,6 +28,8 @@ public class MeleeAI : MonoBehaviour
     }
     void Update()
     {
+        if (this.enemyScript.stateScript.GetState("IsDead"))
+            this.enabled = false;
         bool grounded = Physics2D.OverlapCircle(this.groundCheck.position, checkDistance, this.groundLayer);
         this.enemyScript.stateScript.SetState("Grounded", grounded);
         if (GameManager.gM.GetPlayerObject() != null)

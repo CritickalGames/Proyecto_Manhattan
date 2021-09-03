@@ -3,12 +3,13 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     [System.NonSerialized]public EnemyMovement movementScript;
-    [System.NonSerialized]public MeleeAttack attackScript;
-    [System.NonSerialized]public MeleeAI iaScript;
+    [System.NonSerialized]public MeleeAttack mAttackScript;
+    [System.NonSerialized]public MeleeAI mIAScript;
+    [System.NonSerialized]public DistanceAttack dAttackScript;
+    [System.NonSerialized]public DistanceAI dIAScript;
     [System.NonSerialized]public EnemyState stateScript;
     [System.NonSerialized]public Animator enemyAnimator;
     [SerializeField]private GameObject itemPrefab;
-    private bool dead;
 
     #region Getters & Setters
     public void SetAnimationBool(string name, bool value)
@@ -20,21 +21,16 @@ public class EnemyController : MonoBehaviour
         this.enemyAnimator.SetTrigger(name);
     }
     #endregion
+    
     void Awake()
     {
         this.movementScript = this.GetComponent<EnemyMovement>();
         this.stateScript = this.GetComponent<EnemyState>();
-        this.attackScript = this.GetComponent<MeleeAttack>();
-        this.iaScript = this.GetComponent<MeleeAI>();
+        this.mAttackScript = this.GetComponent<MeleeAttack>();
+        this.mIAScript = this.GetComponent<MeleeAI>();
+        this.dAttackScript = this.GetComponent<DistanceAttack>();
+        this.dIAScript = this.GetComponent<DistanceAI>();
         this.enemyAnimator = this.GetComponent<Animator>();
-    }
-    void Update()
-    {
-        if (!this.dead && this.stateScript.GetState("IsDead"))
-        {
-            this.dead = true;
-            this.iaScript.enabled = false;
-        }
     }
     public void BossDeath()
     {

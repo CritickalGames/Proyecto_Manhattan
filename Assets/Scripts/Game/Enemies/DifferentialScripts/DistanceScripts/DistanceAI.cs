@@ -16,6 +16,7 @@ public class DistanceAI : MonoBehaviour
     [SerializeField, Range(0.0f, 2.0f)]private float shootCooldown;
     private float nextShoot;
     private float distanceEnemyPlayer;
+    private int moveDirection;
 
     void Awake()
     {
@@ -23,6 +24,8 @@ public class DistanceAI : MonoBehaviour
     }
     void Update()
     {
+        if (this.enemyScript.stateScript.GetState("IsDead"))
+            this.enabled = false;
         bool grounded = Physics2D.OverlapCircle(this.groundCheck.position, checkDistance, this.groundLayer);
         this.enemyScript.stateScript.SetState("Grounded", grounded);
         if (GameManager.gM.GetPlayerObject() != null)
@@ -43,19 +46,37 @@ public class DistanceAI : MonoBehaviour
     }
     void ManageAI()
     {
-        this.distanceEnemyPlayer = Vector2.Distance(this.transform.position, this.target.transform.position);
-        if (this.distanceEnemyPlayer < this.followRange && this.distanceEnemyPlayer <= this.shootingRange)
+        this.distanceEnemyPlayer = this.target.transform.position.x - this.transform.position.x;
+        SetDirection(Mathf.Abs(this.distanceEnemyPlayer));
+        if (this.distanceEnemyPlayer < this.followRange && this.distanceEnemyPlayer <= this.shootingRange && !this.enemyScript.stateScript.GetState("Attacking"))
         {
             //Follow
-            this.enemyScript.movementScript.ManageMovement(1);
-        } else if (this.distanceEnemyPlayer < this.shootingRange && this.distanceEnemyPlayer <= this.escapingRange && Time.time >= this.nextShoot)
+            this.enemyScript.movementScript.ManageMovement(moveDirection);
+        } else if (this.distanceEnemyPlayer < this.shootingRange && this.distanceEnemyPlayer <= this.escapingRange && Time.time >= this.nextShoot && !this.enemyScript.stateScript.GetState("Attacking"))
         {
             this.nextShoot = Time.time + this.shootCooldown;
+            this.enemyScript.movementScript.ManageMovement(0);
+            this.enemyScript.stateScript.SetState("Attacking", true);
+            this.enemyScript.stateScript.SetState("CanAttack", false);
             //Attack
-        } else if (this.distanceEnemyPlayer <= this.escapingRange)
+        } else if (this.distanceEnemyPlayer <= this.escapingRange && !this.enemyScript.stateScript.GetState("Attacking"))
         {
             //run away
+            this.enemyScript.movementScript.ManageMovement(-moveDirection);
         }
+        else
+        {
+            //0
+        }
+    }
+    void SetDirection(float absoluteDistance)
+    {
+        if (this.distanceEnemyPlayer < 0 && this.enemyScript.stateScript.GetState("Grounded"))
+            this.moveDirection = -1;
+        else if (this.distanceEnemyPlayer > 0 && this.enemyScript.stateScript.GetState("Grounded"))
+            this.moveDirection = 1;
+        else 
+            this.moveDirection = 0;
     }
     void OnDrawGizmosSelected()
     {
