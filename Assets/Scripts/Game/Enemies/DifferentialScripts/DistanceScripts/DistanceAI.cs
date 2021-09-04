@@ -17,7 +17,7 @@ public class DistanceAI : MonoBehaviour
     [SerializeField, Range(0.0f, 2.0f)]private float shootCooldown;
     private float nextShoot;
     private float distanceEnemyPlayer;
-    private int moveDirection;
+    [System.NonSerialized]public int moveDirection;
 
     void Awake()
     {

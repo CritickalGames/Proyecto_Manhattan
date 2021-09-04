@@ -4,7 +4,8 @@ public class DistanceAttack : MonoBehaviour
 {
     [System.NonSerialized]public EnemyController enemyScript;
     [SerializeField] private Transform shootingPoint;
-    [SerializeField] private LayerMask playerMask;
+    [SerializeField] private GameObject bulletPrefab;
+    private Transform bulletParent;
 
     void Awake()
     {
@@ -12,7 +13,9 @@ public class DistanceAttack : MonoBehaviour
     }
     public void Attack()
     {
-        GameManager.gM.playerScript.GetComponent<Player>().Damaged(5);
+        bulletParent = GameObject.Find("/NPC/Enemies/BulletParent").GetComponent<Transform>();
+        GameObject bullet = Instantiate(this.bulletPrefab, this.shootingPoint.position, Quaternion.identity, this.bulletParent);
+        bullet.GetComponent<BulletScript>().direction = -this.enemyScript.dIAScript.moveDirection;
     }
     public void EndAttack()
     {

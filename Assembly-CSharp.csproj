@@ -68,6 +68,7 @@
      <Compile Include="Assets\Scripts\Game\Player\PlayerMovement.cs" />
      <Compile Include="Assets\3rdParty\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
      <Compile Include="Assets\Scripts\Management\GameManager.cs" />
+     <Compile Include="Assets\Scripts\Game\Enemies\DifferentialScripts\DistanceScripts\DistanceAttack.cs" />
      <Compile Include="Assets\Scripts\Management\Data\GameData.cs" />
      <Compile Include="Assets\3rdParty\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
      <Compile Include="Assets\Scripts\Management\Data\SaveAndLoadGame.cs" />
@@ -100,12 +101,12 @@
      <Compile Include="Assets\Scripts\Game\Player\PlayerAttack.cs" />
      <Compile Include="Assets\Scripts\Game\SpecialAbilities\Dash.cs" />
      <Compile Include="Assets\3rdParty\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs" />
+     <Compile Include="Assets\Scripts\Game\Enemies\DifferentialScripts\DistanceScripts\DistanceAI.cs" />
      <Compile Include="Assets\Scripts\Management\Data\ConfigData.cs" />
      <Compile Include="Assets\Scripts\Game\Enemies\DifferentialScripts\MeleeScripts\MeleeAI.cs" />
      <Compile Include="Assets\3rdParty\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
      <Compile Include="Assets\3rdParty\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
-     <Compile Include="Assets\Scripts\Game\Enemies\DifferentialScripts\DistanceScripts\DistanceAI.cs" />
-     <Compile Include="Assets\Scripts\Game\Enemies\DifferentialScripts\DistanceScripts\DistanceAttack.cs" />
+     <Compile Include="Assets\Scripts\Game\Enemies\Projectiles\BulletScript.cs" />
      <None Include="Assets\3rdParty\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\3rdParty\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\3rdParty\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

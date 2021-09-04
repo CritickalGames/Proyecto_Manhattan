@@ -62,6 +62,9 @@ TagManager:
   - name: Trails
     uniqueID: 3921155719
     locked: 0
+  - name: Projectiles
+    uniqueID: 1769645141
+    locked: 0
   - name: Enemies
     uniqueID: 1247447039
     locked: 0

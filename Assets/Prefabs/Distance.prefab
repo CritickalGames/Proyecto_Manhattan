@@ -276,9 +276,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootingPoint: {fileID: 7194385535750157191}
-  playerMask:
-    serializedVersion: 2
-    m_Bits: 64
+  bulletParent: {fileID: 0}
+  bulletPrefab: {fileID: 2614891680001679877, guid: 3b7199d16b956404c97d46e8252d3efc, type: 3}
 --- !u!114 &5400162075633504282
 MonoBehaviour:
   m_ObjectHideFlags: 0
