@@ -13,6 +13,7 @@ public class DistanceAI : MonoBehaviour
     [SerializeField, Range(0.0f, 10.0f)]private float followRange;
     [SerializeField, Range(0.0f, 10.0f)]private float shootingRange;
     [SerializeField, Range(0.0f, 10.0f)]private float escapingRange;
+    [SerializeField, Range(0.0f, 10.0f)]private float shootingYRange;
     [SerializeField, Range(0.0f, 2.0f)]private float shootCooldown;
     private float nextShoot;
     private float distanceEnemyPlayer;
@@ -45,10 +46,11 @@ public class DistanceAI : MonoBehaviour
     void ManageAI()
     {
         this.distanceEnemyPlayer = Vector2.Distance(this.transform.position, this.target.transform.position);
+        float yDistance = Mathf.Abs(this.transform.position.y - this.target.transform.position.y);
         SetDirection(this.transform.position.x - this.target.transform.position.x);
         if (this.distanceEnemyPlayer < this.followRange && this.distanceEnemyPlayer >= this.shootingRange && !this.enemyScript.stateScript.GetState("Attacking"))
             SetMovement(this.moveDirection);
-        else if (this.distanceEnemyPlayer < this.shootingRange && this.distanceEnemyPlayer >= this.escapingRange && Time.time >= this.nextShoot && !this.enemyScript.stateScript.GetState("Attacking"))
+        else if (this.distanceEnemyPlayer < this.shootingRange && this.distanceEnemyPlayer >= this.escapingRange && yDistance <= shootingYRange && Time.time >= this.nextShoot && !this.enemyScript.stateScript.GetState("Attacking"))
             OnShootingArea(this.moveDirection);
         else if (this.distanceEnemyPlayer <= this.escapingRange && !this.enemyScript.stateScript.GetState("Attacking"))
             SetMovement(-this.moveDirection);

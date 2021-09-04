@@ -261,6 +261,7 @@ MonoBehaviour:
   followRange: 7
   shootingRange: 5
   escapingRange: 2
+  shootingYRange: 1.2
   shootCooldown: 2
 --- !u!114 &2920495707910025692
 MonoBehaviour:
