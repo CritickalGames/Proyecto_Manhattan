@@ -80,7 +80,6 @@ public class GeneralSettings : MonoBehaviour
     }
     public void SetResolution(int resolutionIndex)
     {
-        Debug.Log(resolutionIndex);
         Screen.SetResolution(Screen.resolutions[resolutionIndex].width,Screen.resolutions[resolutionIndex].height, Screen.fullScreen);
     }
     public void SetQuality(int qualityIndex)

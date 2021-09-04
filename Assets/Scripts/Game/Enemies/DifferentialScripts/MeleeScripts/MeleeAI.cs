@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class MeleeAI : MonoBehaviour
 {
-    [System.NonSerialized]public Melee enemyScript;
+    [System.NonSerialized]public EnemyController enemyScript;
     [System.NonSerialized]public GameObject target;
-    [System.NonSerialized]public bool caught = false;
-    [SerializeField]public Transform groundCheck;
+    [System.NonSerialized]private bool caught = false;
+    [SerializeField]private Transform groundCheck;
     [SerializeField]private float checkDistance;
-    [SerializeField]public LayerMask obstacleLayer;
+    [SerializeField]private LayerMask obstacleLayer;
     [SerializeField]private LayerMask groundLayer;
     [SerializeField]private bool colideWithPlatforms;
     [SerializeField]private float followXRange;
@@ -24,10 +24,12 @@ public class MeleeAI : MonoBehaviour
     private bool isInRange;
     void Awake()
     {
-        this.enemyScript = this.GetComponent<Melee>();
+        this.enemyScript = this.GetComponent<EnemyController>();
     }
     void Update()
     {
+        if (this.enemyScript.stateScript.GetState("IsDead"))
+            this.enabled = false;
         bool grounded = Physics2D.OverlapCircle(this.groundCheck.position, checkDistance, this.groundLayer);
         this.enemyScript.stateScript.SetState("Grounded", grounded);
         if (GameManager.gM.GetPlayerObject() != null)
@@ -98,7 +100,7 @@ public class MeleeAI : MonoBehaviour
     }
     void OnDrawGizmosSelected()
     {
-         if (this.groundCheck == null)
+        if (this.groundCheck == null)
             return;
         Gizmos.DrawWireSphere(this.groundCheck.position, this.checkDistance);
     }

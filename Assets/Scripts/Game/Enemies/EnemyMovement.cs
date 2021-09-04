@@ -1,14 +1,14 @@
 using UnityEngine;
 
-public class FirstBossMovement : MonoBehaviour
+public class EnemyMovement : MonoBehaviour
 {
-    [System.NonSerialized]public FirstBoss enemyScript;
+    [System.NonSerialized]public EnemyController enemyScript;
     [SerializeField] private float movementSpeed;
     private Rigidbody2D enemyRb;
     private bool facingRight = false;
     void Awake()
     {
-        this.enemyScript = GetComponent<FirstBoss>();
+        this.enemyScript = GetComponent<EnemyController>();
         this.enemyRb = GetComponent<Rigidbody2D>();
     }
     public void ManageMovement(int direction)
@@ -33,9 +33,7 @@ public class FirstBossMovement : MonoBehaviour
     private void Flip()
 	{
 		this.facingRight = !this.facingRight;
-		Vector3 theScale = this.transform.localScale;
-		theScale.x *= -1;
-		this.transform.localScale = theScale;
+		this.transform.Rotate(0f, 180f, 0f);
 	}
     void SetVelocity(float x, float y)
     {

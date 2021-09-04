@@ -1,14 +1,15 @@
 using UnityEngine;
 
-public class FirstBoss : MonoBehaviour
+public class EnemyController : MonoBehaviour
 {
-    [System.NonSerialized]public FirstBossMovement movementScript;
-    [System.NonSerialized]public FirstBossAttack attackScript;
-    [System.NonSerialized]public FirstBossAI iaScript;
+    [System.NonSerialized]public EnemyMovement movementScript;
+    [System.NonSerialized]public MeleeAttack mAttackScript;
+    [System.NonSerialized]public MeleeAI mAIScript;
+    [System.NonSerialized]public DistanceAttack dAttackScript;
+    [System.NonSerialized]public DistanceAI dAIScript;
     [System.NonSerialized]public EnemyState stateScript;
     [System.NonSerialized]public Animator enemyAnimator;
     [SerializeField]private GameObject itemPrefab;
-    private bool dead;
 
     #region Getters & Setters
     public void SetAnimationBool(string name, bool value)
@@ -23,23 +24,17 @@ public class FirstBoss : MonoBehaviour
     
     void Awake()
     {
-        this.movementScript = this.GetComponent<FirstBossMovement>();
-        this.attackScript = this.GetComponent<FirstBossAttack>();
-        this.iaScript = this.GetComponent<FirstBossAI>();
+        this.movementScript = this.GetComponent<EnemyMovement>();
         this.stateScript = this.GetComponent<EnemyState>();
+        this.mAttackScript = this.GetComponent<MeleeAttack>();
+        this.mAIScript = this.GetComponent<MeleeAI>();
+        this.dAttackScript = this.GetComponent<DistanceAttack>();
+        this.dAIScript = this.GetComponent<DistanceAI>();
         this.enemyAnimator = this.GetComponent<Animator>();
-    }
-    void Update()
-    {
-        if (!this.dead && this.stateScript.GetState("IsDead"))
-        {
-            this.dead = true;
-            this.iaScript.enabled = false;
-        }
     }
     public void BossDeath()
     {
-        if (!GameManager.gM.GetAbilities("Dash"))
+        if (!GameManager.gM.GetAbilities("Dash") && this.stateScript.GetEnemyType() == "FirstBoss")
         {
             Transform spawnLocation = this.transform;
             GameObject item = Instantiate(itemPrefab, spawnLocation.position + new Vector3(0,1.5f,0), Quaternion.identity);
