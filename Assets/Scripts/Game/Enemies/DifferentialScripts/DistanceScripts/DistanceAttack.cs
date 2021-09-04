@@ -15,7 +15,7 @@ public class DistanceAttack : MonoBehaviour
     {
         bulletParent = GameObject.Find("/NPC/Enemies/BulletParent").GetComponent<Transform>();
         GameObject bullet = Instantiate(this.bulletPrefab, this.shootingPoint.position, Quaternion.identity, this.bulletParent);
-        bullet.GetComponent<BulletScript>().direction = -this.enemyScript.dIAScript.moveDirection;
+        bullet.GetComponent<BulletScript>().direction = -this.enemyScript.dAIScript.moveDirection;
     }
     public void EndAttack()
     {
