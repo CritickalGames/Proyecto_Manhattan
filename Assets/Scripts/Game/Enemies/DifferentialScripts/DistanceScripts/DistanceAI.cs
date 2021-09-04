@@ -55,18 +55,21 @@ public class DistanceAI : MonoBehaviour
         else if (this.distanceEnemyPlayer <= this.escapingRange && !this.enemyScript.stateScript.GetState("Attacking"))
             SetMovement(-this.moveDirection);
         else 
-            this.enemyScript.movementScript.ManageFlip(this.moveDirection);
+            SetMovement(0);
     }
     void SetMovement(int direction)
     {
         this.enemyScript.movementScript.ManageMovement(direction);
-        this.enemyScript.movementScript.ManageFlip(direction);
+        if (direction != 0)
+            this.enemyScript.movementScript.ManageFlip(direction);
+        else
+            this.enemyScript.movementScript.ManageFlip(this.moveDirection);
+
     }
     void OnShootingArea(int direction)
     {
-        this.enemyScript.movementScript.ManageFlip(direction);
+        SetMovement(0);
         this.nextShoot = Time.time + this.shootCooldown;
-        this.enemyScript.movementScript.ManageMovement(0);
         this.enemyScript.stateScript.SetState("Attacking", true);
         this.enemyScript.stateScript.SetState("CanAttack", false);
     }
