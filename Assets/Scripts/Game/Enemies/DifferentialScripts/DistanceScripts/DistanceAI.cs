@@ -28,14 +28,12 @@ public class DistanceAI : MonoBehaviour
             this.enabled = false;
         bool grounded = Physics2D.OverlapCircle(this.groundCheck.position, checkDistance, this.groundLayer);
         this.enemyScript.stateScript.SetState("Grounded", grounded);
-        if (GameManager.gM.GetPlayerObject() != null)
-        {
-            this.target = GameManager.gM.GetPlayerObject();
+        this.target = GameManager.gM.GetPlayerObject();
+        if (this.target != null)
             if (PlayerIsAlive())
                 ManageAI();
             else 
                 this.enemyScript.movementScript.ManageMovement(0);
-        }
     }
     bool PlayerIsAlive()
     {
@@ -46,34 +44,35 @@ public class DistanceAI : MonoBehaviour
     }
     void ManageAI()
     {
-        this.distanceEnemyPlayer = this.target.transform.position.x - this.transform.position.x;
-        SetDirection(Mathf.Abs(this.distanceEnemyPlayer));
-        if (this.distanceEnemyPlayer < this.followRange && this.distanceEnemyPlayer <= this.shootingRange && !this.enemyScript.stateScript.GetState("Attacking"))
-        {
-            //Follow
-            this.enemyScript.movementScript.ManageMovement(moveDirection);
-        } else if (this.distanceEnemyPlayer < this.shootingRange && this.distanceEnemyPlayer <= this.escapingRange && Time.time >= this.nextShoot && !this.enemyScript.stateScript.GetState("Attacking"))
-        {
-            this.nextShoot = Time.time + this.shootCooldown;
-            this.enemyScript.movementScript.ManageMovement(0);
-            this.enemyScript.stateScript.SetState("Attacking", true);
-            this.enemyScript.stateScript.SetState("CanAttack", false);
-            //Attack
-        } else if (this.distanceEnemyPlayer <= this.escapingRange && !this.enemyScript.stateScript.GetState("Attacking"))
-        {
-            //run away
-            this.enemyScript.movementScript.ManageMovement(-moveDirection);
-        }
-        else
-        {
-            //0
-        }
+        this.distanceEnemyPlayer = Vector2.Distance(this.transform.position, this.target.transform.position);
+        SetDirection(this.transform.position.x - this.target.transform.position.x);
+        if (this.distanceEnemyPlayer < this.followRange && this.distanceEnemyPlayer >= this.shootingRange && !this.enemyScript.stateScript.GetState("Attacking"))
+            SetMovement(this.moveDirection);
+        else if (this.distanceEnemyPlayer < this.shootingRange && this.distanceEnemyPlayer >= this.escapingRange && Time.time >= this.nextShoot && !this.enemyScript.stateScript.GetState("Attacking"))
+            OnShootingArea(this.moveDirection);
+        else if (this.distanceEnemyPlayer <= this.escapingRange && !this.enemyScript.stateScript.GetState("Attacking"))
+            SetMovement(-this.moveDirection);
+        else 
+            this.enemyScript.movementScript.ManageFlip(this.moveDirection);
     }
-    void SetDirection(float absoluteDistance)
+    void SetMovement(int direction)
     {
-        if (this.distanceEnemyPlayer < 0 && this.enemyScript.stateScript.GetState("Grounded"))
+        this.enemyScript.movementScript.ManageMovement(direction);
+        this.enemyScript.movementScript.ManageFlip(direction);
+    }
+    void OnShootingArea(int direction)
+    {
+        this.enemyScript.movementScript.ManageFlip(direction);
+        this.nextShoot = Time.time + this.shootCooldown;
+        this.enemyScript.movementScript.ManageMovement(0);
+        this.enemyScript.stateScript.SetState("Attacking", true);
+        this.enemyScript.stateScript.SetState("CanAttack", false);
+    }
+    void SetDirection(float distance)
+    {
+        if (distance < 0 && this.enemyScript.stateScript.GetState("Grounded"))
             this.moveDirection = -1;
-        else if (this.distanceEnemyPlayer > 0 && this.enemyScript.stateScript.GetState("Grounded"))
+        else if (distance > 0 && this.enemyScript.stateScript.GetState("Grounded"))
             this.moveDirection = 1;
         else 
             this.moveDirection = 0;
@@ -83,8 +82,5 @@ public class DistanceAI : MonoBehaviour
         if (this.groundCheck == null)
             return;
         Gizmos.DrawWireSphere(this.groundCheck.position, this.checkDistance);
-        Gizmos.DrawWireSphere(this.detectingPoint.position, this.followRange);
-        Gizmos.DrawWireSphere(this.detectingPoint.position, this.shootingRange);
-        Gizmos.DrawWireSphere(this.detectingPoint.position, this.escapingRange);
     }
 }

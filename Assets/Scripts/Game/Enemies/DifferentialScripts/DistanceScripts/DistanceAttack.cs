@@ -12,7 +12,7 @@ public class DistanceAttack : MonoBehaviour
     }
     public void Attack()
     {
-        GameManager.gM.playerScript.GetComponent<Player>().Damaged(1);
+        GameManager.gM.playerScript.GetComponent<Player>().Damaged(5);
     }
     public void EndAttack()
     {
