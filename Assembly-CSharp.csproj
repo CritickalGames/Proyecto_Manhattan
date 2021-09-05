@@ -77,7 +77,6 @@
      <Compile Include="Assets\3rdParty\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
      <Compile Include="Assets\3rdParty\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
      <Compile Include="Assets\3rdParty\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
-     <Compile Include="Assets\Scripts\Management\ConfigurationValues.cs" />
      <Compile Include="Assets\3rdParty\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
      <Compile Include="Assets\3rdParty\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
      <Compile Include="Assets\3rdParty\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />

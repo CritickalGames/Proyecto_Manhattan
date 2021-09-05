@@ -6,6 +6,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private float movementSpeed;
     private Rigidbody2D enemyRb;
     private bool facingRight = false;
+    
     void Awake()
     {
         this.enemyScript = GetComponent<EnemyController>();

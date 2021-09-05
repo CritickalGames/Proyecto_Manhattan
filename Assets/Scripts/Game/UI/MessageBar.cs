@@ -6,6 +6,7 @@ public class MessageBar : MonoBehaviour
     [SerializeField] private string message;
     private Animator anim;
     private Text text;
+    
     void Start()
     {
         this.anim = this.GetComponent<Animator>();

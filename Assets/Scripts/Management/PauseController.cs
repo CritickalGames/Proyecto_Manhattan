@@ -10,19 +10,11 @@ public class PauseController : MonoBehaviour
     [SerializeField] private Sprite vodkaSprite;
     [SerializeField] private Sprite saberSprite;
     [SerializeField] private Sprite arquebusSprite;
-    private bool isPaused = false;
-    private int abilityNum;
+    [System.NonSerialized] public bool isPaused = false;
+    [System.NonSerialized] public int abilityNum;
     private string selectedItem = "none";
 
     #region Getters & Setters
-    public bool GetPause()
-    {
-        return this.isPaused;
-    }
-    public int GetSelectedItem()
-    {
-        return this.abilityNum;
-    }
     public void SetSelectedItem(int value)
     {
         this.abilityNum = value;
@@ -58,18 +50,16 @@ public class PauseController : MonoBehaviour
     }
     public void NextAbility()
     {
-        if (GameManager.gM.GetAbilityCount() > 0)
+        if (GameManager.gM.abilityCount > 0)
         {
             int nextNum = this.abilityNum + 1;
             while (nextNum != this.abilityNum)
-            {
-                if (nextNum >= GameManager.gM.GetAbilitiesDictionary().Count)
+                if (nextNum >= GameManager.gM.abilities.Count)
                     nextNum = 0;
                 if (nextNum != 0 && GameManager.gM.GetAbilityAt(nextNum))
                     this.abilityNum = nextNum;
                 else
                     nextNum++;
-            }
         } else
         {
             this.abilityNum = 0;
@@ -79,18 +69,16 @@ public class PauseController : MonoBehaviour
     }
     public void PreviousAbility()
     {
-        if (GameManager.gM.GetAbilityCount() > 0)
+        if (GameManager.gM.abilityCount > 0)
         {
             int nextNum = this.abilityNum - 1;
             while (nextNum != this.abilityNum)
-            {
                 if (nextNum < 0)
-                    nextNum = GameManager.gM.GetAbilitiesDictionary().Count - 1;
+                    nextNum = GameManager.gM.abilities.Count - 1;
                 if (nextNum != 0 && GameManager.gM.GetAbilityAt(nextNum))
                     this.abilityNum = nextNum;
                 else
                     nextNum--;
-            }
         } else
         {
             this.abilityNum = 0;

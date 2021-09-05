@@ -12,46 +12,18 @@ public class GameManager : MonoBehaviour
     [System.NonSerialized]public static GameManager gM;
     [SerializeField]private GameObject playerPrefab;
     [SerializeField]private Sprite trafficGreenLight;
-    Dictionary<string, bool> abilities = new Dictionary<string, bool>();
-    int abilityCount = 0;
-    Dictionary<string, bool> countriesUnlocked = new Dictionary<string, bool>();
-    private GameObject playerObject;
+    [System.NonSerialized] public Dictionary<string, bool> abilities = new Dictionary<string, bool>();
+    [System.NonSerialized] public int abilityCount = 0;
+    [System.NonSerialized] public Dictionary<string, bool> countriesUnlocked = new Dictionary<string, bool>();
+    [System.NonSerialized] public GameObject playerObject;
     private bool levelPassed;
-    [SerializeField] private int maxPlayerHealth = 100;
-    private int currentPlayerHealth;
+    [SerializeField] public int maxPlayerHealth = 100;
+    [System.NonSerialized] public int currentPlayerHealth;
 
     #region Getters & Setters
-    public int GetPlayerHealth()
-    {
-        return this.currentPlayerHealth;
-    }
-    public void SetPlayerHealth(int playerHealth)
-    {
-        this.currentPlayerHealth = playerHealth;
-    }
     public void SetMaxHealth()
     {
         this.currentPlayerHealth = this.maxPlayerHealth;
-    }
-    public int GetMaxHealth()
-    {
-        return this.maxPlayerHealth;
-    }
-    public void SetPlayerObject(GameObject newObject)
-    {
-        this.playerObject = newObject;
-    }
-    public GameObject GetPlayerObject()
-    {
-        return this.playerObject;
-    }
-    public Dictionary<string,bool> GetAbilitiesDictionary()
-    {
-        return this.abilities;
-    }
-    public Dictionary<string,bool> GetCountryDictionary()
-    {
-            return this.countriesUnlocked;
     }
     public void SetAbilities(string name, bool value)
     {
@@ -60,11 +32,7 @@ public class GameManager : MonoBehaviour
             SetAbilityCount();
         this.SaveGame();
     }
-    public int GetAbilityCount()
-    {
-        return this.abilityCount;
-    }
-    public void SetAbilityCount()
+    private void SetAbilityCount()
     {
         this.abilityCount++;
     }
@@ -77,11 +45,7 @@ public class GameManager : MonoBehaviour
     }
     public bool GetAbilityAt(int pos)
     {
-        return abilities.Values.ElementAt(pos);
-    }
-    public void SetCountry(string name, bool value)
-    {
-        this.countriesUnlocked[name] = value;
+        return this.abilities.Values.ElementAt(pos);
     }
     public bool GetCountry(string name)
     {

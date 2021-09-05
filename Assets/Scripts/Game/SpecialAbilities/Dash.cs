@@ -5,6 +5,7 @@ using UnityEngine;
 public class Dash : MonoBehaviour
 {
     int playerMask;
+    
     void Start()
     {
         playerMask = LayerMask.NameToLayer("Player");
