@@ -23,10 +23,7 @@ public class MeleeAttack : MonoBehaviour
     public void EndAttack()
     {
         this.enemyScript.stateScript.SetState("Attacking", false);
-    }
-    public void CanAttack()
-    {
-        this.enemyScript.stateScript.SetState("CanAttack", true);
+        this.enemyScript.mAIScript.SetNextHit();
     }
     void OnDrawGizmosSelected()
     {

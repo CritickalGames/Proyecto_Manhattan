@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask dashLayer;
+    [SerializeField, Range(0.0f, 5.0f)] private float dashCooldown = 0.5f;
+    private float nextDash;
     private Player playerScript;
     private float timeOnAir;
     private Rigidbody2D playerRb;
@@ -29,6 +31,10 @@ public class PlayerMovement : MonoBehaviour
     public void SetPressedDown(bool value)
     {
         this.pressedDown = value;
+    }
+    public bool GetDashCooldown()
+    {
+        return Time.time >= this.nextDash;
     }
     #endregion
 
@@ -104,6 +110,7 @@ public class PlayerMovement : MonoBehaviour
 	}
     public void Dash()
     {
+        this.nextDash = Time.time + this.dashCooldown;
         int facingDir = 0;
         if (this.facingRight)
             facingDir = 1;

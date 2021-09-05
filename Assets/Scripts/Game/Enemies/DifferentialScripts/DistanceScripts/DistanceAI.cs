@@ -6,7 +6,6 @@ public class DistanceAI : MonoBehaviour
     [System.NonSerialized]public GameObject target;
     [SerializeField, Range(0.0f, 10.0f)]private float checkDistance;
     [SerializeField]public Transform groundCheck;
-    [SerializeField]public LayerMask obstacleLayer;
     [SerializeField]private LayerMask groundLayer;
     [SerializeField]private bool colideWithPlatforms;
     [SerializeField]private Transform detectingPoint;
@@ -18,6 +17,13 @@ public class DistanceAI : MonoBehaviour
     private float nextShoot;
     private float distanceEnemyPlayer;
     [System.NonSerialized]public int moveDirection;
+
+    #region Getters & Setters
+    public void SetNextShoot()
+    {
+        nextShoot = Time.time + shootCooldown;
+    }
+    #endregion
 
     void Awake()
     {
@@ -45,9 +51,9 @@ public class DistanceAI : MonoBehaviour
     }
     void ManageAI()
     {
-        this.distanceEnemyPlayer = Vector2.Distance(this.transform.position, this.target.transform.position);
-        float yDistance = Mathf.Abs(this.transform.position.y - this.target.transform.position.y);
-        SetDirection(this.transform.position.x - this.target.transform.position.x);
+        this.distanceEnemyPlayer = Vector2.Distance(this.detectingPoint.position, this.target.transform.position);
+        float yDistance = Mathf.Abs(this.detectingPoint.position.y - this.target.transform.position.y);
+        SetDirection(this.detectingPoint.position.x - this.target.transform.position.x);
         if (this.distanceEnemyPlayer < this.followRange && this.distanceEnemyPlayer >= this.shootingRange && !this.enemyScript.stateScript.GetState("Attacking"))
             SetMovement(this.moveDirection);
         else if (this.distanceEnemyPlayer < this.shootingRange && this.distanceEnemyPlayer >= this.escapingRange && yDistance <= shootingYRange && Time.time >= this.nextShoot && !this.enemyScript.stateScript.GetState("Attacking"))
@@ -71,7 +77,6 @@ public class DistanceAI : MonoBehaviour
         SetMovement(0);
         this.nextShoot = Time.time + this.shootCooldown;
         this.enemyScript.stateScript.SetState("Attacking", true);
-        this.enemyScript.stateScript.SetState("CanAttack", false);
     }
     void SetDirection(float distance)
     {
@@ -81,6 +86,11 @@ public class DistanceAI : MonoBehaviour
             this.moveDirection = 1;
         else 
             this.moveDirection = 0;
+    }
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Platform")  && !colideWithPlatforms)
+            Physics2D.IgnoreCollision(collision.collider, this.gameObject.GetComponent<Collider2D>());
     }
     void OnDrawGizmosSelected()
     {

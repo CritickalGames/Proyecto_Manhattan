@@ -222,7 +222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638e052c69715614eb7f96dc09167c75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 20
+  maxHealth: 30
 --- !u!114 &5016984439398839411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,7 +262,7 @@ MonoBehaviour:
   shootingRange: 5
   escapingRange: 2
   shootingYRange: 1.2
-  shootCooldown: 2
+  shootCooldown: 1
 --- !u!114 &2920495707910025692
 MonoBehaviour:
   m_ObjectHideFlags: 0
