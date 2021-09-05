@@ -142,6 +142,10 @@ public class PlayerMovement : MonoBehaviour
             this.timeOnAir += Time.deltaTime;
         }
     }
+    public void Step()
+    {
+        AudioManager.aM.Play("Step");
+    }
     void OnDrawGizmosSelected()
     {
         if (this.groundCheck == null)

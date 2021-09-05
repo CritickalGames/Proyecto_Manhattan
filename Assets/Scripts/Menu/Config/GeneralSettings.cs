@@ -88,7 +88,7 @@ public class GeneralSettings : MonoBehaviour
     }
     public void Volume(float sliderValue)
     {
-        this.audioControl.SetFloat("MasterSound", Mathf.Log10(sliderValue) * 20);
+        this.audioControl.SetFloat("Master", Mathf.Log10(sliderValue) * 20);
     }
     public void FullScreen(bool fullScreen)
     {
@@ -103,7 +103,7 @@ public class GeneralSettings : MonoBehaviour
         this.resolutionDropDown.value = this.savedRes;
         this.qualityDropDown.value = QualitySettings.GetQualityLevel();
         float volume;
-        this.audioControl.GetFloat("MasterSound", out volume);
+        this.audioControl.GetFloat("Master", out volume);
         this.volumeSlider.value = Mathf.Pow(10, volume / 20) ;
         this.fullScreenToggle.isOn = Screen.fullScreen;
     }
