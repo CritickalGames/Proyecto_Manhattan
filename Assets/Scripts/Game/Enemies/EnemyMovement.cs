@@ -39,4 +39,8 @@ public class EnemyMovement : MonoBehaviour
     {
         this.enemyRb.velocity = new Vector2(x,y);
     }
+    public void Steps()
+    {
+        AudioManager.aM.Play("EnemyStep");
+    }
 }
