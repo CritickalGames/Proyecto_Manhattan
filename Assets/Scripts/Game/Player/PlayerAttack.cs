@@ -28,7 +28,10 @@ public class PlayerAttack : MonoBehaviour
         foreach (Collider2D enemy in hitEnemies)
         {
             if (enemy.gameObject.GetComponent<EnemyState>().GetState("IsDead") == false)
+            {
                 enemy.GetComponent<HealthManage>().Damaged(this.normalDamage);
+                AudioManager.aM.Play("Hit");
+            }
         }
     }
     public void TestSpecialAttack()

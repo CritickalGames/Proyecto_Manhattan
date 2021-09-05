@@ -13,6 +13,7 @@ public class DistanceAttack : MonoBehaviour
     }
     public void Attack()
     {
+        AudioManager.aM.Play("Shoot");
         bulletParent = GameObject.Find("/NPC/Enemies/BulletParent").GetComponent<Transform>();
         GameObject bullet = Instantiate(this.bulletPrefab, this.shootingPoint.position, Quaternion.identity, this.bulletParent);
         bullet.GetComponent<BulletScript>().direction = -this.enemyScript.dAIScript.moveDirection;
