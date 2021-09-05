@@ -1,136 +1,110 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
+using TMPro;
+using System.Collections;
+using System.Collections.Generic;
 
 public class GeneralSettings : MonoBehaviour
 {
     [SerializeField] AudioMixer audioControl;
+    [SerializeField] TMP_Dropdown resolutionDropDown;
+    [SerializeField] TMP_Dropdown qualityDropDown;
+    [SerializeField] Slider volumeSlider;
+    [SerializeField] Toggle fullScreenToggle;
+    int savedRes;
 
-    int width;
-    int height;
-    [SerializeField] int newResolution = 2;
-    [SerializeField] bool fullScreen;
-    [SerializeField] Text resolutionText;
-
-    [SerializeField] Text qualityText;
-    [SerializeField] int newQuality = 3;
-    string qualityNames;
-
+    #region Getters & Setters
+    public int GetQualityIndex()
+    {
+        return this.qualityDropDown.value;
+    }
+    public int GetResolutionIndex()
+    {
+        return this.resolutionDropDown.value;
+    }
+    public bool GetFullScreen()
+    {
+        return Screen.fullScreen;
+    }
+    public float GetVolume()
+    {
+        return this.volumeSlider.value;
+    }
+    #endregion
 
     void Start()
     {
-        Qualities();
-        Resolutions();
-        Apply();
+        LoadConfiguration();
     }
-
+    void LoadConfiguration()
+    {
+        LoadResolutionDropDown();
+        ConfigData data = SaveAndLoadGame.LoadConfig();
+        if (data != null)
+        {
+            SetResolution(data.resolutionIndex);
+            this.savedRes = data.resolutionIndex;
+            SetQuality(data.qualityIndex);
+            Volume(data.volume);
+            FullScreen(data.fullScreen);
+        } else
+        {
+            SaveAndLoadGame.SaveConfig(this);
+        }
+    }
+    void LoadResolutionDropDown()
+    {
+        resolutionDropDown.ClearOptions();
+        resolutionDropDown.AddOptions(GetScreenResolutions());
+        resolutionDropDown.value = GetCurrentResolutionIndex();
+        this.savedRes = resolutionDropDown.value;
+        resolutionDropDown.RefreshShownValue();
+    }
+    List<string> GetScreenResolutions(){
+        List<string> options = new List<string>();
+        for (int i = 0; i < Screen.resolutions.Length; i++)
+            options.Add(Screen.resolutions[i].width + " x " + Screen.resolutions[i].height);
+        return options;
+    }
+    public int GetCurrentResolutionIndex(){
+        int resolutionIndex = 0;
+        for (int i = 0; i < Screen.resolutions.Length; i++)
+            if (IsCurrentResolution(i)) resolutionIndex = i;
+        return resolutionIndex;
+    }
+    bool IsCurrentResolution(int i){
+        if (Screen.resolutions[i].width == Screen.currentResolution.width && Screen.resolutions[i].height == Screen.currentResolution.height)
+            return true;
+        return false;
+    }
+    public void SetResolution(int resolutionIndex)
+    {
+        Screen.SetResolution(Screen.resolutions[resolutionIndex].width,Screen.resolutions[resolutionIndex].height, Screen.fullScreen);
+    }
+    public void SetQuality(int qualityIndex)
+    {
+        QualitySettings.SetQualityLevel(qualityIndex);
+    }
     public void Volume(float sliderValue)
     {
-        audioControl.SetFloat("MasterSound", Mathf.Log10(sliderValue) * 20);
+        this.audioControl.SetFloat("MasterSound", Mathf.Log10(sliderValue) * 20);
     }
-
-    public void NextResolution()
+    public void FullScreen(bool fullScreen)
     {
-        newResolution++;
-        Resolutions();
+        Screen.fullScreen = fullScreen;
     }
-
-    public void PreviousResolution()
+    public void SaveConfiguration()
     {
-        newResolution--;
-        Resolutions();
+        SaveAndLoadGame.SaveConfig(this);
     }
-
-    public void FullScreen()
+    public void LoadData()
     {
-        fullScreen = !fullScreen;
-    }
-
-    public void Apply()
-    {
-        Screen.SetResolution(width, height, fullScreen);
-        QualitySettings.SetQualityLevel(newQuality, true);
-    }
-
-    private void Resolutions()
-    {
-        newResolution = Mathf.Clamp(newResolution, 0, 7);
-        switch (newResolution)
-        {
-            case 0:
-                width = 1024;
-                height = 576;
-                break;
-            case 1:
-                width = 1152;
-                height = 648;
-                break;
-            case 2:
-                width = 1280;
-                height = 720;
-                break;
-            case 3:
-                width = 1366;
-                height = 768;
-                break;
-            case 4:
-                width = 1600;
-                height = 900;
-                break;
-            case 5:
-                width = 1920;
-                height = 1080;
-                break;
-            case 6:
-                width = 2560;
-                height = 1440;
-                break;
-            case 7:
-                width = 3840;
-                height = 2160;
-                break;
-        }
-        resolutionText.text = width.ToString() + " x " + height.ToString();
-    }
-
-    public void NextQuality()
-    {
-        newQuality++;
-        Qualities();
-    }
-
-    public void PreviousQuality()
-    {
-        newQuality--;
-        Qualities();
-    }
-
-    private void Qualities()
-    {
-        newQuality = Mathf.Clamp(newQuality, 0, 5);
-        switch (newQuality)
-        {
-            case 0:
-                qualityNames = "Very Low";
-                break;
-            case 1:
-                qualityNames = "Low";
-                break;
-            case 2:
-                qualityNames = "Medium";
-                break;
-            case 3:
-                qualityNames = "High";
-                break;
-            case 4:
-                qualityNames = "Very High";
-                break;
-            case 5:
-                qualityNames = "Ultra";
-                break;
-        }
-        qualityText.text = qualityNames;
+        this.resolutionDropDown.value = this.savedRes;
+        this.qualityDropDown.value = QualitySettings.GetQualityLevel();
+        float volume;
+        this.audioControl.GetFloat("MasterSound", out volume);
+        this.volumeSlider.value = Mathf.Pow(10, volume / 20) ;
+        this.fullScreenToggle.isOn = Screen.fullScreen;
     }
 }
