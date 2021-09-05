@@ -63,7 +63,6 @@
      <Compile Include="Assets\3rdParty\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
      <Compile Include="Assets\Scripts\Management\PauseController.cs" />
      <Compile Include="Assets\Scripts\Game\UI\HealthBar.cs" />
-     <Compile Include="Assets\Scripts\Management\EnemyCounter.cs" />
      <Compile Include="Assets\3rdParty\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
      <Compile Include="Assets\Scripts\Menu\Config\ControlSettings.cs" />
      <Compile Include="Assets\Scripts\Game\Player\PlayerMovement.cs" />
@@ -108,6 +107,7 @@
      <Compile Include="Assets\3rdParty\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
      <Compile Include="Assets\Scripts\Management\Managers\PlayerManager.cs" />
      <Compile Include="Assets\Scripts\Management\Managers\LevelManager.cs" />
+     <Compile Include="Assets\Scripts\Management\Managers\EnemyManager.cs" />
      <None Include="Assets\3rdParty\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\3rdParty\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\3rdParty\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

@@ -53,6 +53,10 @@ public class PlayerManager : MonoBehaviour
             pM = this;
         DontDestroyOnLoad(this);
     }
+    void OnSceneLoaded()
+    {
+        DestroyPlayer();
+    }
     void Start()
     {
         SetMaxHealth();
@@ -80,5 +84,9 @@ public class PlayerManager : MonoBehaviour
         abilities.Add("Vodka", false);
         abilities.Add("Saber", false);
         abilities.Add("Arquebus", false);
+    }
+    public void DestroyPlayer()
+    {
+        Destroy(this.playerObject);
     }
 }

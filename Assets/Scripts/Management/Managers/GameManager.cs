@@ -6,14 +6,9 @@ using System.Linq;
 public class GameManager : MonoBehaviour
 {
     [System.NonSerialized]public PauseController pauseScript;
-    [System.NonSerialized]public EnemyCounter counterScript;
     [System.NonSerialized]public static GameManager gM;
 
     #region Getters & Setters
-    public void SetCounterScript()
-    {
-        this.counterScript = GameObject.Find("/Management").GetComponent<EnemyCounter>();
-    }
     public void SetPauseScript(PauseController script)
     {
         this.pauseScript = script;

@@ -31,7 +31,7 @@ public class LevelManager : MonoBehaviour
     }
     public void RestartLevel()
     {
-        SceneManager.LoadScene(2);
+        LoadScene(2);
     }
     public void LevelFinished()
     {
@@ -48,12 +48,12 @@ public class LevelManager : MonoBehaviour
         if(nextLevel < SceneManager.sceneCountInBuildSettings && levelPassed && nextLevel > 1)
         {
             levelPassed = false;
-            SceneManager.LoadScene(nextLevel);
+            LoadScene(nextLevel);
         } else if (levelPassed)
         {
             PlayerManager.pM.SetMaxHealth();
             levelPassed = false;
-            SceneManager.LoadScene(1);
+            LoadScene(1);
         } else if (!levelPassed)
         {
             MessageBar messageScript = GameObject.Find("/UI/Canvas/Message/Image").GetComponent<MessageBar>();
@@ -66,5 +66,10 @@ public class LevelManager : MonoBehaviour
         countriesUnlocked.Add("Poland", false);
         countriesUnlocked.Add("Ukraine", false);
         countriesUnlocked.Add("Russia", false);
+    }
+    private void LoadScene(int scene)
+    {
+        SceneManager.LoadScene(scene);
+        Destroy(EnemyManager.eM.gameObject);
     }
 }
