@@ -3,9 +3,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 public class PlayerInput : MonoBehaviour
 {
-    [SerializeField] private float dashCooldown = 0.5f;
     bool ignoring = false;
-    private float nextDash;
     float horizontalMove = 0f;
 
     void Update()
@@ -19,11 +17,8 @@ public class PlayerInput : MonoBehaviour
     }
     void OnDash()
     {
-        if (Time.time >= this.nextDash && SceneManager.GetActiveScene().buildIndex > 1 && !GameManager.gM.pauseScript.GetPause() && GameManager.gM.GetPlayerObject() != null && GameManager.gM.GetAbilities("Dash"))
-        {
-            this.nextDash = Time.time + this.dashCooldown;
+        if (SceneManager.GetActiveScene().buildIndex > 1 && GameManager.gM.playerScript.movementScript.GetDashCooldown() && !GameManager.gM.pauseScript.GetPause() && GameManager.gM.GetPlayerObject() != null && GameManager.gM.GetAbilities("Dash"))
             GameManager.gM.playerScript.movementScript.Dash();
-        }
     }
     void OnJump()
     {
@@ -32,11 +27,8 @@ public class PlayerInput : MonoBehaviour
     }
     void OnAttack()
     {
-        if (SceneManager.GetActiveScene().buildIndex > 1 && GameManager.gM.playerScript.stateScript.GetState("CanAttack") == true && !GameManager.gM.pauseScript.GetPause() && GameManager.gM.GetPlayerObject() != null)
-        {
+        if (SceneManager.GetActiveScene().buildIndex > 1 && !GameManager.gM.playerScript.stateScript.GetState("Attacking") && GameManager.gM.playerScript.attackScript.GetAttackCooldown() && !GameManager.gM.pauseScript.GetPause() && GameManager.gM.GetPlayerObject() != null)
             GameManager.gM.playerScript.stateScript.SetState("Attacking", true);
-            GameManager.gM.playerScript.stateScript.SetState("CanAttack", false);
-        }
     }
     void OnSpecialAttack()
     {

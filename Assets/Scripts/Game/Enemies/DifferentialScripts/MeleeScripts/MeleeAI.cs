@@ -15,13 +15,21 @@ public class MeleeAI : MonoBehaviour
     [SerializeField]private float followXRange;
     [SerializeField]private float followYRange;
     [SerializeField]private float caughtRange;
-    [SerializeField]private float hitRate = 2.5f;
+    [SerializeField, Range(0.0f, 2.0f)]private float hitCooldown;
     private float nextHit;
     private float distanceEnemyPlayer;
     private int faceDirection;
     private int moveDirection;
     private bool raycast = false;
     private bool isInRange;
+
+    #region Getters & Setters
+    public void SetNextHit()
+    {
+        nextHit = Time.time + hitCooldown;
+    }
+    #endregion
+
     void Awake()
     {
         this.enemyScript = this.GetComponent<EnemyController>();
@@ -53,11 +61,10 @@ public class MeleeAI : MonoBehaviour
         this.distanceEnemyPlayer = this.transform.position.x - this.target.transform.position.x;
         this.isInRange = (this.transform.position.y <= this.target.transform.position.y + this.followYRange) && (this.transform.position.y >= this.target.transform.position.y - this.followYRange);
         DetectPlayer();
-        if (this.caught && this.enemyScript.stateScript.GetState("CanAttack") == true)
+        if (Time.time >= this.nextHit && this.caught && this.enemyScript.stateScript.GetState("Attacking") == false)
         {
-            this.nextHit = Time.time + 1f / this.hitRate;
+            this.nextHit = Time.time + this.hitCooldown;
             this.enemyScript.stateScript.SetState("Attacking", true);
-            this.enemyScript.stateScript.SetState("CanAttack", false);
         }
     }
     private void DetectPlayer()
