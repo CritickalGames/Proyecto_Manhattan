@@ -30,7 +30,7 @@ public class PlayerAttack : MonoBehaviour
             if (enemy.gameObject.GetComponent<EnemyState>().GetState("IsDead") == false)
             {
                 enemy.GetComponent<HealthManage>().Damaged(this.normalDamage);
-                AudioManager.aM.Play("Hit");
+                AudioManager.aM.Play("EnemyHit");
             }
         }
     }
