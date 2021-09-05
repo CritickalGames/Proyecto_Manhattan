@@ -7,12 +7,14 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private LayerMask enemyLayers;
     [SerializeField] private int normalDamage = 20;
     [SerializeField] private int specialDamage = 50;
+    [SerializeField, Range(0.0f, 5.0f)] private float attackCooldown = 0.5f;
+    private float nextAttack;
     private Player playerScript;
 
     #region Getters & Setters
-    public Transform GetHitPoint()
+    public bool GetAttackCooldown()
     {
-        return hitPoint;
+        return Time.time >= this.nextAttack;
     }
     #endregion
 
@@ -34,11 +36,8 @@ public class PlayerAttack : MonoBehaviour
     }
     public void EndAttack()
     {
+        this.nextAttack = Time.time + this.attackCooldown;
         this.playerScript.stateScript.SetState("Attacking", false);
-    }
-    public void CanAttack()
-    {
-        this.playerScript.stateScript.SetState("CanAttack", true);
     }
     void OnDrawGizmosSelected()
     {
