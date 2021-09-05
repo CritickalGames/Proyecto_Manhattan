@@ -14,6 +14,6 @@ public class EnemyCounter : MonoBehaviour
     {
         this.enemiesLeft--;
         if (this.enemiesLeft <= 0)
-            GameManager.gM.LevelFinished();
+            LevelManager.lM.LevelFinished();
     }
 }

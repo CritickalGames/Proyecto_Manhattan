@@ -22,7 +22,7 @@ public class LevelController : MonoBehaviour
         {
             countryImage[i] = GameObject.Find(countryName[i]).GetComponent<Image>();
             countryButton[i] = GameObject.Find(countryName[i]+"Button").GetComponent<Button>();
-            if (GameManager.gM.GetCountry(countryName[i]))
+            if (LevelManager.lM.GetCountry(countryName[i]))
             {
                 countryImage[i].color = new Color(countryImage[i].color.r, countryImage[i].color.g, countryImage[i].color.b, 1f);
                 countryButton[i].interactable = true;

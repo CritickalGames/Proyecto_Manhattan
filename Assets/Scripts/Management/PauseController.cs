@@ -38,25 +38,25 @@ public class PauseController : MonoBehaviour
     {
         Time.timeScale = 1f;
         this.isPaused = false;
-        GameManager.gM.playerScript.movementScript.SetMoveDir(0);
+        PlayerManager.pM.playerScript.movementScript.SetMoveDir(0);
         this.pauseObject.SetActive(false);
     }
     public void Menu()
     {
-        GameManager.gM.SetMaxHealth();
+        PlayerManager.pM.SetMaxHealth();
         Time.timeScale = 1f;
         this.isPaused = false;
         SceneManager.LoadScene(0);
     }
     public void NextAbility()
     {
-        if (GameManager.gM.abilityCount > 0)
+        if (PlayerManager.pM.abilityCount > 0)
         {
             int nextNum = this.abilityNum + 1;
             while (nextNum != this.abilityNum)
-                if (nextNum >= GameManager.gM.abilities.Count)
+                if (nextNum >= PlayerManager.pM.abilities.Count)
                     nextNum = 0;
-                if (nextNum != 0 && GameManager.gM.GetAbilityAt(nextNum))
+                if (nextNum != 0 && PlayerManager.pM.GetAbilityAt(nextNum))
                     this.abilityNum = nextNum;
                 else
                     nextNum++;
@@ -69,13 +69,13 @@ public class PauseController : MonoBehaviour
     }
     public void PreviousAbility()
     {
-        if (GameManager.gM.abilityCount > 0)
+        if (PlayerManager.pM.abilityCount > 0)
         {
             int nextNum = this.abilityNum - 1;
             while (nextNum != this.abilityNum)
                 if (nextNum < 0)
-                    nextNum = GameManager.gM.abilities.Count - 1;
-                if (nextNum != 0 && GameManager.gM.GetAbilityAt(nextNum))
+                    nextNum = PlayerManager.pM.abilities.Count - 1;
+                if (nextNum != 0 && PlayerManager.pM.GetAbilityAt(nextNum))
                     this.abilityNum = nextNum;
                 else
                     nextNum--;

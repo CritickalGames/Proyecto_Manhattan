@@ -11,15 +11,15 @@ using UnityEngine;
 
     public GameData()
     {
-        Dictionary<string, bool> abilities = GameManager.gM.abilities;
+        Dictionary<string, bool> abilities = PlayerManager.pM.abilities;
         for (int i = 0 ; i < abilities.Count ; i++)
             this.abilitiesBool[i] = abilities.Values.ElementAt(i);
         
-        Dictionary<string, bool> countriesUnlocked = GameManager.gM.countriesUnlocked;
+        Dictionary<string, bool> countriesUnlocked = LevelManager.lM.countriesUnlocked;
         for (int i = 0 ; i < countriesUnlocked.Count ; i++)
             this.countriesBool[i] = countriesUnlocked.Values.ElementAt(i);
         if (GameManager.gM.pauseScript != null)
             this.selectedItem = GameManager.gM.pauseScript.abilityNum;
-        this.abilityCount = GameManager.gM.abilityCount;
+        this.abilityCount = PlayerManager.pM.abilityCount;
     }
 }

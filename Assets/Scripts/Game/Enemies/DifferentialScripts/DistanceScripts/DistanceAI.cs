@@ -35,7 +35,7 @@ public class DistanceAI : MonoBehaviour
             this.enabled = false;
         bool grounded = Physics2D.OverlapCircle(this.groundCheck.position, checkDistance, this.groundLayer);
         this.enemyScript.stateScript.SetState("Grounded", grounded);
-        this.target = GameManager.gM.playerObject;
+        this.target = PlayerManager.pM.playerObject;
         if (this.target != null)
             if (PlayerIsAlive())
                 ManageAI();
