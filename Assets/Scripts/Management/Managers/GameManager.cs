@@ -1,6 +1,4 @@
 using UnityEngine;
-using Cinemachine;
-using System.Collections.Generic;
 using System.Linq;
 
 public class GameManager : MonoBehaviour
