@@ -56,6 +56,7 @@
      <Compile Include="Assets\Scripts\Menu\MenuManager.cs" />
      <Compile Include="Assets\3rdParty\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
      <Compile Include="Assets\3rdParty\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshSpawner.cs" />
+     <Compile Include="Assets\Scripts\Management\Managers\EnemyManager.cs" />
      <Compile Include="Assets\3rdParty\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
      <Compile Include="Assets\Scripts\Game\Player\PlayerState.cs" />
      <Compile Include="Assets\3rdParty\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
@@ -72,6 +73,7 @@
      <Compile Include="Assets\Scripts\Management\Data\GameData.cs" />
      <Compile Include="Assets\3rdParty\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
      <Compile Include="Assets\Scripts\Management\Data\SaveAndLoadGame.cs" />
+     <Compile Include="Assets\Scripts\Management\Managers\PlayerManager.cs" />
      <Compile Include="Assets\3rdParty\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
      <Compile Include="Assets\3rdParty\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
      <Compile Include="Assets\3rdParty\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
@@ -83,7 +85,7 @@
      <Compile Include="Assets\Scripts\Game\Enemies\EnemyController.cs" />
      <Compile Include="Assets\3rdParty\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\Game\Player\Player.cs" />
-     <Compile Include="Assets\Scripts\Game\Player\PlayerInput.cs" />
+     <Compile Include="Assets\Scripts\Management\Managers\PlayerInput.cs" />
      <Compile Include="Assets\Scripts\Management\LevelPassed.cs" />
      <Compile Include="Assets\Scripts\Menu\Config\GeneralSettings.cs" />
      <Compile Include="Assets\3rdParty\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
@@ -104,10 +106,8 @@
      <Compile Include="Assets\Scripts\Management\Data\ConfigData.cs" />
      <Compile Include="Assets\Scripts\Game\Enemies\DifferentialScripts\MeleeScripts\MeleeAI.cs" />
      <Compile Include="Assets\3rdParty\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
-     <Compile Include="Assets\3rdParty\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
      <Compile Include="Assets\Scripts\Management\Managers\LevelManager.cs" />
-     <Compile Include="Assets\Scripts\Management\Managers\PlayerManager.cs" />
-     <Compile Include="Assets\Scripts\Management\Managers\EnemyManager.cs" />
+     <Compile Include="Assets\3rdParty\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
      <None Include="Assets\3rdParty\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\3rdParty\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\3rdParty\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

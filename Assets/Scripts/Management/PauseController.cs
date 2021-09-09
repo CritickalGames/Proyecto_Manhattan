@@ -10,8 +10,8 @@ public class PauseController : MonoBehaviour
     [SerializeField] private Sprite vodkaSprite;
     [SerializeField] private Sprite saberSprite;
     [SerializeField] private Sprite arquebusSprite;
-    [System.NonSerialized] public bool isPaused = false;
-    [System.NonSerialized] public int abilityNum;
+    [HideInInspector] public bool isPaused = false;
+    [HideInInspector] public int abilityNum;
     private string selectedItem = "none";
 
     #region Getters & Setters

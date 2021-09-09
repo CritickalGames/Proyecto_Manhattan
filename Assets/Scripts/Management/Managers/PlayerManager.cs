@@ -4,9 +4,9 @@ using Cinemachine;
 
 public class PlayerManager : MonoBehaviour
 {
-    [System.NonSerialized]public Player playerScript;
+    [HideInInspector]public Player playerScript;
     [SerializeField]private GameObject playerPrefab;
-    [System.NonSerialized] public GameObject playerObject;
+    [HideInInspector] public GameObject playerObject;
 
     void Start()
     {

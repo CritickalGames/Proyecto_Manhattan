@@ -4,14 +4,14 @@ using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
-    [System.NonSerialized]public PauseController pauseScript;
-    [System.NonSerialized]public static GameManager gM;
+    [HideInInspector]public PauseController pauseScript;
+    [HideInInspector]public static GameManager gM;
     [HideInInspector]public EnemyManager eM;
     [HideInInspector]public PlayerManager pM;
     [SerializeField] public int maxPlayerHealth = 100;
-    [System.NonSerialized] public int currentPlayerHealth;
-    [System.NonSerialized] public int abilityCount = 0;
-    [System.NonSerialized] public Dictionary<string, bool> abilities = new Dictionary<string, bool>();
+    [HideInInspector] public int currentPlayerHealth;
+    [HideInInspector] public int abilityCount = 0;
+    [HideInInspector] public Dictionary<string, bool> abilities = new Dictionary<string, bool>();
 
     #region Getters & Setters
     public void SetPauseScript(PauseController script)

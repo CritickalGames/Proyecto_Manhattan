@@ -3,8 +3,8 @@ using UnityEngine;
 public class EnemyManager : MonoBehaviour
 {
     private Transform enemyParent;
-    GameObject[] enemies;
-    int enemiesLeft;
+    private GameObject[] enemies;
+    private int enemiesLeft;
 
     void Start()
     {

@@ -4,9 +4,18 @@ using UnityEngine.InputSystem;
 
 public class PlayerInput : MonoBehaviour
 {
-    bool ignoring = false;
-    float horizontalMove = 0f;
+    [HideInInspector]public static PlayerInput iM;
+    private bool ignoring = false;
+    private float horizontalMove = 0f;
 
+    void Awake()
+    {
+        if (iM != null)
+            Destroy(this.gameObject);
+        else
+            iM = this;
+        DontDestroyOnLoad(this);
+    }
     void Update()
     {
         if (SceneManager.GetActiveScene().buildIndex > 1 && !GameManager.gM.pauseScript.isPaused && GameManager.gM.pM.playerObject != null)
