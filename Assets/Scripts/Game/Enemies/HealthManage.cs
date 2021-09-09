@@ -18,6 +18,7 @@ public class HealthManage : MonoBehaviour
     }
     public void Damaged(int damage)
     {
+        AudioManager.aM.Play("EnemyHurt");
         this.stateScript.SetTriggerState("Hurt");
         this.currentHealth -= damage;
         if (this.currentHealth <= 0)
