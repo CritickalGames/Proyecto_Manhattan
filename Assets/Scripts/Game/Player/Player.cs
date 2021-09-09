@@ -25,14 +25,14 @@ public class Player : MonoBehaviour
     }
     void Start()
     {
-        this.healthBar.SetMaxHealth(PlayerManager.pM.maxPlayerHealth);
+        this.healthBar.SetMaxHealth(GameManager.gM.maxPlayerHealth);
     }
     public void Damaged(int damage)
     {
         this.playerAnimator.SetTrigger("Hurt");
-        PlayerManager.pM.currentPlayerHealth = PlayerManager.pM.currentPlayerHealth - damage;
-        this.healthBar.SetHealth(PlayerManager.pM.currentPlayerHealth);
-        if (PlayerManager.pM.currentPlayerHealth <= 0)
+        GameManager.gM.currentPlayerHealth = GameManager.gM.currentPlayerHealth - damage;
+        this.healthBar.SetHealth(GameManager.gM.currentPlayerHealth);
+        if (GameManager.gM.currentPlayerHealth <= 0)
         {
             Die();
         }
@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
     }
     public void EndDie()
     {
-        PlayerManager.pM.SetMaxHealth();
+        GameManager.gM.SetMaxHealth();
         LevelManager.lM.RestartLevel();
     }
 }

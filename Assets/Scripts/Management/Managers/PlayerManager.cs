@@ -6,11 +6,9 @@ using Cinemachine;
 
 public class PlayerManager : MonoBehaviour
 {
-    [System.NonSerialized]public static PlayerManager pM;
     [System.NonSerialized]public Player playerScript;
     [SerializeField]private GameObject playerPrefab;
-    [SerializeField] public int maxPlayerHealth = 100;
-    [System.NonSerialized] public int currentPlayerHealth;
+    
     [System.NonSerialized] public GameObject playerObject;
     [System.NonSerialized] public int abilityCount = 0;
     [System.NonSerialized] public Dictionary<string, bool> abilities = new Dictionary<string, bool>();
@@ -38,27 +36,15 @@ public class PlayerManager : MonoBehaviour
     {
         return this.abilities.Values.ElementAt(pos);
     }
-    public void SetMaxHealth()
-    {
-        this.currentPlayerHealth = this.maxPlayerHealth;
-    }
     #endregion
 
-    void Awake()
-    {
-        if (pM != null)
-            Destroy(this.gameObject);
-        else
-            pM = this;
-        DontDestroyOnLoad(this);
-    }
     void OnSceneLoaded()
     {
         DestroyPlayer();
     }
     void Start()
     {
-        SetMaxHealth();
+        GameManager.gM.pM = this;
     }
     void Update()
     {
@@ -76,6 +62,7 @@ public class PlayerManager : MonoBehaviour
         this.playerObject.transform.parent = GameObject.Find("Player").transform;
         this.playerScript = playerObject.GetComponent<Player>();
         vcam.m_Follow = playerObject.transform;
+        GameManager.gM.SetMaxHealth();
     }
     public void InstantiateAbilities()
     {

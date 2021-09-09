@@ -5,11 +5,19 @@ public class GameManager : MonoBehaviour
 {
     [System.NonSerialized]public PauseController pauseScript;
     [System.NonSerialized]public static GameManager gM;
+    [HideInInspector]public EnemyManager eM;
+    [HideInInspector]public PlayerManager pM;
+    [SerializeField] public int maxPlayerHealth = 100;
+    [System.NonSerialized] public int currentPlayerHealth;
 
     #region Getters & Setters
     public void SetPauseScript(PauseController script)
     {
         this.pauseScript = script;
+    }
+    public void SetMaxHealth()
+    {
+        this.currentPlayerHealth = this.maxPlayerHealth;
     }
     #endregion
 
@@ -32,15 +40,15 @@ public class GameManager : MonoBehaviour
     private void LoadGame()
     {
         LevelManager.lM.InstantiateLevels();
-        PlayerManager.pM.InstantiateAbilities();
+        this.pM.InstantiateAbilities();
         GameData data = SaveAndLoadGame.Load();
         if (data != null)
         {
             for (int i = 0 ; i < data.abilitiesBool.Length ; i++)
-                PlayerManager.pM.abilities[PlayerManager.pM.abilities.Keys.ElementAt(i)] = data.abilitiesBool[i];
+                this.pM.abilities[this.pM.abilities.Keys.ElementAt(i)] = data.abilitiesBool[i];
             for (int i = 0 ; i < data.countriesBool.Length ; i++)
                 LevelManager.lM.countriesUnlocked[LevelManager.lM.countriesUnlocked.Keys.ElementAt(i)] = data.countriesBool[i];
-            PlayerManager.pM.abilityCount = data.abilityCount;
+            this.pM.abilityCount = data.abilityCount;
         } else
         {
             SaveAndLoadGame.Save();

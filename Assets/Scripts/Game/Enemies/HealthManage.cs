@@ -29,6 +29,6 @@ public class HealthManage : MonoBehaviour
     {
         this.stateScript.SetState("IsDead", true);
         this.enabled = false;
-        EnemyManager.eM.SubtractEnemy();
+        GameManager.gM.eM.SubtractEnemy();
     }
 }

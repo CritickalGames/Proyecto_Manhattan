@@ -2,21 +2,13 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    [System.NonSerialized]public static EnemyManager eM;
     private Transform enemyParent;
     GameObject[] enemies;
     int enemiesLeft;
 
-    void Awake()
-    {
-        if (eM != null)
-            Destroy(this.gameObject);
-        else
-            eM = this;
-        DontDestroyOnLoad(this);
-    }
     void Start()
     {
+        GameManager.gM.eM = this;
         this.enemyParent = GameObject.Find("/Enemies").GetComponent<Transform>();
         this.enemiesLeft = this.enemyParent.childCount;
         ListEnemies();

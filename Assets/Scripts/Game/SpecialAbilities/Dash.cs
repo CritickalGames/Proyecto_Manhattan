@@ -15,7 +15,7 @@ public class Dash : MonoBehaviour
         int mask = target.gameObject.layer;
         if (mask == playerMask)
         {
-            PlayerManager.pM.SetAbilities("Dash", true);
+            GameManager.gM.pM.SetAbilities("Dash", true);
             Destroy(this.gameObject);
         }
     }

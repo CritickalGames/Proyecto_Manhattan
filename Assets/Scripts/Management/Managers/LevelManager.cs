@@ -50,7 +50,7 @@ public class LevelManager : MonoBehaviour
             LoadScene(nextLevel);
         } else if (levelPassed)
         {
-            PlayerManager.pM.SetMaxHealth();
+            GameManager.gM.SetMaxHealth();
             levelPassed = false;
             LoadScene(1);
         } else if (!levelPassed)
@@ -69,6 +69,6 @@ public class LevelManager : MonoBehaviour
     private void LoadScene(int scene)
     {
         SceneManager.LoadScene(scene);
-        Destroy(EnemyManager.eM.gameObject);
+        Destroy(GameManager.gM.eM.gameObject);
     }
 }
