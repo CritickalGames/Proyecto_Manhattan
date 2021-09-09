@@ -34,7 +34,7 @@ public class EnemyController : MonoBehaviour
     }
     public void BossDeath()
     {
-        if (!GameManager.gM.pM.GetAbilities("Dash") && this.stateScript.type == "FirstBoss")
+        if (!GameManager.gM.GetAbilities("Dash") && this.stateScript.type == "FirstBoss")
         {
             Transform spawnLocation = this.transform;
             GameObject item = Instantiate(itemPrefab, spawnLocation.position + new Vector3(0,1.5f,0), Quaternion.identity);

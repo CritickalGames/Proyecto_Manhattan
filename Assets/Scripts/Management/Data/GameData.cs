@@ -11,7 +11,7 @@ using UnityEngine;
 
     public GameData()
     {
-        Dictionary<string, bool> abilities = GameManager.gM.pM.abilities;
+        Dictionary<string, bool> abilities = GameManager.gM.abilities;
         for (int i = 0 ; i < abilities.Count ; i++)
             this.abilitiesBool[i] = abilities.Values.ElementAt(i);
         
@@ -20,6 +20,6 @@ using UnityEngine;
             this.countriesBool[i] = countriesUnlocked.Values.ElementAt(i);
         if (GameManager.gM.pauseScript != null)
             this.selectedItem = GameManager.gM.pauseScript.abilityNum;
-        this.abilityCount = GameManager.gM.pM.abilityCount;
+        this.abilityCount = GameManager.gM.abilityCount;
     }
 }

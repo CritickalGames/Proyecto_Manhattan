@@ -18,7 +18,7 @@ public class PlayerInput : MonoBehaviour
     }
     void OnDash()
     {
-        if (SceneManager.GetActiveScene().buildIndex > 1 && GameManager.gM.pM.playerScript.movementScript.GetDashCooldown() && !GameManager.gM.pauseScript.isPaused && GameManager.gM.pM.playerObject != null && GameManager.gM.pM.GetAbilities("Dash"))
+        if (SceneManager.GetActiveScene().buildIndex > 1 && GameManager.gM.pM.playerScript.movementScript.GetDashCooldown() && !GameManager.gM.pauseScript.isPaused && GameManager.gM.pM.playerObject != null && GameManager.gM.GetAbilities("Dash"))
             GameManager.gM.pM.playerScript.movementScript.Dash();
     }
     void OnJump()
