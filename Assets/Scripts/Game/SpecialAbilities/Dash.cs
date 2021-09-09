@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Dash : MonoBehaviour
 {
-    int playerMask;
+    private int playerMask;
     
     void Start()
     {

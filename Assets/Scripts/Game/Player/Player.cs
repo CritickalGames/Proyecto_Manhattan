@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [System.NonSerialized] public PlayerState stateScript;
-    [System.NonSerialized] public PlayerMovement movementScript;
-    [System.NonSerialized] public PlayerAttack attackScript;
-    [System.NonSerialized] public Animator playerAnimator;
+    [HideInInspector]public PlayerState stateScript;
+    [HideInInspector]public PlayerMovement movementScript;
+    [HideInInspector]public PlayerAttack attackScript;
+    [HideInInspector]public Animator playerAnimator;
     private HealthBar healthBar;
 
     #region Getters & Setters

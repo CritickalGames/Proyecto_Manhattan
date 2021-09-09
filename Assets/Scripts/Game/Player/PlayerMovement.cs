@@ -2,17 +2,17 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [System.NonSerialized]public bool pressedDown = false;
-    [SerializeField] private int extraJumps = 1;
-    [SerializeField] private float dashDistance = 3f;
-    [SerializeField] private float jumpSpeed = 400f;
-    [SerializeField] private float movementSpeed = 40f;
-    [SerializeField] private float inertiaSpeed;
-    [SerializeField] private float maxTimeOnAir;
-    [SerializeField] private Transform groundCheck;
-    [SerializeField] private LayerMask groundLayer;
-    [SerializeField] private LayerMask dashLayer;
-    [SerializeField, Range(0.0f, 5.0f)] private float dashCooldown = 0.5f;
+    [HideInInspector]public bool pressedDown = false;
+    [SerializeField]private int extraJumps = 1;
+    [SerializeField]private float dashDistance = 3f;
+    [SerializeField]private float jumpSpeed = 400f;
+    [SerializeField]private float movementSpeed = 40f;
+    [SerializeField]private float inertiaSpeed;
+    [SerializeField]private float maxTimeOnAir;
+    [SerializeField]private Transform groundCheck;
+    [SerializeField]private LayerMask groundLayer;
+    [SerializeField]private LayerMask dashLayer;
+    [SerializeField, Range(0.0f, 5.0f)]private float dashCooldown = 0.5f;
     private float nextDash;
     private Player playerScript;
     private float timeOnAir;

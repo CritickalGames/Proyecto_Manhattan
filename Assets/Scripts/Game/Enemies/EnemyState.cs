@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyState : MonoBehaviour
 {
-    [SerializeField] public string type;
+    [SerializeField]public string type;
     private EnemyController enemyScript;
     private Dictionary<string, bool> state = new Dictionary<string, bool>();
 

@@ -4,9 +4,9 @@ using UnityEngine.UI;
 
 public class LevelController : MonoBehaviour
 {
-    Image[] countryImage = new Image[4];
-    Button[] countryButton = new Button[4];
-    string[] countryName = new string[4];
+    private Image[] countryImage = new Image[4];
+    private Button[] countryButton = new Button[4];
+    private string[] countryName = new string[4];
 
     void Start()
     {

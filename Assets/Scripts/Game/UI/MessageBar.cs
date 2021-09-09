@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class MessageBar : MonoBehaviour
 {
-    [SerializeField] private string message;
+    [SerializeField]private string message;
     private Animator anim;
     private Text text;
     

@@ -4,14 +4,14 @@ using UnityEngine.SceneManagement;
 
 public class PauseController : MonoBehaviour
 {
-    [SerializeField] private GameObject pauseObject;
-    [SerializeField] private Image abilityImage;
-    [SerializeField] private Sprite noneSprite;
-    [SerializeField] private Sprite vodkaSprite;
-    [SerializeField] private Sprite saberSprite;
-    [SerializeField] private Sprite arquebusSprite;
-    [HideInInspector] public bool isPaused = false;
-    [HideInInspector] public int abilityNum;
+    [SerializeField]private GameObject pauseObject;
+    [SerializeField]private Image abilityImage;
+    [SerializeField]private Sprite noneSprite;
+    [SerializeField]private Sprite vodkaSprite;
+    [SerializeField]private Sprite saberSprite;
+    [SerializeField]private Sprite arquebusSprite;
+    [HideInInspector]public bool isPaused = false;
+    [HideInInspector]public int abilityNum;
     private string selectedItem = "none";
 
     #region Getters & Setters

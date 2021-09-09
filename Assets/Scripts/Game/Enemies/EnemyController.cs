@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    [System.NonSerialized]public EnemyMovement movementScript;
-    [System.NonSerialized]public MeleeAttack mAttackScript;
-    [System.NonSerialized]public MeleeAI mAIScript;
-    [System.NonSerialized]public DistanceAttack dAttackScript;
-    [System.NonSerialized]public DistanceAI dAIScript;
-    [System.NonSerialized]public EnemyState stateScript;
-    [System.NonSerialized]public Animator enemyAnimator;
+    [HideInInspector]public EnemyMovement movementScript;
+    [HideInInspector]public MeleeAttack mAttackScript;
+    [HideInInspector]public MeleeAI mAIScript;
+    [HideInInspector]public DistanceAttack dAttackScript;
+    [HideInInspector]public DistanceAI dAIScript;
+    [HideInInspector]public EnemyState stateScript;
+    [HideInInspector]public Animator enemyAnimator;
     [SerializeField]private GameObject itemPrefab;
 
     #region Getters & Setters

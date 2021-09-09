@@ -6,7 +6,7 @@ public class PlayerManager : MonoBehaviour
 {
     [HideInInspector]public Player playerScript;
     [SerializeField]private GameObject playerPrefab;
-    [HideInInspector] public GameObject playerObject;
+    [HideInInspector]public GameObject playerObject;
 
     void Start()
     {

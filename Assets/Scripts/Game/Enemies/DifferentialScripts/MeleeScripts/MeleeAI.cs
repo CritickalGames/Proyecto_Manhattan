@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class MeleeAI : MonoBehaviour
 {
-    [System.NonSerialized]public EnemyController enemyScript;
-    [System.NonSerialized]public GameObject target;
-    [System.NonSerialized]private bool caught = false;
+    [HideInInspector]public EnemyController enemyScript;
+    [HideInInspector]public GameObject target;
+    [HideInInspector]private bool caught = false;
     [SerializeField]private Transform groundCheck;
     [SerializeField]private float checkDistance;
     [SerializeField]private LayerMask obstacleLayer;

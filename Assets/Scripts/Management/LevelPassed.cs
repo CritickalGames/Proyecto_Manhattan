@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LevelPassed : MonoBehaviour
 {
-    [SerializeField] int nextLevel = 0;
+    [SerializeField]private int nextLevel = 0;
 
     public void NextLevel()
     {

@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class DistanceAI : MonoBehaviour
 {
-    [System.NonSerialized]public EnemyController enemyScript;
-    [System.NonSerialized]public GameObject target;
+    [HideInInspector]public EnemyController enemyScript;
+    [HideInInspector]public GameObject target;
     [SerializeField, Range(0.0f, 10.0f)]private float checkDistance;
     [SerializeField]public Transform groundCheck;
     [SerializeField]private LayerMask groundLayer;

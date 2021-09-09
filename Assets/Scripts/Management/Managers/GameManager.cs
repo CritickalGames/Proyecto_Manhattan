@@ -8,10 +8,10 @@ public class GameManager : MonoBehaviour
     [HideInInspector]public static GameManager gM;
     [HideInInspector]public EnemyManager eM;
     [HideInInspector]public PlayerManager pM;
-    [SerializeField] public int maxPlayerHealth = 100;
-    [HideInInspector] public int currentPlayerHealth;
-    [HideInInspector] public int abilityCount = 0;
-    [HideInInspector] public Dictionary<string, bool> abilities = new Dictionary<string, bool>();
+    [SerializeField]public int maxPlayerHealth = 100;
+    [HideInInspector]public int currentPlayerHealth;
+    [HideInInspector]public int abilityCount = 0;
+    [HideInInspector]public Dictionary<string, bool> abilities = new Dictionary<string, bool>();
 
     #region Getters & Setters
     public void SetPauseScript(PauseController script)
