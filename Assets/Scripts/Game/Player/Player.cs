@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [System.NonSerialized] public PlayerState stateScript;
-    [System.NonSerialized] public PlayerMovement movementScript;
-    [System.NonSerialized] public PlayerAttack attackScript;
-    [System.NonSerialized] public Animator playerAnimator;
+    [HideInInspector]public PlayerState stateScript;
+    [HideInInspector]public PlayerMovement movementScript;
+    [HideInInspector]public PlayerAttack attackScript;
+    [HideInInspector]public Animator playerAnimator;
     private HealthBar healthBar;
 
     #region Getters & Setters
@@ -25,15 +25,15 @@ public class Player : MonoBehaviour
     }
     void Start()
     {
-        this.healthBar.SetMaxHealth(GameManager.gM.GetMaxHealth());
+        this.healthBar.SetMaxHealth(GameManager.gM.maxPlayerHealth);
     }
     public void Damaged(int damage)
     {
         AudioManager.aM.Play("Hurt");
         this.playerAnimator.SetTrigger("Hurt");
-        GameManager.gM.SetPlayerHealth(GameManager.gM.GetPlayerHealth() - damage);
-        this.healthBar.SetHealth(GameManager.gM.GetPlayerHealth());
-        if (GameManager.gM.GetPlayerHealth() <= 0)
+        GameManager.gM.currentPlayerHealth = GameManager.gM.currentPlayerHealth - damage;
+        this.healthBar.SetHealth(GameManager.gM.currentPlayerHealth);
+        if (GameManager.gM.currentPlayerHealth <= 0)
         {
             Die();
         }
@@ -45,6 +45,6 @@ public class Player : MonoBehaviour
     public void EndDie()
     {
         GameManager.gM.SetMaxHealth();
-        GameManager.gM.RestartLevel();
+        LevelManager.lM.RestartLevel();
     }
 }

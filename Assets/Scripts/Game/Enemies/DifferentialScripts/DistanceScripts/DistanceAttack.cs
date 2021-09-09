@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class DistanceAttack : MonoBehaviour
 {
-    [System.NonSerialized]public EnemyController enemyScript;
-    [SerializeField] private Transform shootingPoint;
-    [SerializeField] private GameObject bulletPrefab;
+    [HideInInspector]public EnemyController enemyScript;
+    [SerializeField]private Transform shootingPoint;
+    [SerializeField]private GameObject bulletPrefab;
     private Transform bulletParent;
 
     void Awake()
