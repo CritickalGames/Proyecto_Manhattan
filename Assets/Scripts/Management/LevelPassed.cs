@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class LevelPassed : MonoBehaviour
 {
-    [SerializeField] int nextLevel = 0;
+    [SerializeField]private int nextLevel = 0;
 
     public void NextLevel()
     {
-        GameManager.gM.NextLevel(nextLevel);
+        LevelManager.lM.NextLevel(nextLevel);
     }
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("Player"))
-            GameManager.gM.NextLevel(nextLevel);
+            LevelManager.lM.NextLevel(nextLevel);
     }
 }
