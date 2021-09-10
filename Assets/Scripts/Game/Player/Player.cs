@@ -29,7 +29,6 @@ public class Player : MonoBehaviour
     }
     public void Damaged(int damage)
     {
-        AudioManager.aM.Play("Hurt");
         this.playerAnimator.SetTrigger("Hurt");
         GameManager.gM.currentPlayerHealth = GameManager.gM.currentPlayerHealth - damage;
         this.healthBar.SetHealth(GameManager.gM.currentPlayerHealth);
