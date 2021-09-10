@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class BulletScript : MonoBehaviour
 {
-    [HideInInspector]public int direction;
+    [System.NonSerialized]public int direction;
     [SerializeField, Range(0,15f)]private float speed;
     [SerializeField, Range(0,10f)]private float maxTime;
     [SerializeField, Range(0,100f)]private int damage;
-    private Rigidbody2D bulletRB;
+    Rigidbody2D bulletRB;
 
     void Start()
     {

@@ -2,22 +2,22 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [HideInInspector]public bool pressedDown = false;
-    [SerializeField]private int extraJumps = 1;
-    [SerializeField]private float dashDistance = 3f;
-    [SerializeField]private float jumpSpeed = 400f;
-    [SerializeField]private float movementSpeed = 40f;
-    [SerializeField]private float inertiaSpeed;
-    [SerializeField]private float maxTimeOnAir;
-    [SerializeField]private Transform groundCheck;
-    [SerializeField]private LayerMask groundLayer;
-    [SerializeField]private LayerMask dashLayer;
-    [SerializeField, Range(0.0f, 5.0f)]private float dashCooldown = 0.5f;
+    [SerializeField] private int extraJumps = 1;
+    [SerializeField] private float dashDistance = 3f;
+    [SerializeField] private float jumpSpeed = 400f;
+    [SerializeField] private float movementSpeed = 40f;
+    [SerializeField] private float inertiaSpeed;
+    [SerializeField] private float maxTimeOnAir;
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private LayerMask dashLayer;
+    [SerializeField, Range(0.0f, 5.0f)] private float dashCooldown = 0.5f;
     private float nextDash;
     private Player playerScript;
     private float timeOnAir;
     private Rigidbody2D playerRb;
     private Collider2D playerCol;
+    private bool pressedDown = false;
     private bool facingRight = true;
     private int movementDir;
     private int platformLayer;
@@ -28,13 +28,13 @@ public class PlayerMovement : MonoBehaviour
     {
         this.movementDir = value;
     }
+    public void SetPressedDown(bool value)
+    {
+        this.pressedDown = value;
+    }
     public bool GetDashCooldown()
     {
         return Time.time >= this.nextDash;
-    }
-    private void SetVelocity(float x, float y)
-    {
-        this.playerRb.velocity = new Vector2(x, y);
     }
     #endregion
 
@@ -45,9 +45,9 @@ public class PlayerMovement : MonoBehaviour
     }
     void Start()
     {
-        this.platformLayer = LayerMask.NameToLayer("Platform");
-        this.playerLayer = LayerMask.NameToLayer("Player");
-        this.playerCol = this.gameObject.GetComponent<CapsuleCollider2D>();
+        platformLayer = LayerMask.NameToLayer("Platform");
+        playerLayer = LayerMask.NameToLayer("Player");
+        playerCol = this.gameObject.GetComponent<CapsuleCollider2D>();
     }
     void Update()
     {
@@ -57,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void JumpingCollision()
     {
-        if (this.playerRb.velocity.y > 0 || !this.playerScript.stateScript.GetState("Grounded") || this.pressedDown)
+        if (this.playerRb.velocity.y > 0 || !this.playerScript.stateScript.GetState("Grounded") || pressedDown)
             IgnoreCollisions(true);
         else
             IgnoreCollisions(false);
@@ -111,14 +111,21 @@ public class PlayerMovement : MonoBehaviour
     public void Dash()
     {
         this.nextDash = Time.time + this.dashCooldown;
-        int facingDir = 1;
+        int facingDir = 0;
+        if (this.facingRight)
+            facingDir = 1;
         if (!this.facingRight)
             facingDir = -1;
         RaycastHit2D hitRaycast = Physics2D.Raycast(this.transform.position + new Vector3(0f, 0.5f, 0),new Vector2(facingDir, 0),this.dashDistance,this.dashLayer);
         float distance = this.dashDistance;
         if(hitRaycast)
             distance = hitRaycast.distance;
-        this.transform.position = new Vector2(this.transform.position.x + (facingDir * distance) ,this.transform.position.y);
+        float transformX = this.transform.position.x + (facingDir * distance);
+        this.transform.position = new Vector2(transformX,this.transform.position.y);
+    }
+    private void SetVelocity(float x, float y)
+    {
+        this.playerRb.velocity = new Vector2(x, y);
     }
     private void VerifyGround()
     {
@@ -127,8 +134,8 @@ public class PlayerMovement : MonoBehaviour
         if (this.playerScript.stateScript.GetState("Grounded"))
         {
             this.timeOnAir = 0;
-            this.extraJumps = 1;
             this.playerScript.stateScript.SetState("Jumping", false);
+            this.extraJumps = 1;
         } else
         {
             this.playerScript.stateScript.SetState("Jumping", true);

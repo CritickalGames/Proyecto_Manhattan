@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class DistanceAI : MonoBehaviour
 {
-    [HideInInspector]public EnemyController enemyScript;
-    [HideInInspector]public GameObject target;
+    [System.NonSerialized]public EnemyController enemyScript;
+    [System.NonSerialized]public GameObject target;
     [SerializeField, Range(0.0f, 10.0f)]private float checkDistance;
     [SerializeField]public Transform groundCheck;
     [SerializeField]private LayerMask groundLayer;
@@ -35,7 +35,7 @@ public class DistanceAI : MonoBehaviour
             this.enabled = false;
         bool grounded = Physics2D.OverlapCircle(this.groundCheck.position, checkDistance, this.groundLayer);
         this.enemyScript.stateScript.SetState("Grounded", grounded);
-        this.target = GameManager.gM.pM.playerObject;
+        this.target = GameManager.gM.GetPlayerObject();
         if (this.target != null)
             if (PlayerIsAlive())
                 ManageAI();

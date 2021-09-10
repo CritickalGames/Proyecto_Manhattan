@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Dash : MonoBehaviour
 {
-    private int playerMask;
-    
+    int playerMask;
     void Start()
     {
         playerMask = LayerMask.NameToLayer("Player");

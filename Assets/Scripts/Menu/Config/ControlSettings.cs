@@ -4,10 +4,10 @@ using UnityEngine.InputSystem;
 
 public class ControlSettings : MonoBehaviour
 {
-    [SerializeField]private InputActionReference action;
-    [SerializeField]private Text displayControl;
-    [SerializeField]private GameObject button;
-    [SerializeField]private GameObject waiting;
+    [SerializeField] private InputActionReference action;
+    [SerializeField] private Text displayControl;
+    [SerializeField] private GameObject button;
+    [SerializeField] private GameObject waiting;
     private InputActionRebindingExtensions.RebindingOperation operation;
 
     void Start()

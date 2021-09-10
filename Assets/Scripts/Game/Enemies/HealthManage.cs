@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class HealthManage : MonoBehaviour
 {
-    [HideInInspector]public EnemyState stateScript;
-    [SerializeField]public int maxHealth = 100;
+    [System.NonSerialized]public EnemyState stateScript;
+    [SerializeField] public int maxHealth = 100;
     private int currentHealth;
-    
     void Awake()
     {
         this.stateScript = this.GetComponent<EnemyState>();
@@ -29,6 +28,6 @@ public class HealthManage : MonoBehaviour
     {
         this.stateScript.SetState("IsDead", true);
         this.enabled = false;
-        GameManager.gM.eM.SubtractEnemy();
+        GameManager.gM.counterScript.SubtractEnemy();
     }
 }

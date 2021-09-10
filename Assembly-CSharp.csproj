@@ -63,11 +63,12 @@
      <Compile Include="Assets\3rdParty\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
      <Compile Include="Assets\Scripts\Management\PauseController.cs" />
      <Compile Include="Assets\Scripts\Game\UI\HealthBar.cs" />
+     <Compile Include="Assets\Scripts\Management\EnemyCounter.cs" />
      <Compile Include="Assets\3rdParty\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
      <Compile Include="Assets\Scripts\Menu\Config\ControlSettings.cs" />
      <Compile Include="Assets\Scripts\Game\Player\PlayerMovement.cs" />
      <Compile Include="Assets\3rdParty\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
-     <Compile Include="Assets\Scripts\Management\Managers\GameManager.cs" />
+     <Compile Include="Assets\Scripts\Management\GameManager.cs" />
      <Compile Include="Assets\Scripts\Game\Enemies\DifferentialScripts\DistanceScripts\DistanceAttack.cs" />
      <Compile Include="Assets\Scripts\Management\Data\GameData.cs" />
      <Compile Include="Assets\3rdParty\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
@@ -76,6 +77,7 @@
      <Compile Include="Assets\3rdParty\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
      <Compile Include="Assets\3rdParty\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
      <Compile Include="Assets\3rdParty\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
+     <Compile Include="Assets\Scripts\Management\ConfigurationValues.cs" />
      <Compile Include="Assets\3rdParty\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
      <Compile Include="Assets\3rdParty\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
      <Compile Include="Assets\3rdParty\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
@@ -83,7 +85,7 @@
      <Compile Include="Assets\Scripts\Game\Enemies\EnemyController.cs" />
      <Compile Include="Assets\3rdParty\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\Game\Player\Player.cs" />
-     <Compile Include="Assets\Scripts\Management\Managers\PlayerInput.cs" />
+     <Compile Include="Assets\Scripts\Game\Player\PlayerInput.cs" />
      <Compile Include="Assets\Scripts\Management\LevelPassed.cs" />
      <Compile Include="Assets\Scripts\Menu\Config\GeneralSettings.cs" />
      <Compile Include="Assets\3rdParty\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />

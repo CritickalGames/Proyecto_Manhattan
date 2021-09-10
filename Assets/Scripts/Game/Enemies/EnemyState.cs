@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class EnemyState : MonoBehaviour
 {
-    [SerializeField]public string type;
+    [SerializeField] private string type;
     private EnemyController enemyScript;
     private Dictionary<string, bool> state = new Dictionary<string, bool>();
-
     #region Getters & Setters
     public void SetState(string name, bool value)
     {
@@ -30,6 +29,10 @@ public class EnemyState : MonoBehaviour
     public void SetTriggerState(string name)
     {
         this.enemyScript.SetAnimationTrigger(name);
+    }
+    public string GetEnemyType()
+    {
+        return this.type;
     }
     #endregion
 
