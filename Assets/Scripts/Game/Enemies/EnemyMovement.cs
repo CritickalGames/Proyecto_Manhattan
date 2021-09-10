@@ -2,11 +2,10 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    [HideInInspector]public EnemyController enemyScript;
-    [SerializeField]private float movementSpeed;
+    [System.NonSerialized]public EnemyController enemyScript;
+    [SerializeField] private float movementSpeed;
     private Rigidbody2D enemyRb;
     private bool facingRight = false;
-    
     void Awake()
     {
         this.enemyScript = GetComponent<EnemyController>();

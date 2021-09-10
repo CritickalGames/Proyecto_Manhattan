@@ -4,9 +4,9 @@ using UnityEngine.UI;
 
 public class LevelController : MonoBehaviour
 {
-    private Image[] countryImage = new Image[4];
-    private Button[] countryButton = new Button[4];
-    private string[] countryName = new string[4];
+    Image[] countryImage = new Image[4];
+    Button[] countryButton = new Button[4];
+    string[] countryName = new string[4];
 
     void Start()
     {
@@ -22,7 +22,7 @@ public class LevelController : MonoBehaviour
         {
             countryImage[i] = GameObject.Find(countryName[i]).GetComponent<Image>();
             countryButton[i] = GameObject.Find(countryName[i]+"Button").GetComponent<Button>();
-            if (LevelManager.lM.GetCountry(countryName[i]))
+            if (GameManager.gM.GetCountry(countryName[i]))
             {
                 countryImage[i].color = new Color(countryImage[i].color.r, countryImage[i].color.g, countryImage[i].color.b, 1f);
                 countryButton[i].interactable = true;

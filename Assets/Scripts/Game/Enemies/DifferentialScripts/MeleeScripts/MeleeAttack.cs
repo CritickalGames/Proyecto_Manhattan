@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class MeleeAttack : MonoBehaviour
 {
-    [HideInInspector]public EnemyController enemyScript;
-    [SerializeField]private Transform hitTransform;
-    [SerializeField]private LayerMask playerMask;
-    [SerializeField]private float attackRange;
-    [SerializeField]private int normalDamage = 20;
+    [System.NonSerialized]public EnemyController enemyScript;
+    [SerializeField] private Transform hitTransform;
+    [SerializeField] private LayerMask playerMask;
+    [SerializeField] private float attackRange;
+    [SerializeField] private int normalDamage = 20;
     void Awake()
     {
         this.enemyScript = GetComponent<EnemyController>();
