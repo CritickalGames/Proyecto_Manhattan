@@ -17,10 +17,7 @@ public class MeleeAttack : MonoBehaviour
         foreach (Collider2D player in hitPlayer)
         {
             if (player.gameObject.GetComponent<PlayerState>().GetState("IsDead") == false)
-            {
                 player.GetComponent<Player>().Damaged(this.normalDamage);
-                AudioManager.aM.Play("Hit");
-            }
         }
     }
     public void EndAttack()

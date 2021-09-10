@@ -33,8 +33,4 @@ public class LevelController : MonoBehaviour
     {
         SceneManager.LoadScene(levelScene);
     }
-    public void PlaySound(string sound)
-    {
-        AudioManager.aM.Play(sound);
-    }
 }

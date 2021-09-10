@@ -12,8 +12,4 @@ public class MenuManager : MonoBehaviour
     {
         Application.Quit();
     }
-    public void PlaySound(string sound)
-    {
-        AudioManager.aM.Play(sound);
-    }
 }
