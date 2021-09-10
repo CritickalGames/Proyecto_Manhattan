@@ -108,8 +108,4 @@ public class PauseController : MonoBehaviour
                 break;
         }
     }
-    public void PlaySound(string sound)
-    {
-        AudioManager.aM.Play(sound);
-    }
 }
