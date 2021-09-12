@@ -1596,6 +1596,16 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
+  - first: {x: -37, y: 5, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 2
+      m_TileSpriteIndex: 8
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
   - first: {x: -52, y: 16, z: 0}
     second:
       serializedVersion: 2
@@ -19282,8 +19292,8 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: 948211900f830614dac4cf2798b770b2, type: 2}
   - m_RefCount: 104
     m_Data: {fileID: 11400000, guid: 336c1038f75b6404cb65bd66344069da, type: 2}
   - m_RefCount: 3
@@ -19317,8 +19327,8 @@ Tilemap:
     m_Data: {fileID: 158994738388013377, guid: 206859bbfbda33d419b973df45a53e33, type: 3}
   - m_RefCount: 3
     m_Data: {fileID: -8321706258587975147, guid: 206859bbfbda33d419b973df45a53e33, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 4099902767569298868, guid: e47d463113c203943937867978db2e5c, type: 3}
   - m_RefCount: 1560
     m_Data: {fileID: -1163325505699489591, guid: 206859bbfbda33d419b973df45a53e33, type: 3}
   - m_RefCount: 104
@@ -19326,7 +19336,7 @@ Tilemap:
   - m_RefCount: 104
     m_Data: {fileID: -7332309634377090197, guid: 206859bbfbda33d419b973df45a53e33, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 1866
+  - m_RefCount: 1867
     m_Data:
       e00: 1
       e01: 0
@@ -19345,7 +19355,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 1866
+  - m_RefCount: 1867
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   - m_RefCount: 0
     m_Data: {r: 2.6263e-41, g: 2.6263e-41, b: 2.6263e-41, a: 2.6263e-41}
@@ -36519,6 +36529,10 @@ PrefabInstance:
     - target: {fileID: 4116696232245173617, guid: e298c8acaf4c8224a8e1a1577308b6dd, type: 3}
       propertyPath: m_Name
       value: Dimitri
+      objectReference: {fileID: 0}
+    - target: {fileID: 4116696232245173621, guid: e298c8acaf4c8224a8e1a1577308b6dd, type: 3}
+      propertyPath: meleeCooldown
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4116696232245173629, guid: e298c8acaf4c8224a8e1a1577308b6dd, type: 3}
       propertyPath: m_RootOrder

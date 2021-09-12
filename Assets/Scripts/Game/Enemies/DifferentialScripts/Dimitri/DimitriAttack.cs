@@ -7,8 +7,9 @@ public class DimitriAttack : MonoBehaviour
     [HideInInspector]public EnemyController enemyScript;
     #region Thrower
     [SerializeField]private Transform shootingPoint;
-    [SerializeField]private GameObject bulletPrefab;
-    private Transform bulletParent;
+    [SerializeField]private GameObject bottlePrefab;
+    [SerializeField, Range(0,8f)]private float throwForce;
+    private Transform bottleParent;
     #endregion
     #region Melee
     [SerializeField]private Transform hitTransform;
@@ -23,10 +24,12 @@ public class DimitriAttack : MonoBehaviour
     }
     public void Shoot()
     {
-        this.enemyScript.enemyAudio.Play("EnemyShoot");
-        bulletParent = GameObject.Find("/Enemies/BulletParent").GetComponent<Transform>();
-        GameObject bullet = Instantiate(this.bulletPrefab, this.shootingPoint.position, Quaternion.identity, this.bulletParent);
-        bullet.GetComponent<BulletScript>().direction = -this.enemyScript.DiAIScript.moveDirection;
+        //this.enemyScript.enemyAudio.Play("EnemyThrow");
+        bottleParent = GameObject.Find("/Enemies/BulletParent").GetComponent<Transform>();
+        GameObject bottle = Instantiate(this.bottlePrefab, this.shootingPoint.position, Quaternion.identity, this.bottleParent);
+        Rigidbody2D rb = bottle.GetComponent<Rigidbody2D>();
+        Vector3 dir = -(this.transform.position - enemyScript.DiAIScript.target.transform.position).normalized;
+        rb.AddForce(dir * throwForce * 100);
     }
     public void EndShoot()
     {

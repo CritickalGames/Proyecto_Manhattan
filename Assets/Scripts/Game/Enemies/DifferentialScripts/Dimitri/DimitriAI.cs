@@ -64,11 +64,11 @@ public class DimitriAI : MonoBehaviour
         if (this.distanceEnemyPlayer < this.followRange && this.distanceEnemyPlayer >= this.throwingRange && !this.enemyScript.stateScript.GetState("Shooting") && !this.enemyScript.stateScript.GetState("Hitting"))
             SetMovement(this.moveDirection);
         else if (this.distanceEnemyPlayer < this.throwingRange && this.distanceEnemyPlayer >= this.meleeFollowRange && Time.time >= this.nextThrow && !this.enemyScript.stateScript.GetState("Shooting") && !this.enemyScript.stateScript.GetState("Hitting"))
-            OnThrowingArea(this.moveDirection);
+            OnThrowingArea();
         else if (this.distanceEnemyPlayer < meleeFollowRange && this.distanceEnemyPlayer >= this.meleeRange && !this.enemyScript.stateScript.GetState("Shooting") && !this.enemyScript.stateScript.GetState("Hitting"))
             SetMovement(this.moveDirection);
         else if (this.distanceEnemyPlayer <= this.meleeRange && Time.time >= this.nextHit && !this.enemyScript.stateScript.GetState("Shooting") && !this.enemyScript.stateScript.GetState("Hitting"))
-            OnHitArea(this.moveDirection);
+            OnHitArea();
         else 
             SetMovement(0);
     }
@@ -81,12 +81,12 @@ public class DimitriAI : MonoBehaviour
             this.enemyScript.movementScript.ManageFlip(this.moveDirection);
 
     }
-    void OnThrowingArea(int direction)
+    void OnThrowingArea()
     {
         SetMovement(0);
         this.enemyScript.stateScript.SetState("Shooting", true);
     }
-    void OnHitArea(int direction)
+    void OnHitArea()
     {
         SetMovement(0);
         this.enemyScript.stateScript.SetState("Hitting", true);
