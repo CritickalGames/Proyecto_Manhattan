@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class HealthManage : MonoBehaviour
 {
-    [HideInInspector]public EnemyState stateScript;
+    [HideInInspector]public EnemyController enemyScript;
     [SerializeField]public int maxHealth = 100;
     private int currentHealth;
     
     void Awake()
     {
-        this.stateScript = this.GetComponent<EnemyState>();
+        this.enemyScript = this.GetComponent<EnemyController>();
     }
     void Start()
     {
@@ -18,8 +18,8 @@ public class HealthManage : MonoBehaviour
     }
     public void Damaged(int damage)
     {
-        AudioManager.aM.Play("EnemyHurt");
-        this.stateScript.SetTriggerState("Hurt");
+        enemyScript.enemyAudio.Play("EnemyHurt");
+        this.enemyScript.stateScript.SetTriggerState("Hurt");
         this.currentHealth -= damage;
         if (this.currentHealth <= 0)
         {
@@ -28,7 +28,7 @@ public class HealthManage : MonoBehaviour
     }
     void Die()
     {
-        this.stateScript.SetState("IsDead", true);
+        this.enemyScript.stateScript.SetState("IsDead", true);
         this.enabled = false;
         GameManager.gM.eM.SubtractEnemy();
     }

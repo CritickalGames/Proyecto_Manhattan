@@ -79,6 +79,7 @@ GameObject:
   - component: {fileID: 2920495707910025692}
   - component: {fileID: 5400162075633504282}
   - component: {fileID: 486918426285508251}
+  - component: {fileID: 464967010712015820}
   m_Layer: 7
   m_Name: Distance
   m_TagString: Melee
@@ -222,6 +223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638e052c69715614eb7f96dc09167c75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stateScript: {fileID: 0}
   maxHealth: 30
 --- !u!114 &5016984439398839411
 MonoBehaviour:
@@ -235,6 +237,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3a2501b6dd9c1c43becc42ca2c4c9fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementScript: {fileID: 0}
+  mAttackScript: {fileID: 0}
+  mAIScript: {fileID: 0}
+  dAttackScript: {fileID: 0}
+  dAIScript: {fileID: 0}
+  stateScript: {fileID: 0}
+  enemyAnimator: {fileID: 0}
   itemPrefab: {fileID: 5524144755834015241, guid: 911737d9a56d95241918d8e187f393b0, type: 3}
 --- !u!114 &4615866774107525925
 MonoBehaviour:
@@ -248,11 +257,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3b8100088c143349b965a7a7321cac8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyScript: {fileID: 0}
+  target: {fileID: 0}
   checkDistance: 0.22
   groundCheck: {fileID: 7071514334901810746}
-  obstacleLayer:
-    serializedVersion: 2
-    m_Bits: 2048
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -275,6 +283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5c98503888b4cb458351e37de3a04f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyScript: {fileID: 0}
   shootingPoint: {fileID: 7194385535750157191}
   bulletPrefab: {fileID: 2614891680001679877, guid: 3b7199d16b956404c97d46e8252d3efc, type: 3}
 --- !u!114 &5400162075633504282
@@ -289,6 +298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69cac7ed4647b984692bc1f4581bb22f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyScript: {fileID: 0}
   movementSpeed: 4
 --- !u!114 &486918426285508251
 MonoBehaviour:
@@ -303,6 +313,43 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: Distance
+--- !u!114 &464967010712015820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5616440117558290491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49d2347229566744b9169e118e7ca953, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: EnemyHit
+    clip: {fileID: 8300000, guid: 5034181eecbf0c441aa2f7c6fe843ec9, type: 3}
+    group: {fileID: 1147615277765096762, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
+    volume: 0.5
+    pitch: 1.15
+    loop: 0
+  - name: EnemyHurt
+    clip: {fileID: 8300000, guid: 6257a4d500d4d5b41898a2fced2f7e15, type: 3}
+    group: {fileID: 1147615277765096762, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
+    volume: 0.5
+    pitch: 1.15
+    loop: 0
+  - name: EnemyShoot
+    clip: {fileID: 8300000, guid: 50c05bfaf5b0eb844a0c8d526196209c, type: 3}
+    group: {fileID: 1147615277765096762, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
+    volume: 0.5
+    pitch: 1.15
+    loop: 0
+  - name: EnemyStep
+    clip: {fileID: 8300000, guid: 400ad27d88adc5049aa9bc24845e5044, type: 3}
+    group: {fileID: 1147615277765096762, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
+    volume: 0.5
+    pitch: 1
+    loop: 0
 --- !u!1 &8499697527381836264
 GameObject:
   m_ObjectHideFlags: 0

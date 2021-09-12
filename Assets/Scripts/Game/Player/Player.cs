@@ -5,6 +5,7 @@ public class Player : MonoBehaviour
     [HideInInspector]public PlayerState stateScript;
     [HideInInspector]public PlayerMovement movementScript;
     [HideInInspector]public PlayerAttack attackScript;
+    [HideInInspector]public EntityAudio playerAudio;
     [HideInInspector]public Animator playerAnimator;
     private HealthBar healthBar;
 
@@ -20,6 +21,7 @@ public class Player : MonoBehaviour
         this.stateScript = this.GetComponent<PlayerState>();
         this.movementScript = this.GetComponent<PlayerMovement>();
         this.attackScript = this.GetComponent<PlayerAttack>();
+        this.playerAudio = this.GetComponent<EntityAudio>();
         this.playerAnimator = this.GetComponent<Animator>();
         this.healthBar = GameObject.Find("/UI/Canvas/HealthBar").GetComponent<HealthBar>();
     }
@@ -29,7 +31,7 @@ public class Player : MonoBehaviour
     }
     public void Damaged(int damage)
     {
-        AudioManager.aM.Play("Hurt");
+        playerAudio.Play("Hurt");
         this.playerAnimator.SetTrigger("Hurt");
         GameManager.gM.currentPlayerHealth = GameManager.gM.currentPlayerHealth - damage;
         this.healthBar.SetHealth(GameManager.gM.currentPlayerHealth);
