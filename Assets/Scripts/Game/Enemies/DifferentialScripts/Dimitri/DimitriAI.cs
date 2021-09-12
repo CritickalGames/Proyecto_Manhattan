@@ -1,6 +1,8 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class DistanceAI : MonoBehaviour
+public class DimitriAI : MonoBehaviour
 {
     [HideInInspector]public EnemyController enemyScript;
     [HideInInspector]public GameObject target;
@@ -9,19 +11,25 @@ public class DistanceAI : MonoBehaviour
     [SerializeField]private LayerMask groundLayer;
     [SerializeField]private bool colideWithPlatforms;
     [SerializeField]private Transform detectingPoint;
-    [SerializeField, Range(0.0f, 10.0f)]private float followRange;
-    [SerializeField, Range(0.0f, 10.0f)]private float shootingRange;
-    [SerializeField, Range(0.0f, 10.0f)]private float escapingRange;
-    [SerializeField, Range(0.0f, 10.0f)]private float shootingYRange;
-    [SerializeField, Range(0.0f, 2.0f)]private float shootCooldown;
-    private float nextShoot;
+    [SerializeField, Range(0.0f, 15.0f)]private float followRange;
+    [SerializeField, Range(0.0f, 10.0f)]private float throwingRange;
+    [SerializeField, Range(0.0f, 10.0f)]private float meleeFollowRange;
+    [SerializeField, Range(0.0f, 10.0f)]private float meleeRange;
+    [SerializeField, Range(0.0f, 2.0f)]private float throwCooldown;
+    [SerializeField, Range(0.0f, 2.0f)]private float meleeCooldown;
+    private float nextThrow;
+    private float nextHit;
     private float distanceEnemyPlayer;
-    [System.NonSerialized]public int moveDirection;
+    [HideInInspector]public int moveDirection;
 
     #region Getters & Setters
-    public void SetNextShoot()
+    public void SetNextThrow()
     {
-        nextShoot = Time.time + shootCooldown;
+        nextThrow = Time.time + throwCooldown;
+    }
+    public void SetNextHit()
+    {
+        nextHit = Time.time + meleeCooldown;
     }
     #endregion
 
@@ -33,7 +41,7 @@ public class DistanceAI : MonoBehaviour
     {
         if (this.enemyScript.stateScript.GetState("IsDead"))
             this.enabled = false;
-        bool grounded = Physics2D.OverlapCircle(this.groundCheck.position, checkDistance, this.groundLayer);
+        bool grounded = Physics2D.OverlapCircle(this.groundCheck.position, this.checkDistance, this.groundLayer);
         this.enemyScript.stateScript.SetState("Grounded", grounded);
         this.target = GameManager.gM.pM.playerObject;
         if (this.target != null)
@@ -52,14 +60,15 @@ public class DistanceAI : MonoBehaviour
     void ManageAI()
     {
         this.distanceEnemyPlayer = Vector2.Distance(this.detectingPoint.position, this.target.transform.position);
-        float yDistance = Mathf.Abs(this.detectingPoint.position.y - this.target.transform.position.y);
         SetDirection(this.detectingPoint.position.x - this.target.transform.position.x);
-        if (this.distanceEnemyPlayer < this.followRange && this.distanceEnemyPlayer >= this.shootingRange && !this.enemyScript.stateScript.GetState("Attacking"))
+        if (this.distanceEnemyPlayer < this.followRange && this.distanceEnemyPlayer >= this.throwingRange && !this.enemyScript.stateScript.GetState("Attacking"))
             SetMovement(this.moveDirection);
-        else if (this.distanceEnemyPlayer < this.shootingRange && this.distanceEnemyPlayer >= this.escapingRange && yDistance <= shootingYRange && Time.time >= this.nextShoot && !this.enemyScript.stateScript.GetState("Attacking"))
-            OnShootingArea(this.moveDirection);
-        else if (this.distanceEnemyPlayer <= this.escapingRange && !this.enemyScript.stateScript.GetState("Attacking"))
-            SetMovement(-this.moveDirection);
+        else if (this.distanceEnemyPlayer < this.throwingRange && this.distanceEnemyPlayer >= this.meleeFollowRange && Time.time >= this.nextThrow && !this.enemyScript.stateScript.GetState("Attacking"))
+            OnThrowingArea(this.moveDirection);
+        else if (this.distanceEnemyPlayer < meleeFollowRange && this.distanceEnemyPlayer >= this.meleeRange && !this.enemyScript.stateScript.GetState("Attacking"))
+            SetMovement(this.moveDirection);
+        else if (this.distanceEnemyPlayer <= this.meleeRange && Time.time >= this.nextHit && !this.enemyScript.stateScript.GetState("Attacking"))
+            OnHitArea(this.moveDirection);
         else 
             SetMovement(0);
     }
@@ -72,10 +81,15 @@ public class DistanceAI : MonoBehaviour
             this.enemyScript.movementScript.ManageFlip(this.moveDirection);
 
     }
-    void OnShootingArea(int direction)
+    void OnThrowingArea(int direction)
     {
         SetMovement(0);
-        this.enemyScript.stateScript.SetState("Attacking", true);
+        //this.enemyScript.stateScript.SetState("Attacking", true);
+    }
+    void OnHitArea(int direction)
+    {
+        SetMovement(0);
+        //this.enemyScript.stateScript.SetState("Attacking", true);
     }
     void SetDirection(float distance)
     {
@@ -96,5 +110,9 @@ public class DistanceAI : MonoBehaviour
         if (this.groundCheck == null)
             return;
         Gizmos.DrawWireSphere(this.groundCheck.position, this.checkDistance);
+        Gizmos.DrawWireSphere(this.detectingPoint.position, this.followRange);
+        Gizmos.DrawWireSphere(this.detectingPoint.position, this.throwingRange);
+        Gizmos.DrawWireSphere(this.detectingPoint.position, this.meleeFollowRange);
+        Gizmos.DrawWireSphere(this.detectingPoint.position, this.meleeRange);
     }
 }
