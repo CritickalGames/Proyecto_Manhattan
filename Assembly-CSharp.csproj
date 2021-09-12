@@ -108,6 +108,10 @@
      <Compile Include="Assets\Scripts\Management\Managers\PlayerManager.cs" />
      <Compile Include="Assets\Scripts\Management\Managers\LevelManager.cs" />
      <Compile Include="Assets\Scripts\Management\Managers\EnemyManager.cs" />
+     <Compile Include="Assets\Scripts\Management\ConfigurationValues.cs" />
+     <Compile Include="Assets\Scripts\Management\Management\AudioManager.cs" />
+     <Compile Include="Assets\Scripts\Menu\InfiniteScroll.cs" />
+     <Compile Include="Assets\Scripts\Game\Audio\Sound.cs" />
      <None Include="Assets\3rdParty\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\3rdParty\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\3rdParty\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
