@@ -7,12 +7,12 @@ using System.Collections.Generic;
 
 public class GeneralSettings : MonoBehaviour
 {
-    [SerializeField] AudioMixer audioControl;
-    [SerializeField] TMP_Dropdown resolutionDropDown;
-    [SerializeField] TMP_Dropdown qualityDropDown;
-    [SerializeField] Slider volumeSlider;
-    [SerializeField] Toggle fullScreenToggle;
-    int savedRes;
+    [SerializeField]private AudioMixer audioControl;
+    [SerializeField]private TMP_Dropdown resolutionDropDown;
+    [SerializeField]private TMP_Dropdown qualityDropDown;
+    [SerializeField]private Slider volumeSlider;
+    [SerializeField]private Toggle fullScreenToggle;
+    private int savedRes;
 
     #region Getters & Setters
     public int GetQualityIndex()

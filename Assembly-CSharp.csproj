@@ -67,7 +67,7 @@
      <Compile Include="Assets\Scripts\Menu\Config\ControlSettings.cs" />
      <Compile Include="Assets\Scripts\Game\Player\PlayerMovement.cs" />
      <Compile Include="Assets\3rdParty\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
-     <Compile Include="Assets\Scripts\Management\GameManager.cs" />
+     <Compile Include="Assets\Scripts\Management\Managers\GameManager.cs" />
      <Compile Include="Assets\Scripts\Game\Enemies\DifferentialScripts\DistanceScripts\DistanceAttack.cs" />
      <Compile Include="Assets\Scripts\Management\Data\GameData.cs" />
      <Compile Include="Assets\3rdParty\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
@@ -83,7 +83,7 @@
      <Compile Include="Assets\Scripts\Game\Enemies\EnemyController.cs" />
      <Compile Include="Assets\3rdParty\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\Game\Player\Player.cs" />
-     <Compile Include="Assets\Scripts\Game\Player\PlayerInput.cs" />
+     <Compile Include="Assets\Scripts\Management\Managers\PlayerInput.cs" />
      <Compile Include="Assets\Scripts\Management\LevelPassed.cs" />
      <Compile Include="Assets\Scripts\Menu\Config\GeneralSettings.cs" />
      <Compile Include="Assets\3rdParty\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
@@ -105,7 +105,9 @@
      <Compile Include="Assets\Scripts\Game\Enemies\DifferentialScripts\MeleeScripts\MeleeAI.cs" />
      <Compile Include="Assets\3rdParty\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
      <Compile Include="Assets\3rdParty\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
-     <Compile Include="Assets\Scripts\Management\EnemyCounter.cs" />
+     <Compile Include="Assets\Scripts\Management\Managers\PlayerManager.cs" />
+     <Compile Include="Assets\Scripts\Management\Managers\LevelManager.cs" />
+     <Compile Include="Assets\Scripts\Management\Managers\EnemyManager.cs" />
      <Compile Include="Assets\Scripts\Management\ConfigurationValues.cs" />
      <Compile Include="Assets\Scripts\Management\Management\AudioManager.cs" />
      <Compile Include="Assets\Scripts\Menu\InfiniteScroll.cs" />

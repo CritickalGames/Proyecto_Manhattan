@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class MeleeAI : MonoBehaviour
 {
-    [System.NonSerialized]public EnemyController enemyScript;
-    [System.NonSerialized]public GameObject target;
-    [System.NonSerialized]private bool caught = false;
+    [HideInInspector]public EnemyController enemyScript;
+    [HideInInspector]public GameObject target;
+    [HideInInspector]private bool caught = false;
     [SerializeField]private Transform groundCheck;
     [SerializeField]private float checkDistance;
     [SerializeField]private LayerMask obstacleLayer;
@@ -40,14 +40,12 @@ public class MeleeAI : MonoBehaviour
             this.enabled = false;
         bool grounded = Physics2D.OverlapCircle(this.groundCheck.position, checkDistance, this.groundLayer);
         this.enemyScript.stateScript.SetState("Grounded", grounded);
-        if (GameManager.gM.GetPlayerObject() != null)
-        {
-            this.target = GameManager.gM.GetPlayerObject();
+        this.target = GameManager.gM.pM.playerObject;
+        if (this.target != null)
             if (PlayerIsAlive())
                 ManageAI();
             else 
                 this.enemyScript.movementScript.ManageMovement(0);
-        }
     }
     bool PlayerIsAlive()
     {
