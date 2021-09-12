@@ -76,6 +76,7 @@ GameObject:
   - component: {fileID: 5497455151813261252}
   - component: {fileID: 5497455151813261253}
   - component: {fileID: 5497455151813261255}
+  - component: {fileID: 4916616976801734316}
   - component: {fileID: 5497455151813261254}
   m_Layer: 6
   m_Name: Player
@@ -213,6 +214,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9dabbb2df9056c4dbcb8bc2f64d1c1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stateScript: {fileID: 0}
+  movementScript: {fileID: 0}
+  attackScript: {fileID: 0}
+  playerAnimator: {fileID: 0}
 --- !u!114 &5497455151813261253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,6 +230,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6ef6d1c6a4f11e42b953f3821cb2acb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pressedDown: 0
   extraJumps: 1
   dashDistance: 3
   jumpSpeed: 11
@@ -259,6 +265,43 @@ MonoBehaviour:
   normalDamage: 20
   specialDamage: 50
   attackCooldown: 0.1
+--- !u!114 &4916616976801734316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5497455151813261261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49d2347229566744b9169e118e7ca953, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Hit
+    clip: {fileID: 8300000, guid: 5034181eecbf0c441aa2f7c6fe843ec9, type: 3}
+    group: {fileID: 321012550716680038, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
+    volume: 1
+    pitch: 1.15
+    loop: 0
+  - name: Hurt
+    clip: {fileID: 8300000, guid: 6257a4d500d4d5b41898a2fced2f7e15, type: 3}
+    group: {fileID: 321012550716680038, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
+    volume: 1
+    pitch: 1.15
+    loop: 0
+  - name: Shoot
+    clip: {fileID: 8300000, guid: 50c05bfaf5b0eb844a0c8d526196209c, type: 3}
+    group: {fileID: 321012550716680038, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: Step
+    clip: {fileID: 8300000, guid: 400ad27d88adc5049aa9bc24845e5044, type: 3}
+    group: {fileID: 321012550716680038, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
 --- !u!95 &5497455151813261254
 Animator:
   serializedVersion: 3

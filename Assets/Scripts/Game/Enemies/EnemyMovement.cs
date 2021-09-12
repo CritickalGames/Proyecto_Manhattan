@@ -42,6 +42,6 @@ public class EnemyMovement : MonoBehaviour
     }
     public void Steps()
     {
-        AudioManager.aM.Play("EnemyStep");
+        this.enemyScript.enemyAudio.Play("EnemyStep");
     }
 }
