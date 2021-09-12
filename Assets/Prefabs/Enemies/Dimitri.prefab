@@ -294,6 +294,7 @@ MonoBehaviour:
   shootingPoint: {fileID: 1659431774329079501}
   bottlePrefab: {fileID: 2614891680001679877, guid: bf16040d6e9579d4596295dfbd001b8d, type: 3}
   throwForce: 8
+  throwHeight: 2
   hitTransform: {fileID: 5517100925567022334}
   playerMask:
     serializedVersion: 2

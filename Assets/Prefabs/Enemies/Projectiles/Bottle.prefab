@@ -136,4 +136,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxTime: 5
   damage: 10
-  explodeRange: 0.46
+  explodeRange: 0.4

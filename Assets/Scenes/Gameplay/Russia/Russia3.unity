@@ -36530,6 +36530,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dimitri
       objectReference: {fileID: 0}
+    - target: {fileID: 4116696232245173620, guid: e298c8acaf4c8224a8e1a1577308b6dd, type: 3}
+      propertyPath: throwHeight
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4116696232245173621, guid: e298c8acaf4c8224a8e1a1577308b6dd, type: 3}
       propertyPath: meleeCooldown
       value: 0.5
