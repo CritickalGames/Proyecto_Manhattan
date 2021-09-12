@@ -10,7 +10,7 @@ public class EnemyManager : MonoBehaviour
     {
         GameManager.gM.eM = this;
         this.enemyParent = GameObject.Find("/Enemies").GetComponent<Transform>();
-        this.enemiesLeft = this.enemyParent.childCount;
+        this.enemiesLeft = this.enemyParent.childCount - 1;
         ListEnemies();
     }
     private void ListEnemies()
