@@ -20,7 +20,7 @@ public class DistanceAttack : MonoBehaviour
     }
     public void EndAttack()
     {
-        this.enemyScript.stateScript.SetState("Attacking", false);
+        this.enemyScript.stateScript.SetState("Shooting", false);
         this.enemyScript.dAIScript.SetNextShoot();
     }
 }

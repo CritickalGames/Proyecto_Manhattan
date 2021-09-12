@@ -26,7 +26,7 @@ public class MeleeAttack : MonoBehaviour
     }
     public void EndAttack()
     {
-        this.enemyScript.stateScript.SetState("Attacking", false);
+        this.enemyScript.stateScript.SetState("Hitting", false);
         this.enemyScript.mAIScript.SetNextHit();
     }
     void OnDrawGizmosSelected()

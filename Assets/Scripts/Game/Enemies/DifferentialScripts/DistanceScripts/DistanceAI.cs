@@ -54,11 +54,11 @@ public class DistanceAI : MonoBehaviour
         this.distanceEnemyPlayer = Vector2.Distance(this.detectingPoint.position, this.target.transform.position);
         float yDistance = Mathf.Abs(this.detectingPoint.position.y - this.target.transform.position.y);
         SetDirection(this.detectingPoint.position.x - this.target.transform.position.x);
-        if (this.distanceEnemyPlayer < this.followRange && this.distanceEnemyPlayer >= this.shootingRange && !this.enemyScript.stateScript.GetState("Attacking"))
+        if (this.distanceEnemyPlayer < this.followRange && this.distanceEnemyPlayer >= this.shootingRange && !this.enemyScript.stateScript.GetState("Shooting"))
             SetMovement(this.moveDirection);
-        else if (this.distanceEnemyPlayer < this.shootingRange && this.distanceEnemyPlayer >= this.escapingRange && yDistance <= shootingYRange && Time.time >= this.nextShoot && !this.enemyScript.stateScript.GetState("Attacking"))
+        else if (this.distanceEnemyPlayer < this.shootingRange && this.distanceEnemyPlayer >= this.escapingRange && yDistance <= shootingYRange && Time.time >= this.nextShoot && !this.enemyScript.stateScript.GetState("Shooting"))
             OnShootingArea(this.moveDirection);
-        else if (this.distanceEnemyPlayer <= this.escapingRange && !this.enemyScript.stateScript.GetState("Attacking"))
+        else if (this.distanceEnemyPlayer <= this.escapingRange && !this.enemyScript.stateScript.GetState("Shooting"))
             SetMovement(-this.moveDirection);
         else 
             SetMovement(0);
@@ -75,7 +75,7 @@ public class DistanceAI : MonoBehaviour
     void OnShootingArea(int direction)
     {
         SetMovement(0);
-        this.enemyScript.stateScript.SetState("Attacking", true);
+        this.enemyScript.stateScript.SetState("Shooting", true);
     }
     void SetDirection(float distance)
     {

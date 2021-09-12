@@ -36452,7 +36452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c484e3bffcc5b740a307f0da9a95fff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: Distance
+  type: Dimitri
 --- !u!114 &847321636403016257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36632,8 +36632,8 @@ MonoBehaviour:
     m_Bits: 2816
   colideWithPlatforms: 0
   detectingPoint: {fileID: 5848294906268007449}
-  followRange: 12
-  throwingRange: 9.5
+  followRange: 13
+  throwingRange: 10
   meleeFollowRange: 2.5
   meleeRange: 1
   throwCooldown: 0

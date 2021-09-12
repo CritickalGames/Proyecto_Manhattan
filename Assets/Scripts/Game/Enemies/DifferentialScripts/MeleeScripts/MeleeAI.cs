@@ -59,10 +59,10 @@ public class MeleeAI : MonoBehaviour
         this.distanceEnemyPlayer = this.transform.position.x - this.target.transform.position.x;
         this.isInRange = (this.transform.position.y <= this.target.transform.position.y + this.followYRange) && (this.transform.position.y >= this.target.transform.position.y - this.followYRange);
         DetectPlayer();
-        if (Time.time >= this.nextHit && this.caught && this.enemyScript.stateScript.GetState("Attacking") == false)
+        if (Time.time >= this.nextHit && this.caught && this.enemyScript.stateScript.GetState("Hitting") == false)
         {
             this.nextHit = Time.time + this.hitCooldown;
-            this.enemyScript.stateScript.SetState("Attacking", true);
+            this.enemyScript.stateScript.SetState("Hitting", true);
         }
     }
     private void DetectPlayer()
