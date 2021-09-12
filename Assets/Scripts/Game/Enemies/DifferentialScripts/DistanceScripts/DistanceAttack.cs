@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class DistanceAttack : MonoBehaviour
 {
-    [System.NonSerialized]public EnemyController enemyScript;
-    [SerializeField] private Transform shootingPoint;
-    [SerializeField] private GameObject bulletPrefab;
+    [HideInInspector]public EnemyController enemyScript;
+    [SerializeField]private Transform shootingPoint;
+    [SerializeField]private GameObject bulletPrefab;
     private Transform bulletParent;
 
     void Awake()
@@ -14,7 +14,7 @@ public class DistanceAttack : MonoBehaviour
     public void Attack()
     {
         AudioManager.aM.Play("EnemyShoot");
-        bulletParent = GameObject.Find("/NPC/Enemies/BulletParent").GetComponent<Transform>();
+        bulletParent = GameObject.Find("/Enemies/BulletParent").GetComponent<Transform>();
         GameObject bullet = Instantiate(this.bulletPrefab, this.shootingPoint.position, Quaternion.identity, this.bulletParent);
         bullet.GetComponent<BulletScript>().direction = -this.enemyScript.dAIScript.moveDirection;
     }
