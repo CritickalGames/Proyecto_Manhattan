@@ -13,7 +13,7 @@ public class EnemyState : MonoBehaviour
     {
         if (this.state[name] != value)
             this.state[name] = value;
-        if ((name != "Grounded") && ((type == "Distance" && name != "Hitting") || ((type == "Melee" || type == "FirstBoss") && name != "Shooting")))
+        if (!(name == "Grounded") && !(type == "Distance" && name == "Hitting") && !(type == "Melee" && name == "Shooting") && !(type == "FirstBoss" && name == "Shooting"))
             this.SetAnimator(name);
     }
     public bool GetState(string name)

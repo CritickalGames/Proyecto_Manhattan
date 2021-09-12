@@ -8,6 +8,8 @@ public class EnemyController : MonoBehaviour
     [HideInInspector]public MeleeAI mAIScript;
     [HideInInspector]public DistanceAttack dAttackScript;
     [HideInInspector]public DistanceAI dAIScript;
+    [HideInInspector]public DimitriAttack DiAttackScript;
+    [HideInInspector]public DimitriAI DiAIScript;
     [HideInInspector]public EnemyState stateScript;
     [HideInInspector]public EntityAudio enemyAudio;
     [HideInInspector]public Animator enemyAnimator;
@@ -33,6 +35,8 @@ public class EnemyController : MonoBehaviour
         this.mAIScript = this.GetComponent<MeleeAI>();
         this.dAttackScript = this.GetComponent<DistanceAttack>();
         this.dAIScript = this.GetComponent<DistanceAI>();
+        this.DiAttackScript = this.GetComponent<DimitriAttack>();
+        this.DiAIScript = this.GetComponent<DimitriAI>();
         this.enemyAudio = this.GetComponent<EntityAudio>();
         this.enemyAnimator = this.GetComponent<Animator>();
     }
