@@ -2,12 +2,14 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    [HideInInspector]public HealthManage healthScript;
     [HideInInspector]public EnemyMovement movementScript;
     [HideInInspector]public MeleeAttack mAttackScript;
     [HideInInspector]public MeleeAI mAIScript;
     [HideInInspector]public DistanceAttack dAttackScript;
     [HideInInspector]public DistanceAI dAIScript;
     [HideInInspector]public EnemyState stateScript;
+    [HideInInspector]public EntityAudio enemyAudio;
     [HideInInspector]public Animator enemyAnimator;
     [SerializeField]private GameObject itemPrefab;
 
@@ -24,12 +26,14 @@ public class EnemyController : MonoBehaviour
     
     void Awake()
     {
+        this.healthScript = this.GetComponent<HealthManage>();
         this.movementScript = this.GetComponent<EnemyMovement>();
         this.stateScript = this.GetComponent<EnemyState>();
         this.mAttackScript = this.GetComponent<MeleeAttack>();
         this.mAIScript = this.GetComponent<MeleeAI>();
         this.dAttackScript = this.GetComponent<DistanceAttack>();
         this.dAIScript = this.GetComponent<DistanceAI>();
+        this.enemyAudio = this.GetComponent<EntityAudio>();
         this.enemyAnimator = this.GetComponent<Animator>();
     }
     public void BossDeath()

@@ -18,8 +18,9 @@ public class MeleeAttack : MonoBehaviour
         {
             if (player.gameObject.GetComponent<PlayerState>().GetState("IsDead") == false)
             {
-                player.GetComponent<Player>().Damaged(this.normalDamage);
-                AudioManager.aM.Play("Hit");
+                Player controller = player.GetComponent<Player>();
+                controller.Damaged(this.normalDamage);
+                controller.playerAudio.Play("Hit");
             }
         }
     }

@@ -137,7 +137,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public void Step()
     {
-        AudioManager.aM.Play("Step");
+        this.playerScript.playerAudio.Play("Step");
     }
     void OnDrawGizmosSelected()
     {

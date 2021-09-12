@@ -29,8 +29,9 @@ public class PlayerAttack : MonoBehaviour
         {
             if (enemy.gameObject.GetComponent<EnemyState>().GetState("IsDead") == false)
             {
-                enemy.GetComponent<HealthManage>().Damaged(this.normalDamage);
-                AudioManager.aM.Play("EnemyHit");
+                EnemyController controller = enemy.GetComponent<EnemyController>();
+                controller.healthScript.Damaged(this.normalDamage);
+                controller.enemyAudio.Play("EnemyHit");
             }
         }
     }
