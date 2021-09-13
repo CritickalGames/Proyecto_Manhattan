@@ -225,7 +225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyScript: {fileID: 0}
-  maxHealth: 30
+  maxHealth: 150
 --- !u!114 &3553062113641398585
 MonoBehaviour:
   m_ObjectHideFlags: 0

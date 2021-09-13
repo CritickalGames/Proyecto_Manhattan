@@ -28,9 +28,7 @@ public class DimitriAttack : MonoBehaviour
         this.enemyScript.enemyAudio.Play("EnemyThrow");
         bottleParent = GameObject.Find("/Enemies/BulletParent").GetComponent<Transform>();
         GameObject bottle = Instantiate(this.bottlePrefab, this.shootingPoint.position, Quaternion.identity, this.bottleParent);
-        Rigidbody2D rb = bottle.GetComponent<Rigidbody2D>();
-        Vector3 dir = -(this.transform.position - (enemyScript.DiAIScript.target.transform.position + new Vector3(0,throwHeight,0))).normalized;
-        rb.AddForce(dir * throwForce * 100);
+        bottle.GetComponent<BottleScript>().target = enemyScript.DiAIScript.target.transform.position + new Vector3(0, 1f, 0);
     }
     public void EndShoot()
     {

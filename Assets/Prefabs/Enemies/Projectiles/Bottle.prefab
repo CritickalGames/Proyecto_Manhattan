@@ -137,3 +137,5 @@ MonoBehaviour:
   maxTime: 5
   damage: 10
   explodeRange: 0.4
+  rotationValue: 2
+  target: {x: 0, y: 0, z: 0}
