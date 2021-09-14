@@ -540,6 +540,7 @@ MonoBehaviour:
   enemyAudio: {fileID: 0}
   enemyAnimator: {fileID: 0}
   itemPrefab: {fileID: 5524144755834015241, guid: 911737d9a56d95241918d8e187f393b0, type: 3}
+  meleePrefab: {fileID: 5616440117558290491, guid: 64fd369568ce6264084302f9dce0b8aa, type: 3}
 --- !u!114 &4116696232245173621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -554,7 +555,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyScript: {fileID: 0}
   target: {fileID: 0}
-  respawns: 3
+  respawns: 1
   checkDistance: 0.22
   groundCheck: {fileID: 1653941726875648880}
   groundLayer:
@@ -605,7 +606,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyScript: {fileID: 0}
-  movementSpeed: 4
+  movementSpeed: 6
 --- !u!114 &8219362152955130833
 MonoBehaviour:
   m_ObjectHideFlags: 0

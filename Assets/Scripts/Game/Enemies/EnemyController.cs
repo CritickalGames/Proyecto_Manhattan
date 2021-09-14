@@ -14,6 +14,7 @@ public class EnemyController : MonoBehaviour
     [HideInInspector]public EntityAudio enemyAudio;
     [HideInInspector]public Animator enemyAnimator;
     [SerializeField]private GameObject itemPrefab;
+    [SerializeField]private GameObject meleePrefab;
 
     #region Getters & Setters
     public void SetAnimationBool(string name, bool value)
@@ -85,5 +86,11 @@ public class EnemyController : MonoBehaviour
         this.healthScript.enabled = true;
         this.healthScript.SetMaxHealth();
         this.DiAIScript.enabled = true;
+    }
+    void DimitriCallHelp()
+    {
+        for (int i = -2 ; i < 3 ; i++)
+            if (i != 0)
+                GameObject.Instantiate(this.meleePrefab, new Vector3(this.transform.position.x + i, this.transform.position.y, this.transform.position.z), Quaternion.identity, GameObject.Find("Enemies").transform);
     }
 }

@@ -33,11 +33,10 @@ public class HealthManage : MonoBehaviour
         enemyScript.enemyAudio.Play("EnemyHurt");
         this.enemyScript.stateScript.SetTriggerState("Hurt");
         this.currentHealth -= damage;
-        this.barScript.SetHealth(this.currentHealth);
+        if (this.enemyScript.stateScript.type == "Dimitri")
+            this.barScript.SetHealth(this.currentHealth);
         if (this.currentHealth <= 0)
-        {
             Die();
-        }
     }
     void Die()
     {
