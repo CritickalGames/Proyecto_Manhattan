@@ -6,6 +6,7 @@ public class DimitriAI : MonoBehaviour
 {
     [HideInInspector]public EnemyController enemyScript;
     [HideInInspector]public GameObject target;
+    [SerializeField, Range(0, 5)]public int respawns;
     [SerializeField, Range(0.0f, 10.0f)]private float checkDistance;
     [SerializeField]public Transform groundCheck;
     [SerializeField]private LayerMask groundLayer;

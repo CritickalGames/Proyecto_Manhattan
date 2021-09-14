@@ -46,6 +46,7 @@ public class EnemyState : MonoBehaviour
         this.state.Add("Jumping", false);
         this.state.Add("Grounded", true);
         this.state.Add("IsDead", false);
+        this.state.Add("Drinking", false);
     }
     public void EndHurt()
     {

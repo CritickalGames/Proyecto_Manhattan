@@ -40,13 +40,50 @@ public class EnemyController : MonoBehaviour
         this.enemyAudio = this.GetComponent<EntityAudio>();
         this.enemyAnimator = this.GetComponent<Animator>();
     }
-    public void BossDeath()
+    public void EnemyDeath()
     {
-        if (!GameManager.gM.GetAbilities("Dash") && this.stateScript.type == "FirstBoss")
+        switch(this.stateScript.type)
         {
-            Transform spawnLocation = this.transform;
-            GameObject item = Instantiate(itemPrefab, spawnLocation.position + new Vector3(0,1.5f,0), Quaternion.identity);
-            item.transform.parent = GameObject.Find("ObjectContainer").transform;
+            case "FirstBoss":
+                if (!GameManager.gM.GetAbilities("Dash"))
+                    SpawnDashItem();
+                Die();
+                break;
+            case "Dimitri":
+                if (this.DiAIScript.respawns < 1)
+                    Die();
+                else
+                    DrinkAnim();
+                break;
+            case "Christopher":
+                break;
+            default: 
+                Die();
+                break;
         }
+    }
+    void Die()
+    {
+        GameManager.gM.eM.SubtractEnemy();
+    }
+    void SpawnDashItem()
+    {
+        Transform spawnLocation = this.transform;
+        GameObject item = Instantiate(itemPrefab, spawnLocation.position + new Vector3(0,1.5f,0), Quaternion.identity);
+        item.transform.parent = GameObject.Find("ObjectContainer").transform;
+    }
+    void DrinkAnim()
+    {
+        this.DiAIScript.respawns -= 1;
+        this.DiAIScript.enabled = false;
+        this.stateScript.SetState("Drinking", true);
+    }
+    void DimitriDrink()
+    {
+        this.stateScript.SetState("Drinking", false);
+        this.stateScript.SetState("IsDead", false);
+        this.healthScript.enabled = true;
+        this.healthScript.SetMaxHealth();
+        this.DiAIScript.enabled = true;
     }
 }

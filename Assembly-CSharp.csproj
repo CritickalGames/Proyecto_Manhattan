@@ -72,6 +72,7 @@
      <Compile Include="Assets\Scripts\Menu\Config\ControlSettings.cs" />
      <Compile Include="Assets\Scripts\Game\Player\PlayerMovement.cs" />
      <Compile Include="Assets\3rdParty\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
+     <Compile Include="Assets\Scripts\Game\Enemies\Projectiles\BottleScript.cs" />
      <Compile Include="Assets\Scripts\Management\Managers\GameManager.cs" />
      <Compile Include="Assets\Scripts\Game\Enemies\DifferentialScripts\DistanceScripts\DistanceAttack.cs" />
      <Compile Include="Assets\Scripts\Management\Data\GameData.cs" />
@@ -114,7 +115,6 @@
      <Compile Include="Assets\3rdParty\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
      <Compile Include="Assets\Scripts\Management\Managers\LevelManager.cs" />
      <Compile Include="Assets\3rdParty\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
-     <Compile Include="Assets\Scripts\Game\Enemies\Projectiles\BottleScript.cs" />
      <None Include="Assets\3rdParty\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\3rdParty\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\3rdParty\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

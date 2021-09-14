@@ -12,7 +12,6 @@ public class HealthBar : MonoBehaviour
     public void SetMaxHealth(int health)
     {
         healthSlider.maxValue = health;
-        SetHealth(GameManager.gM.currentPlayerHealth);
     }
     public void SetHealth(int health)
     {

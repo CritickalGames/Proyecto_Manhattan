@@ -28,6 +28,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         this.healthBar.SetMaxHealth(GameManager.gM.maxPlayerHealth);
+        this.healthBar.SetHealth(GameManager.gM.currentPlayerHealth);
     }
     public void Damaged(int damage)
     {
