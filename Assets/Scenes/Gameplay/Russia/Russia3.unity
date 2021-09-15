@@ -132,7 +132,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4083459348244349313, guid: fd1ddc34d42d4b14ba175dee0dc1e1fb, type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 4083459348244349313, guid: fd1ddc34d42d4b14ba175dee0dc1e1fb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -19425,7 +19425,7 @@ GameObject:
   m_Component:
   - component: {fileID: 363199929}
   - component: {fileID: 363199930}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19572,7 +19572,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
@@ -36539,6 +36539,10 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4116696232245173621, guid: e298c8acaf4c8224a8e1a1577308b6dd, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4116696232245173621, guid: e298c8acaf4c8224a8e1a1577308b6dd, type: 3}
       propertyPath: meleeCooldown
       value: 0.5
       objectReference: {fileID: 0}
@@ -36584,6 +36588,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4116696232245173629, guid: e298c8acaf4c8224a8e1a1577308b6dd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6650782438749082204, guid: e298c8acaf4c8224a8e1a1577308b6dd, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9156558457660035313, guid: e298c8acaf4c8224a8e1a1577308b6dd, type: 3}

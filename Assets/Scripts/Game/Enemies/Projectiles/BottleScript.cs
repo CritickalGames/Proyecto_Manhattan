@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BottleScript : MonoBehaviour
 {
+    [SerializeField]private GameObject fireObject;
     [SerializeField, Range(0,10f)]private float maxTime;
     [SerializeField, Range(0,100f)]private int damage;
     [SerializeField, Range(0, 2f)]private float explodeRange;
@@ -11,6 +13,7 @@ public class BottleScript : MonoBehaviour
     [HideInInspector]public Vector3 target;
     private Rigidbody2D bulletRB;
     private bool hasHitted;
+    private bool unloaded = false;
     private int dir = 0;
 
     void Start()
@@ -47,10 +50,9 @@ public class BottleScript : MonoBehaviour
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(this.transform.position, this.explodeRange);
         foreach (Collider2D col in colliders)
-        {
             if (col.tag == "Player")
                 col.gameObject.GetComponent<Player>().Damaged(this.damage);
-        }
+        Instantiate(fireObject, this.transform.position, Quaternion.identity);
     }
     void OnDrawGizmosSelected()
     {
