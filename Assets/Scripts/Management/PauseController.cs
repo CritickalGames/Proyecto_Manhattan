@@ -50,16 +50,19 @@ public class PauseController : MonoBehaviour
     }
     public void NextAbility()
     {
+        Debug.Log(GameManager.gM.abilityCount);
         if (GameManager.gM.abilityCount > 0)
         {
             int nextNum = this.abilityNum + 1;
             while (nextNum != this.abilityNum)
+            {
                 if (nextNum >= GameManager.gM.abilities.Count)
                     nextNum = 0;
                 if (nextNum != 0 && GameManager.gM.GetAbilityAt(nextNum))
                     this.abilityNum = nextNum;
                 else
                     nextNum++;
+            }
         } else
         {
             this.abilityNum = 0;
@@ -73,12 +76,14 @@ public class PauseController : MonoBehaviour
         {
             int nextNum = this.abilityNum - 1;
             while (nextNum != this.abilityNum)
+            {
                 if (nextNum < 0)
                     nextNum = GameManager.gM.abilities.Count - 1;
                 if (nextNum != 0 && GameManager.gM.GetAbilityAt(nextNum))
                     this.abilityNum = nextNum;
                 else
                     nextNum--;
+            }
         } else
         {
             this.abilityNum = 0;

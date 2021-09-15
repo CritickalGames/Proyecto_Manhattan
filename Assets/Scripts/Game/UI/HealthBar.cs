@@ -5,16 +5,16 @@ public class HealthBar : MonoBehaviour
 {
     private Slider healthSlider;
     
-    void Start()
+    void Awake()
     {
-        this.healthSlider = this.GetComponent<Slider>();
+        this.healthSlider = this.gameObject.GetComponent<Slider>();
     }
     public void SetMaxHealth(int health)
     {
-        healthSlider.maxValue = health;
+        this.healthSlider.maxValue = health;
     }
     public void SetHealth(int health)
     {
-        healthSlider.value = health;
+        this.healthSlider.value = health;
     }
 }
