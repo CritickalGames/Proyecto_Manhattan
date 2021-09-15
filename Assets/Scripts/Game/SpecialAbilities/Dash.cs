@@ -4,16 +4,9 @@ using UnityEngine;
 
 public class Dash : MonoBehaviour
 {
-    private int playerMask;
-    
-    void Start()
-    {
-        playerMask = LayerMask.NameToLayer("Player");
-    }
     void OnTriggerEnter2D(Collider2D target)
     {
-        int mask = target.gameObject.layer;
-        if (mask == playerMask)
+        if (target.tag == "Player")
         {
             GameManager.gM.SetAbilities("Dash", true);
             Destroy(this.gameObject);

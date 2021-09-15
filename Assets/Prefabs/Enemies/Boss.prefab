@@ -222,7 +222,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638e052c69715614eb7f96dc09167c75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stateScript: {fileID: 0}
+  enemyScript: {fileID: 0}
+  barScript: {fileID: 0}
   maxHealth: 100
 --- !u!114 &5207579521629715332
 MonoBehaviour:
@@ -236,14 +237,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3a2501b6dd9c1c43becc42ca2c4c9fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthScript: {fileID: 0}
   movementScript: {fileID: 0}
   mAttackScript: {fileID: 0}
   mAIScript: {fileID: 0}
   dAttackScript: {fileID: 0}
   dAIScript: {fileID: 0}
+  DiAttackScript: {fileID: 0}
+  DiAIScript: {fileID: 0}
   stateScript: {fileID: 0}
+  enemyAudio: {fileID: 0}
   enemyAnimator: {fileID: 0}
-  itemPrefab: {fileID: 5524144755834015241, guid: 911737d9a56d95241918d8e187f393b0, type: 3}
+  dashPrefab: {fileID: 5524144755834015241, guid: 911737d9a56d95241918d8e187f393b0, type: 3}
+  vodkaPrefab: {fileID: 3837154919923932371, guid: fa90b0eb1f3d7f740bf6f92f82e85d4e, type: 3}
+  meleePrefab: {fileID: 0}
 --- !u!114 &7947430761055602344
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -11,7 +11,7 @@ public class MeleeAttack : MonoBehaviour
     {
         this.enemyScript = GetComponent<EnemyController>();
     }
-    public void Attack()
+    public void Hit()
     {
         Collider2D[] hitPlayer = Physics2D.OverlapCircleAll(this.hitTransform.position, this.attackRange, this.playerMask);
         foreach (Collider2D player in hitPlayer)
@@ -24,9 +24,9 @@ public class MeleeAttack : MonoBehaviour
             }
         }
     }
-    public void EndAttack()
+    public void EndHit()
     {
-        this.enemyScript.stateScript.SetState("Attacking", false);
+        this.enemyScript.stateScript.SetState("Hitting", false);
         this.enemyScript.mAIScript.SetNextHit();
     }
     void OnDrawGizmosSelected()
