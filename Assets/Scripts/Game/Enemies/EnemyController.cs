@@ -13,7 +13,8 @@ public class EnemyController : MonoBehaviour
     [HideInInspector]public EnemyState stateScript;
     [HideInInspector]public EntityAudio enemyAudio;
     [HideInInspector]public Animator enemyAnimator;
-    [SerializeField]private GameObject itemPrefab;
+    [SerializeField]private GameObject dashPrefab;
+    [SerializeField]private GameObject vodkaPrefab;
     [SerializeField]private GameObject meleePrefab;
 
     #region Getters & Setters
@@ -47,13 +48,15 @@ public class EnemyController : MonoBehaviour
         {
             case "FirstBoss":
                 if (!GameManager.gM.GetAbilities("Dash"))
-                    SpawnDashItem();
+                    SpawnItem(dashPrefab);
                 Die();
                 break;
             case "Dimitri":
                 if (this.DiAIScript.respawns < 1)
+                {
+                    SpawnItem(vodkaPrefab);
                     Die();
-                else
+                } else
                     DrinkAnim();
                 break;
             case "Christopher":
@@ -67,11 +70,11 @@ public class EnemyController : MonoBehaviour
     {
         GameManager.gM.eM.SubtractEnemy();
     }
-    void SpawnDashItem()
+    void SpawnItem(GameObject item)
     {
         Transform spawnLocation = this.transform;
-        GameObject item = Instantiate(itemPrefab, spawnLocation.position + new Vector3(0,1.5f,0), Quaternion.identity);
-        item.transform.parent = GameObject.Find("ObjectContainer").transform;
+        GameObject spawnedItem = Instantiate(item, spawnLocation.position + new Vector3(0,1.5f,0), Quaternion.identity);
+        spawnedItem.transform.parent = GameObject.Find("ObjectContainer").transform;
     }
     void DrinkAnim()
     {
