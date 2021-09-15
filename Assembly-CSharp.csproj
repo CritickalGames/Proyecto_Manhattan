@@ -65,6 +65,7 @@
      <Compile Include="Assets\3rdParty\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
      <Compile Include="Assets\Scripts\Game\Enemies\Projectiles\BulletScript.cs" />
      <Compile Include="Assets\Scripts\Game\General\EntityAudio.cs" />
+     <Compile Include="Assets\Scripts\Game\SpecialAbilities\Vodka.cs" />
      <Compile Include="Assets\3rdParty\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
      <Compile Include="Assets\Scripts\Management\PauseController.cs" />
      <Compile Include="Assets\Scripts\Game\UI\HealthBar.cs" />
@@ -113,10 +114,10 @@
      <Compile Include="Assets\Scripts\Management\Data\ConfigData.cs" />
      <Compile Include="Assets\Scripts\Game\Enemies\DifferentialScripts\MeleeScripts\MeleeAI.cs" />
      <Compile Include="Assets\3rdParty\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
+     <Compile Include="Assets\Scripts\Game\Enemies\Projectiles\Fire\Fire.cs" />
      <Compile Include="Assets\Scripts\Management\Managers\LevelManager.cs" />
      <Compile Include="Assets\3rdParty\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
-     <Compile Include="Assets\Scripts\Game\Enemies\Projectiles\Fire\Fire.cs" />
-     <Compile Include="Assets\Scripts\Game\SpecialAbilities\Vodka.cs" />
+     <Compile Include="Assets\Scripts\Game\General\AutoDestroy.cs" />
      <None Include="Assets\3rdParty\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\3rdParty\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\3rdParty\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
