@@ -32,6 +32,7 @@ public class PlayerState : MonoBehaviour
         this.state.Add("Idle", true);
         this.state.Add("Running", false);
         this.state.Add("Attacking", false);
+        this.state.Add("Drinking", false);
         this.state.Add("Jumping", false);
         this.state.Add("Grounded", true);
         this.state.Add("IsDead", false);
@@ -39,5 +40,6 @@ public class PlayerState : MonoBehaviour
     public void EndHurt()
     {
         SetState("Attacking", false);
+        SetState("Drinking", false);
     }
 }
