@@ -273,7 +273,7 @@ MonoBehaviour:
   drinkCooldown: 10
   drunkDuration: 10
   hangoverDuration: 5
-  damageMultiplier: 5
+  damageMultiplier: 2.5
   hangoverMultiplier: 0.5
   drunk: 0
   hangover: 0
