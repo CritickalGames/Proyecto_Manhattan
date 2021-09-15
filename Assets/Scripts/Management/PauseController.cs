@@ -50,7 +50,6 @@ public class PauseController : MonoBehaviour
     }
     public void NextAbility()
     {
-        Debug.Log(GameManager.gM.abilityCount);
         if (GameManager.gM.abilityCount > 0)
         {
             int nextNum = this.abilityNum + 1;

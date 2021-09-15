@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class EnemyController : MonoBehaviour
 {
@@ -48,13 +49,13 @@ public class EnemyController : MonoBehaviour
         {
             case "FirstBoss":
                 if (!GameManager.gM.GetAbilities("Dash"))
-                    SpawnItem(dashPrefab);
+                    StartCoroutine(SpawnItem(dashPrefab));
                 Die();
                 break;
             case "Dimitri":
                 if (this.DiAIScript.respawns < 1)
                 {
-                    SpawnItem(vodkaPrefab);
+                    StartCoroutine(SpawnItem(vodkaPrefab));
                     Die();
                 } else
                     DrinkAnim();
@@ -70,8 +71,9 @@ public class EnemyController : MonoBehaviour
     {
         GameManager.gM.eM.SubtractEnemy();
     }
-    void SpawnItem(GameObject item)
+    IEnumerator SpawnItem(GameObject item)
     {
+        yield return new WaitForSeconds(0.5f);
         Transform spawnLocation = this.transform;
         GameObject spawnedItem = Instantiate(item, spawnLocation.position + new Vector3(0,1.5f,0), Quaternion.identity);
         spawnedItem.transform.parent = GameObject.Find("ObjectContainer").transform;
