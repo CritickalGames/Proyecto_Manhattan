@@ -28,17 +28,19 @@ public class Player : MonoBehaviour
     void Start()
     {
         this.healthBar.SetMaxHealth(GameManager.gM.maxPlayerHealth);
+        this.healthBar.SetHealth(GameManager.gM.currentPlayerHealth);
     }
     public void Damaged(int damage)
     {
-        playerAudio.Play("Hurt");
-        this.playerAnimator.SetTrigger("Hurt");
+        if (GameManager.gM.currentPlayerHealth > 0)
+        {
+            playerAudio.Play("Hurt");
+            this.playerAnimator.SetTrigger("Hurt");
+        }
         GameManager.gM.currentPlayerHealth = GameManager.gM.currentPlayerHealth - damage;
         this.healthBar.SetHealth(GameManager.gM.currentPlayerHealth);
         if (GameManager.gM.currentPlayerHealth <= 0)
-        {
             Die();
-        }
     }
     void Die()
     {

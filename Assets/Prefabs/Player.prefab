@@ -217,6 +217,7 @@ MonoBehaviour:
   stateScript: {fileID: 0}
   movementScript: {fileID: 0}
   attackScript: {fileID: 0}
+  playerAudio: {fileID: 0}
   playerAnimator: {fileID: 0}
 --- !u!114 &5497455151813261253
 MonoBehaviour:
@@ -258,7 +259,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitPoint: {fileID: 5497455151100570260}
-  hitRange: 0.5
+  hitRange: 0.6
   enemyLayers:
     serializedVersion: 2
     m_Bits: 128

@@ -13,7 +13,7 @@ public class EnemyState : MonoBehaviour
     {
         if (this.state[name] != value)
             this.state[name] = value;
-        if (name != "Grounded")
+        if (!(name == "Grounded") && !(type == "Distance" && name == "Hitting") && !(type == "Melee" && name == "Shooting") && !(type == "FirstBoss" && name == "Shooting"))
             this.SetAnimator(name);
     }
     public bool GetState(string name)
@@ -41,13 +41,16 @@ public class EnemyState : MonoBehaviour
     {
         this.state.Add("Idle", true);
         this.state.Add("Running", false);
-        this.state.Add("Attacking", false);
+        this.state.Add("Hitting", false);
+        this.state.Add("Shooting", false);
         this.state.Add("Jumping", false);
         this.state.Add("Grounded", true);
         this.state.Add("IsDead", false);
+        this.state.Add("Drinking", false);
     }
     public void EndHurt()
     {
-        SetState("Attacking", false);
+        SetState("Hitting", false);
+        SetState("Shooting", false);
     }
 }
