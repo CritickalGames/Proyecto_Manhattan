@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class BottleScript : MonoBehaviour
 {
     [SerializeField]private GameObject fireObject;
+    [SerializeField]private GameObject explosionObject;
     [SerializeField, Range(0,10f)]private float maxTime;
     [SerializeField, Range(0,100f)]private int damage;
     [SerializeField, Range(0, 2f)]private float explodeRange;
@@ -52,6 +53,7 @@ public class BottleScript : MonoBehaviour
         foreach (Collider2D col in colliders)
             if (col.tag == "Player")
                 col.gameObject.GetComponent<Player>().Damaged(this.damage);
+        Instantiate(explosionObject,this.transform.position, Quaternion.identity);
         Instantiate(fireObject, this.transform.position, Quaternion.identity);
     }
     void OnDrawGizmosSelected()
