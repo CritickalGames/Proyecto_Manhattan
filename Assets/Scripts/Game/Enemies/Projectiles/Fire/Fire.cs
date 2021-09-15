@@ -17,7 +17,8 @@ public class Fire : MonoBehaviour
         Destroy(this.gameObject, this.duration);
         RaycastHit2D hitRaycast = Physics2D.Raycast(this.transform.position, Vector2.down, this.platforms);
         this.transform.position = new Vector2(this.transform.position.x, hitRaycast.distance);
-        this.transform.parent = GameObject.Find("/Enemies/BulletParent").transform;
+        if(this.transform.parent != null)
+            this.transform.parent = GameObject.Find("/Enemies/BulletParent").transform;
         nextDamage = Time.time + damageCooldown;
     }
 
