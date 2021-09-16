@@ -33,7 +33,7 @@ public class BottleScript : MonoBehaviour
         Vector3 direction = this.target - this.transform.position;
         float height = direction.y;
         direction.y = 0;
-        float distance = direction.magnitude ;
+        float distance = direction.magnitude;
         direction.y = distance;
         distance += height;
         float velocity = Mathf.Sqrt(distance * Physics.gravity.magnitude);

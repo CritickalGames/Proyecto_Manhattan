@@ -87,6 +87,17 @@
                 },
                 {
                     "name": "",
+                    "id": "0781a96a-0009-42e4-ac6e-f85e83d74440",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "1aa401c9-7ed3-4402-a022-161fd753b18f",
                     "path": "<Keyboard>/k",
                     "interactions": "",
@@ -101,6 +112,17 @@
                     "id": "20d5c473-890f-4e45-bfa1-4fe6f9874d3c",
                     "path": "<Gamepad>/leftTrigger",
                     "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SpecialAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "63ea9812-9d84-45b6-a4e9-9ba836bc668e",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "SpecialAttack",
