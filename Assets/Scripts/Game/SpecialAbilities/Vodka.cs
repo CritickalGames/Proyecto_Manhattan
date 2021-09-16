@@ -9,7 +9,9 @@ public class Vodka : MonoBehaviour
         if (target.tag == "Player")
         {
             GameManager.gM.SetAbilities("Vodka", true);
-            LevelManager.lM.NextLevel(2);
+            LevelManager.lM.NextLevel(1);
+            if (GameManager.gM.pauseScript.abilityNum == 0)
+                GameManager.gM.pauseScript.NextAbility();
             Destroy(this.gameObject);
         }
     }

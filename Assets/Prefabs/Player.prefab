@@ -246,6 +246,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 6400
   dashCooldown: 0.5
+  drunkSpeedMultiplier: 1.5
+  hangoverSpeedMultiplier: 0.5
+  drunkJumpMultiplier: 1.2
+  hangoverJumpMultiplier: 0.7
 --- !u!114 &5497455151813261255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -266,6 +270,13 @@ MonoBehaviour:
   normalDamage: 20
   specialDamage: 50
   attackCooldown: 0.1
+  drinkCooldown: 10
+  drunkDuration: 10
+  hangoverDuration: 5
+  damageMultiplier: 2.5
+  hangoverMultiplier: 0.5
+  drunk: 0
+  hangover: 0
 --- !u!114 &4916616976801734316
 MonoBehaviour:
   m_ObjectHideFlags: 0
