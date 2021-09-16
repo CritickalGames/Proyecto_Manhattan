@@ -44,7 +44,7 @@ public class BottleScript : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         hasHitted = true;
-        if (collision.gameObject.tag == "Player" && Mathf.Abs(this.bulletRB.velocity.x) > 1f)
+        if (collision.gameObject.tag == "Player" && (this.bulletRB.velocity.x >= 1f || this.bulletRB.velocity.x <= -1f))
             Destroy(this.gameObject);
     }
     void OnDestroy()
