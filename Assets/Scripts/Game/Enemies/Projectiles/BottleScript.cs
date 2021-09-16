@@ -33,7 +33,7 @@ public class BottleScript : MonoBehaviour
         Vector3 direction = this.target - this.transform.position;
         float height = direction.y;
         direction.y = 0;
-        float distance = direction.magnitude ;
+        float distance = direction.magnitude;
         direction.y = distance;
         distance += height;
         float velocity = Mathf.Sqrt(distance * Physics.gravity.magnitude);
@@ -44,7 +44,7 @@ public class BottleScript : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         hasHitted = true;
-        if (collision.gameObject.tag == "Player" && Mathf.Abs(this.bulletRB.velocity.x) > 1f)
+        if (collision.gameObject.tag == "Player" && (this.bulletRB.velocity.x >= 1f || this.bulletRB.velocity.x <= -1f))
             Destroy(this.gameObject);
     }
     void OnDestroy()

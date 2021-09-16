@@ -18,7 +18,7 @@ public class PlayerInput : MonoBehaviour
     }
     void Update()
     {
-        if (SceneManager.GetActiveScene().buildIndex > 1 && !GameManager.gM.pauseScript.isPaused && GameManager.gM.pM.playerObject != null)
+        if (SceneManager.GetActiveScene().buildIndex > 1 && !GameManager.gM.pauseScript.isPaused && GameManager.gM.pM.playerObject != null && !GameManager.gM.pM.playerScript.stateScript.GetState("Drinking"))
             GameManager.gM.pM.playerScript.movementScript.SetMoveDir((int)this.horizontalMove);
     }
     void OnMovement(InputValue value)
@@ -27,23 +27,23 @@ public class PlayerInput : MonoBehaviour
     }
     void OnDash()
     {
-        if (SceneManager.GetActiveScene().buildIndex > 1 && GameManager.gM.pM.playerScript.movementScript.GetDashCooldown() && !GameManager.gM.pauseScript.isPaused && GameManager.gM.pM.playerObject != null && GameManager.gM.GetAbilities("Dash"))
+        if (SceneManager.GetActiveScene().buildIndex > 1 && GameManager.gM.pM.playerScript.movementScript.GetDashCooldown() && !GameManager.gM.pauseScript.isPaused && GameManager.gM.pM.playerObject != null && GameManager.gM.GetAbilities("Dash") && !GameManager.gM.pM.playerScript.stateScript.GetState("Drinking"))
             GameManager.gM.pM.playerScript.movementScript.Dash();
     }
     void OnJump()
     {
-        if (SceneManager.GetActiveScene().buildIndex > 1 && !GameManager.gM.pauseScript.isPaused && GameManager.gM.pM.playerObject != null)
+        if (SceneManager.GetActiveScene().buildIndex > 1 && !GameManager.gM.pauseScript.isPaused && GameManager.gM.pM.playerObject != null && !GameManager.gM.pM.playerScript.stateScript.GetState("Drinking"))
             GameManager.gM.pM.playerScript.movementScript.Jump();
     }
     void OnAttack()
     {
-        if (SceneManager.GetActiveScene().buildIndex > 1 && !GameManager.gM.pM.playerScript.stateScript.GetState("Attacking") && GameManager.gM.pM.playerScript.attackScript.GetAttackCooldown() && !GameManager.gM.pauseScript.isPaused && GameManager.gM.pM.playerObject != null)
+        if (SceneManager.GetActiveScene().buildIndex > 1 && !GameManager.gM.pM.playerScript.stateScript.GetState("Attacking") && GameManager.gM.pM.playerScript.attackScript.GetAttackCooldown() && !GameManager.gM.pauseScript.isPaused && GameManager.gM.pM.playerObject != null && !GameManager.gM.pM.playerScript.stateScript.GetState("Drinking"))
             GameManager.gM.pM.playerScript.stateScript.SetState("Attacking", true);
     }
     void OnSpecialAttack()
     {
-        if (SceneManager.GetActiveScene().buildIndex > 1 && !GameManager.gM.pauseScript.isPaused && GameManager.gM.pM.playerObject != null)
-            GameManager.gM.pM.playerScript.attackScript.TestSpecialAttack();
+        if (SceneManager.GetActiveScene().buildIndex > 1 && !GameManager.gM.pauseScript.isPaused && GameManager.gM.pM.playerObject != null && !GameManager.gM.pM.playerScript.attackScript.drunk && GameManager.gM.pM.playerScript.attackScript.GetDrinkingCooldown() && !GameManager.gM.pM.playerScript.stateScript.GetState("Drinking") && !GameManager.gM.pM.playerScript.stateScript.GetState("Attacking") && !GameManager.gM.pM.playerScript.stateScript.GetState("Jumping") && GameManager.gM.GetAbilities("Vodka"))
+            GameManager.gM.pM.playerScript.stateScript.SetState("Drinking", true);
     }
     void OnPause()
     {
@@ -55,7 +55,7 @@ public class PlayerInput : MonoBehaviour
     void OnDown()
     {
         ignoring = !ignoring;
-        if (SceneManager.GetActiveScene().buildIndex > 1 && !GameManager.gM.pauseScript.isPaused && GameManager.gM.pM.playerObject != null)
+        if (SceneManager.GetActiveScene().buildIndex > 1 && !GameManager.gM.pauseScript.isPaused && GameManager.gM.pM.playerObject != null && !GameManager.gM.pM.playerScript.stateScript.GetState("Drinking"))
             GameManager.gM.pM.playerScript.movementScript.pressedDown = ignoring;
     }
 }
