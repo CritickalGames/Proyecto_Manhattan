@@ -244,6 +244,10 @@ PrefabInstance:
       value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 5638201098352387067, guid: 5adc078bd00ecd24e8b79dfd15b0fb2a, type: 3}
+      propertyPath: shootingRange
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5638201098352387067, guid: 5adc078bd00ecd24e8b79dfd15b0fb2a, type: 3}
       propertyPath: meleeFollowRange
       value: 2.5
       objectReference: {fileID: 0}

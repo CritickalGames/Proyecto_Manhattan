@@ -22,8 +22,8 @@ TagManager:
   - Obstacle
   - Limits
   - Projectiles
-  - 
-  - 
+  - PlayerProjectiles
+  - DeadEntities
   - 
   - 
   - 
