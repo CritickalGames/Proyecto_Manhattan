@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     private float timeOnAir;
     private Rigidbody2D playerRb;
     private Collider2D playerCol;
-    private bool facingRight = true;
+    [HideInInspector]public bool facingRight = true;
     private int movementDir;
     private int platformLayer;
     private int playerLayer;
@@ -57,12 +57,11 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {
-        if (playerScript.attackScript.drunk)
+        if (playerScript.specialScript.drunk)
         {
-        
             this.speedMultiplier = drunkSpeedMultiplier;
             this.jumpMultiplier = drunkJumpMultiplier;
-        } else if (playerScript.attackScript.hangover)
+        } else if (playerScript.specialScript.hangover)
         {
             this.speedMultiplier = hangoverSpeedMultiplier;
             this.jumpMultiplier = hangoverJumpMultiplier;

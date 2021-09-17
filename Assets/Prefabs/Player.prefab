@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4246279215255084147
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4770724490639330446}
+  m_Layer: 6
+  m_Name: ShootingPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4770724490639330446
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4246279215255084147}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.44, y: 0.779, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5497455151813261262}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5497455150042674139
 GameObject:
   m_ObjectHideFlags: 0
@@ -72,10 +102,11 @@ GameObject:
   - component: {fileID: 5497455151813261249}
   - component: {fileID: 5497455151813261248}
   - component: {fileID: 5497455151813261263}
-  - component: {fileID: 1627476446927715198}
   - component: {fileID: 5497455151813261252}
+  - component: {fileID: 1627476446927715198}
   - component: {fileID: 5497455151813261253}
   - component: {fileID: 5497455151813261255}
+  - component: {fileID: 4337682976466054007}
   - component: {fileID: 4916616976801734316}
   - component: {fileID: 5497455151813261254}
   m_Layer: 6
@@ -99,6 +130,7 @@ Transform:
   - {fileID: 5497455151100570260}
   - {fileID: 5497455150042674140}
   - {fileID: 6915745799441018887}
+  - {fileID: 4770724490639330446}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -190,18 +222,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &1627476446927715198
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5497455151813261261}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a1df52d6732cb748b2454d58da5b51a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &5497455151813261252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -217,8 +237,21 @@ MonoBehaviour:
   stateScript: {fileID: 0}
   movementScript: {fileID: 0}
   attackScript: {fileID: 0}
+  specialScript: {fileID: 0}
   playerAudio: {fileID: 0}
   playerAnimator: {fileID: 0}
+--- !u!114 &1627476446927715198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5497455151813261261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a1df52d6732cb748b2454d58da5b51a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &5497455151813261253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,6 +283,7 @@ MonoBehaviour:
   hangoverSpeedMultiplier: 0.5
   drunkJumpMultiplier: 1.2
   hangoverJumpMultiplier: 0.7
+  facingRight: 1
 --- !u!114 &5497455151813261255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,15 +302,30 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   normalDamage: 20
-  specialDamage: 50
   attackCooldown: 0.1
-  drinkCooldown: 10
+  multiplier: 1
+--- !u!114 &4337682976466054007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5497455151813261261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32136c990c516d94db78a39f0f6bcf5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drinkCooldown: 7
   drunkDuration: 10
   hangoverDuration: 5
   damageMultiplier: 2.5
   hangoverMultiplier: 0.5
   drunk: 0
   hangover: 0
+  shootingPoint: {fileID: 4770724490639330446}
+  bulletPrefab: {fileID: 2614891680001679877, guid: 54ddfaba8dcf3114f8c6d0c9beef2103, type: 3}
+  shootCooldown: 1
 --- !u!114 &4916616976801734316
 MonoBehaviour:
   m_ObjectHideFlags: 0
