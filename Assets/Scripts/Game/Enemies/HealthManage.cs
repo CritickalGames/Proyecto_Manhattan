@@ -24,7 +24,7 @@ public class HealthManage : MonoBehaviour
     }
     void Start()
     {
-        if (this.enemyScript.stateScript.type == "Dimitri")
+        if (this.enemyScript.stateScript.type == "Dimitri" || this.enemyScript.stateScript.type == "Christopher")
             this.barScript = GameObject.Find("BossBar").GetComponent<HealthBar>();
         SetMaxHealth();      
     }
@@ -33,10 +33,24 @@ public class HealthManage : MonoBehaviour
         enemyScript.enemyAudio.Play("EnemyHurt");
         this.enemyScript.stateScript.SetTriggerState("Hurt");
         this.currentHealth -= damage;
-        if (this.enemyScript.stateScript.type == "Dimitri")
+        if (this.enemyScript.stateScript.type == "Dimitri" || this.enemyScript.stateScript.type == "Christopher")
             this.barScript.SetHealth(this.currentHealth);
         if (this.currentHealth <= 0)
             Die();
+        if (this.enemyScript.stateScript.type == "Christopher")
+            this.enemyScript.cAIScript.SetNextHeal();
+    }
+    public void Heal(int life)
+    {
+        if ((this.currentHealth + life) <= maxHealth)
+        {
+            Debug.Log("Entró");
+            enemyScript.enemyAudio.Play("EnemyHeal");
+            //this.enemyScript.stateScript.SetTriggerState("Heal");
+            this.currentHealth += life;
+            if (this.enemyScript.stateScript.type == "Dimitri" || this.enemyScript.stateScript.type == "Christopher")
+                this.barScript.SetHealth(this.currentHealth);
+        }
     }
     void Die()
     {

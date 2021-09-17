@@ -57,6 +57,7 @@
      <Compile Include="Assets\Scripts\Game\Enemies\EnemyState.cs" />
      <Compile Include="Assets\Scripts\Menu\MenuManager.cs" />
      <Compile Include="Assets\Scripts\Game\Enemies\DifferentialScripts\Dimitri\DimitriAI.cs" />
+     <Compile Include="Assets\Scripts\Game\General\AutoDestroy.cs" />
      <Compile Include="Assets\3rdParty\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
      <Compile Include="Assets\3rdParty\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshSpawner.cs" />
      <Compile Include="Assets\Scripts\Management\Managers\EnemyManager.cs" />
@@ -117,7 +118,9 @@
      <Compile Include="Assets\Scripts\Game\Enemies\Projectiles\Fire\Fire.cs" />
      <Compile Include="Assets\Scripts\Management\Managers\LevelManager.cs" />
      <Compile Include="Assets\3rdParty\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
-     <Compile Include="Assets\Scripts\Game\General\AutoDestroy.cs" />
+     <Compile Include="Assets\Scripts\Game\Enemies\DifferentialScripts\Christopher\ChristopherAI.cs" />
+     <Compile Include="Assets\Scripts\Game\Enemies\DifferentialScripts\Christopher\ChristopherAttack.cs" />
+     <Compile Include="Assets\Scripts\Game\SpecialAbilities\Arquebus.cs" />
      <None Include="Assets\3rdParty\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\3rdParty\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\3rdParty\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

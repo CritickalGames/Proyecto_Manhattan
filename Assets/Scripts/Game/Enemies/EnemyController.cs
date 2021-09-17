@@ -11,11 +11,14 @@ public class EnemyController : MonoBehaviour
     [HideInInspector]public DistanceAI dAIScript;
     [HideInInspector]public DimitriAttack DiAttackScript;
     [HideInInspector]public DimitriAI DiAIScript;
+    [HideInInspector]public ChristopherAttack cAttackScript;
+    [HideInInspector]public ChristopherAI cAIScript;
     [HideInInspector]public EnemyState stateScript;
     [HideInInspector]public EntityAudio enemyAudio;
     [HideInInspector]public Animator enemyAnimator;
     [SerializeField]private GameObject dashPrefab;
     [SerializeField]private GameObject vodkaPrefab;
+    [SerializeField]private GameObject arquebusPrefab;
     [SerializeField]private GameObject meleePrefab;
 
     #region Getters & Setters
@@ -40,6 +43,8 @@ public class EnemyController : MonoBehaviour
         this.dAIScript = this.GetComponent<DistanceAI>();
         this.DiAttackScript = this.GetComponent<DimitriAttack>();
         this.DiAIScript = this.GetComponent<DimitriAI>();
+        this.cAttackScript = this.GetComponent<ChristopherAttack>();
+        this.cAIScript = this.GetComponent<ChristopherAI>();
         this.enemyAudio = this.GetComponent<EntityAudio>();
         this.enemyAnimator = this.GetComponent<Animator>();
     }
@@ -61,6 +66,8 @@ public class EnemyController : MonoBehaviour
                     DrinkAnim();
                 break;
             case "Christopher":
+                StartCoroutine(SpawnItem(arquebusPrefab));
+                Die();
                 break;
             default: 
                 Die();
