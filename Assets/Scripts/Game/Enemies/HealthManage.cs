@@ -44,7 +44,6 @@ public class HealthManage : MonoBehaviour
     {
         if ((this.currentHealth + life) <= maxHealth)
         {
-            Debug.Log("Entró");
             enemyScript.enemyAudio.Play("EnemyHeal");
             //this.enemyScript.stateScript.SetTriggerState("Heal");
             this.currentHealth += life;
