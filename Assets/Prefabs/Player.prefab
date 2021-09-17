@@ -283,6 +283,8 @@ MonoBehaviour:
   hangoverSpeedMultiplier: 0.5
   drunkJumpMultiplier: 1.2
   hangoverJumpMultiplier: 0.7
+  speedMultiplier: 1
+  jumpMultiplier: 1
   facingRight: 1
 --- !u!114 &5497455151813261255
 MonoBehaviour:
@@ -319,8 +321,12 @@ MonoBehaviour:
   drinkCooldown: 7
   drunkDuration: 10
   hangoverDuration: 5
-  damageMultiplier: 2.5
-  hangoverMultiplier: 0.5
+  drunkDamageMultiplier: 2.5
+  hangoverDamageMultiplier: 0.5
+  drunkSpeedMultiplier: 1.5
+  hangoverSpeedMultiplier: 0.5
+  drunkJumpMultiplier: 1.2
+  hangoverJumpMultiplier: 0.7
   drunk: 0
   hangover: 0
   shootingPoint: {fileID: 4770724490639330446}

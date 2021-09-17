@@ -21,14 +21,20 @@ public class BulletScript : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log(collision.gameObject.layer + " " + objectiveLayer);
         if (collision.gameObject.layer == layer)
         {
             if (layer == LayerMask.NameToLayer("Player"))
+            {
                 collision.gameObject.GetComponent<Player>().Damaged(this.damage);
-            else
-                collision.gameObject.GetComponent<HealthManage>().Damaged(this.damage);
-        }
-        Destroy(this.gameObject);
+            } else
+            {
+                if (!collision.gameObject.GetComponent<EnemyState>().GetState("IsDead"))
+                {
+                    collision.gameObject.GetComponent<HealthManage>().Damaged(this.damage);
+                    Destroy(this.gameObject);
+                }
+            }
+        } else
+            Destroy(this.gameObject);
     }
 }

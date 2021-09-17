@@ -13,12 +13,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]private LayerMask groundLayer;
     [SerializeField]private LayerMask dashLayer;
     [SerializeField, Range(0.0f, 5.0f)]private float dashCooldown = 0.5f;
-    [SerializeField, Range(0, 2f)]private float drunkSpeedMultiplier;
-    [SerializeField, Range(0, 1f)]private float hangoverSpeedMultiplier;
-    [SerializeField, Range(0, 2f)]private float drunkJumpMultiplier;
-    [SerializeField, Range(0, 1f)]private float hangoverJumpMultiplier;
-    private float speedMultiplier = 1;
-    private float jumpMultiplier = 1;
+    public float speedMultiplier = 1;
+    public float jumpMultiplier = 1;
     private float nextDash;
     private Player playerScript;
     private float timeOnAir;
@@ -57,19 +53,6 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {
-        if (playerScript.specialScript.drunk)
-        {
-            this.speedMultiplier = drunkSpeedMultiplier;
-            this.jumpMultiplier = drunkJumpMultiplier;
-        } else if (playerScript.specialScript.hangover)
-        {
-            this.speedMultiplier = hangoverSpeedMultiplier;
-            this.jumpMultiplier = hangoverJumpMultiplier;
-        } else
-        {
-            this.speedMultiplier = 1;
-            this.jumpMultiplier = 1;
-        }
         VerifyGround();
         ManageMovement();
         JumpingCollision();

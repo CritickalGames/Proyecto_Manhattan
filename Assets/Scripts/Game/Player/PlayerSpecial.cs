@@ -8,8 +8,12 @@ public class PlayerSpecial : MonoBehaviour
     [SerializeField, Range(5.0f, 30.0f)] private float drinkCooldown = 0.5f;
     [SerializeField, Range(5.0f, 30.0f)] private float drunkDuration = 0.5f;
     [SerializeField, Range(3.0f, 10.0f)] private float hangoverDuration = 1f;
-    [SerializeField, Range(0, 5f)]private float damageMultiplier;
-    [SerializeField, Range(0, 1f)]private float hangoverMultiplier;
+    [SerializeField, Range(0, 5f)]private float drunkDamageMultiplier;
+    [SerializeField, Range(0, 1f)]private float hangoverDamageMultiplier;
+    [SerializeField, Range(0, 2f)]private float drunkSpeedMultiplier;
+    [SerializeField, Range(0, 1f)]private float hangoverSpeedMultiplier;
+    [SerializeField, Range(0, 2f)]private float drunkJumpMultiplier;
+    [SerializeField, Range(0, 1f)]private float hangoverJumpMultiplier;
     [HideInInspector]public bool drunk;
     [HideInInspector]public bool hangover;
     private float nextDrink;
@@ -41,24 +45,31 @@ public class PlayerSpecial : MonoBehaviour
         if (Time.time >= this.drunkTimer && this.drunk)
         {
             this.playerScript.attackScript.multiplier = 1;
+            this.playerScript.movementScript.speedMultiplier = 1;
+            this.playerScript.movementScript.jumpMultiplier = 1;
             this.drunk = false;
             this.hangover = true;
             this.hangoverEnd = Time.time + this.hangoverDuration;
         }
         if (Time.time <= this.hangoverEnd && this.hangover)
         {
-            this.playerScript.attackScript.multiplier = this.hangoverMultiplier;
+            this.playerScript.attackScript.multiplier = this.hangoverDamageMultiplier;
+            this.playerScript.movementScript.speedMultiplier = this.hangoverSpeedMultiplier;
+            this.playerScript.movementScript.jumpMultiplier = this.hangoverJumpMultiplier;
         } else if (this.hangover)
         {
             this.nextDrink = Time.time + this.drinkCooldown;
-            this.playerScript.attackScript.multiplier = 1;
+            this.playerScript.movementScript.speedMultiplier = 1;
+            this.playerScript.movementScript.jumpMultiplier = 1;
             this.hangover = false;
         }
     }
     public void Vodka()
     {
         this.drunk = true;
-        this.playerScript.attackScript.multiplier = this.damageMultiplier;
+        this.playerScript.attackScript.multiplier = this.drunkDamageMultiplier;
+        this.playerScript.movementScript.speedMultiplier = this.drunkSpeedMultiplier;
+        this.playerScript.movementScript.jumpMultiplier = this.drunkJumpMultiplier;
         this.playerScript.stateScript.SetState("Drinking", false);
         this.drunkTimer = Time.time + drunkDuration;
     }

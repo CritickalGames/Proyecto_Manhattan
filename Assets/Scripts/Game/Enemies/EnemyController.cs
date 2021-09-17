@@ -76,6 +76,7 @@ public class EnemyController : MonoBehaviour
     }
     void Die()
     {
+        this.gameObject.layer = LayerMask.NameToLayer("DeadEntities");
         GameManager.gM.eM.SubtractEnemy();
     }
     IEnumerator SpawnItem(GameObject item)
