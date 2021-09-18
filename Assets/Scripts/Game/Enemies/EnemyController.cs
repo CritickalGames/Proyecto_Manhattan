@@ -76,6 +76,7 @@ public class EnemyController : MonoBehaviour
     }
     void Die()
     {
+        this.enemyAudio.Play("EnemyDie");
         this.gameObject.layer = LayerMask.NameToLayer("DeadEntities");
         GameManager.gM.eM.SubtractEnemy();
     }
@@ -88,6 +89,7 @@ public class EnemyController : MonoBehaviour
     }
     void DrinkAnim()
     {
+        this.enemyAudio.Play("EnemyDrink");
         this.DiAIScript.respawns -= 1;
         this.DiAIScript.enabled = false;
         this.stateScript.SetState("Drinking", true);

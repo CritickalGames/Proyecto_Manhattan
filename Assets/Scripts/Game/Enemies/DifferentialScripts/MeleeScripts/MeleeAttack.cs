@@ -20,7 +20,7 @@ public class MeleeAttack : MonoBehaviour
             {
                 Player controller = player.GetComponent<Player>();
                 controller.Damaged(this.normalDamage);
-                controller.playerAudio.Play("Hit");
+                this.enemyScript.enemyAudio.Play("EnemyHit");
             }
         }
     }

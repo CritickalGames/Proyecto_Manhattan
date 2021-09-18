@@ -352,14 +352,14 @@ MonoBehaviour:
     volume: 0.5
     pitch: 1.15
     loop: 0
-  - name: EnemyShoot
-    clip: {fileID: 8300000, guid: 50c05bfaf5b0eb844a0c8d526196209c, type: 3}
-    group: {fileID: 1147615277765096762, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
-    volume: 0.5
-    pitch: 1.15
-    loop: 0
   - name: EnemyStep
     clip: {fileID: 8300000, guid: 400ad27d88adc5049aa9bc24845e5044, type: 3}
+    group: {fileID: 1147615277765096762, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+  - name: EnemyDie
+    clip: {fileID: 8300000, guid: 7d72efbc50084c94298adc0e03efc7f4, type: 3}
     group: {fileID: 1147615277765096762, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
     volume: 0.5
     pitch: 1

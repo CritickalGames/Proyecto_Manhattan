@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Arquebus : MonoBehaviour
 {
+    void Start()
+    {
+        this.GetComponent<EntityAudio>().Play("Spawn");
+    }
     void OnTriggerEnter2D(Collider2D target)
     {
         if (target.tag == "Player")

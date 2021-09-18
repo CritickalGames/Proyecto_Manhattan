@@ -279,10 +279,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 6400
   dashCooldown: 0.5
-  drunkSpeedMultiplier: 1.5
-  hangoverSpeedMultiplier: 0.5
-  drunkJumpMultiplier: 1.2
-  hangoverJumpMultiplier: 0.7
   speedMultiplier: 1
   jumpMultiplier: 1
   facingRight: 1
@@ -365,6 +361,24 @@ MonoBehaviour:
     loop: 0
   - name: Step
     clip: {fileID: 8300000, guid: 400ad27d88adc5049aa9bc24845e5044, type: 3}
+    group: {fileID: 321012550716680038, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: Drink
+    clip: {fileID: 8300000, guid: 5ac6c3074fb65ce49addfcc6c5ab6aef, type: 3}
+    group: {fileID: 321012550716680038, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: Die
+    clip: {fileID: 8300000, guid: 7d72efbc50084c94298adc0e03efc7f4, type: 3}
+    group: {fileID: 321012550716680038, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: Dash
+    clip: {fileID: 8300000, guid: 6aee0dc377c826b43a668b6b4ab0f6e9, type: 3}
     group: {fileID: 321012550716680038, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
     volume: 1
     pitch: 1

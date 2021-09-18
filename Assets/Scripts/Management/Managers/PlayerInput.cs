@@ -49,7 +49,10 @@ public class PlayerInput : MonoBehaviour
             {
                 case 1: 
                     if (GameManager.gM.GetAbilities("Vodka") && !playerScript.specialScript.drunk && !playerScript.specialScript.hangover && playerScript.specialScript.GetAbilityCooldown() && !playerScript.stateScript.GetState("Drinking") && !playerScript.stateScript.GetState("Attacking") && !playerScript.stateScript.GetState("Jumping"))
+                    {
                         playerScript.stateScript.SetState("Drinking", true);
+                        playerScript.playerAudio.Play("Drink");
+                    }
                     break;
                 case 3:
                     if (GameManager.gM.GetAbilities("Arquebus") && playerScript.specialScript.GetAbilityCooldown() && !playerScript.stateScript.GetState("Shooting") && !playerScript.stateScript.GetState("Attacking"))
