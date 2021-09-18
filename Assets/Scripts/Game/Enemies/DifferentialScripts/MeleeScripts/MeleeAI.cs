@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class MeleeAI : MonoBehaviour
 {
-    [System.NonSerialized]public EnemyController enemyScript;
-    [System.NonSerialized]public GameObject target;
-    [System.NonSerialized]private bool caught = false;
+    [HideInInspector]public EnemyController enemyScript;
+    [HideInInspector]public GameObject target;
+    [HideInInspector]private bool caught = false;
     [SerializeField]private Transform groundCheck;
     [SerializeField]private float checkDistance;
     [SerializeField]private LayerMask obstacleLayer;
@@ -40,14 +40,12 @@ public class MeleeAI : MonoBehaviour
             this.enabled = false;
         bool grounded = Physics2D.OverlapCircle(this.groundCheck.position, checkDistance, this.groundLayer);
         this.enemyScript.stateScript.SetState("Grounded", grounded);
-        if (GameManager.gM.GetPlayerObject() != null)
-        {
-            this.target = GameManager.gM.GetPlayerObject();
+        this.target = GameManager.gM.pM.playerObject;
+        if (this.target != null)
             if (PlayerIsAlive())
                 ManageAI();
             else 
                 this.enemyScript.movementScript.ManageMovement(0);
-        }
     }
     bool PlayerIsAlive()
     {
@@ -61,10 +59,10 @@ public class MeleeAI : MonoBehaviour
         this.distanceEnemyPlayer = this.transform.position.x - this.target.transform.position.x;
         this.isInRange = (this.transform.position.y <= this.target.transform.position.y + this.followYRange) && (this.transform.position.y >= this.target.transform.position.y - this.followYRange);
         DetectPlayer();
-        if (Time.time >= this.nextHit && this.caught && this.enemyScript.stateScript.GetState("Attacking") == false)
+        if (Time.time >= this.nextHit && this.caught && this.enemyScript.stateScript.GetState("Hitting") == false)
         {
             this.nextHit = Time.time + this.hitCooldown;
-            this.enemyScript.stateScript.SetState("Attacking", true);
+            this.enemyScript.stateScript.SetState("Hitting", true);
         }
     }
     private void DetectPlayer()

@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class DistanceAI : MonoBehaviour
 {
-    [System.NonSerialized]public EnemyController enemyScript;
-    [System.NonSerialized]public GameObject target;
+    [HideInInspector]public EnemyController enemyScript;
+    [HideInInspector]public GameObject target;
     [SerializeField, Range(0.0f, 10.0f)]private float checkDistance;
     [SerializeField]public Transform groundCheck;
     [SerializeField]private LayerMask groundLayer;
@@ -35,7 +35,7 @@ public class DistanceAI : MonoBehaviour
             this.enabled = false;
         bool grounded = Physics2D.OverlapCircle(this.groundCheck.position, checkDistance, this.groundLayer);
         this.enemyScript.stateScript.SetState("Grounded", grounded);
-        this.target = GameManager.gM.GetPlayerObject();
+        this.target = GameManager.gM.pM.playerObject;
         if (this.target != null)
             if (PlayerIsAlive())
                 ManageAI();
@@ -54,11 +54,11 @@ public class DistanceAI : MonoBehaviour
         this.distanceEnemyPlayer = Vector2.Distance(this.detectingPoint.position, this.target.transform.position);
         float yDistance = Mathf.Abs(this.detectingPoint.position.y - this.target.transform.position.y);
         SetDirection(this.detectingPoint.position.x - this.target.transform.position.x);
-        if (this.distanceEnemyPlayer < this.followRange && this.distanceEnemyPlayer >= this.shootingRange && !this.enemyScript.stateScript.GetState("Attacking"))
+        if (this.distanceEnemyPlayer < this.followRange && this.distanceEnemyPlayer >= this.shootingRange && !this.enemyScript.stateScript.GetState("Shooting"))
             SetMovement(this.moveDirection);
-        else if (this.distanceEnemyPlayer < this.shootingRange && this.distanceEnemyPlayer >= this.escapingRange && yDistance <= shootingYRange && Time.time >= this.nextShoot && !this.enemyScript.stateScript.GetState("Attacking"))
+        else if (this.distanceEnemyPlayer < this.shootingRange && this.distanceEnemyPlayer >= this.escapingRange && yDistance <= shootingYRange && Time.time >= this.nextShoot && !this.enemyScript.stateScript.GetState("Shooting"))
             OnShootingArea(this.moveDirection);
-        else if (this.distanceEnemyPlayer <= this.escapingRange && !this.enemyScript.stateScript.GetState("Attacking"))
+        else if (this.distanceEnemyPlayer <= this.escapingRange && !this.enemyScript.stateScript.GetState("Shooting"))
             SetMovement(-this.moveDirection);
         else 
             SetMovement(0);
@@ -75,8 +75,7 @@ public class DistanceAI : MonoBehaviour
     void OnShootingArea(int direction)
     {
         SetMovement(0);
-        this.nextShoot = Time.time + this.shootCooldown;
-        this.enemyScript.stateScript.SetState("Attacking", true);
+        this.enemyScript.stateScript.SetState("Shooting", true);
     }
     void SetDirection(float distance)
     {

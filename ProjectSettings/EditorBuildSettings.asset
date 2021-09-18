@@ -13,9 +13,15 @@ EditorBuildSettings:
     guid: 5557bd79696a864418433a1917692352
   - enabled: 1
     path: Assets/Scenes/Gameplay/Germany/Germany1.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    guid: 87f4b1af18a997c47a9f1db65925a087
   - enabled: 1
     path: Assets/Scenes/Gameplay/Germany/Germany2.unity
-    guid: 1aa46dde675e16b489da4669639d1a4c
+    guid: 2fd71c83c38cabf4996d4201bd544d57
+  - enabled: 1
+    path: Assets/Scenes/Gameplay/Germany/Germany3.unity
+    guid: abf2e4b815b262b49894f4efe153788e
+  - enabled: 1
+    path: Assets/Scenes/Gameplay/Russia/Russia3.unity
+    guid: 9e5c45f8429440b4c924c1d2a514cb81
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 35fae16ac5394f946866de72a51dcf16, type: 2}

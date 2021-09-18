@@ -2,10 +2,12 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [System.NonSerialized] public PlayerState stateScript;
-    [System.NonSerialized] public PlayerMovement movementScript;
-    [System.NonSerialized] public PlayerAttack attackScript;
-    [System.NonSerialized] public Animator playerAnimator;
+    [HideInInspector]public PlayerState stateScript;
+    [HideInInspector]public PlayerMovement movementScript;
+    [HideInInspector]public PlayerAttack attackScript;
+    [HideInInspector]public PlayerSpecial specialScript;
+    [HideInInspector]public EntityAudio playerAudio;
+    [HideInInspector]public Animator playerAnimator;
     private HealthBar healthBar;
 
     #region Getters & Setters
@@ -20,23 +22,27 @@ public class Player : MonoBehaviour
         this.stateScript = this.GetComponent<PlayerState>();
         this.movementScript = this.GetComponent<PlayerMovement>();
         this.attackScript = this.GetComponent<PlayerAttack>();
+        this.specialScript = this.GetComponent<PlayerSpecial>();
+        this.playerAudio = this.GetComponent<EntityAudio>();
         this.playerAnimator = this.GetComponent<Animator>();
         this.healthBar = GameObject.Find("/UI/Canvas/HealthBar").GetComponent<HealthBar>();
     }
     void Start()
     {
-        this.healthBar.SetMaxHealth(GameManager.gM.GetMaxHealth());
+        this.healthBar.SetMaxHealth(GameManager.gM.maxPlayerHealth);
+        this.healthBar.SetHealth(GameManager.gM.currentPlayerHealth);
     }
     public void Damaged(int damage)
     {
-        AudioManager.aM.Play("Hurt");
-        this.playerAnimator.SetTrigger("Hurt");
-        GameManager.gM.SetPlayerHealth(GameManager.gM.GetPlayerHealth() - damage);
-        this.healthBar.SetHealth(GameManager.gM.GetPlayerHealth());
-        if (GameManager.gM.GetPlayerHealth() <= 0)
+        if (GameManager.gM.currentPlayerHealth > 0)
         {
-            Die();
+            playerAudio.Play("Hurt");
+            this.playerAnimator.SetTrigger("Hurt");
         }
+        GameManager.gM.currentPlayerHealth = GameManager.gM.currentPlayerHealth - damage;
+        this.healthBar.SetHealth(GameManager.gM.currentPlayerHealth);
+        if (GameManager.gM.currentPlayerHealth <= 0)
+            Die();
     }
     void Die()
     {
@@ -45,6 +51,6 @@ public class Player : MonoBehaviour
     public void EndDie()
     {
         GameManager.gM.SetMaxHealth();
-        GameManager.gM.RestartLevel();
+        LevelManager.lM.RestartLevel();
     }
 }

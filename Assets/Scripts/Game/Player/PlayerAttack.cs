@@ -6,10 +6,10 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private float hitRange;
     [SerializeField] private LayerMask enemyLayers;
     [SerializeField] private int normalDamage = 20;
-    [SerializeField] private int specialDamage = 50;
-    [SerializeField, Range(0.0f, 5.0f)] private float attackCooldown = 0.5f;
+    [SerializeField, Range(0.1f, 5.0f)] private float attackCooldown = 0.5f;
     private float nextAttack;
     private Player playerScript;
+    [HideInInspector]public float multiplier = 1;
 
     #region Getters & Setters
     public bool GetAttackCooldown()
@@ -29,13 +29,11 @@ public class PlayerAttack : MonoBehaviour
         {
             if (enemy.gameObject.GetComponent<EnemyState>().GetState("IsDead") == false)
             {
-                enemy.GetComponent<HealthManage>().Damaged(this.normalDamage);
-                AudioManager.aM.Play("EnemyHit");
+                EnemyController controller = enemy.GetComponent<EnemyController>();
+                controller.healthScript.Damaged((int)(this.normalDamage * this.multiplier));
+                controller.enemyAudio.Play("EnemyHit");
             }
         }
-    }
-    public void TestSpecialAttack()
-    {
     }
     public void EndAttack()
     {
