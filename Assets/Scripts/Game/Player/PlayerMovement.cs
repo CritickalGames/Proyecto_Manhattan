@@ -13,8 +13,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]private LayerMask groundLayer;
     [SerializeField]private LayerMask dashLayer;
     [SerializeField, Range(0.0f, 5.0f)]private float dashCooldown = 0.5f;
-    public float speedMultiplier = 1;
-    public float jumpMultiplier = 1;
+    [HideInInspector]public float speedMultiplier = 1;
+    [HideInInspector]public float jumpMultiplier = 1;
     private float nextDash;
     private Player playerScript;
     private float timeOnAir;
