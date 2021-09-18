@@ -371,6 +371,18 @@ MonoBehaviour:
     volume: 0.5
     pitch: 1
     loop: 0
+  - name: EnemyDie
+    clip: {fileID: 8300000, guid: 7d72efbc50084c94298adc0e03efc7f4, type: 3}
+    group: {fileID: 1147615277765096762, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+  - name: EnemyHeal
+    clip: {fileID: 8300000, guid: aac13afc95dc36c4a9866f3f90e2be81, type: 3}
+    group: {fileID: 1147615277765096762, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
+    volume: 0.5
+    pitch: 1
+    loop: 0
 --- !u!1 &4927152901211140193
 GameObject:
   m_ObjectHideFlags: 0

@@ -121,6 +121,7 @@ public class PlayerMovement : MonoBehaviour
         if(hitRaycast)
             distance = hitRaycast.distance;
         this.transform.position = new Vector2(this.transform.position.x + (facingDir * distance) ,this.transform.position.y);
+        this.playerScript.playerAudio.Play("Dash");
     }
     private void VerifyGround()
     {

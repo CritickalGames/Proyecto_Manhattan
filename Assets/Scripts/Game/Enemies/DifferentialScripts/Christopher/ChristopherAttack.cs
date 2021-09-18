@@ -23,7 +23,7 @@ public class ChristopherAttack : MonoBehaviour
     }
     public void Shoot()
     {
-        this.enemyScript.enemyAudio.Play("EnemyThrow");
+        this.enemyScript.enemyAudio.Play("EnemyShoot");
         bulletParent = GameObject.Find("/Enemies/BulletParent").GetComponent<Transform>();
         GameObject bullet = Instantiate(this.bulletPrefab, this.shootingPoint.position, Quaternion.identity, this.bulletParent);
         bullet.GetComponent<BulletScript>().direction = -this.enemyScript.cAIScript.moveDirection;;
@@ -42,7 +42,7 @@ public class ChristopherAttack : MonoBehaviour
             {
                 Player controller = player.GetComponent<Player>();
                 controller.Damaged(this.normalDamage);
-                controller.playerAudio.Play("Hit");
+                this.enemyScript.enemyAudio.Play("EnemyHit");
             }
         }
     }

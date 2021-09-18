@@ -31,7 +31,7 @@ public class PlayerAttack : MonoBehaviour
             {
                 EnemyController controller = enemy.GetComponent<EnemyController>();
                 controller.healthScript.Damaged((int)(this.normalDamage * this.multiplier));
-                controller.enemyAudio.Play("EnemyHit");
+                playerScript.playerAudio.Play("Hit");
             }
         }
     }
