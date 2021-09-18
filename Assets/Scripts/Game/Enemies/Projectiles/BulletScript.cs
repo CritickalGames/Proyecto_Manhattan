@@ -26,6 +26,7 @@ public class BulletScript : MonoBehaviour
             if (layer == LayerMask.NameToLayer("Player"))
             {
                 collision.gameObject.GetComponent<Player>().Damaged(this.damage);
+                Destroy(this.gameObject);
             } else
             {
                 if (!collision.gameObject.GetComponent<EnemyState>().GetState("IsDead"))
