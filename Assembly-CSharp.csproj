@@ -121,6 +121,7 @@
      <Compile Include="Assets\Scripts\Game\Enemies\DifferentialScripts\Christopher\ChristopherAI.cs" />
      <Compile Include="Assets\Scripts\Game\Enemies\DifferentialScripts\Christopher\ChristopherAttack.cs" />
      <Compile Include="Assets\Scripts\Game\SpecialAbilities\Arquebus.cs" />
+     <Compile Include="Assets\Scripts\Game\Player\PlayerSpecial.cs" />
      <None Include="Assets\3rdParty\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\3rdParty\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\3rdParty\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

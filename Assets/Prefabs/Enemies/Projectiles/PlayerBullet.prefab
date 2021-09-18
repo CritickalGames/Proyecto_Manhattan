@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 400385081553600274}
   - component: {fileID: -6918067060198114140}
   - component: {fileID: 4127308892913337647}
-  m_Layer: 13
-  m_Name: Bullet
+  m_Layer: 14
+  m_Name: PlayerBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: 0
-  speed: 7
+  speed: 15
   maxTime: 4
-  damage: 30
-  objectiveLayer: Player
+  damage: 60
+  objectiveLayer: Enemy

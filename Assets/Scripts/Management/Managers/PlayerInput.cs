@@ -42,8 +42,21 @@ public class PlayerInput : MonoBehaviour
     }
     void OnSpecialAttack()
     {
-        if (SceneManager.GetActiveScene().buildIndex > 1 && !GameManager.gM.pauseScript.isPaused && GameManager.gM.pM.playerObject != null && !GameManager.gM.pM.playerScript.attackScript.drunk && GameManager.gM.pM.playerScript.attackScript.GetDrinkingCooldown() && !GameManager.gM.pM.playerScript.stateScript.GetState("Drinking") && !GameManager.gM.pM.playerScript.stateScript.GetState("Attacking") && !GameManager.gM.pM.playerScript.stateScript.GetState("Jumping") && GameManager.gM.GetAbilities("Vodka"))
-            GameManager.gM.pM.playerScript.stateScript.SetState("Drinking", true);
+        if (SceneManager.GetActiveScene().buildIndex > 1 && !GameManager.gM.pauseScript.isPaused && GameManager.gM.pM.playerObject != null)
+        {
+            Player playerScript = GameManager.gM.pM.playerScript;
+            switch(GameManager.gM.pauseScript.abilityNum)
+            {
+                case 1: 
+                    if (GameManager.gM.GetAbilities("Vodka") && !playerScript.specialScript.drunk && !playerScript.specialScript.hangover && playerScript.specialScript.GetAbilityCooldown() && !playerScript.stateScript.GetState("Drinking") && !playerScript.stateScript.GetState("Attacking") && !playerScript.stateScript.GetState("Jumping"))
+                        playerScript.stateScript.SetState("Drinking", true);
+                    break;
+                case 3:
+                    if (GameManager.gM.GetAbilities("Arquebus") && playerScript.specialScript.GetAbilityCooldown() && !playerScript.stateScript.GetState("Shooting") && !playerScript.stateScript.GetState("Attacking"))
+                        playerScript.stateScript.SetState("Shooting", true);
+                    break;
+            }
+        }
     }
     void OnPause()
     {
