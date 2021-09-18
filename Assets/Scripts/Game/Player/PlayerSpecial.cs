@@ -59,6 +59,7 @@ public class PlayerSpecial : MonoBehaviour
         } else if (this.hangover)
         {
             this.nextDrink = Time.time + this.drinkCooldown;
+            this.playerScript.attackScript.multiplier = 1;
             this.playerScript.movementScript.speedMultiplier = 1;
             this.playerScript.movementScript.jumpMultiplier = 1;
             this.hangover = false;
