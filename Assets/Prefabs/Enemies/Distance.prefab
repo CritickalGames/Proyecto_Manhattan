@@ -224,6 +224,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyScript: {fileID: 0}
+  barScript: {fileID: 0}
   maxHealth: 30
 --- !u!114 &5016984439398839411
 MonoBehaviour:
@@ -245,10 +246,15 @@ MonoBehaviour:
   dAIScript: {fileID: 0}
   DiAttackScript: {fileID: 0}
   DiAIScript: {fileID: 0}
+  cAttackScript: {fileID: 0}
+  cAIScript: {fileID: 0}
   stateScript: {fileID: 0}
   enemyAudio: {fileID: 0}
   enemyAnimator: {fileID: 0}
-  itemPrefab: {fileID: 5524144755834015241, guid: 911737d9a56d95241918d8e187f393b0, type: 3}
+  dashPrefab: {fileID: 0}
+  vodkaPrefab: {fileID: 0}
+  arquebusPrefab: {fileID: 0}
+  meleePrefab: {fileID: 0}
 --- !u!114 &4615866774107525925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,12 +336,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: EnemyHit
-    clip: {fileID: 8300000, guid: 5034181eecbf0c441aa2f7c6fe843ec9, type: 3}
-    group: {fileID: 1147615277765096762, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
-    volume: 0.5
-    pitch: 1.15
-    loop: 0
   - name: EnemyHurt
     clip: {fileID: 8300000, guid: 6257a4d500d4d5b41898a2fced2f7e15, type: 3}
     group: {fileID: 1147615277765096762, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
@@ -350,6 +350,12 @@ MonoBehaviour:
     loop: 0
   - name: EnemyStep
     clip: {fileID: 8300000, guid: 400ad27d88adc5049aa9bc24845e5044, type: 3}
+    group: {fileID: 1147615277765096762, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+  - name: EnemyDie
+    clip: {fileID: 8300000, guid: 7d72efbc50084c94298adc0e03efc7f4, type: 3}
     group: {fileID: 1147615277765096762, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
     volume: 0.5
     pitch: 1

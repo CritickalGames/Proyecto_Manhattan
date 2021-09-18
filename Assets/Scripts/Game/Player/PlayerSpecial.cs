@@ -61,6 +61,7 @@ public class PlayerSpecial : MonoBehaviour
     }
     public void Vodka()
     {
+        this.playerScript.playerAudio.Play("Drink");
         this.drunk = true;
         this.playerScript.attackScript.multiplier = this.drunkDamageMultiplier;
         this.playerScript.movementScript.speedMultiplier = this.drunkSpeedMultiplier;

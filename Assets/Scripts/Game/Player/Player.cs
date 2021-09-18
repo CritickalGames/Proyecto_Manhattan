@@ -46,6 +46,7 @@ public class Player : MonoBehaviour
     }
     void Die()
     {
+        playerAudio.Play("Die");
         this.stateScript.SetState("IsDead", true);
     }
     public void EndDie()

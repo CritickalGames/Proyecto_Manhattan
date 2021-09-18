@@ -49,6 +49,7 @@ public class BottleScript : MonoBehaviour
     }
     void OnDestroy()
     {
+        AudioManager.aM.Play("BrokenGlass");
         Collider2D[] colliders = Physics2D.OverlapCircleAll(this.transform.position, this.explodeRange);
         foreach (Collider2D col in colliders)
             if (col.tag == "Player")
