@@ -16,23 +16,18 @@ public class PlayerSpecial : MonoBehaviour
     [SerializeField, Range(0, 1f)]private float hangoverJumpMultiplier;
     [HideInInspector]public bool drunk;
     [HideInInspector]public bool hangover;
-    private float nextDrink;
+    private float nextAbility;
     private float hangoverEnd;
     private float drunkTimer;
     [SerializeField]private Transform shootingPoint;
     [SerializeField]private GameObject bulletPrefab;
     [SerializeField, Range(1.0f, 30.0f)] private float shootCooldown = 0.5f;
-    private float nextShoot;
     private Transform bulletParent;
 
     #region Getters & Setters
-    public bool GetDrinkingCooldown()
+    public bool GetAbilityCooldown()
     {
-        return Time.time >= this.nextDrink;
-    }
-    public bool GetShootingCooldown()
-    {
-        return Time.time >= this.nextShoot;
+        return Time.time >= this.nextAbility;
     }
     #endregion
 
@@ -58,7 +53,6 @@ public class PlayerSpecial : MonoBehaviour
             this.playerScript.movementScript.jumpMultiplier = this.hangoverJumpMultiplier;
         } else if (this.hangover)
         {
-            this.nextDrink = Time.time + this.drinkCooldown;
             this.playerScript.attackScript.multiplier = 1;
             this.playerScript.movementScript.speedMultiplier = 1;
             this.playerScript.movementScript.jumpMultiplier = 1;
@@ -72,7 +66,8 @@ public class PlayerSpecial : MonoBehaviour
         this.playerScript.movementScript.speedMultiplier = this.drunkSpeedMultiplier;
         this.playerScript.movementScript.jumpMultiplier = this.drunkJumpMultiplier;
         this.playerScript.stateScript.SetState("Drinking", false);
-        this.drunkTimer = Time.time + drunkDuration;
+        this.drunkTimer = Time.time + this.drunkDuration;
+        this.nextAbility = Time.time + this.drunkDuration + this.hangoverDuration + this.drinkCooldown;
     }
     public void Arquebus()
     {
@@ -84,10 +79,10 @@ public class PlayerSpecial : MonoBehaviour
             bulletScript.direction= 1;
         else
             bulletScript.direction = -1;
+        this.nextAbility = Time.time + this.shootCooldown;
     }
     public void EndShoot()
     {
         this.playerScript.stateScript.SetState("Shooting", false);
-        this.nextShoot = Time.time + this.shootCooldown;
     }
 }
