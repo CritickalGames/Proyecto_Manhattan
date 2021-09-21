@@ -127,14 +127,21 @@ public class PlayerMovement : MonoBehaviour
     {
         bool grounded = Physics2D.OverlapCircle(this.groundCheck.position, 0.05f, this.groundLayer);
         this.playerScript.stateScript.SetState("Grounded", grounded);
-        if (this.playerScript.stateScript.GetState("Grounded"))
+        if (grounded)
         {
             this.timeOnAir = 0;
             this.extraJumps = 1;
             this.playerScript.stateScript.SetState("Jumping", false);
-        } else
+            this.playerScript.stateScript.SetState("Falling", false);
+        } else if (this.playerRb.velocity.y > 0)
         {
             this.playerScript.stateScript.SetState("Jumping", true);
+            this.playerScript.stateScript.SetState("Falling", false);
+            this.timeOnAir += Time.deltaTime;
+        } else if (this.playerRb.velocity.y < 0)
+        {
+            this.playerScript.stateScript.SetState("Jumping", false);
+            this.playerScript.stateScript.SetState("Falling", true);
             this.timeOnAir += Time.deltaTime;
         }
     }
