@@ -40682,6 +40682,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BossBar
       objectReference: {fileID: 0}
+    - target: {fileID: 6796441699666875895, guid: 1abb40590b0236c428fc2eb1c0cd2343, type: 3}
+      propertyPath: m_text
+      value: "Christopher Pr\xF3stata"
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1abb40590b0236c428fc2eb1c0cd2343, type: 3}
 --- !u!1001 &8058584533979361050
