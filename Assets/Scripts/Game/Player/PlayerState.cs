@@ -35,6 +35,7 @@ public class PlayerState : MonoBehaviour
         this.state.Add("Shooting", false);
         this.state.Add("Drinking", false);
         this.state.Add("Jumping", false);
+        this.state.Add("Falling", false);
         this.state.Add("Grounded", true);
         this.state.Add("IsDead", false);
     }
