@@ -80,9 +80,7 @@ public class PlayerSpecial : MonoBehaviour
         else
             bulletScript.direction = -1;
         this.nextAbility = Time.time + this.shootCooldown;
-    }
-    public void EndShoot()
-    {
-        this.playerScript.stateScript.SetState("Shooting", false);
+                this.playerScript.stateScript.SetState("Shooting", false);
+
     }
 }

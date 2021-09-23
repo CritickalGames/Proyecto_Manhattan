@@ -34,9 +34,6 @@ public class PlayerAttack : MonoBehaviour
                 playerScript.playerAudio.Play("Hit");
             }
         }
-    }
-    public void EndAttack()
-    {
         this.nextAttack = Time.time + this.attackCooldown;
         this.playerScript.stateScript.SetState("Attacking", false);
     }
