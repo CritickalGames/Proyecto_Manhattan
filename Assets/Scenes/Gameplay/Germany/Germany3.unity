@@ -19781,7 +19781,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cee31a4878a3914dbfa359c1515e26b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextLevel: 0
+  nextLevel: 1
+  UnlockCountry:
+  - Poland
+  - France
 --- !u!1 &768958979
 GameObject:
   m_ObjectHideFlags: 0
