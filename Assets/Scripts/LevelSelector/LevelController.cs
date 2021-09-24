@@ -4,9 +4,9 @@ using UnityEngine.UI;
 
 public class LevelController : MonoBehaviour
 {
-    private Image[] countryImage = new Image[4];
-    private Button[] countryButton = new Button[4];
-    private string[] countryName = new string[4];
+    private Image[] countryImage = new Image[7];
+    private Button[] countryButton = new Button[7];
+    private string[] countryName = new string[7];
 
     void Start()
     {
@@ -14,6 +14,9 @@ public class LevelController : MonoBehaviour
         countryName[1] = "Poland";
         countryName[2] = "Ukraine";
         countryName[3] = "Russia";
+        countryName[4] = "France";
+        countryName[5] = "Spain";
+        countryName[6] = "Portugal";
         LevelAvailable();
     }
     public void LevelAvailable()
