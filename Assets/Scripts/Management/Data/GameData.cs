@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable] public class GameData 
 {
     public bool[] abilitiesBool = new bool[4];
-    public bool[] countriesBool = new bool[7];
+    public bool[] countriesBool = new bool[4];
     public int selectedItem;
     public int abilityCount;
 
