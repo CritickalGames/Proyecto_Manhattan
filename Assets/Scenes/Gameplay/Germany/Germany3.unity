@@ -1164,6 +1164,7 @@ MonoBehaviour:
   nextLevel: 1
   UnlockCountry:
   - Poland
+  - France
 --- !u!1 &768958979
 GameObject:
   m_ObjectHideFlags: 0
