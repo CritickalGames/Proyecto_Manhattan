@@ -13,8 +13,9 @@ public class LevelPassed : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D col)
     {
-        for (int i = 0 ; i < UnlockCountry.Length ; i++)
-            LevelManager.lM.UnlockCountry(UnlockCountry[i]);
+        if (UnlockCountry != null)
+            for (int i = 0 ; i < UnlockCountry.Length ; i++)
+                LevelManager.lM.UnlockCountry(UnlockCountry[i]);
 
         if (col.gameObject.CompareTag("Player"))
             LevelManager.lM.NextLevel(nextLevel);
