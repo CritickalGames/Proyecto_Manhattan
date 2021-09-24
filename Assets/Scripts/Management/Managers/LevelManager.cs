@@ -18,6 +18,14 @@ public class LevelManager : MonoBehaviour
         else
             return false;
     }
+    public void UnlockCountry(string name)
+    {
+        if (this.countriesUnlocked.ContainsKey(name))
+        {
+            countriesUnlocked[name] = true;
+            GameManager.gM.SaveGame();
+        }
+    }
     #endregion
 
     void Awake()
@@ -65,6 +73,9 @@ public class LevelManager : MonoBehaviour
         countriesUnlocked.Add("Poland", false);
         countriesUnlocked.Add("Ukraine", false);
         countriesUnlocked.Add("Russia", false);
+        countriesUnlocked.Add("France", false);
+        countriesUnlocked.Add("Spain", false);
+        countriesUnlocked.Add("Portugal", false);
     }
     private void LoadScene(int scene)
     {
