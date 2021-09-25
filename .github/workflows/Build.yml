@@ -2,7 +2,7 @@ name: Build
 
 on:
   push:
-    branches: [  ]
+    branches: [ main ]
   pull_request:
     branches: [ main ]
 
@@ -19,8 +19,6 @@ jobs:
         projectVersion: 
     steps:
       - uses: actions/checkout@v2
-#      - name: Set Project Version
-#        run: $env:projectVersion = "0.1.$env:GITHUB_RUN_ID"
       - name: Build For Windows 64 bits
         run: |
           $env:projectVersion = "0.1.$env:GITHUB_RUN_ID"
