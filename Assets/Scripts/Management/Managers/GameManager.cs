@@ -27,9 +27,9 @@ public class GameManager : MonoBehaviour
         this.abilities[name] = value;
         if (name != "Dash")
             SetAbilityCount();
-        GameManager.gM.SaveGame();
+        SaveGame();
     }
-    private void SetAbilityCount()
+    public void SetAbilityCount()
     {
         this.abilityCount++;
     }
