@@ -16,7 +16,6 @@ jobs:
         BUILD_METHOD_WIN64: "BuildProject.BuildWindows64"
         BUILD_METHOD_WIN32: "BuildProject.BuildWindows32"
         gameName: "Haste"
-        projectVersion: ""
     steps:
       - uses: actions/checkout@v2
       - name: Set Project Version
