@@ -23,9 +23,6 @@ public class MeleeAttack : MonoBehaviour
                 this.enemyScript.enemyAudio.Play("EnemyHit");
             }
         }
-    }
-    public void EndHit()
-    {
         this.enemyScript.stateScript.SetState("Hitting", false);
         this.enemyScript.mAIScript.SetNextHit();
     }
