@@ -378,22 +378,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5638201098352387067, guid: 5adc078bd00ecd24e8b79dfd15b0fb2a, type: 3}
-      propertyPath: meleeRange
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5638201098352387067, guid: 5adc078bd00ecd24e8b79dfd15b0fb2a, type: 3}
-      propertyPath: meleeCooldown
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5638201098352387067, guid: 5adc078bd00ecd24e8b79dfd15b0fb2a, type: 3}
-      propertyPath: shootingRange
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 5638201098352387067, guid: 5adc078bd00ecd24e8b79dfd15b0fb2a, type: 3}
-      propertyPath: meleeFollowRange
-      value: 2.5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5adc078bd00ecd24e8b79dfd15b0fb2a, type: 3}
 --- !u!4 &117514381 stripped

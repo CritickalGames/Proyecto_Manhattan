@@ -29,9 +29,6 @@ public class DimitriAttack : MonoBehaviour
         bottleParent = GameObject.Find("/Enemies/BulletParent").GetComponent<Transform>();
         GameObject bottle = Instantiate(this.bottlePrefab, this.shootingPoint.position, Quaternion.identity, this.bottleParent);
         bottle.GetComponent<BottleScript>().target = enemyScript.DiAIScript.target.transform.position + new Vector3(0, 1f, 0);
-    }
-    public void EndShoot()
-    {
         this.enemyScript.stateScript.SetState("Shooting", false);
         this.enemyScript.DiAIScript.SetNextThrow();
     }
@@ -47,9 +44,6 @@ public class DimitriAttack : MonoBehaviour
                 this.enemyScript.enemyAudio.Play("EnemyHit");
             }
         }
-    }
-    public void EndHit()
-    {
         this.enemyScript.stateScript.SetState("Hitting", false);
         this.enemyScript.DiAIScript.SetNextHit();
     }

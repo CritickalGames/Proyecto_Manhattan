@@ -89,7 +89,6 @@ public class EnemyController : MonoBehaviour
     }
     void DrinkAnim()
     {
-        this.enemyAudio.Play("EnemyDrink");
         this.DiAIScript.respawns -= 1;
         this.DiAIScript.enabled = false;
         this.stateScript.SetState("Drinking", true);
@@ -107,5 +106,6 @@ public class EnemyController : MonoBehaviour
         for (int i = -2 ; i < 3 ; i++)
             if (i != 0)
                 GameObject.Instantiate(this.meleePrefab, new Vector3(this.transform.position.x + i, this.transform.position.y, this.transform.position.z), Quaternion.identity, GameObject.Find("Enemies").transform);
+        this.enemyAudio.Play("EnemyDrink");
     }
 }
