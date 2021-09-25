@@ -20,7 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Set Project Version
-        run: $env:projectVersion: "0.1.$env:GITHUB_SHA"
+        run: $env:projectVersion = "0.1.$GITHUB_RUN_ID"
       - name: Build For Windows 64 bits
         run: Start-Process -Wait 'C:\Program Files\Unity\Hub\Editor\2020.3.12f1\Editor\Unity.exe' -ArgumentList "-nographics -batchmode -projectPath $env:PROJECT_PATH -executeMethod $env:BUILD_METHOD_WIN64 -quit"
       - name: Build For Windows 32 bits
