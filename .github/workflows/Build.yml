@@ -16,7 +16,7 @@ jobs:
         BUILD_METHOD_WIN64: "BuildProject.BuildWindows64"
         BUILD_METHOD_WIN32: "BuildProject.BuildWindows32"
         gameName: "Haste"
-        projectVersion: "0.1.${$GITHUB_RUN_NUMBER}"
+        projectVersion: "0.1.${GITHUB_RUN_NUMBER}"
     steps:
       - uses: actions/checkout@v2
       - name: Build For Windows 64 bits
