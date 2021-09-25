@@ -67,6 +67,8 @@ public class PlayerInput : MonoBehaviour
             GameManager.gM.pauseScript.Resume();
         else if (SceneManager.GetActiveScene().buildIndex > 1 && !GameManager.gM.pauseScript.isPaused)
             GameManager.gM.pauseScript.Pause();
+        else if (SceneManager.GetActiveScene().buildIndex == 1)
+            LevelManager.lM.LoadScene(0);
     }
     void OnDown()
     {

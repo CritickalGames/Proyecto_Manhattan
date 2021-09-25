@@ -1,0 +1,23 @@
+name: Testing
+
+on:
+  push:
+    branches: [ main ]
+
+  workflow_dispatch:
+
+jobs:
+  tests:
+    runs-on: [self-hosted]
+    env:
+      PROJECT_PATH: ".\\"
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run EditMode Test
+        run: Start-Process -Wait 'C:\Program Files\Unity\Hub\Editor\2020.3.12f1\Editor\Unity.exe' -ArgumentList "-runTests -batchmode -testPlatform EditMode -projectPath $env:PROJECT_PATH  -testResults ./results-editmode.xml"
+      - name: Run PlayMode Test
+        run: Start-Process -Wait 'C:\Program Files\Unity\Hub\Editor\2020.3.12f1\Editor\Unity.exe' -ArgumentList "-runTests -batchmode -testPlatform PlayMode -projectPath $env:PROJECT_PATH  -testResults ./results-playmode.xml"
+      - uses: actions/upload-artifact@v2
+        with:
+          name: results
+          path: results*.xml

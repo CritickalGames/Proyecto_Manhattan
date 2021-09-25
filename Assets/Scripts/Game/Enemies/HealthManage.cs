@@ -7,7 +7,7 @@ public class HealthManage : MonoBehaviour
     [HideInInspector]public EnemyController enemyScript;
     [HideInInspector]public HealthBar barScript;
     [SerializeField]public int maxHealth = 100;
-    private int currentHealth;
+    [HideInInspector]public int currentHealth;
     
     public void SetMaxHealth()
     {
