@@ -5,10 +5,10 @@ using UnityEditor;
 
 public class BuildProject : MonoBehaviour
 {
-    //public static string version = System.Environment.GetEnvironmentVariable("projectVersion");
-    public static string gameName = System.Environment.GetEnvironmentVariable("gameName"); 
+    public static string version = System.Environment.GetEnvironmentVariable("projectVersion");
+    public static string gameName = System.Environment.GetEnvironmentVariable("gameName");
 
-    public static void BuildWindows64(string version)
+    public static void BuildWindows64()
     {
         string buildPath = ".\\Builds\\" + version + "\\Win64\\" + gameName + ".exe";
         BuildPipeline.BuildPlayer(
@@ -27,7 +27,7 @@ public class BuildProject : MonoBehaviour
             BuildOptions.None
         );
     }
-    public static void BuildWindows32(string version)
+    public static void BuildWindows32()
     {
         string buildPath = ".\\Builds\\" + version + "\\Win32\\" + gameName + ".exe";
         BuildPipeline.BuildPlayer(
