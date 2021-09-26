@@ -974,7 +974,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -14.812296, y: 2.5160022, z: -10}
+  m_LocalPosition: {x: -14.816717, y: 2.5160022, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 523653231}
@@ -2553,19 +2553,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6139910829830242996, guid: 1abb40590b0236c428fc2eb1c0cd2343, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.8684792
+      value: 0.9864792
       objectReference: {fileID: 0}
     - target: {fileID: 6139910829830242996, guid: 1abb40590b0236c428fc2eb1c0cd2343, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.094000004
+      value: 0.96900004
       objectReference: {fileID: 0}
     - target: {fileID: 6139910829830242996, guid: 1abb40590b0236c428fc2eb1c0cd2343, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.13152085
+      value: 0.39568752
       objectReference: {fileID: 0}
     - target: {fileID: 6139910829830242996, guid: 1abb40590b0236c428fc2eb1c0cd2343, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 0.87600005
       objectReference: {fileID: 0}
     - target: {fileID: 6139910829830242996, guid: 1abb40590b0236c428fc2eb1c0cd2343, type: 3}
       propertyPath: m_SizeDelta.x
@@ -2625,7 +2625,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6139910829830242997, guid: 1abb40590b0236c428fc2eb1c0cd2343, type: 3}
       propertyPath: m_Name
-      value: BossBar
+      value: DimitriBossBar
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1abb40590b0236c428fc2eb1c0cd2343, type: 3}
