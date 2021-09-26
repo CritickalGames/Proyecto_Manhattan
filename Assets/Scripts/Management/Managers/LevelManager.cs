@@ -76,6 +76,7 @@ public class LevelManager : MonoBehaviour
         countriesUnlocked.Add("France", false);
         countriesUnlocked.Add("Spain", false);
         countriesUnlocked.Add("Portugal", false);
+        countriesUnlocked.Add("Final", false);
     }
     public void LoadScene(int scene)
     {

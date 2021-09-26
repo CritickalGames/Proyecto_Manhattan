@@ -25,7 +25,7 @@ public class HealthManage : MonoBehaviour
     void Start()
     {
         if (this.enemyScript.stateScript.type == "Dimitri" || this.enemyScript.stateScript.type == "Christopher")
-            this.barScript = GameObject.Find("BossBar").GetComponent<HealthBar>();
+            this.barScript = GameObject.Find(this.enemyScript.stateScript.type + "BossBar").GetComponent<HealthBar>();
         SetMaxHealth();      
     }
     public void Damaged(int damage)
