@@ -354,7 +354,7 @@ MonoBehaviour:
     pitch: 1.15
     loop: 0
   - name: Shoot
-    clip: {fileID: 8300000, guid: 50c05bfaf5b0eb844a0c8d526196209c, type: 3}
+    clip: {fileID: 8300000, guid: 4168269a347995a4db4bb3fca79d9615, type: 3}
     group: {fileID: 321012550716680038, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
     volume: 1
     pitch: 1
