@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class EnemyController : MonoBehaviour
@@ -60,13 +61,15 @@ public class EnemyController : MonoBehaviour
             case "Dimitri":
                 if (this.DiAIScript.respawns < 1)
                 {
-                    StartCoroutine(SpawnItem(vodkaPrefab));
+                    if (SceneManager.GetActiveScene().name != "Germany4")
+                        StartCoroutine(SpawnItem(vodkaPrefab));
                     Die();
                 } else
                     DrinkAnim();
                 break;
             case "Christopher":
-                StartCoroutine(SpawnItem(arquebusPrefab));
+                if (SceneManager.GetActiveScene().name != "Germany4")
+                    StartCoroutine(SpawnItem(arquebusPrefab));
                 Die();
                 break;
             default: 
@@ -89,7 +92,6 @@ public class EnemyController : MonoBehaviour
     }
     void DrinkAnim()
     {
-        this.enemyAudio.Play("EnemyDrink");
         this.DiAIScript.respawns -= 1;
         this.DiAIScript.enabled = false;
         this.stateScript.SetState("Drinking", true);
@@ -107,5 +109,6 @@ public class EnemyController : MonoBehaviour
         for (int i = -2 ; i < 3 ; i++)
             if (i != 0)
                 GameObject.Instantiate(this.meleePrefab, new Vector3(this.transform.position.x + i, this.transform.position.y, this.transform.position.z), Quaternion.identity, GameObject.Find("Enemies").transform);
+        this.enemyAudio.Play("EnemyDrink");
     }
 }

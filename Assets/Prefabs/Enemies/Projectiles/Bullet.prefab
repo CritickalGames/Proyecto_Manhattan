@@ -137,5 +137,5 @@ MonoBehaviour:
   direction: 0
   speed: 7
   maxTime: 4
-  damage: 30
+  damage: 25
   objectiveLayer: Player
