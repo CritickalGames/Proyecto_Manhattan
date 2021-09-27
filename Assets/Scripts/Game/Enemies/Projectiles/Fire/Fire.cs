@@ -14,6 +14,7 @@ public class Fire : MonoBehaviour
 
     void Start()
     {
+        this.GetComponent<EntityAudio>().Play("Fire");
         Destroy(this.gameObject, this.duration);
         RaycastHit2D hitRaycast = Physics2D.Raycast(this.transform.position, Vector2.down, this.platforms);
         this.transform.position = new Vector2(this.transform.position.x, hitRaycast.distance);
