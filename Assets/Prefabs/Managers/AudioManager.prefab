@@ -68,3 +68,9 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
+  - name: Noise
+    clip: {fileID: 8300000, guid: 9aea34e4bfe85c54b8195f5015092b2a, type: 3}
+    group: {fileID: -6321087983221286768, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 1

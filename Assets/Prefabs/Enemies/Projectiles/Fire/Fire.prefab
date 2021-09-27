@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8474116955445384874}
   - component: {fileID: 4448657829655556346}
   - component: {fileID: 7135453345563976569}
+  - component: {fileID: 3880298519719204546}
   m_Layer: 13
   m_Name: Fire
   m_TagString: Untagged
@@ -148,3 +149,22 @@ MonoBehaviour:
   platforms:
     serializedVersion: 2
     m_Bits: 2816
+--- !u!114 &3880298519719204546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8474116955445384789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49d2347229566744b9169e118e7ca953, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Fire
+    clip: {fileID: 8300000, guid: 1fbfeccde7188ad4082ce3bd49ddb4a4, type: 3}
+    group: {fileID: -902710241148830193, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
+    volume: 0.168
+    pitch: 1
+    loop: 1

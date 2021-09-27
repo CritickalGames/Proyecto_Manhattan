@@ -28,6 +28,7 @@ public class AudioManager : MonoBehaviour
     void Start()
     {
         Play("MenuMusic");
+        Play("Noise");
     }
     public void Play(string name)
     {
