@@ -5,9 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    [System.NonSerialized]public static LevelManager lM;
+    [HideInInspector]public static LevelManager lM;
     [SerializeField]private Sprite trafficGreenLight;
-    [System.NonSerialized] public Dictionary<string, bool> countriesUnlocked = new Dictionary<string, bool>();
+    [HideInInspector]public int spawnScene;
+    [HideInInspector] public Dictionary<string, bool> countriesUnlocked = new Dictionary<string, bool>();
     private bool levelPassed;
 
     #region Getters & Setters
@@ -38,7 +39,7 @@ public class LevelManager : MonoBehaviour
     }
     public void RestartLevel()
     {
-        LoadScene(2);
+        LoadScene(spawnScene);
     }
     public void LevelFinished()
     {
@@ -50,17 +51,14 @@ public class LevelManager : MonoBehaviour
         }
         levelPassed = true;
     }
-    public void NextLevel(int nextLevel)
+    public void NextLevel(int nextLevel, bool heal)
     {
-        if(nextLevel < SceneManager.sceneCountInBuildSettings && levelPassed && nextLevel > 1)
+        if(nextLevel < SceneManager.sceneCountInBuildSettings && levelPassed)
         {
+            if (heal)
+                GameManager.gM.SetMaxHealth();
             levelPassed = false;
             LoadScene(nextLevel);
-        } else if (levelPassed)
-        {
-            GameManager.gM.SetMaxHealth();
-            levelPassed = false;
-            LoadScene(1);
         } else if (!levelPassed)
         {
             MessageBar messageScript = GameObject.Find("/UI/Canvas/Message/Image").GetComponent<MessageBar>();
