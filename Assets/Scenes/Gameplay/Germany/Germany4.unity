@@ -903,6 +903,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trafficGreenLight: {fileID: 21300000, guid: 510576b8e27851647a5ec68b54b8af50, type: 3}
+  spawnScene: 0
 --- !u!4 &683812088
 Transform:
   m_ObjectHideFlags: 0
@@ -994,6 +995,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextLevel: 0
   UnlockCountry: []
+  spawnScene: 23
+  healOnPass: 1
 --- !u!1 &776404015
 GameObject:
   m_ObjectHideFlags: 0

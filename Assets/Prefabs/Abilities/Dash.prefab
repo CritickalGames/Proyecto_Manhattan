@@ -113,6 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19fefd5f0b5311444a5bf8724cba5d96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unlock: Dash
 --- !u!114 &-1534367223243575807
 MonoBehaviour:
   m_ObjectHideFlags: 0

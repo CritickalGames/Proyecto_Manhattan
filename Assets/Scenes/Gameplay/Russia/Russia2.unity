@@ -1026,6 +1026,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trafficGreenLight: {fileID: 21300000, guid: 510576b8e27851647a5ec68b54b8af50, type: 3}
+  spawnScene: 0
 --- !u!4 &683812088
 Transform:
   m_ObjectHideFlags: 0
@@ -1117,6 +1118,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextLevel: 13
   UnlockCountry: []
+  spawnScene: 11
+  healOnPass: 1
 --- !u!1 &776404015
 GameObject:
   m_ObjectHideFlags: 0
@@ -1244,7 +1247,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8058584533287176277, guid: 2420771597fe11b4fb16b616557c94e1, type: 3}
       propertyPath: message
-      value: "No puedo cruzar con la luz roja, quiz\xE1s deber\xEDa hacer tiempo"
+      value: Debo vencerlos para poder continuar.
       objectReference: {fileID: 0}
     - target: {fileID: 8058584533546602960, guid: 2420771597fe11b4fb16b616557c94e1, type: 3}
       propertyPath: m_Text
