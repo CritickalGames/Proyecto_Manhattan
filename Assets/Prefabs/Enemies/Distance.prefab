@@ -274,7 +274,7 @@ MonoBehaviour:
   groundCheck: {fileID: 7071514334901810746}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 2816
   colideWithPlatforms: 0
   detectingPoint: {fileID: 5848294905197931491}
   followRange: 7

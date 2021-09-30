@@ -1165,6 +1165,8 @@ MonoBehaviour:
   UnlockCountry:
   - Poland
   - France
+  spawnScene: 2
+  healOnPass: 1
 --- !u!1 &768958979
 GameObject:
   m_ObjectHideFlags: 0
@@ -2504,6 +2506,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trafficGreenLight: {fileID: 21300000, guid: 029d7d5a4bcb02e44b99fa5c3aebf385, type: 3}
+  spawnScene: 0
 --- !u!4 &1645089460
 Transform:
   m_ObjectHideFlags: 0
@@ -3125,7 +3128,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8058584533287176277, guid: 2420771597fe11b4fb16b616557c94e1, type: 3}
       propertyPath: message
-      value: Estos tipos me van a seguir, mejor termino con ellos.
+      value: Estos tipos me van a seguir, mejor termino con esto.
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2420771597fe11b4fb16b616557c94e1, type: 3}
