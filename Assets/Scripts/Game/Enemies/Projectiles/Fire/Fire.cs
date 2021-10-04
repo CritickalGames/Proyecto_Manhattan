@@ -22,7 +22,6 @@ public class Fire : MonoBehaviour
             this.transform.parent = GameObject.Find("/Enemies/BulletParent").transform;
         nextDamage = Time.time + damageCooldown;
     }
-
     void Update()
     {
         if(inTrigger)
@@ -40,7 +39,6 @@ public class Fire : MonoBehaviour
             col = other;
         }
     }
- 
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player")

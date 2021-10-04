@@ -11,7 +11,6 @@ public class ChristopherAI : MonoBehaviour
     [SerializeField]private LayerMask groundLayer;
     [SerializeField]private bool colideWithPlatforms;
     [SerializeField]private Transform detectingPoint;
-    [SerializeField, Range(0.0f, 20.0f)]private float followRange;
     [SerializeField, Range(0.0f, 15.0f)]private float shootingRange;
     [SerializeField, Range(0.0f, 10.0f)]private float meleeFollowRange;
     [SerializeField, Range(0.0f, 10.0f)]private float meleeRange;
@@ -75,7 +74,7 @@ public class ChristopherAI : MonoBehaviour
     {
         this.distanceEnemyPlayer = Vector2.Distance(this.detectingPoint.position, this.target.transform.position);
         SetDirection(this.detectingPoint.position.x - this.target.transform.position.x);
-        if (this.distanceEnemyPlayer < this.followRange && this.distanceEnemyPlayer >= this.shootingRange && !this.enemyScript.stateScript.GetState("Shooting") && !this.enemyScript.stateScript.GetState("Hitting"))
+        if (this.distanceEnemyPlayer >= this.shootingRange && !this.enemyScript.stateScript.GetState("Shooting") && !this.enemyScript.stateScript.GetState("Hitting"))
             SetMovement(this.moveDirection);
         else if (this.distanceEnemyPlayer < this.shootingRange && this.distanceEnemyPlayer >= this.meleeFollowRange && Time.time >= this.nextShoot && !this.enemyScript.stateScript.GetState("Shooting") && !this.enemyScript.stateScript.GetState("Hitting"))
             OnThrowingArea();
@@ -124,7 +123,6 @@ public class ChristopherAI : MonoBehaviour
         if (this.groundCheck == null)
             return;
         Gizmos.DrawWireSphere(this.groundCheck.position, this.checkDistance);
-        Gizmos.DrawWireSphere(this.detectingPoint.position, this.followRange);
         Gizmos.DrawWireSphere(this.detectingPoint.position, this.shootingRange);
         Gizmos.DrawWireSphere(this.detectingPoint.position, this.meleeFollowRange);
         Gizmos.DrawWireSphere(this.detectingPoint.position, this.meleeRange);
