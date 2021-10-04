@@ -357,13 +357,13 @@ MonoBehaviour:
     pitch: 1.15
     loop: 0
   - name: EnemyHurt
-    clip: {fileID: 8300000, guid: 6257a4d500d4d5b41898a2fced2f7e15, type: 3}
+    clip: {fileID: 8300000, guid: 28690ae52564a4349bb993560ad15a1b, type: 3}
     group: {fileID: 1147615277765096762, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
     volume: 0.5
     pitch: 1.15
     loop: 0
   - name: EnemyThrow
-    clip: {fileID: 8300000, guid: 6aee4209029e42d40ba3be311d38e4ae, type: 3}
+    clip: {fileID: 8300000, guid: 7fc1c669fa3e27b4da415f0256448b14, type: 3}
     group: {fileID: 1147615277765096762, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
     volume: 0.5
     pitch: 1.15
