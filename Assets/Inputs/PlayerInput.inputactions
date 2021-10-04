@@ -14,6 +14,38 @@
                     "interactions": ""
                 },
                 {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "707f665b-7ea4-42c6-83ed-5e3be95f56df",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                },
+                {
+                    "name": "Down",
+                    "type": "Button",
+                    "id": "0959ab39-d022-4252-b871-d7731abed000",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                },
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "93c3b056-899b-40cf-8c46-96893457d2a2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                },
+                {
+                    "name": "Dash",
+                    "type": "Button",
+                    "id": "f036e54c-55f4-4e46-a94d-d377e9f09c2f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                },
+                {
                     "name": "Attack",
                     "type": "Button",
                     "id": "ecdfc238-5b7c-4cdb-b989-6dcd966afeb1",
@@ -30,50 +62,15 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Jump",
+                    "name": "ChangeHability",
                     "type": "Button",
-                    "id": "707f665b-7ea4-42c6-83ed-5e3be95f56df",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Press"
-                },
-                {
-                    "name": "Dash",
-                    "type": "Button",
-                    "id": "f036e54c-55f4-4e46-a94d-d377e9f09c2f",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Press"
-                },
-                {
-                    "name": "Pause",
-                    "type": "Button",
-                    "id": "93c3b056-899b-40cf-8c46-96893457d2a2",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Press"
-                },
-                {
-                    "name": "Down",
-                    "type": "Button",
-                    "id": "0959ab39-d022-4252-b871-d7731abed000",
+                    "id": "50a20504-a574-488b-ad04-1ff3304d722b",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press"
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "296fbdc6-d818-4d24-b510-c981b97c80fa",
-                    "path": "<Keyboard>/j",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Attack",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "",
                     "id": "c905b6c7-d921-4a75-831c-332ea47797e8",
@@ -93,17 +90,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Attack",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "1aa401c9-7ed3-4402-a022-161fd753b18f",
-                    "path": "<Keyboard>/k",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SpecialAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -163,6 +149,39 @@
                     "isPartOfComposite": true
                 },
                 {
+                    "name": "Teclado2",
+                    "id": "4df190f7-2358-403e-ad3d-342adbe406a4",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "left",
+                    "id": "7f17f095-3ba4-4997-a1f0-1b826d4ef901",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "48d3d892-c733-4d3a-9381-881447414622",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "Joystick",
                     "id": "685a9e3d-7af2-4330-9ba1-088213d2efd8",
                     "path": "2DVector",
@@ -196,9 +215,64 @@
                     "isPartOfComposite": true
                 },
                 {
+                    "name": "Joystick2",
+                    "id": "889bc6a4-0e05-49d5-8d6b-7702794deb64",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "left",
+                    "id": "f05b0ae2-3a88-43b6-ba84-d74dc2e0f43f",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "bec7bd3d-7256-43d0-aa5d-ebaca8d34fee",
+                    "path": "<Gamepad>/dpad/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "",
                     "id": "54a3ca11-ae81-4c98-8914-f1b9d45c3dfc",
                     "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "04b1f4b5-ee8c-4311-be80-40fe6244d4c2",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "91cab0b7-7f87-4dc7-8bbe-9a293698f7a1",
+                    "path": "<Keyboard>/upArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -219,23 +293,56 @@
                 },
                 {
                     "name": "",
-                    "id": "11ab3b8a-b02b-4f4f-88e2-8f22584d5708",
-                    "path": "<Keyboard>/shift",
+                    "id": "15df85b6-b786-49f5-a83d-cd3ffcd31e54",
+                    "path": "<Gamepad>/dpad/up",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Dash",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "bc5628dc-6ab8-4812-a55e-3a476ff6482e",
-                    "path": "<Gamepad>/buttonWest",
-                    "interactions": "",
+                    "id": "ae30592f-aaf9-4f75-91e9-41eda746b00d",
+                    "path": "<Keyboard>/s",
+                    "interactions": "Press(behavior=2)",
                     "processors": "",
                     "groups": "",
-                    "action": "Dash",
+                    "action": "Down",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "947b1bd7-9531-4c94-abb3-5e4675cb36c0",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "Press(behavior=2)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Down",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3d5bca7b-d764-49ae-8107-c20719f7cfdc",
+                    "path": "<Gamepad>/leftStick/down",
+                    "interactions": "Press(behavior=2)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Down",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0c913514-26de-4de1-91f3-bb9038835536",
+                    "path": "<Gamepad>/dpad/down",
+                    "interactions": "Press(behavior=2)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Down",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -263,47 +370,36 @@
                 },
                 {
                     "name": "",
-                    "id": "ae30592f-aaf9-4f75-91e9-41eda746b00d",
-                    "path": "<Keyboard>/s",
-                    "interactions": "Press(behavior=2)",
+                    "id": "1b8e6309-035c-47b5-bfd7-4ef951229fe4",
+                    "path": "",
+                    "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Down",
+                    "action": "ChangeHability",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "Button With One Modifier",
-                    "id": "dc59296e-9c12-4e56-bd4c-8deb2fe8c33b",
-                    "path": "ButtonWithOneModifier",
-                    "interactions": "Press(behavior=2)",
+                    "name": "",
+                    "id": "11ab3b8a-b02b-4f4f-88e2-8f22584d5708",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Down",
-                    "isComposite": true,
+                    "action": "Dash",
+                    "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "modifier",
-                    "id": "9b1cdae4-6f84-4431-b3a8-c6a6d4bccb3e",
-                    "path": "<Gamepad>/leftStick/down",
-                    "interactions": "",
-                    "processors": "Clamp",
-                    "groups": "",
-                    "action": "Down",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "button",
-                    "id": "f9e67416-12c6-4d3c-a533-99e8c2d9df2a",
-                    "path": "<Gamepad>/buttonSouth",
+                    "name": "",
+                    "id": "bc5628dc-6ab8-4812-a55e-3a476ff6482e",
+                    "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Down",
+                    "action": "Dash",
                     "isComposite": false,
-                    "isPartOfComposite": true
+                    "isPartOfComposite": false
                 }
             ]
         }
