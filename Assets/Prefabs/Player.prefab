@@ -266,7 +266,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pressedDown: 0
   extraJumps: 1
-  dashDistance: 3
+  dashSpeed: 30
   jumpSpeed: 11
   movementSpeed: 9
   inertiaSpeed: 10
@@ -279,6 +279,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 6400
   dashCooldown: 0.5
+  dashDuration: 0.15
   speedMultiplier: 1
   jumpMultiplier: 1
   facingRight: 1
