@@ -34,15 +34,18 @@ public class Player : MonoBehaviour
     }
     public void Damaged(int damage)
     {
-        if (GameManager.gM.currentPlayerHealth > 0)
+        if(!stateScript.GetState("Dashing"))
         {
-            playerAudio.Play("Hurt");
-            this.playerAnimator.SetTrigger("Hurt");
+            if (GameManager.gM.currentPlayerHealth > 0)
+            {
+                playerAudio.Play("Hurt");
+                this.playerAnimator.SetTrigger("Hurt");
+            }
+            GameManager.gM.currentPlayerHealth = GameManager.gM.currentPlayerHealth - damage;
+            this.healthBar.SetHealth(GameManager.gM.currentPlayerHealth);
+            if (GameManager.gM.currentPlayerHealth <= 0)
+                Die();
         }
-        GameManager.gM.currentPlayerHealth = GameManager.gM.currentPlayerHealth - damage;
-        this.healthBar.SetHealth(GameManager.gM.currentPlayerHealth);
-        if (GameManager.gM.currentPlayerHealth <= 0)
-            Die();
     }
     void Die()
     {

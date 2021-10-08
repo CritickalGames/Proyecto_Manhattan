@@ -12,7 +12,7 @@ public class PlayerState : MonoBehaviour
     {
         if (this.state[name] != value)
             this.state[name] = value;
-        if (name != "Grounded")
+        if (name != "Grounded" && name != "Dashing")
             this.playerScript.SetAnimationBool(name, state[name]);
     }
     public bool GetState(string name)
@@ -36,6 +36,7 @@ public class PlayerState : MonoBehaviour
         this.state.Add("Drinking", false);
         this.state.Add("Jumping", false);
         this.state.Add("Falling", false);
+        this.state.Add("Dashing", false);
         this.state.Add("Grounded", true);
         this.state.Add("IsDead", false);
     }
