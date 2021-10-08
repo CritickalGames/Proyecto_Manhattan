@@ -39,9 +39,6 @@ public class PlayerSpecial : MonoBehaviour
     {
         if (Time.time >= this.drunkTimer && this.drunk)
         {
-            this.playerScript.attackScript.multiplier = 1;
-            this.playerScript.movementScript.speedMultiplier = 1;
-            this.playerScript.movementScript.jumpMultiplier = 1;
             this.drunk = false;
             this.hangover = true;
             this.hangoverEnd = Time.time + this.hangoverDuration;
