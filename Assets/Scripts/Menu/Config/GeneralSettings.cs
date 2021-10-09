@@ -48,10 +48,9 @@ public class GeneralSettings : MonoBehaviour
             SetQuality(data.qualityIndex);
             Volume(data.volume);
             FullScreen(data.fullScreen);
+            LoadData();
         } else
-        {
-            SaveAndLoadGame.SaveConfig(this);
-        }
+            SaveConfiguration();
     }
     void LoadResolutionDropDown()
     {
@@ -98,7 +97,7 @@ public class GeneralSettings : MonoBehaviour
     {
         SaveAndLoadGame.SaveConfig(this);
     }
-    public void LoadData()
+    private void LoadData()
     {
         this.resolutionDropDown.value = this.savedRes;
         this.qualityDropDown.value = QualitySettings.GetQualityLevel();
