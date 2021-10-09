@@ -15,8 +15,8 @@ public class PlayerTest
     [UnityTest]
     public IEnumerator TestPlayerSpawn()
     {
-        GameObject player = GameObject.Find("Player(Clone)");
         yield return null;
+        GameObject player = GameObject.Find("Player(Clone)");
         Assert.NotNull(player);
     }
     [UnityTest]

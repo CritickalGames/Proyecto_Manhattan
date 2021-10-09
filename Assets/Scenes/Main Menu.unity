@@ -231,7 +231,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 254532911}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GeneralSettings, Assembly-CSharp
         m_MethodName: LoadData
         m_Mode: 1
@@ -933,8 +933,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 254532911}
-        m_TargetAssemblyTypeName: GeneralSettings, Assembly-CSharp
+      - m_Target: {fileID: 866177568}
+        m_TargetAssemblyTypeName: GeneralSettings, Scripts
         m_MethodName: SaveConfiguration
         m_Mode: 1
         m_Arguments:
@@ -1475,18 +1475,6 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 254532911}
-        m_TargetAssemblyTypeName: GeneralSettings, Assembly-CSharp
-        m_MethodName: LoadData
-        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2392,7 +2380,6 @@ GameObject:
   m_Component:
   - component: {fileID: 254532910}
   - component: {fileID: 254532907}
-  - component: {fileID: 254532911}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2432,23 +2419,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &254532911
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 254532906}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b8edfa2c84edab408112d25ec570dfa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioControl: {fileID: 24100000, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
-  resolutionDropDown: {fileID: 1822830310}
-  qualityDropDown: {fileID: 1638734523}
-  volumeSlider: {fileID: 335440413}
-  fullScreenToggle: {fileID: 803577080}
 --- !u!1 &256327126
 GameObject:
   m_ObjectHideFlags: 0
@@ -3073,8 +3043,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 254532911}
-        m_TargetAssemblyTypeName: GeneralSettings, Assembly-CSharp
+      - m_Target: {fileID: 866177568}
+        m_TargetAssemblyTypeName: GeneralSettings, Scripts
         m_MethodName: Volume
         m_Mode: 0
         m_Arguments:
@@ -4097,8 +4067,8 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 254532911}
-        m_TargetAssemblyTypeName: GeneralSettings, Assembly-CSharp
+      - m_Target: {fileID: 866177568}
+        m_TargetAssemblyTypeName: GeneralSettings, Scripts
         m_MethodName: FullScreen
         m_Mode: 0
         m_Arguments:
@@ -4692,6 +4662,7 @@ GameObject:
   - component: {fileID: 866177566}
   - component: {fileID: 866177565}
   - component: {fileID: 866177567}
+  - component: {fileID: 866177568}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -4771,6 +4742,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8898f463e2614bd49876a7f7ae8b50dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &866177568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 866177563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b8edfa2c84edab408112d25ec570dfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioControl: {fileID: 24100000, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
+  resolutionDropDown: {fileID: 1822830310}
+  qualityDropDown: {fileID: 1638734523}
+  volumeSlider: {fileID: 335440413}
+  fullScreenToggle: {fileID: 803577080}
 --- !u!1 &891305421
 GameObject:
   m_ObjectHideFlags: 0
@@ -7571,8 +7559,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 254532911}
-        m_TargetAssemblyTypeName: GeneralSettings, Assembly-CSharp
+      - m_Target: {fileID: 866177568}
+        m_TargetAssemblyTypeName: GeneralSettings, Scripts
         m_MethodName: SetQuality
         m_Mode: 0
         m_Arguments:
@@ -8629,8 +8617,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 254532911}
-        m_TargetAssemblyTypeName: GeneralSettings, Assembly-CSharp
+      - m_Target: {fileID: 866177568}
+        m_TargetAssemblyTypeName: GeneralSettings, Scripts
         m_MethodName: SetResolution
         m_Mode: 0
         m_Arguments:
@@ -9499,7 +9487,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 254532911}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GeneralSettings, Assembly-CSharp
         m_MethodName: SaveConfiguration
         m_Mode: 1
