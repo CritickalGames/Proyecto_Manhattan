@@ -275,14 +275,12 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 2816
-  dashLayer:
-    serializedVersion: 2
-    m_Bits: 6400
   dashCooldown: 0.5
   dashDuration: 0.1
   speedMultiplier: 1
   jumpMultiplier: 1
   facingRight: 1
+  maxMovingTime: 0.2
 --- !u!114 &5497455151813261255
 MonoBehaviour:
   m_ObjectHideFlags: 0
