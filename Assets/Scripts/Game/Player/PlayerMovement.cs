@@ -4,40 +4,32 @@ public class PlayerMovement : MonoBehaviour
 {
     [HideInInspector]public bool pressedDown = false;
     [SerializeField]private int extraJumps = 1;
-    [SerializeField]private float dashDistance = 3f;
+    [SerializeField, Range(15.0f, 50.0f)]private float dashSpeed = 3f;
     [SerializeField]private float jumpSpeed = 400f;
     [SerializeField]private float movementSpeed = 40f;
     [SerializeField]private float inertiaSpeed;
     [SerializeField]private float maxTimeOnAir;
     [SerializeField]private Transform groundCheck;
     [SerializeField]private LayerMask groundLayer;
-    [SerializeField]private LayerMask dashLayer;
     [SerializeField, Range(0.0f, 5.0f)]private float dashCooldown = 0.5f;
+    [SerializeField, Range(0.0f, 5.0f)]private float dashDuration = 0.5f;
     [HideInInspector]public float speedMultiplier = 1;
     [HideInInspector]public float jumpMultiplier = 1;
     private float nextDash;
     private Player playerScript;
     private float timeOnAir;
     private Rigidbody2D playerRb;
-    private Collider2D playerCol;
     [HideInInspector]public bool facingRight = true;
     private int movementDir;
     private int platformLayer;
     private int playerLayer;
+    private int facingDir;
+    private float dashTimer;
 
     #region Getters & Setters
-    public void SetMoveDir(int value)
-    {
-        this.movementDir = value;
-    }
-    public bool GetDashCooldown()
-    {
-        return Time.time >= this.nextDash;
-    }
-    private void SetVelocity(float x, float y)
-    {
-        this.playerRb.velocity = new Vector2(x, y);
-    }
+    public void SetMoveDir(int value) => this.movementDir = value;
+    public bool GetDashCooldown() {return Time.time >= this.nextDash;}
+    private void SetVelocity(float x, float y) => this.playerRb.velocity = new Vector2(x, y);
     #endregion
 
     void Awake()
@@ -49,9 +41,19 @@ public class PlayerMovement : MonoBehaviour
     {
         this.platformLayer = LayerMask.NameToLayer("Platform");
         this.playerLayer = LayerMask.NameToLayer("Player");
-        this.playerCol = this.gameObject.GetComponent<CapsuleCollider2D>();
     }
     void Update()
+    {
+        if (!this.facingRight)
+            this.facingDir = -1;
+        else
+            this.facingDir = 1;
+        if (!playerScript.stateScript.GetState("Dashing"))
+            MovementLogic();
+        else
+            EndDash();
+    }
+    private void MovementLogic()
     {
         VerifyGround();
         ManageMovement();
@@ -64,10 +66,7 @@ public class PlayerMovement : MonoBehaviour
         else
             IgnoreCollisions(false);
     }
-    public void IgnoreCollisions(bool ignore)
-    {
-        Physics2D.IgnoreLayerCollision(this.playerLayer, this.platformLayer, ignore);
-    }
+    public void IgnoreCollisions(bool ignore) => Physics2D.IgnoreLayerCollision(this.playerLayer, this.platformLayer, ignore);
     public void Jump()
     {
         if ((this.timeOnAir < this.maxTimeOnAir) || this.extraJumps > 0)
@@ -93,13 +92,9 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Inertia()
     {
-        if (this.playerRb.velocity.x > 0 && this.facingRight)
-        {
-            SetVelocity(this.playerRb.velocity.x - this.inertiaSpeed * Time.deltaTime, this.playerRb.velocity.y);
-        } else if (this.playerRb.velocity.x < 0 && !this.facingRight)
-        {
-            SetVelocity(this.playerRb.velocity.x + this.inertiaSpeed * Time.deltaTime, this.playerRb.velocity.y);
-        } else 
+        if ((this.playerRb.velocity.x > 0 && this.facingDir == 1) || (this.playerRb.velocity.x < 0 && this.facingDir == -1))
+            SetVelocity(this.playerRb.velocity.x - (this.inertiaSpeed * this.facingDir) * Time.deltaTime, this.playerRb.velocity.y);
+        else 
         {
             this.playerScript.stateScript.SetState("Running", false);
             SetVelocity(0, this.playerRb.velocity.y);
@@ -112,16 +107,21 @@ public class PlayerMovement : MonoBehaviour
 	}
     public void Dash()
     {
-        this.nextDash = Time.time + this.dashCooldown;
-        int facingDir = 1;
-        if (!this.facingRight)
-            facingDir = -1;
-        RaycastHit2D hitRaycast = Physics2D.Raycast(this.transform.position + new Vector3(0f, 0.5f, 0),new Vector2(facingDir, 0),this.dashDistance,this.dashLayer);
-        float distance = this.dashDistance;
-        if(hitRaycast)
-            distance = hitRaycast.distance;
-        this.transform.position = new Vector2(this.transform.position.x + (facingDir * distance) ,this.transform.position.y);
+        this.dashTimer = this.dashDuration;        
+        SetVelocity(this.playerRb.velocity.y, 0);
+        playerScript.stateScript.SetState("Dashing", true);
         this.playerScript.playerAudio.Play("Dash");
+    }
+    private void EndDash()
+    {
+        SetVelocity(dashSpeed * this.facingDir, 0f);
+        dashTimer -= Time.deltaTime;
+        if (dashTimer <= 0)
+        {
+            this.nextDash = Time.time + this.dashCooldown;
+            SetVelocity(0, 0f);
+            playerScript.stateScript.SetState("Dashing", false);
+        }
     }
     private void VerifyGround()
     {
@@ -145,10 +145,7 @@ public class PlayerMovement : MonoBehaviour
             this.timeOnAir += Time.deltaTime;
         }
     }
-    public void Step()
-    {
-        this.playerScript.playerAudio.Play("Step");
-    }
+    public void Step() => this.playerScript.playerAudio.Play("Step");
     void OnDrawGizmosSelected()
     {
         if (this.groundCheck == null)
