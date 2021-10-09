@@ -25,6 +25,8 @@ public class PlayerMovement : MonoBehaviour
     private int playerLayer;
     private int facingDir;
     private float dashTimer;
+    [SerializeField, Range(0.1f, 2f)] private float maxMovingTime;
+    private float movingTime;
 
     #region Getters & Setters
     public void SetMoveDir(int value) => this.movementDir = value;
@@ -78,10 +80,16 @@ public class PlayerMovement : MonoBehaviour
     }
     private void ManageMovement()
     {
+        movingTime -= Time.deltaTime;
+        bool wasZero = this.playerRb.velocity.x == 0;
         if (this.movementDir != 0 && !this.playerScript.stateScript.GetState("Drinking"))
             Move();
-        else
+        else if (0 >= movingTime)
             Inertia();
+        else 
+            StopMovement();
+        if (wasZero && Mathf.Abs(this.movementDir) == 1)
+            movingTime = maxMovingTime;
     }
     private void Move()
     {
@@ -95,10 +103,12 @@ public class PlayerMovement : MonoBehaviour
         if ((this.playerRb.velocity.x > 0 && this.facingDir == 1) || (this.playerRb.velocity.x < 0 && this.facingDir == -1))
             SetVelocity(this.playerRb.velocity.x - (this.inertiaSpeed * this.facingDir) * Time.deltaTime, this.playerRb.velocity.y);
         else 
-        {
-            this.playerScript.stateScript.SetState("Running", false);
-            SetVelocity(0, this.playerRb.velocity.y);
-        }
+            StopMovement();
+    }
+    private void StopMovement()
+    {
+        this.playerScript.stateScript.SetState("Running", false);
+        SetVelocity(0, this.playerRb.velocity.y);
     }
     private void Flip()
 	{
