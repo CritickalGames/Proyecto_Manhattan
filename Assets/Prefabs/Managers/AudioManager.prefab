@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4083459348244349315
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4083459348244349313}
+  - component: {fileID: 4083459348244349312}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4083459348244349313
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4083459348244349315}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4083459348244349312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4083459348244349315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1b6efccc1916f64fbbd5a1bef333b1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: MenuMusic
+    clip: {fileID: 8300000, guid: 1742d2c12531e1b4e9ce5f3c9dc8d30c, type: 3}
+    group: {fileID: -6321087983221286768, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
+    volume: 0.2
+    pitch: 1
+    loop: 1
+  - name: Click
+    clip: {fileID: 8300000, guid: 3210509f26ab69346a24ce8a0ffedae9, type: 3}
+    group: {fileID: -7104547635742344895, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: Hover
+    clip: {fileID: 8300000, guid: 6141d3a880b0dd7488b50a0f71c7aedd, type: 3}
+    group: {fileID: -7104547635742344895, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: BrokenGlass
+    clip: {fileID: 8300000, guid: 84bdd70408843c9438bb39be17fe7137, type: 3}
+    group: {fileID: 1147615277765096762, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: Noise
+    clip: {fileID: 8300000, guid: 9aea34e4bfe85c54b8195f5015092b2a, type: 3}
+    group: {fileID: -6321087983221286768, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 1
