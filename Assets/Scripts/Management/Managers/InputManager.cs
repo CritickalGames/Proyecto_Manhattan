@@ -2,9 +2,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 
-public class PlayerInput : MonoBehaviour
+public class InputManager : MonoBehaviour
 {
-    [HideInInspector]public static PlayerInput iM;
+    [HideInInspector]public static InputManager iM;
     private bool ignoring = false;
     private float horizontalMove = 0f;
 

@@ -1,40 +1,47 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class ControlSettings : MonoBehaviour
 {
-    [SerializeField]private InputActionReference action;
-    [SerializeField]private Text displayControl;
-    [SerializeField]private GameObject button;
-    [SerializeField]private GameObject waiting;
+    [SerializeField]private InputActionReference[] action;
+    [SerializeField]private TMP_Text[] displayControl;
+    [SerializeField]private GameObject[] buttons;
+    private PlayerInput PlayerInput;
     private InputActionRebindingExtensions.RebindingOperation operation;
 
     void Start()
     {
-        int bindingIndex = this.action.action.GetBindingIndexForControl(this.action.action.controls[0]);
-        this.displayControl.text = InputControlPath.ToHumanReadableString(
-            this.action.action.bindings[bindingIndex].effectivePath,
-            InputControlPath.HumanReadableStringOptions.OmitDevice);
+        for (int i = 0; i < displayControl.Length; i++)
+        {
+            int bindingIndex = this.action[i].action.GetBindingIndexForControl(this.action[i].action.controls[0]);
+            this.displayControl[i].text = InputControlPath.ToHumanReadableString(
+                this.action[i].action.bindings[bindingIndex].effectivePath,
+                InputControlPath.HumanReadableStringOptions.OmitDevice);
+        }
     }
-
-    public void StartedRebind()
+    public void StartedRebind(int index)
     {
-        this.button.SetActive(false);
-        this.waiting.SetActive(true);
-        this.operation = this.action.action.PerformInteractiveRebinding()
-            .OnMatchWaitForAnother(0.1f)
-            .OnComplete(operation => FinishedRebind())
-            .Start();
+        this.buttons[index].GetComponent<Button>().interactable = false;
+        this.action[index].action.Disable();
+        this.operation = action[index].action.PerformInteractiveRebinding()
+            .WithCancelingThrough("<Keyboard>/escape")
+            .OnMatchWaitForAnother(0.2f)
+            .Start()
+            .OnComplete(operation => FinishedRebind(index))
+            .OnCancel(operation => FinishedRebind(index));
+        ChangeText(index,"Waiting");
     }
-    private void FinishedRebind()
+    private void FinishedRebind(int index)
     {
-        int bindingIndex = this.action.action.GetBindingIndexForControl(this.action.action.controls[0]);
-        this.displayControl.text = InputControlPath.ToHumanReadableString(
-            this.action.action.bindings[bindingIndex].effectivePath,
-            InputControlPath.HumanReadableStringOptions.OmitDevice);
+        this.action[index].action.Enable();
+        int bindingIndex = this.action[index].action.GetBindingIndexForControl(this.action[index].action.controls[0]);
+        ChangeText(index, InputControlPath.ToHumanReadableString(
+            this.action[index].action.bindings[bindingIndex].effectivePath,
+            InputControlPath.HumanReadableStringOptions.OmitDevice));
         this.operation.Dispose();
-        this.waiting.SetActive(false);
-        this.button.SetActive(true);
+        this.buttons[index].GetComponent<Button>().interactable = true;
     }
+    private void ChangeText(int index,string text) => this.displayControl[index].text = text;
 }

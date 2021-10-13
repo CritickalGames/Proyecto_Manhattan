@@ -11,7 +11,8 @@
                     "id": "c8ecae66-e2b7-45e7-b17b-17d82e6fd014",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Jump",
@@ -19,7 +20,8 @@
                     "id": "707f665b-7ea4-42c6-83ed-5e3be95f56df",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press"
+                    "interactions": "Press",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Down",
@@ -27,7 +29,8 @@
                     "id": "0959ab39-d022-4252-b871-d7731abed000",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press"
+                    "interactions": "Press",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Pause",
@@ -35,7 +38,8 @@
                     "id": "93c3b056-899b-40cf-8c46-96893457d2a2",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press"
+                    "interactions": "Press",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Dash",
@@ -43,7 +47,8 @@
                     "id": "f036e54c-55f4-4e46-a94d-d377e9f09c2f",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press"
+                    "interactions": "Press",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Attack",
@@ -51,7 +56,8 @@
                     "id": "ecdfc238-5b7c-4cdb-b989-6dcd966afeb1",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "SpecialAttack",
@@ -59,7 +65,8 @@
                     "id": "570c3818-1147-4abd-80d4-d7c5d5791169",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "ChangeHability",
@@ -67,7 +74,8 @@
                     "id": "50a20504-a574-488b-ad04-1ff3304d722b",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press"
+                    "interactions": "Press",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -371,7 +379,18 @@
                 {
                     "name": "",
                     "id": "1b8e6309-035c-47b5-bfd7-4ef951229fe4",
-                    "path": "",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangeHability",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "83f8bf1c-6ac5-45b9-b010-73d455d92d53",
+                    "path": "<Gamepad>/rightStickPress",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
