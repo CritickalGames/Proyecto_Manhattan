@@ -5,7 +5,7 @@ public class MenuManager : MonoBehaviour
 {
     public void Play()
     {
-        LevelManager.lM.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        LevelManager.lM.StartAnim(SceneManager.GetActiveScene().buildIndex + 1);
     }
     public void Quit()
     {
