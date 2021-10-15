@@ -88,4 +88,12 @@ public static class SaveAndLoadGame
             return null;
         }
     }
+    public static void RemoveControls()
+    {
+        string path = Application.persistentDataPath + "/data";
+        if (File.Exists(path + "/Controls.haste"))
+            File.Delete(path + "/Controls.haste");
+        else
+            Debug.LogWarning("Nothing to delete");
+    }
 }

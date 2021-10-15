@@ -12,8 +12,11 @@ public class ControlSettings : MonoBehaviour
     private PlayerInput PlayerInput;
     private InputActionRebindingExtensions.RebindingOperation operation;
 
-    void Awake() => this.PlayerInput = InputManager.iM.gameObject.GetComponent<PlayerInput>();
-    void Start() => Load();
+    void Start()
+    {
+        this.PlayerInput = InputManager.iM.gameObject.GetComponent<PlayerInput>();
+        Load();
+    }
     public void StartedRebind()
     {
         this.button.GetComponent<Button>().interactable = false;
@@ -52,29 +55,18 @@ public class ControlSettings : MonoBehaviour
         ControlsData data = SaveAndLoadGame.LoadControls();
         if (data != null)
         {
-            //carga teclas pero no funcionan
             string rebinds = data.controlsJson;
             if (!string.IsNullOrEmpty(rebinds))
                 PlayerInput.actions.LoadBindingOverridesFromJson(rebinds);
-            else
-                Debug.Log("c");
         } else 
             Save();
-        ChangeText(InputControlPath.ToHumanReadableString(
+        if (this.displayControl != null)
+            ChangeText(InputControlPath.ToHumanReadableString(
                 this.action.action.bindings[index].effectivePath,
                 InputControlPath.HumanReadableStringOptions.OmitDevice));
     }
-    /*public void Restore()
+    public void Restore()
     {
-        PlayerPrefs.DeleteKey("rebinds");
-        //TODO: Actualizar después de resetear
-        
-        for (int i = 0; i < displayControl.Length; i++)
-        {
-            int bindingIndex = this.action[i].action.GetBindingIndexForControl(this.action[i].action.controls[0]);
-            this.ChangeText(i, InputControlPath.ToHumanReadableString(
-                this.action[i].action.bindings[bindingIndex].effectivePath,
-                InputControlPath.HumanReadableStringOptions.OmitDevice));
-        }
-    }*/
+        SaveAndLoadGame.RemoveControls();
+    }
 }

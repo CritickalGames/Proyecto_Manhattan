@@ -2455,6 +2455,7 @@ GameObject:
   - component: {fileID: 334025819}
   - component: {fileID: 334025818}
   - component: {fileID: 334025817}
+  - component: {fileID: 334025820}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -2479,8 +2480,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -511, y: -306}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: -487.33725, y: -327.69086}
+  m_SizeDelta: {x: 207.326, y: 73.382}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &334025817
 MonoBehaviour:
@@ -2526,7 +2527,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 334025820}
         m_TargetAssemblyTypeName: ControlSettings, Scripts
         m_MethodName: Restore
         m_Mode: 1
@@ -2576,6 +2577,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 334025815}
   m_CullTransparentMesh: 1
+--- !u!114 &334025820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 334025815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa86b923797294746ba8410852c53c43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  action: {fileID: 0}
+  displayControl: {fileID: 0}
+  button: {fileID: 0}
+  index: 0
 --- !u!1 &335440411
 GameObject:
   m_ObjectHideFlags: 0
@@ -5400,6 +5417,7 @@ GameObject:
   - component: {fileID: 866177565}
   - component: {fileID: 866177567}
   - component: {fileID: 866177568}
+  - component: {fileID: 866177569}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -5496,6 +5514,22 @@ MonoBehaviour:
   qualityDropDown: {fileID: 1638734523}
   volumeSlider: {fileID: 335440413}
   fullScreenToggle: {fileID: 803577080}
+--- !u!114 &866177569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 866177563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa86b923797294746ba8410852c53c43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  action: {fileID: 0}
+  displayControl: {fileID: 0}
+  button: {fileID: 0}
+  index: 0
 --- !u!1 &891305421
 GameObject:
   m_ObjectHideFlags: 0
@@ -6337,7 +6371,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1044846593
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7052,7 +7086,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1389181238
 RectTransform:
   m_ObjectHideFlags: 0
