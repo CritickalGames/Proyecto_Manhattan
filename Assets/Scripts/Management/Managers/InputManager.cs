@@ -80,6 +80,6 @@ public class InputManager : MonoBehaviour
     }
     void OnChangeHability()
     {
-        Debug.Log("a");
+        
     }
 }
