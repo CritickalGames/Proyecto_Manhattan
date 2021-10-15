@@ -78,4 +78,8 @@ public class InputManager : MonoBehaviour
         if (SceneManager.GetActiveScene().buildIndex > 1 && !GameManager.gM.pauseScript.isPaused && GameManager.gM.pM.playerObject != null && !GameManager.gM.pM.playerScript.stateScript.GetState("IsDead") && !GameManager.gM.pM.playerScript.stateScript.GetState("Drinking"))
             GameManager.gM.pM.playerScript.movementScript.pressedDown = ignoring;
     }
+    void OnChangeHability()
+    {
+        Debug.Log("a");
+    }
 }
