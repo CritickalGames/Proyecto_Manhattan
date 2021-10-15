@@ -9,9 +9,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField]private Sprite trafficGreenLight;
     [HideInInspector]public int spawnScene;
     [HideInInspector] public Dictionary<string, bool> countriesUnlocked = new Dictionary<string, bool>();
-    [HideInInspector]public bool transitioning = false;
     private bool levelPassed;
-    private int nextScene;
 
     #region Getters & Setters
     public bool GetCountry(string name)
@@ -41,7 +39,7 @@ public class LevelManager : MonoBehaviour
     }
     public void RestartLevel()
     {
-        StartAnim(this.spawnScene);
+        LoadScene(spawnScene);
     }
     public void LevelFinished()
     {
@@ -49,19 +47,19 @@ public class LevelManager : MonoBehaviour
         if (trafficLights != null)
         {
             SpriteRenderer spriteRenderer = trafficLights.GetComponent<SpriteRenderer>();
-            spriteRenderer.sprite = this.trafficGreenLight;
+            spriteRenderer.sprite = trafficGreenLight;
         }
-        this.levelPassed = true;
+        levelPassed = true;
     }
     public void NextLevel(int nextLevel, bool heal)
     {
-        if(nextLevel < SceneManager.sceneCountInBuildSettings && this.levelPassed)
+        if(nextLevel < SceneManager.sceneCountInBuildSettings && levelPassed)
         {
             if (heal)
                 GameManager.gM.SetMaxHealth();
-            this.levelPassed = false;
-            StartAnim(nextLevel);
-        } else if (!this.levelPassed)
+            levelPassed = false;
+            LoadScene(nextLevel);
+        } else if (!levelPassed)
         {
             MessageBar messageScript = GameObject.Find("/UI/Canvas/Message/Image").GetComponent<MessageBar>();
             messageScript.SetTrueBool();
@@ -69,27 +67,18 @@ public class LevelManager : MonoBehaviour
     }
     public void InstantiateLevels()
     {
-        this.countriesUnlocked.Add("Germany", true);
-        this.countriesUnlocked.Add("Poland", false);
-        this.countriesUnlocked.Add("Ukraine", false);
-        this.countriesUnlocked.Add("Russia", false);
-        this.countriesUnlocked.Add("France", false);
-        this.countriesUnlocked.Add("Spain", false);
-        this.countriesUnlocked.Add("Portugal", false);
-        this.countriesUnlocked.Add("Final", false);
+        countriesUnlocked.Add("Germany", true);
+        countriesUnlocked.Add("Poland", false);
+        countriesUnlocked.Add("Ukraine", false);
+        countriesUnlocked.Add("Russia", false);
+        countriesUnlocked.Add("France", false);
+        countriesUnlocked.Add("Spain", false);
+        countriesUnlocked.Add("Portugal", false);
+        countriesUnlocked.Add("Final", false);
     }
-    public void StartAnim(int scene)
+    public void LoadScene(int scene)
     {
-        Animator anim = GameObject.Find("Transition").GetComponent<Animator>();
-        if (anim != null)
-            anim.SetTrigger("Start");
-        this.nextScene = scene;
-        this.transitioning = true;
-    }
-    public void LoadScene()
-    {
-        SceneManager.LoadScene(this.nextScene);
+        SceneManager.LoadScene(scene);
         Destroy(GameManager.gM.eM.gameObject);
-        this.transitioning = false;
     }
 }

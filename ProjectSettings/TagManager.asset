@@ -71,9 +71,6 @@ TagManager:
   - name: Player
     uniqueID: 82611157
     locked: 0
-  - name: FrontObjects
-    uniqueID: 1642498271
-    locked: 0
   - name: Items
     uniqueID: 4122491133
     locked: 0

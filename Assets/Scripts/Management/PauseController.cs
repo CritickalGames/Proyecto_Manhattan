@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PauseController : MonoBehaviour
 {
@@ -45,7 +46,7 @@ public class PauseController : MonoBehaviour
         GameManager.gM.SetMaxHealth();
         Time.timeScale = 1f;
         this.isPaused = false;
-        LevelManager.lM.StartAnim(0);
+        SceneManager.LoadScene(0);
     }
     public void NextAbility()
     {
