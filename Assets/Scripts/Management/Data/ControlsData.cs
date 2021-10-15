@@ -6,8 +6,8 @@ using UnityEngine.InputSystem;
 {
     public string controlsJson;
 
-    public ControlsData(PlayerInput PlayerInput)
+    public ControlsData(string text)
     {
-        this.controlsJson = PlayerInput.actions.SaveBindingOverridesAsJson();
+        this.controlsJson = text;
     }
 }

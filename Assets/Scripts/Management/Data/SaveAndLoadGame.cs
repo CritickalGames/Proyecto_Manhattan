@@ -60,15 +60,14 @@ public static class SaveAndLoadGame
             return null;
         }
     }
-    public static void SaveControls(PlayerInput PlayerInput)
+    public static void SaveControls(string text)
     {
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + "/data";
         if (!Directory.Exists(path))
             Directory.CreateDirectory(path);
         FileStream stream = new FileStream(path + "/Controls.haste", FileMode.Create);
-        ControlsData data = new ControlsData(PlayerInput);
-
+        ControlsData data = new ControlsData(text);
         formatter.Serialize(stream, data);
         stream.Close();
     }
@@ -87,13 +86,5 @@ public static class SaveAndLoadGame
             Debug.Log("Not Found Controls File");
             return null;
         }
-    }
-    public static void RemoveControls()
-    {
-        string path = Application.persistentDataPath + "/data";
-        if (File.Exists(path + "/Controls.haste"))
-            File.Delete(path + "/Controls.haste");
-        else
-            Debug.LogWarning("Nothing to delete");
     }
 }

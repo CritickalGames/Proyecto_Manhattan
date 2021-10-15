@@ -48,7 +48,7 @@ public class ControlSettings : MonoBehaviour
     private void ChangeText(string text) => this.displayControl.text = text;
     private void Save()
     {
-        SaveAndLoadGame.SaveControls(PlayerInput);
+        SaveAndLoadGame.SaveControls(PlayerInput.actions.SaveBindingOverridesAsJson());
     }
     private void Load()
     {
@@ -56,8 +56,7 @@ public class ControlSettings : MonoBehaviour
         if (data != null)
         {
             string rebinds = data.controlsJson;
-            if (!string.IsNullOrEmpty(rebinds))
-                PlayerInput.actions.LoadBindingOverridesFromJson(rebinds);
+            PlayerInput.actions.LoadBindingOverridesFromJson(rebinds);
         } else 
             Save();
         if (this.displayControl != null)
@@ -67,6 +66,7 @@ public class ControlSettings : MonoBehaviour
     }
     public void Restore()
     {
-        SaveAndLoadGame.RemoveControls();
+        SaveAndLoadGame.SaveControls("");
+        Load();
     }
 }
