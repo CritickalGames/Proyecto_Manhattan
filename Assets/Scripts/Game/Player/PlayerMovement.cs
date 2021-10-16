@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     private int movementDir;
     private int platformLayer;
     private int playerLayer;
-    private int facingDir;
+    private int facingDir = 1;
     private float dashTimer;
     [SerializeField, Range(0.1f, 2f)] private float maxMovingTime;
     private float movingTime;
@@ -46,10 +46,6 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {
-        if (!this.facingRight)
-            this.facingDir = -1;
-        else
-            this.facingDir = 1;
         if (!playerScript.stateScript.GetState("Dashing"))
             MovementLogic();
         else
@@ -61,21 +57,33 @@ public class PlayerMovement : MonoBehaviour
         ManageMovement();
         JumpingCollision();
     }
-    void JumpingCollision()
+    private void VerifyGround()
     {
-        if (this.playerRb.velocity.y > 0 || !this.playerScript.stateScript.GetState("Grounded") || this.pressedDown)
-            IgnoreCollisions(true);
-        else
-            IgnoreCollisions(false);
-    }
-    public void IgnoreCollisions(bool ignore) => Physics2D.IgnoreLayerCollision(this.playerLayer, this.platformLayer, ignore);
-    public void Jump()
-    {
-        if ((this.timeOnAir < this.maxTimeOnAir) || this.extraJumps > 0)
+        if ((playerRb.velocity.y <= 0.0003f || (playerRb.velocity.y > 0.0003f && this.playerScript.stateScript.GetState("Grounded"))))
         {
-            SetVelocity(this.playerRb.velocity.x, this.jumpSpeed * this.jumpMultiplier);
-            if (!(this.timeOnAir < this.maxTimeOnAir) && this.extraJumps > 0)
-                this.extraJumps--;
+            RaycastHit2D hit1 = Physics2D.Raycast(groundCheck.position, Vector2.down, 0.05f, groundLayer);
+            RaycastHit2D hit2 = Physics2D.Raycast(groundCheck.position + new Vector3(0.5f, 0, 0), Vector2.down, 0.05f, groundLayer);
+            RaycastHit2D hit3 = Physics2D.Raycast(groundCheck.position - new Vector3(0.5f, 0, 0), Vector2.down, 0.5f, groundLayer);
+            this.playerScript.stateScript.SetState("Grounded", (hit1 || hit2 || hit3));
+        } else 
+            this.playerScript.stateScript.SetState("Grounded", false);
+
+        if (this.playerScript.stateScript.GetState("Grounded"))
+        {
+            this.timeOnAir = 0;
+            this.extraJumps = 1;
+            this.playerScript.stateScript.SetState("Jumping", false);
+            this.playerScript.stateScript.SetState("Falling", false);
+        } else if (this.playerRb.velocity.y > 0)
+        {
+            this.playerScript.stateScript.SetState("Jumping", true);
+            this.playerScript.stateScript.SetState("Falling", false);
+            this.timeOnAir += Time.deltaTime;
+        } else if (this.playerRb.velocity.y < 0)
+        {
+            this.playerScript.stateScript.SetState("Jumping", false);
+            this.playerScript.stateScript.SetState("Falling", true);
+            this.timeOnAir += Time.deltaTime;
         }
     }
     private void ManageMovement()
@@ -98,6 +106,15 @@ public class PlayerMovement : MonoBehaviour
         if ((this.movementDir < 0 && this.facingRight) || (this.movementDir > 0 && !this.facingRight))
             Flip();
     }
+    private void Flip()
+	{
+		this.facingRight = !this.facingRight;
+        if (!this.facingRight)
+            this.facingDir = -1;
+        else
+            this.facingDir = 1;
+		this.transform.Rotate(0f, 180f, 0f);
+	}
     private void Inertia()
     {
         if ((this.playerRb.velocity.x > 0 && this.facingDir == 1) || (this.playerRb.velocity.x < 0 && this.facingDir == -1))
@@ -110,15 +127,27 @@ public class PlayerMovement : MonoBehaviour
         this.playerScript.stateScript.SetState("Running", false);
         SetVelocity(0, this.playerRb.velocity.y);
     }
-    private void Flip()
-	{
-		this.facingRight = !this.facingRight;
-		this.transform.Rotate(0f, 180f, 0f);
-	}
+    void JumpingCollision()
+    {
+        if (this.playerRb.velocity.y > 0 || !this.playerScript.stateScript.GetState("Grounded") || this.pressedDown)
+            IgnoreCollisions(true);
+        else
+            IgnoreCollisions(false);
+    }
+    public void IgnoreCollisions(bool ignore) => Physics2D.IgnoreLayerCollision(this.playerLayer, this.platformLayer, ignore);
+    public void Jump()
+    {
+        if ((this.timeOnAir < this.maxTimeOnAir) || this.extraJumps > 0)
+        {
+            SetVelocity(this.playerRb.velocity.x, this.jumpSpeed * this.jumpMultiplier);
+            if (!(this.timeOnAir < this.maxTimeOnAir) && this.extraJumps > 0)
+                this.extraJumps--;
+        }
+    }
     public void Dash()
     {
         this.dashTimer = this.dashDuration;        
-        SetVelocity(this.playerRb.velocity.y, 0);
+        SetVelocity(this.dashSpeed, 0);
         playerScript.stateScript.SetState("Dashing", true);
         this.playerScript.playerAudio.Play("Dash");
     }
@@ -133,33 +162,5 @@ public class PlayerMovement : MonoBehaviour
             playerScript.stateScript.SetState("Dashing", false);
         }
     }
-    private void VerifyGround()
-    {
-        bool grounded = Physics2D.OverlapCircle(this.groundCheck.position, 0.05f, this.groundLayer);
-        this.playerScript.stateScript.SetState("Grounded", grounded);
-        if (grounded)
-        {
-            this.timeOnAir = 0;
-            this.extraJumps = 1;
-            this.playerScript.stateScript.SetState("Jumping", false);
-            this.playerScript.stateScript.SetState("Falling", false);
-        } else if (this.playerRb.velocity.y > 0)
-        {
-            this.playerScript.stateScript.SetState("Jumping", true);
-            this.playerScript.stateScript.SetState("Falling", false);
-            this.timeOnAir += Time.deltaTime;
-        } else if (this.playerRb.velocity.y < 0)
-        {
-            this.playerScript.stateScript.SetState("Jumping", false);
-            this.playerScript.stateScript.SetState("Falling", true);
-            this.timeOnAir += Time.deltaTime;
-        }
-    }
     public void Step() => this.playerScript.playerAudio.Play("Step");
-    void OnDrawGizmosSelected()
-    {
-        if (this.groundCheck == null)
-            return;
-        Gizmos.DrawWireSphere(this.groundCheck.position, 0.05f);
-    }
 }
