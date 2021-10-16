@@ -47,7 +47,7 @@ public class InputManager : MonoBehaviour
         if (SceneManager.GetActiveScene().buildIndex > 1 && !LevelManager.lM.transitioning && !GameManager.gM.pauseScript.isPaused && GameManager.gM.pM.playerObject != null && !GameManager.gM.pM.playerScript.stateScript.GetState("IsDead") && !GameManager.gM.pM.playerScript.stateScript.GetState("Dashing"))
         {
             Player playerScript = GameManager.gM.pM.playerScript;
-            switch(GameManager.gM.pauseScript.abilityNum)
+            switch(GameManager.gM.pM.playerScript.specialScript.abilityNum)
             {
                 case 1: 
                     if (GameManager.gM.GetAbilities("Vodka") && !playerScript.specialScript.drunk && !playerScript.specialScript.hangover && playerScript.specialScript.GetAbilityCooldown() && !playerScript.stateScript.GetState("Drinking") && !playerScript.stateScript.GetState("Attacking") && !playerScript.stateScript.GetState("Jumping"))
@@ -56,7 +56,7 @@ public class InputManager : MonoBehaviour
                         playerScript.playerAudio.Play("Drink");
                     }
                     break;
-                case 3:
+                case 2:
                     if (GameManager.gM.GetAbilities("Arquebus") && playerScript.specialScript.GetAbilityCooldown() && !playerScript.stateScript.GetState("Shooting") && !playerScript.stateScript.GetState("Attacking"))
                         playerScript.stateScript.SetState("Shooting", true);
                     break;
@@ -68,7 +68,10 @@ public class InputManager : MonoBehaviour
         if (SceneManager.GetActiveScene().buildIndex > 1 && !LevelManager.lM.transitioning && GameManager.gM.pauseScript.isPaused && GameManager.gM.pM.playerObject != null && !GameManager.gM.pM.playerScript.stateScript.GetState("IsDead"))
             GameManager.gM.pauseScript.Resume();
         else if (SceneManager.GetActiveScene().buildIndex > 1 && !GameManager.gM.pauseScript.isPaused && !GameManager.gM.pM.playerScript.stateScript.GetState("IsDead"))
+        {
             GameManager.gM.pauseScript.Pause();
+            GameManager.gM.pauseScript.firstButton.Select();
+        }
         else if (SceneManager.GetActiveScene().buildIndex == 1)
             LevelManager.lM.StartAnim(0);
     }
@@ -80,6 +83,7 @@ public class InputManager : MonoBehaviour
     }
     void OnChangeHability()
     {
-        
+        if (SceneManager.GetActiveScene().buildIndex > 1 && !LevelManager.lM.transitioning && !GameManager.gM.pauseScript.isPaused && GameManager.gM.pM.playerObject != null && !GameManager.gM.pM.playerScript.stateScript.GetState("IsDead") && !GameManager.gM.pM.playerScript.stateScript.GetState("Dashing"))
+            GameManager.gM.pM.playerScript.specialScript.ChangeAbility();
     }
 }
