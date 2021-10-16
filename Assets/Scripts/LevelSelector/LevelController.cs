@@ -37,7 +37,7 @@ public class LevelController : MonoBehaviour
     }
     public void LoadScene(int levelScene)
     {
-        SceneManager.LoadScene(levelScene);
+        LevelManager.lM.StartAnim(levelScene);
     }
     public void PlaySound(string sound)
     {
