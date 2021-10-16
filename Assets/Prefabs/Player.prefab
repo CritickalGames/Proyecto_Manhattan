@@ -240,6 +240,7 @@ MonoBehaviour:
   specialScript: {fileID: 0}
   playerAudio: {fileID: 0}
   playerAnimator: {fileID: 0}
+  healthBar: {fileID: 0}
 --- !u!114 &1627476446927715198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -327,6 +328,7 @@ MonoBehaviour:
   shootingPoint: {fileID: 4770724490639330446}
   bulletPrefab: {fileID: 2614891680001679877, guid: 54ddfaba8dcf3114f8c6d0c9beef2103, type: 3}
   shootCooldown: 1
+  abilityNum: 0
 --- !u!114 &4916616976801734316
 MonoBehaviour:
   m_ObjectHideFlags: 0
