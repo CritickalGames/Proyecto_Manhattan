@@ -78,4 +78,4 @@ EditorBuildSettings:
     path: Assets/Scenes/Gameplay/Germany/Germany4.unity
     guid: 974fa56e3613f4747af44bdb51cad051
   m_configObjects:
-    com.unity.input.settings: {fileID: 11400000, guid: 35fae16ac5394f946866de72a51dcf16, type: 2}
+    com.unity.input.settings: {fileID: 11400000, guid: 361f05a7ebdf49a4887451472df67bce, type: 2}

@@ -2,9 +2,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 
-public class PlayerInput : MonoBehaviour
+public class InputManager : MonoBehaviour
 {
-    [HideInInspector]public static PlayerInput iM;
+    [HideInInspector]public static InputManager iM;
     private bool ignoring = false;
     private float horizontalMove = 0f;
 
@@ -67,7 +67,7 @@ public class PlayerInput : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().buildIndex > 1 && !LevelManager.lM.transitioning && GameManager.gM.pauseScript.isPaused && GameManager.gM.pM.playerObject != null && !GameManager.gM.pM.playerScript.stateScript.GetState("IsDead"))
             GameManager.gM.pauseScript.Resume();
-        else if (SceneManager.GetActiveScene().buildIndex > 1 && !LevelManager.lM.transitioning && !GameManager.gM.pauseScript.isPaused && !GameManager.gM.pM.playerScript.stateScript.GetState("IsDead"))
+        else if (SceneManager.GetActiveScene().buildIndex > 1 && !GameManager.gM.pauseScript.isPaused && !GameManager.gM.pM.playerScript.stateScript.GetState("IsDead"))
             GameManager.gM.pauseScript.Pause();
         else if (SceneManager.GetActiveScene().buildIndex == 1)
             LevelManager.lM.StartAnim(0);
@@ -77,5 +77,9 @@ public class PlayerInput : MonoBehaviour
         ignoring = !ignoring;
         if (SceneManager.GetActiveScene().buildIndex > 1 && !LevelManager.lM.transitioning && !GameManager.gM.pauseScript.isPaused && GameManager.gM.pM.playerObject != null && !GameManager.gM.pM.playerScript.stateScript.GetState("IsDead") && !GameManager.gM.pM.playerScript.stateScript.GetState("Drinking"))
             GameManager.gM.pM.playerScript.movementScript.pressedDown = ignoring;
+    }
+    void OnChangeHability()
+    {
+        
     }
 }
