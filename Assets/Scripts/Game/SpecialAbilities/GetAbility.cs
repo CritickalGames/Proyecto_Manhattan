@@ -18,7 +18,7 @@ public class GetAbility : MonoBehaviour
             if (this.unlock != "Dash")
             {
                 if (GameManager.gM.pauseScript.abilityNum == 0)
-                    GameManager.gM.pauseScript.NextAbility();
+                    GameManager.gM.pM.playerScript.specialScript.SetAbility();
                 if (GameManager.gM.abilityCount == 2)
                     LevelManager.lM.UnlockCountry("Final");
                 LevelManager.lM.NextLevel(1, true);
