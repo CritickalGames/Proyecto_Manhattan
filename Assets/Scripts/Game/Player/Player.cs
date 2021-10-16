@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     [HideInInspector]public PlayerSpecial specialScript;
     [HideInInspector]public EntityAudio playerAudio;
     [HideInInspector]public Animator playerAnimator;
-    private HealthBar healthBar;
+    [HideInInspector]public HealthBar healthBar;
 
     #region Getters & Setters
     public void SetAnimationBool(string name, bool value)
@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
         this.specialScript = this.GetComponent<PlayerSpecial>();
         this.playerAudio = this.GetComponent<EntityAudio>();
         this.playerAnimator = this.GetComponent<Animator>();
-        this.healthBar = GameObject.Find("/UI/Canvas/HealthBar").GetComponent<HealthBar>();
+        this.healthBar = GameObject.Find("/UI/Canvas/HealthBar/Slider").GetComponent<HealthBar>();
     }
     void Start()
     {
