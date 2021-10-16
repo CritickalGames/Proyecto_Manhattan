@@ -70,7 +70,7 @@ public class InputManager : MonoBehaviour
         else if (SceneManager.GetActiveScene().buildIndex > 1 && !GameManager.gM.pauseScript.isPaused && !GameManager.gM.pM.playerScript.stateScript.GetState("IsDead"))
             GameManager.gM.pauseScript.Pause();
         else if (SceneManager.GetActiveScene().buildIndex == 1)
-            LevelManager.lM.LoadScene(0);
+            LevelManager.lM.StartAnim(0);
     }
     void OnDown()
     {

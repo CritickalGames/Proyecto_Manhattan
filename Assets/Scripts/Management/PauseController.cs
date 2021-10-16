@@ -46,7 +46,7 @@ public class PauseController : MonoBehaviour
         GameManager.gM.SetMaxHealth();
         Time.timeScale = 1f;
         this.isPaused = false;
-        SceneManager.LoadScene(0);
+        LevelManager.lM.StartAnim(0);
     }
     public void NextAbility()
     {

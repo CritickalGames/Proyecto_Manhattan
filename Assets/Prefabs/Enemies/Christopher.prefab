@@ -278,7 +278,6 @@ MonoBehaviour:
     m_Bits: 2816
   colideWithPlatforms: 0
   detectingPoint: {fileID: 2736423676495109801}
-  followRange: 19
   shootingRange: 12
   meleeFollowRange: 5.5
   meleeRange: 1
