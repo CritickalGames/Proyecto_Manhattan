@@ -6,6 +6,7 @@ using UnityEngine;
 {
     public int resolutionIndex;
     public int qualityIndex;
+    public int langIndex;
     public bool fullScreen;
     public float volume;
 
@@ -13,6 +14,7 @@ using UnityEngine;
     {
         resolutionIndex = settings.GetResolutionIndex();
         qualityIndex = settings.GetQualityIndex();
+        langIndex = GameManager.gM.lang;
         fullScreen = settings.GetFullScreen();
         volume = settings.GetVolume();
     }

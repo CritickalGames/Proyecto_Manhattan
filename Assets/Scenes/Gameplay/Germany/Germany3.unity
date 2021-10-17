@@ -3039,6 +3039,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1099493146}
     m_Modifications:
+    - target: {fileID: 1807955106052445358, guid: 2420771597fe11b4fb16b616557c94e1, type: 3}
+      propertyPath: textKey
+      value: GermanyThreeMessage
+      objectReference: {fileID: 0}
     - target: {fileID: 8058584533192067740, guid: 2420771597fe11b4fb16b616557c94e1, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
