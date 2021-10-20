@@ -27,6 +27,7 @@ public class ControlSettings : MonoBehaviour
             .WithControlsExcluding("<Mouse>/delta")
             .WithControlsExcluding("<Gamepad>/Start")
             .WithCancelingThrough("<Keyboard>/escape")
+            .WithCancelingThrough("<Gamepad>/Start")
             .OnComplete(operation => FinishedRebind())
             .OnCancel(operation => FinishedRebind())
             .Start();
