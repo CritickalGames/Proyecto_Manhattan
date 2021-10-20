@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector]public int currentPlayerHealth;
     [HideInInspector]public int abilityCount = 0;
     [HideInInspector]public Dictionary<string, bool> abilities = new Dictionary<string, bool>();
+    [HideInInspector]public int lang = 0;
 
     #region Getters & Setters
     public void SetPauseScript(PauseController script)
