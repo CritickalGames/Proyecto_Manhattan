@@ -5,18 +5,21 @@ using UnityEngine;
 public class GetAbility : MonoBehaviour
 {
     [SerializeField]string unlock;
+    bool collided = false;
     void Start()
     {
         this.GetComponent<EntityAudio>().Play("Spawn");
     }
     void OnTriggerEnter2D(Collider2D target)
     {
-        StartCoroutine(GetItem(target));
+        if (!collided)
+            StartCoroutine(GetItem(target));
     }
     private IEnumerator GetItem(Collider2D target)
     {
         if (target.tag == "Player")
         {
+            collided = true;
             this.GetComponent<SpriteRenderer>().enabled = false;
             if (!GameManager.gM.GetAbilities(unlock))
                 GameManager.gM.SetAbilities(unlock, true);
