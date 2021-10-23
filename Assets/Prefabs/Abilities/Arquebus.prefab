@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7176357003438624167}
   - component: {fileID: 4344233241523620729}
   - component: {fileID: 7839477195900096925}
+  - component: {fileID: 4593461492795989915}
   m_Layer: 0
   m_Name: Arquebus
   m_TagString: Untagged
@@ -133,3 +134,27 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
+--- !u!114 &4593461492795989915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3837154919923932371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b39bf90ea50be14396d7127b43b7540, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speaker:
+  - Christopher
+  - Christopher
+  - Salaryman
+  - Salaryman
+  - Salaryman
+  textKey:
+  - PoEChristopher1
+  - PoEChristopher2
+  - PoESalaryman1
+  - PoESalaryman2
+  - PoESalaryman3

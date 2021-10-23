@@ -1,11 +1,18 @@
 using UnityEngine;
-using TMPro;
 
 public class MessageBar : MonoBehaviour
 {
     private Animator anim;
     
     void Start() => this.anim = this.GetComponent<Animator>();
-    public void SetTrueBool() => this.anim.SetBool("ShowMessage", true);
-    public void SetFalseBool() => this.anim.SetBool("ShowMessage", false);
+    public void SetTrueBool()
+    {
+        if (!anim.GetBool("ShowMessage"))
+            this.anim.SetBool("ShowMessage", true);
+    }
+    public void SetFalseBool()
+    {
+        if (anim.GetBool("ShowMessage"))
+            this.anim.SetBool("ShowMessage", false);
+    }
 }
