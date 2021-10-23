@@ -54,5 +54,8 @@ public static class EN
         lang.Add("GermanyFourMessage", "I better end this now to get back to Japan.");
         lang.Add("PortugalTwoMessage", "I'm almost there, I just have to defeat them.");
         lang.Add("RussiaTwoMessage", "That dude might be near, I should continue.");
+        lang.Add("Prueba1", "Hi, I'm a sentence");
+        lang.Add("Prueba2", "Hi, I'm another sentence");
+        lang.Add("Prueba3", "Hi, I'm the final sentence");
     }
 }

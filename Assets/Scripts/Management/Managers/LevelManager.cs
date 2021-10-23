@@ -14,6 +14,10 @@ public class LevelManager : MonoBehaviour
     private int nextScene;
 
     #region Getters & Setters
+    public bool CanPass()
+    {
+        return this.levelPassed;
+    }
     public bool GetCountry(string name)
     {
         if (this.countriesUnlocked.ContainsKey(name))
@@ -55,16 +59,12 @@ public class LevelManager : MonoBehaviour
     }
     public void NextLevel(int nextLevel, bool heal)
     {
-        if(nextLevel < SceneManager.sceneCountInBuildSettings && this.levelPassed)
+        if(nextLevel < SceneManager.sceneCountInBuildSettings)
         {
             if (heal)
                 GameManager.gM.SetMaxHealth();
             this.levelPassed = false;
             StartAnim(nextLevel);
-        } else if (!this.levelPassed)
-        {
-            MessageBar messageScript = GameObject.Find("/UI/Canvas/Message/Image").GetComponent<MessageBar>();
-            messageScript.SetTrueBool();
         }
     }
     public void InstantiateLevels()

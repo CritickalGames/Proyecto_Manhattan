@@ -1,11 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class DialogueManager : MonoBehaviour
 {
     private Queue<string> sentences = new Queue<string>();
+    private Queue<string> names = new Queue<string>();
     public static DialogueManager dM;
+    private DialogueBar dialogueScript;
+    TMP_Text dialogueText;
+    TMP_Text speakerText;
+    [HideInInspector]public bool InCutscene;
 
     private void Awake()
     {
@@ -15,19 +22,27 @@ public class DialogueManager : MonoBehaviour
             dM = this;
         DontDestroyOnLoad(this);
     }
-
     public void StartDialogue(DialogueTrigger dialogue)
 	{
-        //Ejecutar animación de entrada
-		//Setear imagen del hablante
+        InCutscene = true;
+        GameObject.Find("Canvas/DialogueBar/Next").GetComponent<Button>().Select();
+        dialogueText = GameObject.Find("Canvas/DialogueBar/Bar/Text (TMP)").GetComponent<TMP_Text>();
+        speakerText = GameObject.Find("Canvas/DialogueBar/Name/Text (TMP)").GetComponent<TMP_Text>();
+        dialogueScript = GameObject.Find("Canvas/DialogueBar").GetComponent<DialogueBar>();
+        if (dialogueScript.anim.GetBool("Show"))
+            return;
+        dialogueScript.anim.SetBool("Show", true);
 		sentences.Clear();
-		foreach (string key in dialogue.textKey)
-			sentences.Enqueue(Sentence(key));
-		DisplayNextSentence();
+        names.Clear();
+        for (int i = 0 ; i < dialogue.textKey.Length ; i++)
+        {
+			sentences.Enqueue(Sentence(dialogue.textKey[i]));
+            names.Enqueue(dialogue.speaker[i]);
+        }
 	}
     private string Sentence(string textKey)
     {
-        switch (GameManager.gM.lang)
+        switch (0/*GameManager.gM.lang*/)
         {
             case 0:
                 if (ES.GetText(textKey) != null)
@@ -47,22 +62,28 @@ public class DialogueManager : MonoBehaviour
 			EndDialogue();
 			return;
 		}
+        DeleteSentence();
 		string sentence = sentences.Dequeue();
+        string speaker = names.Dequeue();
 		StopAllCoroutines();
-		StartCoroutine(TypeSentence(sentence));
+		StartCoroutine(TypeText(sentence, dialogueText));
+        StartCoroutine(TypeText(speaker, speakerText));
 	}
-    IEnumerator TypeSentence(string sentence)
+    IEnumerator TypeText(string speaker, TMP_Text text)
 	{
-		//dialogueText.text = "";
-		foreach (char letter in sentence.ToCharArray())
+        foreach (char letter in speaker.ToCharArray())
 		{
-			//dialogueText.text += letter;
+			text.text += letter;
 			yield return new WaitForFixedUpdate();
 		}
+        //SetImage(speaker);
 	}
-
-    void EndDialogue()
-	{
-		//Animacion de salida
-	}
+    void EndDialogue() => dialogueScript.anim.SetBool("Show", false);
+    public void DeleteSentence()
+    {
+        if (dialogueText != null)
+            dialogueText.text = "";
+        if (speakerText != null)
+            speakerText.text = "";
+    }
 }
