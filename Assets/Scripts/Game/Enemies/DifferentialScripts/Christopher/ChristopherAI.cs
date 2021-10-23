@@ -49,14 +49,18 @@ public class ChristopherAI : MonoBehaviour
             Heal();
         if (this.enemyScript.stateScript.GetState("IsDead"))
             this.enabled = false;
-        bool grounded = Physics2D.OverlapCircle(this.groundCheck.position, this.checkDistance, this.groundLayer);
-        this.enemyScript.stateScript.SetState("Grounded", grounded);
-        this.target = GameManager.gM.pM.playerObject;
-        if (this.target != null)
-            if (PlayerIsAlive())
-                ManageAI();
-            else 
-                this.enemyScript.movementScript.ManageMovement(0);
+        if (!DialogueManager.dM.InCutscene)
+        {
+            bool grounded = Physics2D.OverlapCircle(this.groundCheck.position, this.checkDistance, this.groundLayer);
+            this.enemyScript.stateScript.SetState("Grounded", grounded);
+            this.target = GameManager.gM.pM.playerObject;
+            if (this.target != null)
+                if (PlayerIsAlive())
+                    ManageAI();
+                else 
+                    this.enemyScript.movementScript.ManageMovement(0);
+        } else 
+            this.enemyScript.movementScript.ManageMovement(0);
     }
     private void Heal()
     {

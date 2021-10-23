@@ -147,6 +147,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speaker:
-  - Texto1
+  - Christopher
+  - Christopher
+  - Salaryman
+  - Salaryman
+  - Salaryman
   textKey:
-  - Prueba1
+  - PoEChristopher1
+  - PoEChristopher2
+  - PoESalaryman1
+  - PoESalaryman2
+  - PoESalaryman3

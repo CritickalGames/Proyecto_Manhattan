@@ -12,7 +12,7 @@ public class DialogueManager : MonoBehaviour
     private DialogueBar dialogueScript;
     TMP_Text dialogueText;
     TMP_Text speakerText;
-    [HideInInspector]public bool InCutscene;
+    [HideInInspector]public bool InCutscene = false;
 
     private void Awake()
     {
@@ -36,13 +36,13 @@ public class DialogueManager : MonoBehaviour
         names.Clear();
         for (int i = 0 ; i < dialogue.textKey.Length ; i++)
         {
-			sentences.Enqueue(Sentence(dialogue.textKey[i]));
-            names.Enqueue(dialogue.speaker[i]);
+			sentences.Enqueue(Traduction(dialogue.textKey[i]));
+            names.Enqueue(Traduction(dialogue.speaker[i]));
         }
 	}
-    private string Sentence(string textKey)
+    private string Traduction(string textKey)
     {
-        switch (0/*GameManager.gM.lang*/)
+        switch (GameManager.gM.lang)
         {
             case 0:
                 if (ES.GetText(textKey) != null)
@@ -62,20 +62,24 @@ public class DialogueManager : MonoBehaviour
 			EndDialogue();
 			return;
 		}
-        DeleteSentence();
 		string sentence = sentences.Dequeue();
         string speaker = names.Dequeue();
 		StopAllCoroutines();
-		StartCoroutine(TypeText(sentence, dialogueText));
+        if (sentence != dialogueText.text)
+            DeleteSentence();
+        if (speaker != speakerText.text)
+            DeleteSpeaker();
+        StartCoroutine(TypeText(sentence, dialogueText));
         StartCoroutine(TypeText(speaker, speakerText));
 	}
-    IEnumerator TypeText(string speaker, TMP_Text text)
+    IEnumerator TypeText(string phrase, TMP_Text text)
 	{
-        foreach (char letter in speaker.ToCharArray())
-		{
-			text.text += letter;
-			yield return new WaitForFixedUpdate();
-		}
+        if (phrase != text.text)
+            foreach (char letter in phrase.ToCharArray())
+		    {
+			    text.text += letter;
+			    yield return new WaitForFixedUpdate();
+		    }
         //SetImage(speaker);
 	}
     void EndDialogue() => dialogueScript.anim.SetBool("Show", false);
@@ -83,6 +87,9 @@ public class DialogueManager : MonoBehaviour
     {
         if (dialogueText != null)
             dialogueText.text = "";
+    }
+    public void DeleteSpeaker()
+    {
         if (speakerText != null)
             speakerText.text = "";
     }

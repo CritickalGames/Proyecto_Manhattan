@@ -10,5 +10,6 @@ public class DialogueBar : MonoBehaviour
     {
         DialogueManager.dM.InCutscene = false;;
         DialogueManager.dM.DeleteSentence();
+        DialogueManager.dM.DeleteSpeaker();
     }
 }

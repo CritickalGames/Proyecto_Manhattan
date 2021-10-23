@@ -147,6 +147,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speaker:
-  - Texto1
+  - Salaryman
+  - Salaryman
   textKey:
-  - Prueba1
+  - RESalaryman1
+  - RESalaryman2

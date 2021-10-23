@@ -35,7 +35,6 @@ public class GetAbility : MonoBehaviour
                 LevelManager.lM.NextLevel(1, true);
             }
             Destroy(this.gameObject);
-            yield return null;
         }
     }
 }

@@ -1272,9 +1272,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speaker:
-  - Texto1
+  - Salaryman
   textKey:
-  - Prueba1
+  - FESalaryman1
 --- !u!1 &776404015
 GameObject:
   m_ObjectHideFlags: 0

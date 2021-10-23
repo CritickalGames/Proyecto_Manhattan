@@ -1264,9 +1264,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speaker:
-  - Texto1
+  - Salaryman
+  - Soldier
   textKey:
-  - Prueba1
+  - PESalaryman1
+  - PESoldier1
 --- !u!1 &776404015
 GameObject:
   m_ObjectHideFlags: 0

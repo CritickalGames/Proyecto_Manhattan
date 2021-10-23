@@ -1237,13 +1237,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speaker:
-  - Juan
-  - Pedro
-  - Juan
+  - Salaryman
   textKey:
-  - Prueba1
-  - Prueba2
-  - Prueba3
+  - GESalaryman1
 --- !u!1 &768958979
 GameObject:
   m_ObjectHideFlags: 0
