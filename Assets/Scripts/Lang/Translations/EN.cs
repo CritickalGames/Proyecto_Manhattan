@@ -54,9 +54,13 @@ public static class EN
         lang.Add("GermanyFourMessage", "I better end this now to get back to Japan.");
         lang.Add("PortugalTwoMessage", "I'm almost there, I just have to defeat them.");
         lang.Add("RussiaTwoMessage", "That dude might be near, I should continue.");
-        lang.Add("Prueba1", "Hi, I'm a sentence");
-        lang.Add("Prueba2", "Hi, I'm another sentence");
-        lang.Add("Prueba3", "Hi, I'm the final sentence");
+        lang.Add("NotEnough", "We don't have enough names");
+        lang.Add("TryOther", "Let's try another way");
+        lang.Add("NotStarWars", "This is not Star Wars");
+        lang.Add("ThatsAll", "That's all\nthanks for playing");
+        lang.Add("Programer", "Programer & Scriptwriter");
+        lang.Add("Sound", "Sound & Organization");
+        lang.Add("Graphics", "Graphics");
         #region Cutscenes
             #region Names
                 lang.Add("Salaryman", "Salaryman");

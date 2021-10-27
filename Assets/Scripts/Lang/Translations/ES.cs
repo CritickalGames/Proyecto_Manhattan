@@ -54,9 +54,13 @@ public static class ES
         lang.Add("GermanyFourMessage", "Mejor terminaré con esto para poder volver a Japón.");
         lang.Add("PortugalTwoMessage", "Ya casi llego, solo debo vencerlos.");
         lang.Add("RussiaTwoMessage", "Ese tipo raro tiene que estar cerca, debo seguir.");
-        lang.Add("Prueba1", "Hola, soy una oración");
-        lang.Add("Prueba2", "Hola, soy otra oración");
-        lang.Add("Prueba3", "Hola, soy la oración final");
+        lang.Add("NotEnough", "No tenemos tantos nombres para usar esto");
+        lang.Add("TryOther", "Probemos otra forma");
+        lang.Add("NotStarWars", "Esto no es Star Wars");
+        lang.Add("ThatsAll", "Ya ta\nGracias por jugar");
+        lang.Add("Programer", "Programador & Guionista");
+        lang.Add("Sound", "Sonido & Organización");
+        lang.Add("Graphics", "Gráficos");
         #region Cutscenes
             #region Names
                 lang.Add("Salaryman", "Salaryman");
