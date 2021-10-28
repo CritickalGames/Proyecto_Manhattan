@@ -89,7 +89,8 @@ public class LevelManager : MonoBehaviour
     public void LoadScene()
     {
         SceneManager.LoadScene(this.nextScene);
-        Destroy(GameManager.gM.eM.gameObject);
+        if (GameManager.gM.eM != null)
+            Destroy(GameManager.gM.eM.gameObject);
         this.transitioning = false;
     }
 }

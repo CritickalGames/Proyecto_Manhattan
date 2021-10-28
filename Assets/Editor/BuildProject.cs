@@ -71,7 +71,8 @@ public class BuildProject : MonoBehaviour
                 "Assets\\Scenes\\Gameplay\\Portugal\\Portugal1.unity" ,
                 "Assets\\Scenes\\Gameplay\\Portugal\\Portugal2.unity" ,
                 "Assets\\Scenes\\Gameplay\\Portugal\\Portugal3.unity" ,
-                "Assets\\Scenes\\Gameplay\\Germany\\Germany4.unity"
+                "Assets\\Scenes\\Gameplay\\Germany\\Germany4.unity",
+                "Assets\\Scenes\\Cutscenes\\Credits.unity"
             },
             buildPath,
             BuildTarget.StandaloneWindows,

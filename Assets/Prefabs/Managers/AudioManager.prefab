@@ -47,25 +47,25 @@ MonoBehaviour:
   - name: MenuMusic
     clip: {fileID: 8300000, guid: 1742d2c12531e1b4e9ce5f3c9dc8d30c, type: 3}
     group: {fileID: -6321087983221286768, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
-    volume: 0.2
+    volume: 0.3
     pitch: 1
     loop: 1
   - name: Click
     clip: {fileID: 8300000, guid: 3210509f26ab69346a24ce8a0ffedae9, type: 3}
     group: {fileID: -7104547635742344895, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
-    volume: 1
+    volume: 0.6
     pitch: 1
     loop: 0
   - name: Hover
     clip: {fileID: 8300000, guid: 6141d3a880b0dd7488b50a0f71c7aedd, type: 3}
     group: {fileID: -7104547635742344895, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
-    volume: 1
+    volume: 0.6
     pitch: 1
     loop: 0
   - name: BrokenGlass
     clip: {fileID: 8300000, guid: 84bdd70408843c9438bb39be17fe7137, type: 3}
     group: {fileID: 1147615277765096762, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
-    volume: 1
+    volume: 0.8
     pitch: 1
     loop: 0
   - name: Noise
