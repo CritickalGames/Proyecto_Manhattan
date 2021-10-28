@@ -78,6 +78,7 @@ public static class ES
                 #region Premenu
                     lang.Add("PremenuMessage", "Traeme mañana a las 8:00 AM en la oficina.");
                     lang.Add("PremenuWriting", "Escribiendo");
+                    lang.Add("PremenuToday", "Today");
                     lang.Add("PremenuSalaryman", "Este será un largo día.");
                 #endregion
                 #region Germany

@@ -78,7 +78,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Gameplay/Germany/Germany4.unity
     guid: 974fa56e3613f4747af44bdb51cad051
   - enabled: 1
-    path: Assets/Scenes/Cutscenes/FirstCutscene.unity
+    path: Assets/Scenes/Cutscenes/FirstCutscenea.unity
     guid: ff7e7cb2363a4b14bb08182e1f3f7edc
   - enabled: 1
     path: Assets/Scenes/Cutscenes/Credits.unity
