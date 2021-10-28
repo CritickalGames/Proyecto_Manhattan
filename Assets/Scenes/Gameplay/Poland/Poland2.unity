@@ -847,7 +847,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.913355, y: 3.7739978, z: -10}
+  m_LocalPosition: {x: -8.9200325, y: 3.7739978, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 523653231}
@@ -1116,10 +1116,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cee31a4878a3914dbfa359c1515e26b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextLevel: 7
+  nextLevel: 8
   UnlockCountry: []
-  spawnScene: 5
+  spawnScene: 6
   healOnPass: 0
+  cutscene: 0
 --- !u!1 &776404015
 GameObject:
   m_ObjectHideFlags: 0
@@ -1480,7 +1481,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.778481, y: 1}
+    m_SensorSize: {x: 1.7774193, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

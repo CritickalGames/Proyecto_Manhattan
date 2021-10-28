@@ -12,6 +12,7 @@ public class BuildProject : MonoBehaviour
         BuildPipeline.BuildPlayer(
             new string[] 
             {
+                "Assets\\Scenes\\Cutscenes\\FirstCutscene.unity",
                 "Assets\\Scenes\\Main Menu.unity" ,
                 "Assets\\Scenes\\Level Selector.unity" ,
                 "Assets\\Scenes\\Gameplay\\Germany\\Germany1.unity" ,
@@ -50,6 +51,7 @@ public class BuildProject : MonoBehaviour
         BuildPipeline.BuildPlayer(
             new string[] 
             {
+                "Assets\\Scenes\\Cutscenes\\FirstCutscene.unity",
                 "Assets\\Scenes\\Main Menu.unity" ,
                 "Assets\\Scenes\\Level Selector.unity" ,
                 "Assets\\Scenes\\Gameplay\\Germany\\Germany1.unity" ,

@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Cutscenes/FirstCutscene.unity
+    guid: 8f6899d4c7294e940b7c2e974a80f914
+  - enabled: 1
     path: Assets/Scenes/Main Menu.unity
     guid: deec77a1925708d4c985213ade59c619
   - enabled: 1
@@ -83,8 +86,5 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Cutscenes/Credits.unity
     guid: f096ae5121d4d244f8d25f1bdaa0b0ae
-  - enabled: 1
-    path: Assets/Scenes/Cutscenes/FirstCutscene.unity
-    guid: 8f6899d4c7294e940b7c2e974a80f914
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 361f05a7ebdf49a4887451472df67bce, type: 2}

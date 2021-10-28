@@ -1047,9 +1047,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cee31a4878a3914dbfa359c1515e26b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextLevel: 24
+  nextLevel: 25
   UnlockCountry: []
-  spawnScene: 23
+  spawnScene: 24
   healOnPass: 1
   cutscene: 0
 --- !u!114 &760811833

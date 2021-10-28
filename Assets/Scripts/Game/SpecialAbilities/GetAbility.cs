@@ -35,7 +35,7 @@ public class GetAbility : MonoBehaviour
                     this.GetComponent<DialogueTrigger>().TriggerDialogue();
                     yield return new WaitUntil(() => !DialogueManager.dM.InCutscene);
                 }
-                LevelManager.lM.NextLevel(1, true);
+                LevelManager.lM.NextLevel(2, true);
             }
             Destroy(this.gameObject);
         }

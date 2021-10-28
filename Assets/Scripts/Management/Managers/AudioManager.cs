@@ -1,10 +1,12 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
     [System.NonSerialized]public static AudioManager aM;
+    private List<Sound> toResume = new List<Sound>();
     public Sound[] sounds;
 
     void Awake()
@@ -25,16 +27,27 @@ public class AudioManager : MonoBehaviour
             sound.source.outputAudioMixerGroup = sound.group;
         }
     }
-    void Start()
-    {
-        Play("MenuMusic");
-        Play("Noise");
-    }
     public void Play(string name)
     {
         Sound sound = Array.Find(sounds, sound => sound.name == name);
-        if (sound == null)
+        if (sound == null || sound.source.isPlaying == true)
             return;
+        foreach (Sound resume in toResume)
+            if (sound == resume)
+            {
+                sound.source.UnPause();
+                toResume.Remove(resume);
+                return;
+            }
         sound.source.Play();
+
+    }
+    public void Pause(string name)
+    {
+        Sound sound = Array.Find(sounds, sound => sound.name == name);
+        if (sound == null || sound.source.isPlaying == false)
+            return;
+        toResume.Add(sound);
+        sound.source.Pause();
     }
 }
