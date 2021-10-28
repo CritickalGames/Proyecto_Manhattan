@@ -5,9 +5,9 @@ using UnityEngine;
 public class AutoTransition : MonoBehaviour
 {
     [SerializeField, Range(0,25)]int nextLevel;
-    void Start()
+    void OnEnable()
     {
-        LevelManager.lM.NextLevel(this.nextLevel, true);
+        LevelManager.lM.StartAnim(this.nextLevel);
     }
 
 }
