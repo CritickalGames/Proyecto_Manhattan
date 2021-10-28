@@ -1732,6 +1732,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Transition
       objectReference: {fileID: 0}
+    - target: {fileID: 4914329370469026755, guid: 6eb4476cb385ad94c88835348745970f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4914329370469026756, guid: 6eb4476cb385ad94c88835348745970f, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -5122,6 +5126,14 @@ PlayableDirector:
     value: {fileID: 308504249}
   - key: {fileID: 6392444715879510059, guid: c983416ea2edc174f859f7c929404a96, type: 2}
     value: {fileID: 138372462}
+  - key: {fileID: 7520252867804008317, guid: c983416ea2edc174f859f7c929404a96, type: 2}
+    value: {fileID: 12943838}
+  - key: {fileID: 4820240107242755946, guid: c983416ea2edc174f859f7c929404a96, type: 2}
+    value: {fileID: 2019789360}
+  - key: {fileID: 1072348708492501194, guid: c983416ea2edc174f859f7c929404a96, type: 2}
+    value: {fileID: 1943488144}
+  - key: {fileID: 7461361625710208880, guid: c983416ea2edc174f859f7c929404a96, type: 2}
+    value: {fileID: 986903106}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &2059992115

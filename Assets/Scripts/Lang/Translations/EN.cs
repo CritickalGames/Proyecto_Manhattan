@@ -17,6 +17,7 @@ public static class EN
         lang.Add("PlayButton", "Play");
         lang.Add("ConfigButton", "Configuration");
         lang.Add("QuitButton", "Quit");
+        lang.Add("Credits", "Credits");
         lang.Add("ConfigTitle", "Configuration");
         lang.Add("VolumeText", "Volume");
         lang.Add("ResolutionText", "Resolution");

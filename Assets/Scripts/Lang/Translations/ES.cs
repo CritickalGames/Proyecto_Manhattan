@@ -17,6 +17,7 @@ public static class ES
         lang.Add("PlayButton", "Jugar");
         lang.Add("ConfigButton", "Configuración");
         lang.Add("QuitButton", "Salir");
+        lang.Add("CreditsButton", "Créditos");
         lang.Add("ConfigTitle", "Configuración");
         lang.Add("VolumeText", "Volumen");
         lang.Add("ResolutionText", "Resolución");
