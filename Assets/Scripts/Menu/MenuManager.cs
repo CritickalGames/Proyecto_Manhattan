@@ -15,4 +15,8 @@ public class MenuManager : MonoBehaviour
     {
         AudioManager.aM.Play(sound);
     }
+    public void Credits()
+    {
+        LevelManager.lM.StartAnim(SceneUtility.GetBuildIndexByScenePath("Assets/Scenes/Cutscenes/Credits.unity"));
+    }
 }
