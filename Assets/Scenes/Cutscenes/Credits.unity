@@ -1422,6 +1422,7 @@ MonoBehaviour:
   trafficGreenLight: {fileID: 21300000, guid: 510576b8e27851647a5ec68b54b8af50, type: 3}
   spawnScene: 0
   transitioning: 0
+  showDialogue: 0
 --- !u!4 &622495987
 Transform:
   m_ObjectHideFlags: 0
@@ -1734,7 +1735,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4914329370469026755, guid: 6eb4476cb385ad94c88835348745970f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4914329370469026756, guid: 6eb4476cb385ad94c88835348745970f, type: 3}
       propertyPath: m_Pivot.x
