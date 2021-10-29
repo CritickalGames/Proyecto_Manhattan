@@ -24,6 +24,8 @@ public class DialogueManager : MonoBehaviour
     }
     public void StartDialogue(DialogueTrigger dialogue)
 	{
+        if (!LevelManager.lM.showDialogue)
+            return;
         InCutscene = true;
         GameObject.Find("Canvas/DialogueBar/Next").GetComponent<Button>().Select();
         dialogueText = GameObject.Find("Canvas/DialogueBar/Bar/Text (TMP)").GetComponent<TMP_Text>();

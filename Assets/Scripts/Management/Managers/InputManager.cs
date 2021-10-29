@@ -73,7 +73,7 @@ public class InputManager : MonoBehaviour
             GameManager.gM.pauseScript.firstButton.Select();
         }
         else if (SceneManager.GetActiveScene().buildIndex == 2)
-            LevelManager.lM.StartAnim(1);
+            LevelManager.lM.StartAnim(1, true);
     }
     void OnDown()
     {

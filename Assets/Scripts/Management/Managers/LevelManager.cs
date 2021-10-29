@@ -8,8 +8,9 @@ public class LevelManager : MonoBehaviour
     [HideInInspector]public static LevelManager lM;
     [SerializeField]private Sprite trafficGreenLight;
     [HideInInspector]public int spawnScene;
-    [HideInInspector] public Dictionary<string, bool> countriesUnlocked = new Dictionary<string, bool>();
+    [HideInInspector]public Dictionary<string, bool> countriesUnlocked = new Dictionary<string, bool>();
     [HideInInspector]public bool transitioning = false;
+    [HideInInspector]public bool showDialogue;
     private bool levelPassed;
     private int nextScene;
 
@@ -43,10 +44,10 @@ public class LevelManager : MonoBehaviour
             lM = this;
         DontDestroyOnLoad(this);
     }
-    public void RestartLevel()
-    {
-        StartAnim(this.spawnScene);
-    }
+    void Start() => showDialogue = true;
+
+    public void RestartLevel() => StartAnim(this.spawnScene, false);
+    
     public void LevelFinished()
     {
         GameObject trafficLights = GameObject.Find("World/Terrain/TrafficLights");
@@ -64,7 +65,7 @@ public class LevelManager : MonoBehaviour
             if (heal)
                 GameManager.gM.SetMaxHealth();
             this.levelPassed = false;
-            StartAnim(nextLevel);
+            StartAnim(nextLevel, true);
         }
     }
     public void InstantiateLevels()
@@ -78,8 +79,9 @@ public class LevelManager : MonoBehaviour
         this.countriesUnlocked.Add("Portugal", false);
         this.countriesUnlocked.Add("Final", false);
     }
-    public void StartAnim(int scene)
+    public void StartAnim(int scene, bool show)
     {
+        showDialogue = show;
         Animator anim = GameObject.Find("Transition").GetComponent<Animator>();
         if (anim != null)
             anim.SetTrigger("Start");
