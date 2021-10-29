@@ -31,7 +31,7 @@ public class PauseController : MonoBehaviour
         GameManager.gM.SetMaxHealth();
         Time.timeScale = 1f;
         this.isPaused = false;
-        LevelManager.lM.StartAnim(0);
+        LevelManager.lM.StartAnim(1);
     }
     public void PlaySound(string sound)
     {
