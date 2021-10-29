@@ -7,7 +7,7 @@ public class AutoTransition : MonoBehaviour
     [SerializeField, Range(0,26)]int nextLevel;
     void OnEnable()
     {
-        LevelManager.lM.StartAnim(this.nextLevel);
+        LevelManager.lM.StartAnim(this.nextLevel, true);
     }
 
 }
