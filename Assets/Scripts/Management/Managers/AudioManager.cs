@@ -48,6 +48,9 @@ public class AudioManager : MonoBehaviour
         if (sound == null || sound.source.isPlaying == false)
             return;
         toResume.Add(sound);
-        sound.source.Pause();
+        if (name != "NightNoise")
+            sound.source.Pause();
+        else
+            sound.source.Stop();
     }
 }
