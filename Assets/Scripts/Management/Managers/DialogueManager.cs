@@ -6,7 +6,7 @@ using TMPro;
 
 public class DialogueManager : MonoBehaviour
 {
-    private Queue<string> sentences = new Queue<string>();
+    [HideInInspector]public Queue<string> sentences = new Queue<string>();
     private Queue<string> names = new Queue<string>();
     public static DialogueManager dM;
     private DialogueBar dialogueScript;

@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class AutoTransition : MonoBehaviour
 {
-    [SerializeField, Range(0,25)]int nextLevel;
-    void Start()
+    [SerializeField, Range(0,26)]int nextLevel;
+    void OnEnable()
     {
-        LevelManager.lM.NextLevel(this.nextLevel, true);
+        LevelManager.lM.StartAnim(this.nextLevel);
     }
 
 }

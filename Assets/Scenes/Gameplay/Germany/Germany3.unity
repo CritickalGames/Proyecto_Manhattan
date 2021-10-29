@@ -998,7 +998,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -14.812296, y: 2.5160022, z: -10}
+  m_LocalPosition: {x: -14.818972, y: 2.5160022, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 523653231}
@@ -1217,11 +1217,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cee31a4878a3914dbfa359c1515e26b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextLevel: 1
+  nextLevel: 2
   UnlockCountry:
   - Poland
   - France
-  spawnScene: 2
+  spawnScene: 3
   healOnPass: 1
   cutscene: 1
 --- !u!114 &760811833
@@ -1459,7 +1459,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.778481, y: 1}
+    m_SensorSize: {x: 1.7774193, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

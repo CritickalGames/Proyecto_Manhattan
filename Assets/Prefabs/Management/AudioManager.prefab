@@ -44,6 +44,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
+  - name: CreditsMusic
+    clip: {fileID: 8300000, guid: 42eccf0959a65064fb3e7081d541a50a, type: 3}
+    group: {fileID: -6321087983221286768, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
+    volume: 0.5
+    pitch: 1
+    loop: 0
   - name: MenuMusic
     clip: {fileID: 8300000, guid: 1742d2c12531e1b4e9ce5f3c9dc8d30c, type: 3}
     group: {fileID: -6321087983221286768, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
@@ -70,7 +76,13 @@ MonoBehaviour:
     loop: 0
   - name: Noise
     clip: {fileID: 8300000, guid: 9aea34e4bfe85c54b8195f5015092b2a, type: 3}
-    group: {fileID: -6321087983221286768, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
+    group: {fileID: -902710241148830193, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
     volume: 1
     pitch: 1
     loop: 1
+  - name: NightNoise
+    clip: {fileID: 8300000, guid: 5a2d4dd069e93474390c8911d615dc57, type: 3}
+    group: {fileID: -902710241148830193, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
+    volume: 0.138
+    pitch: 1
+    loop: 0
