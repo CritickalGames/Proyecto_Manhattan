@@ -19,12 +19,12 @@ jobs:
       - uses: actions/checkout@v2  
       - name: Build For Windows 64 bits
         run: |
-          $env:projectVersion = ${{ github.ref }}
+          $env:projectVersion = ${{ github.ref#refs/tags/ }}
           Start-Process -Wait 'C:\Program Files\Unity\Hub\Editor\2020.3.12f1\Editor\Unity.exe' -ArgumentList "-nographics -batchmode -projectPath $env:PROJECT_PATH -executeMethod $env:BUILD_METHOD_WIN64 -quit"
       - name: Create_Setup 
         run: |
           $output = ".\Setup.exe"
-          $input = "$env:PROJECT_PATH\Builds\${{ github.ref }}\Win64"
+          $input = "$env:PROJECT_PATH\Builds\${{ github.ref#refs/tags/ }}\Win64"
           cd $input
           Start-Process -Wait 'C:\Program Files\7-Zip\7z.exe' -ArgumentList "-nographics a -sfx7z.sfx $output .\"
           echo "$output\Setup.exe"
@@ -35,8 +35,8 @@ jobs:
         with:
           draft: false
           prerelease: false
-          release_name: "v ${{ github.ref }}"
-          tag_name: ${{ github.ref }}
+          release_name: "v ${{ github.ref#refs/tags/ }}"
+          tag_name: ${{ github.ref#refs/tags/ }}
           body_path: Changelog.md
         env:
           GITHUB_TOKEN: ${{ github.token }}
