@@ -39,7 +39,7 @@ jobs:
           draft: false
           prerelease: false
           release_name: "v ${{ steps.tag.outputs.tagname }}"
-          tag_name: ${{ steps.tag.outputs.tagname }}
+          tag_name: ${{ github.ref }}
           body_path: Changelog.md
         env:
           GITHUB_TOKEN: ${{ github.token }}
