@@ -17,14 +17,17 @@ jobs:
         projectVersion: 
     steps:
       - uses: actions/checkout@v2  
+      - name: Set Tag
+        id: tag
+        run: echo "::set-output name=tagname::${ GITHUB_REF#refs/tags/ }"
       - name: Build For Windows 64 bits
         run: |
-          $env:projectVersion = ${ GITHUB_REF#refs/tags/ }
+          $env:projectVersion = ${{ steps.tag.outputs.tagname }}
           Start-Process -Wait 'C:\Program Files\Unity\Hub\Editor\2020.3.12f1\Editor\Unity.exe' -ArgumentList "-nographics -batchmode -projectPath $env:PROJECT_PATH -executeMethod $env:BUILD_METHOD_WIN64 -quit"
       - name: Create_Setup 
         run: |
           $output = ".\Setup.exe"
-          $input = "$env:PROJECT_PATH\Builds\${ GITHUB_REF#refs/tags/ }\Win64"
+          $input = "$env:PROJECT_PATH\Builds\${{ steps.tag.outputs.tagname }}\Win64"
           cd $input
           Start-Process -Wait 'C:\Program Files\7-Zip\7z.exe' -ArgumentList "-nographics a -sfx7z.sfx $output .\"
           echo "$output\Setup.exe"
@@ -35,8 +38,8 @@ jobs:
         with:
           draft: false
           prerelease: false
-          release_name: "v ${ GITHUB_REF#refs/tags/ }"
-          tag_name: ${ GITHUB_REF#refs/tags/ }
+          release_name: "v ${{ steps.tag.outputs.tagname }}"
+          tag_name: ${{ steps.tag.outputs.tagname }}
           body_path: Changelog.md
         env:
           GITHUB_TOKEN: ${{ github.token }}
