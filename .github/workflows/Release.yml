@@ -32,7 +32,7 @@ jobs:
           $env:output = "$env:PROJECT_PATH\Setup.exe"
           $env:input = "$env:PROJECT_PATH\Builds\${{ steps.tag.outputs.tagname }}\Win64\"
           cd $input
-          Start-Process -Wait 'C:\Program Files\7-Zip\7z.exe' -ArgumentList "a -sfx7z.sfx $env:output .\"
+          Start-Process -Wait 'C:\Program Files\7-Zip\7z.exe' -ArgumentList "a -sfx7z.sfx $env:output $env:input"
           echo echo "::set-output name=setup::$env:output"
       - name: Create_Release
         uses: actions/create-release@v1
