@@ -15,6 +15,8 @@ jobs:
         BUILD_METHOD_WIN64: "BuildProject.BuildWindows64"
         gameName: "Haste"
         projectVersion: 
+        output:
+        input:
     steps:
       - uses: actions/checkout@v2  
       - name: Set Tag
@@ -26,12 +28,12 @@ jobs:
           Start-Process -Wait 'C:\Program Files\Unity\Hub\Editor\2020.3.12f1\Editor\Unity.exe' -ArgumentList "-nographics -batchmode -projectPath $env:PROJECT_PATH -executeMethod $env:BUILD_METHOD_WIN64 -quit"
       - name: Create_Setup 
         run: |
-          $output = ".\Setup.exe"
-          $input = "$env:PROJECT_PATH\Builds\${{ steps.tag.outputs.tagname }}\Win64"
+          $env:output = ".\Setup.exe"
+          $env:input = "$env:PROJECT_PATH\Builds\${{ steps.tag.outputs.tagname }}\Win64"
           cd $input
-          Start-Process -Wait 'C:\Program Files\7-Zip\7z.exe' -ArgumentList "-nographics a -sfx7z.sfx $output .\"
-          echo "$output\Setup.exe"
+          Start-Process -Wait 'C:\Program Files\7-Zip\7z.exe' -ArgumentList "-nographics a -sfx7z.sfx $env:output .\"
         id: create_setup
+        run: echo echo "::set-output name=setup::$env:output\Setup.exe"
       - name: Create_Release
         uses: actions/create-release@v1
         id: create_release
