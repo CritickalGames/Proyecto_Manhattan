@@ -1,0 +1,56 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - '*'
+
+  workflow_dispatch:
+
+jobs:
+  Release:
+    runs-on: [self-hosted]
+    env:
+        PROJECT_PATH: ".\\"
+        BUILD_METHOD_WIN64: "BuildProject.BuildWindows64"
+        gameName: "Haste"
+        projectVersion: 
+        output:
+        input:
+    steps:
+      - uses: actions/checkout@v2  
+      - name: Set Tag
+        id: tag
+        run: echo "::set-output name=tagname::${ GITHUB_REF#refs/tags/ }"
+      - name: Build For Windows 64 bits
+        run: |
+          $env:projectVersion = ${{ steps.tag.outputs.tagname }}
+          Start-Process -Wait 'C:\Program Files\Unity\Hub\Editor\2020.3.12f1\Editor\Unity.exe' -ArgumentList "-nographics -batchmode -projectPath $env:PROJECT_PATH -executeMethod $env:BUILD_METHOD_WIN64 -quit"
+      - name: Create_Setup 
+        id: create_setup
+        run: |
+          $env:output = "$env:PROJECT_PATH\Setup.exe"
+          $env:input = "$env:PROJECT_PATH\Builds\${{ steps.tag.outputs.tagname }}\Win64\"
+          cd $input
+          Start-Process -Wait 'C:\Program Files\7-Zip\7z.exe' -ArgumentList "a -sfx7z.sfx $env:output $env:input"
+          echo echo "::set-output name=setup::$env:output"
+      - name: Create_Release
+        uses: actions/create-release@v1
+        id: create_release
+        with:
+          draft: false
+          prerelease: false
+          release_name: ${{ steps.tag.outputs.tagname }}
+          tag_name: ${{ github.ref }}
+          body_path: Changelog.md
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+      - name: Upload Release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ${{ steps.create_setup.outputs.setup }}
+          asset_name: Setup.exe
+          asset_content_type: application/exe
