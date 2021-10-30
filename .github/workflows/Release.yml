@@ -10,7 +10,7 @@ jobs:
   build:
     runs-on: [self-hosted]
     env:
-        PROJECT_PATH: ".\\Builds\"
+        PROJECT_PATH: ".\Builds\"
         BUILD_METHOD_WIN64: "BuildProject.BuildWindows64"
         gameName: "Haste"
         projectVersion: 
