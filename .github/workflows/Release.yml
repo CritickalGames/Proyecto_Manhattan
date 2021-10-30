@@ -21,10 +21,10 @@ jobs:
       - uses: actions/checkout@v2  
       - name: Set Tag
         id: tag
-        run: echo "::set-output name=tagname::v ${ GITHUB_REF#refs/tags/ }"
+        run: echo "::set-output name=tagname::${ GITHUB_REF#refs/tags/ }"
       - name: Build For Windows 64 bits
         run: |
-          $env:projectVersion = ${{ steps.tag.outputs.tagname }}
+          $env:projectVersion = "v ${{ steps.tag.outputs.tagname }}"
           Start-Process -Wait 'C:\Program Files\Unity\Hub\Editor\2020.3.12f1\Editor\Unity.exe' -ArgumentList "-nographics -batchmode -projectPath $env:PROJECT_PATH -executeMethod $env:BUILD_METHOD_WIN64 -quit"
       - name: Create_Setup 
         id: create_setup
