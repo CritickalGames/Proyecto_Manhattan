@@ -29,7 +29,7 @@ jobs:
             $output = ".\Setup.exe"
             $input = "$env:PROJECT_PATH\Builds\${{ steps.version.outputs.tag }}\Win64"
             cd $input
-            Start-Process -Wait 'C:\Program Files\7-Zip\7z.exe' -ArgumentList "a -sfx7z.sfx $output .\"
+            Start-Process -Wait 'C:\Program Files\7-Zip\7z.exe' -ArgumentList "-nographics a -sfx7z.sfx $output .\"
       - name: Create Release
         uses: actions/create-release@v1
         id: Create_Release
@@ -37,7 +37,7 @@ jobs:
           draft: false
           prerelease: false
           release_name: "v ${{ steps.version.outputs.version }}"
-          tag_name: ${{ steps.version.outputs.tag }}
+          tag_name: ${{ github.ref }}
           body_path: Changelog.md
         env:
           GITHUB_TOKEN: ${{ github.token }}
