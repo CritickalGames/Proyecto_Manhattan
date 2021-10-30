@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  Release:
     runs-on: [self-hosted]
     env:
         PROJECT_PATH: ".\\"
@@ -19,24 +19,26 @@ jobs:
       - uses: actions/checkout@v2  
       - name: Version
         id: version
-        run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
+        run: echo ${GITHUB_REF#refs/*/}
       - name: Build For Windows 64 bits
         run: |
-          $env:projectVersion = ${{ steps.version.outputs.tag }}
+          $env:projectVersion = ${{ steps.Version.outputs.version }}
           Start-Process -Wait 'C:\Program Files\Unity\Hub\Editor\2020.3.12f1\Editor\Unity.exe' -ArgumentList "-nographics -batchmode -projectPath $env:PROJECT_PATH -executeMethod $env:BUILD_METHOD_WIN64 -quit"
-      - name: Create Setup 
+      - name: Create_Setup 
         run: |
-            $output = ".\Setup.exe"
-            $input = "$env:PROJECT_PATH\Builds\${{ steps.version.outputs.tag }}\Win64"
-            cd $input
-            Start-Process -Wait 'C:\Program Files\7-Zip\7z.exe' -ArgumentList "-nographics a -sfx7z.sfx $output .\"
-      - name: Create Release
+          $output = ".\Setup.exe"
+          $input = "$env:PROJECT_PATH\Builds\${{ steps.Version.outputs.version }}\Win64"
+          cd $input
+          Start-Process -Wait 'C:\Program Files\7-Zip\7z.exe' -ArgumentList "-nographics a -sfx7z.sfx $output .\"
+          echo "$output\Setup.exe"
+        id: setup
+      - name: Create_Release
         uses: actions/create-release@v1
         id: Create_Release
         with:
           draft: false
           prerelease: false
-          release_name: "v ${{ steps.version.outputs.version }}"
+          release_name: "v ${{ steps.Version.outputs.version }}"
           tag_name: ${{ github.ref }}
           body_path: Changelog.md
         env:
@@ -46,7 +48,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./Setup.exe
+          upload_url: ${{ steps.Create_Release.outputs.upload_url }}
+          asset_path: ${{ steps.Create_Setup.outputs.setup }}
           asset_name: Setup.exe
           asset_content_type: application/exe
