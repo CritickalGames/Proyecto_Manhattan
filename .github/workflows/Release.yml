@@ -1,0 +1,51 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - '*'
+  workflow_displatch:
+
+jobs:
+  build:
+    runs-on: [self-hosted]
+    env:
+        PROJECT_PATH: ".\\Builds\"
+        BUILD_METHOD_WIN64: "BuildProject.BuildWindows64"
+        gameName: "Haste"
+        projectVersion: 
+    steps:
+      - uses: actions/checkout@v2  
+      - name: Version
+        id: version
+        run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
+      - name: Build For Windows 64 bits
+        run: |
+          $env:projectVersion = ${{ steps.version.outputs.tag }}
+          Start-Process -Wait 'C:\Program Files\Unity\Hub\Editor\2020.3.12f1\Editor\Unity.exe' -ArgumentList "-nographics -batchmode -projectPath $env:PROJECT_PATH -executeMethod $env:BUILD_METHOD_WIN64 -quit"
+      - name: Create Setup 
+        run: |
+            $output = ".\Setup.exe"
+            $input = "$env:PROJECT_PATH\Builds\${{ steps.version.outputs.tag }}\Win64"
+            cd $input
+            Start-Process -Wait 'C:\Program Files\7-Zip\7z.exe' -ArgumentList "a -sfx7z.sfx $output .\"
+      - name: Create Release
+        uses: actions/create-release@v1
+        id: Create_Release
+        with:
+          draft: false
+          prerelease: false
+          release_name: "v ${{ steps.version.outputs.version }}"
+          tag_name: ${{ steps.version.outputs.tag }}
+          body_path: Changelog.md
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+      - name: Upload Release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./Setup.exe
+          asset_name: Setup.exe
+          asset_content_type: application/exe
