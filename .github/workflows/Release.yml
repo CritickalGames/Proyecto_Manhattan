@@ -21,7 +21,7 @@ jobs:
       - uses: actions/checkout@v2  
       - name: Set Tag
         id: tag
-        run: echo "::set-output name=tagname::${ GITHUB_REF#refs/tags/ }"
+        run: echo "::set-output name=tagname::v ${ GITHUB_REF#refs/tags/ }"
       - name: Build For Windows 64 bits
         run: |
           $env:projectVersion = ${{ steps.tag.outputs.tagname }}
@@ -32,7 +32,7 @@ jobs:
           $env:output = "$env:PROJECT_PATH\Setup.exe"
           $env:input = "$env:PROJECT_PATH\Builds\${{ steps.tag.outputs.tagname }}\Win64"
           cd $input
-          Start-Process -Wait 'C:\Program Files\7-Zip\7z.exe' -ArgumentList "a -sfx7z.sfx $env:output .\"
+          Start-Process -Wait 'C:\Program Files\7-Zip\7z.exe' -ArgumentList "a -sfx7z.sfx $env:output $env:input"
           echo echo "::set-output name=setup::$env:output"
       - name: Create_Release
         uses: actions/create-release@v1
@@ -40,7 +40,7 @@ jobs:
         with:
           draft: false
           prerelease: false
-          release_name: "v ${{ steps.tag.outputs.tagname }}"
+          release_name: ${{ steps.tag.outputs.tagname }}
           tag_name: ${{ github.ref }}
           body_path: Changelog.md
         env:
