@@ -9,6 +9,7 @@ public class ControlSettings : MonoBehaviour
     [SerializeField]private TMP_Text displayControl;
     [SerializeField]private GameObject button;
     [SerializeField]private int index;
+    [SerializeField]private InputControl control;
     private PlayerInput PlayerInput;
     private InputActionRebindingExtensions.RebindingOperation operation;
 
@@ -27,11 +28,25 @@ public class ControlSettings : MonoBehaviour
             .WithControlsExcluding("<Mouse>/delta")
             .WithControlsExcluding("<Gamepad>/Start")
             .WithCancelingThrough("<Keyboard>/escape")
-            .WithCancelingThrough("<Gamepad>/Start")
             .OnComplete(operation => FinishedRebind())
             .OnCancel(operation => FinishedRebind())
             .Start();
-        ChangeText("Waiting");
+        ChangeText(PressButtonText("WaitingInput"));
+    }
+    private string PressButtonText(string textKey)
+    {
+        switch (GameManager.gM.lang)
+        {
+            case 0:
+                if (ES.GetText(textKey) != null)
+                    return ES.GetText(textKey);
+                break;
+            case 1:
+                if (EN.GetText(textKey) != null)
+                    return EN.GetText(textKey);
+                break;
+        }
+        return "";
     }
     private void FinishedRebind()
     {

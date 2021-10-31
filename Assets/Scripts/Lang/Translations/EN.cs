@@ -39,6 +39,7 @@ public static class EN
         lang.Add("SpecialText", "Special");
         lang.Add("ChangeSpecialText", "ChangeSpecial");
         lang.Add("RestoreButton", "Restore");
+        lang.Add("WaitingInput", "Press A Key");
         lang.Add("GermanyName", "Germany");
         lang.Add("PolandName", "Poland");
         lang.Add("UkraineName", "Ukraine");
