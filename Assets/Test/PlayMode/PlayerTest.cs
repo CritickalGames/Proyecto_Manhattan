@@ -10,7 +10,7 @@ public class PlayerTest
     [OneTimeSetUp]
     public void LoadScene()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(3);
     }
     [UnityTest]
     public IEnumerator TestPlayerSpawn()
@@ -43,12 +43,15 @@ public class PlayerTest
     {
         GameObject player = GameObject.Find("Player(Clone)");
         Player script = player.GetComponent<Player>();
-        script.movementScript.Jump();
-        yield return new WaitUntil(() => script.stateScript.GetState("Grounded"));
         float initialYPos = player.transform.position.y;
         script.movementScript.Jump();
         yield return new WaitForSeconds(0.5f);
-        Assert.Greater(player.transform.position.y, initialYPos);
+        float firstYPos = player.transform.position.y;
+        script.movementScript.Jump();
+        yield return new WaitForSeconds(0.5f);
+        float finalYPos = player.transform.position.y;
+        Assert.Greater(firstYPos, initialYPos);
+        Assert.Greater(finalYPos, firstYPos);
     }
     [UnityTest]
     public IEnumerator TestPlayerShoot()
