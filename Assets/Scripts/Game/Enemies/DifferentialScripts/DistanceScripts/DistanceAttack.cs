@@ -16,7 +16,10 @@ public class DistanceAttack : MonoBehaviour
         this.enemyScript.enemyAudio.Play("EnemyShoot");
         bulletParent = GameObject.Find("/Enemies/BulletParent").GetComponent<Transform>();
         GameObject bullet = Instantiate(this.bulletPrefab, this.shootingPoint.position, Quaternion.identity, this.bulletParent);
-        bullet.GetComponent<BulletScript>().direction = -this.enemyScript.dAIScript.moveDirection;
+        if (this.enemyScript.movementScript.facingRight)
+            bullet.GetComponent<BulletScript>().direction = 1;
+        else
+            bullet.GetComponent<BulletScript>().direction = -1;
         this.enemyScript.stateScript.SetState("Shooting", false);
         this.enemyScript.dAIScript.SetNextShoot();
     }

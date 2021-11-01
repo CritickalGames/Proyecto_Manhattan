@@ -89,6 +89,10 @@ public class DistanceAI : MonoBehaviour
             this.moveDirection = 1;
         else 
             this.moveDirection = 0;
+        if (distance < 0 && !this.enemyScript.stateScript.GetState("Grounded"))
+            this.enemyScript.movementScript.ManageFlip(-1);
+        else if (distance > 0 && !this.enemyScript.stateScript.GetState("Grounded"))
+            this.enemyScript.movementScript.ManageFlip(1);
     }
     void OnCollisionEnter2D(Collision2D collision)
     {

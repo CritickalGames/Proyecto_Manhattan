@@ -8,7 +8,7 @@ public class DialogueBar : MonoBehaviour
     public void NewSentece() => DialogueManager.dM.DisplayNextSentence();
     public void IsOut()
     {
-        DialogueManager.dM.InCutscene = false;;
+        DialogueManager.dM.InCutscene = false;
         DialogueManager.dM.DeleteSentence();
         DialogueManager.dM.DeleteSpeaker();
     }
