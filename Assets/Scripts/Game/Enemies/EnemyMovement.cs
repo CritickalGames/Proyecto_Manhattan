@@ -5,7 +5,7 @@ public class EnemyMovement : MonoBehaviour
     [HideInInspector]public EnemyController enemyScript;
     [SerializeField]private float movementSpeed;
     private Rigidbody2D enemyRb;
-    private bool facingRight = false;
+    [HideInInspector]public  bool facingRight = false;
     
     void Awake()
     {

@@ -18,6 +18,10 @@ public class InputManager : MonoBehaviour
     }
     void Update()
     {
+        if (DialogueManager.dM.InCutscene || SceneManager.GetActiveScene().buildIndex == 1 || SceneManager.GetActiveScene().buildIndex == 2 || (GameManager.gM.pauseScript != null && GameManager.gM.pauseScript.isPaused))
+            Cursor.visible = true;
+        else
+            Cursor.visible = false;
         if (SceneManager.GetActiveScene().buildIndex > 2 && SceneManager.GetActiveScene().name != "Credits" && !LevelManager.lM.transitioning && !GameManager.gM.pauseScript.isPaused && !DialogueManager.dM.InCutscene && GameManager.gM.pM.playerObject != null && !GameManager.gM.pM.playerScript.stateScript.GetState("IsDead") && !GameManager.gM.pM.playerScript.stateScript.GetState("Drinking"))
             GameManager.gM.pM.playerScript.movementScript.SetMoveDir((int)this.horizontalMove);
         else if (SceneManager.GetActiveScene().buildIndex > 2 && SceneManager.GetActiveScene().name != "Credits" && !GameManager.gM.pauseScript.isPaused && GameManager.gM.pM.playerObject != null && (DialogueManager.dM.InCutscene || LevelManager.lM.transitioning || GameManager.gM.pM.playerScript.stateScript.GetState("IsDead")))
