@@ -14,6 +14,7 @@ public class Fire : MonoBehaviour
 
     void Start()
     {
+        this.GetComponent<EntityAudio>().Play("Fire");
         Destroy(this.gameObject, this.duration);
         RaycastHit2D hitRaycast = Physics2D.Raycast(this.transform.position, Vector2.down, this.platforms);
         this.transform.position = new Vector2(this.transform.position.x, hitRaycast.distance);
@@ -21,7 +22,6 @@ public class Fire : MonoBehaviour
             this.transform.parent = GameObject.Find("/Enemies/BulletParent").transform;
         nextDamage = Time.time + damageCooldown;
     }
-
     void Update()
     {
         if(inTrigger)
@@ -39,7 +39,6 @@ public class Fire : MonoBehaviour
             col = other;
         }
     }
- 
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player")

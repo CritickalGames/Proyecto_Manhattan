@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 447025734921813229}
   - component: {fileID: 2310336486756115933}
   - component: {fileID: 7176357003438624167}
-  - component: {fileID: 6896105637969821817}
+  - component: {fileID: 6476387202268577889}
   - component: {fileID: -6452667834647119559}
+  - component: {fileID: 1479402155611172521}
   m_Layer: 0
   m_Name: Vodka
   m_TagString: Untagged
@@ -101,7 +102,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.2, y: 0.54}
   m_Direction: 0
---- !u!114 &6896105637969821817
+--- !u!114 &6476387202268577889
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -110,9 +111,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3837154919923932371}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28fa06eecbf2d0b48aaee87fa50b9c9a, type: 3}
+  m_Script: {fileID: 11500000, guid: 19fefd5f0b5311444a5bf8724cba5d96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unlock: Vodka
 --- !u!114 &-6452667834647119559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,8 +129,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: Spawn
-    clip: {fileID: 8300000, guid: 476ff4a5796e81d49ab0cb7273ec4704, type: 3}
+    clip: {fileID: 8300000, guid: 11e21e4994027bf45a66b0d0578ff6e4, type: 3}
     group: {fileID: -902710241148830193, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
     volume: 1
     pitch: 1
     loop: 0
+--- !u!114 &1479402155611172521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3837154919923932371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b39bf90ea50be14396d7127b43b7540, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speaker:
+  - Salaryman
+  - Salaryman
+  textKey:
+  - RESalaryman1
+  - RESalaryman2

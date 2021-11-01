@@ -240,6 +240,7 @@ MonoBehaviour:
   specialScript: {fileID: 0}
   playerAudio: {fileID: 0}
   playerAnimator: {fileID: 0}
+  healthBar: {fileID: 0}
 --- !u!114 &1627476446927715198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -266,7 +267,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pressedDown: 0
   extraJumps: 1
-  dashDistance: 3
+  dashSpeed: 50
   jumpSpeed: 11
   movementSpeed: 9
   inertiaSpeed: 10
@@ -275,13 +276,12 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 2816
-  dashLayer:
-    serializedVersion: 2
-    m_Bits: 6400
   dashCooldown: 0.5
+  dashDuration: 0.1
   speedMultiplier: 1
   jumpMultiplier: 1
   facingRight: 1
+  maxMovingTime: 0.2
 --- !u!114 &5497455151813261255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -328,6 +328,7 @@ MonoBehaviour:
   shootingPoint: {fileID: 4770724490639330446}
   bulletPrefab: {fileID: 2614891680001679877, guid: 54ddfaba8dcf3114f8c6d0c9beef2103, type: 3}
   shootCooldown: 1
+  abilityNum: 0
 --- !u!114 &4916616976801734316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -342,43 +343,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: Hit
-    clip: {fileID: 8300000, guid: 5034181eecbf0c441aa2f7c6fe843ec9, type: 3}
+    clip: {fileID: 8300000, guid: 9de800620cd858142b70c82080ec608e, type: 3}
     group: {fileID: 321012550716680038, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
     volume: 1
     pitch: 1.15
     loop: 0
   - name: Hurt
-    clip: {fileID: 8300000, guid: 6257a4d500d4d5b41898a2fced2f7e15, type: 3}
+    clip: {fileID: 8300000, guid: 28690ae52564a4349bb993560ad15a1b, type: 3}
     group: {fileID: 321012550716680038, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
     volume: 1
     pitch: 1.15
     loop: 0
   - name: Shoot
-    clip: {fileID: 8300000, guid: 50c05bfaf5b0eb844a0c8d526196209c, type: 3}
+    clip: {fileID: 8300000, guid: a6852e0784a50b447a11b940f1894b2a, type: 3}
     group: {fileID: 321012550716680038, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
     volume: 1
     pitch: 1
     loop: 0
   - name: Step
-    clip: {fileID: 8300000, guid: 400ad27d88adc5049aa9bc24845e5044, type: 3}
+    clip: {fileID: 8300000, guid: c9157a44ceba9e849b6db0daa9554a70, type: 3}
     group: {fileID: 321012550716680038, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
     volume: 1
     pitch: 1
     loop: 0
   - name: Drink
-    clip: {fileID: 8300000, guid: 5ac6c3074fb65ce49addfcc6c5ab6aef, type: 3}
+    clip: {fileID: 8300000, guid: f73e95fb7b03b5a4daab4eaf8ea7f607, type: 3}
     group: {fileID: 321012550716680038, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
     volume: 1
     pitch: 1
     loop: 0
   - name: Die
-    clip: {fileID: 8300000, guid: 7d72efbc50084c94298adc0e03efc7f4, type: 3}
+    clip: {fileID: 8300000, guid: 178ee0a6955727f4f9d66c19ec916a09, type: 3}
     group: {fileID: 321012550716680038, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
     volume: 1
     pitch: 1
     loop: 0
   - name: Dash
-    clip: {fileID: 8300000, guid: 6aee0dc377c826b43a668b6b4ab0f6e9, type: 3}
+    clip: {fileID: 8300000, guid: 72d4031c5cc6cad4d84c8583009db50b, type: 3}
     group: {fileID: 321012550716680038, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
     volume: 1
     pitch: 1

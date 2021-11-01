@@ -33,14 +33,18 @@ public class DistanceAI : MonoBehaviour
     {
         if (this.enemyScript.stateScript.GetState("IsDead"))
             this.enabled = false;
-        bool grounded = Physics2D.OverlapCircle(this.groundCheck.position, checkDistance, this.groundLayer);
-        this.enemyScript.stateScript.SetState("Grounded", grounded);
-        this.target = GameManager.gM.pM.playerObject;
-        if (this.target != null)
-            if (PlayerIsAlive())
-                ManageAI();
-            else 
-                this.enemyScript.movementScript.ManageMovement(0);
+        if (!DialogueManager.dM.InCutscene)
+        {
+            bool grounded = Physics2D.OverlapCircle(this.groundCheck.position, checkDistance, this.groundLayer);
+            this.enemyScript.stateScript.SetState("Grounded", grounded);
+            this.target = GameManager.gM.pM.playerObject;
+            if (this.target != null)
+                if (PlayerIsAlive())
+                    ManageAI();
+                else 
+                    this.enemyScript.movementScript.ManageMovement(0);
+        } else 
+            this.enemyScript.movementScript.ManageMovement(0);
     }
     bool PlayerIsAlive()
     {
@@ -85,6 +89,10 @@ public class DistanceAI : MonoBehaviour
             this.moveDirection = 1;
         else 
             this.moveDirection = 0;
+        if (distance < 0 && !this.enemyScript.stateScript.GetState("Grounded"))
+            this.enemyScript.movementScript.ManageFlip(-1);
+        else if (distance > 0 && !this.enemyScript.stateScript.GetState("Grounded"))
+            this.enemyScript.movementScript.ManageFlip(1);
     }
     void OnCollisionEnter2D(Collision2D collision)
     {

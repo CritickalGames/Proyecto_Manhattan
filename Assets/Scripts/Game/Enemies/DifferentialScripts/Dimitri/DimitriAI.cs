@@ -12,7 +12,6 @@ public class DimitriAI : MonoBehaviour
     [SerializeField]private LayerMask groundLayer;
     [SerializeField]private bool colideWithPlatforms;
     [SerializeField]private Transform detectingPoint;
-    [SerializeField, Range(0.0f, 20.0f)]private float followRange;
     [SerializeField, Range(0.0f, 15.0f)]private float throwingRange;
     [SerializeField, Range(0.0f, 10.0f)]private float meleeFollowRange;
     [SerializeField, Range(0.0f, 10.0f)]private float meleeRange;
@@ -42,14 +41,18 @@ public class DimitriAI : MonoBehaviour
     {
         if (this.enemyScript.stateScript.GetState("IsDead"))
             this.enabled = false;
-        bool grounded = Physics2D.OverlapCircle(this.groundCheck.position, this.checkDistance, this.groundLayer);
-        this.enemyScript.stateScript.SetState("Grounded", grounded);
-        this.target = GameManager.gM.pM.playerObject;
-        if (this.target != null)
-            if (PlayerIsAlive())
-                ManageAI();
-            else 
-                this.enemyScript.movementScript.ManageMovement(0);
+        if (!DialogueManager.dM.InCutscene)
+        {
+            bool grounded = Physics2D.OverlapCircle(this.groundCheck.position, this.checkDistance, this.groundLayer);
+            this.enemyScript.stateScript.SetState("Grounded", grounded);
+            this.target = GameManager.gM.pM.playerObject;
+            if (this.target != null)
+                if (PlayerIsAlive())
+                    ManageAI();
+                else 
+                    this.enemyScript.movementScript.ManageMovement(0);
+        } else 
+            this.enemyScript.movementScript.ManageMovement(0);
     }
     bool PlayerIsAlive()
     {
@@ -62,7 +65,7 @@ public class DimitriAI : MonoBehaviour
     {
         this.distanceEnemyPlayer = Vector2.Distance(this.detectingPoint.position, this.target.transform.position);
         SetDirection(this.detectingPoint.position.x - this.target.transform.position.x);
-        if (this.distanceEnemyPlayer < this.followRange && this.distanceEnemyPlayer >= this.throwingRange && !this.enemyScript.stateScript.GetState("Shooting") && !this.enemyScript.stateScript.GetState("Hitting"))
+        if (this.distanceEnemyPlayer >= this.throwingRange && !this.enemyScript.stateScript.GetState("Shooting") && !this.enemyScript.stateScript.GetState("Hitting"))
             SetMovement(this.moveDirection);
         else if (this.distanceEnemyPlayer < this.throwingRange && this.distanceEnemyPlayer >= this.meleeFollowRange && Time.time >= this.nextThrow && !this.enemyScript.stateScript.GetState("Shooting") && !this.enemyScript.stateScript.GetState("Hitting"))
             OnThrowingArea();
@@ -111,7 +114,6 @@ public class DimitriAI : MonoBehaviour
         if (this.groundCheck == null)
             return;
         Gizmos.DrawWireSphere(this.groundCheck.position, this.checkDistance);
-        Gizmos.DrawWireSphere(this.detectingPoint.position, this.followRange);
         Gizmos.DrawWireSphere(this.detectingPoint.position, this.throwingRange);
         Gizmos.DrawWireSphere(this.detectingPoint.position, this.meleeFollowRange);
         Gizmos.DrawWireSphere(this.detectingPoint.position, this.meleeRange);

@@ -13,8 +13,6 @@ public class BottleScript : MonoBehaviour
     [SerializeField, Range(.1f, 2f)]private float rotationValue;
     [HideInInspector]public Vector3 target;
     private Rigidbody2D bulletRB;
-    private bool hasHitted;
-    private bool unloaded = false;
     private int dir = 0;
 
     void Start()
@@ -25,8 +23,7 @@ public class BottleScript : MonoBehaviour
     }
     void Update()
     {
-        if (!this.hasHitted)
-            this.transform.Rotate(0,0,this.dir * this.rotationValue * 100 * Time.deltaTime);
+        this.transform.Rotate(0,0,this.dir * this.rotationValue * 100 * Time.deltaTime);
     }
     Vector3 ThrowingVel() 
     {
@@ -43,8 +40,7 @@ public class BottleScript : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
-        hasHitted = true;
-        if (collision.gameObject.tag == "Player" && (this.bulletRB.velocity.x >= 1f || this.bulletRB.velocity.x <= -1f))
+        if (collision.gameObject.tag != "Enemy")
             Destroy(this.gameObject);
     }
     void OnDestroy()
@@ -55,7 +51,7 @@ public class BottleScript : MonoBehaviour
             if (col.tag == "Player")
                 col.gameObject.GetComponent<Player>().Damaged(this.damage);
         Instantiate(explosionObject,this.transform.position, Quaternion.identity);
-        Instantiate(fireObject, this.transform.position, Quaternion.identity);
+        Instantiate(fireObject, this.transform.position, Quaternion.identity, this.transform.parent);
     }
     void OnDrawGizmosSelected()
     {

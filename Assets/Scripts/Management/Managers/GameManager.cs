@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector]public int currentPlayerHealth;
     [HideInInspector]public int abilityCount = 0;
     [HideInInspector]public Dictionary<string, bool> abilities = new Dictionary<string, bool>();
+    [HideInInspector]public int lang = 0;
 
     #region Getters & Setters
     public void SetPauseScript(PauseController script)
@@ -67,7 +68,6 @@ public class GameManager : MonoBehaviour
     {
         abilities.Add("Dash", false);
         abilities.Add("Vodka", false);
-        abilities.Add("Saber", false);
         abilities.Add("Arquebus", false);
     }
     private void LoadGame()
@@ -85,14 +85,6 @@ public class GameManager : MonoBehaviour
         } else
         {
             SaveAndLoadGame.Save();
-        }
-    }
-    public void LoadPause()
-    {
-        GameData data = SaveAndLoadGame.Load();
-        if (data != null)
-        {
-            this.pauseScript.SetSelectedItem(data.selectedItem);
         }
     }
 }

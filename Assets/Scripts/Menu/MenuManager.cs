@@ -5,7 +5,7 @@ public class MenuManager : MonoBehaviour
 {
     public void Play()
     {
-        LevelManager.lM.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        LevelManager.lM.StartAnim(SceneManager.GetActiveScene().buildIndex + 1, true);
     }
     public void Quit()
     {
@@ -14,5 +14,9 @@ public class MenuManager : MonoBehaviour
     public void PlaySound(string sound)
     {
         AudioManager.aM.Play(sound);
+    }
+    public void Credits()
+    {
+        LevelManager.lM.StartAnim(SceneUtility.GetBuildIndexByScenePath("Assets/Scenes/Cutscenes/Credits.unity"), true);
     }
 }

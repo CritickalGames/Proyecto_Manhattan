@@ -5,12 +5,20 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    [System.NonSerialized]public static LevelManager lM;
+    [HideInInspector]public static LevelManager lM;
     [SerializeField]private Sprite trafficGreenLight;
-    [System.NonSerialized] public Dictionary<string, bool> countriesUnlocked = new Dictionary<string, bool>();
+    [HideInInspector]public int spawnScene;
+    [HideInInspector]public Dictionary<string, bool> countriesUnlocked = new Dictionary<string, bool>();
+    [HideInInspector]public bool transitioning = false;
+    [HideInInspector]public bool showDialogue;
     private bool levelPassed;
+    private int nextScene;
 
     #region Getters & Setters
+    public bool CanPass()
+    {
+        return this.levelPassed;
+    }
     public bool GetCountry(string name)
     {
         if (this.countriesUnlocked.ContainsKey(name))
@@ -36,50 +44,55 @@ public class LevelManager : MonoBehaviour
             lM = this;
         DontDestroyOnLoad(this);
     }
-    public void RestartLevel()
-    {
-        LoadScene(2);
-    }
+    void Start() => showDialogue = true;
+
+    public void RestartLevel() => StartAnim(this.spawnScene, false);
+    
     public void LevelFinished()
     {
         GameObject trafficLights = GameObject.Find("World/Terrain/TrafficLights");
         if (trafficLights != null)
         {
             SpriteRenderer spriteRenderer = trafficLights.GetComponent<SpriteRenderer>();
-            spriteRenderer.sprite = trafficGreenLight;
+            spriteRenderer.sprite = this.trafficGreenLight;
         }
-        levelPassed = true;
+        this.levelPassed = true;
     }
-    public void NextLevel(int nextLevel)
+    public void NextLevel(int nextLevel, bool heal)
     {
-        if(nextLevel < SceneManager.sceneCountInBuildSettings && levelPassed && nextLevel > 1)
+        if(nextLevel < SceneManager.sceneCountInBuildSettings)
         {
-            levelPassed = false;
-            LoadScene(nextLevel);
-        } else if (levelPassed)
-        {
-            GameManager.gM.SetMaxHealth();
-            levelPassed = false;
-            LoadScene(1);
-        } else if (!levelPassed)
-        {
-            MessageBar messageScript = GameObject.Find("/UI/Canvas/Message/Image").GetComponent<MessageBar>();
-            messageScript.SetTrueBool();
+            if (heal)
+                GameManager.gM.SetMaxHealth();
+            this.levelPassed = false;
+            StartAnim(nextLevel, true);
         }
     }
     public void InstantiateLevels()
     {
-        countriesUnlocked.Add("Germany", true);
-        countriesUnlocked.Add("Poland", false);
-        countriesUnlocked.Add("Ukraine", false);
-        countriesUnlocked.Add("Russia", false);
-        countriesUnlocked.Add("France", false);
-        countriesUnlocked.Add("Spain", false);
-        countriesUnlocked.Add("Portugal", false);
+        this.countriesUnlocked.Add("Germany", true);
+        this.countriesUnlocked.Add("Poland", false);
+        this.countriesUnlocked.Add("Ukraine", false);
+        this.countriesUnlocked.Add("Russia", false);
+        this.countriesUnlocked.Add("France", false);
+        this.countriesUnlocked.Add("Spain", false);
+        this.countriesUnlocked.Add("Portugal", false);
+        this.countriesUnlocked.Add("Final", false);
     }
-    public void LoadScene(int scene)
+    public void StartAnim(int scene, bool show)
     {
-        SceneManager.LoadScene(scene);
-        Destroy(GameManager.gM.eM.gameObject);
+        showDialogue = show;
+        Animator anim = GameObject.Find("Transition").GetComponent<Animator>();
+        if (anim != null)
+            anim.SetTrigger("Start");
+        this.nextScene = scene;
+        this.transitioning = true;
+    }
+    public void LoadScene()
+    {
+        SceneManager.LoadScene(this.nextScene);
+        if (GameManager.gM.eM != null)
+            Destroy(GameManager.gM.eM.gameObject);
+        this.transitioning = false;
     }
 }
