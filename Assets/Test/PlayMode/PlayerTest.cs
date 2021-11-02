@@ -63,4 +63,13 @@ public class PlayerTest
         yield return null;
         Assert.IsNotNull(GameObject.Find("PlayerBullet(Clone)"));
     }
+    [UnityTest]
+    public IEnumerator TestPlayerDeath()
+    {
+        GameObject player = GameObject.Find("Player(Clone)");
+        Player script = player.GetComponent<Player>();
+        script.Damaged(100);
+        yield return new WaitUntil(() => script.stateScript.GetState("IsDead"));
+        Assert.IsTrue(script.stateScript.GetState("IsDead"));
+    }
 }
