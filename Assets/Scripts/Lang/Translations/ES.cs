@@ -40,9 +40,17 @@ public static class ES
         lang.Add("ControlsButton", "Controles");
         lang.Add("BackButton", "Atrás");
         lang.Add("ControlsTitle", "Controles");
+        lang.Add("JumpText", "Saltar");
+        lang.Add("RightText", "Derecha");
+        lang.Add("LeftText", "Izquierda");
+        lang.Add("DownText", "Bajar");
         lang.Add("AttackText", "Atacar");
-        lang.Add("SpecialText", "Especial");
+        lang.Add("SpecialText", "Usar Especial");
         lang.Add("ChangeSpecialText", "Cambiar Especial");
+        lang.Add("JumpButton", "Stick Izquierdo Arriba");
+        lang.Add("RightButton", "Stick Izquierdo Derecha");
+        lang.Add("LeftButton", "Stick Izquierdo Izquierda");
+        lang.Add("DownButton", "Stick Izquierdo Abajo");
         lang.Add("RestoreButton", "Restaurar");
         lang.Add("WaitingInput", "Presiona Una Tecla");
         lang.Add("GermanyName", "Alemania");
