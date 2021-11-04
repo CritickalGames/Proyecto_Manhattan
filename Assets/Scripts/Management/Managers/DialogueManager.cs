@@ -84,7 +84,7 @@ public class DialogueManager : MonoBehaviour
 		    }
         //SetImage(speaker);
 	}
-    void EndDialogue() => dialogueScript.anim.SetBool("Show", false);
+    public void EndDialogue() => dialogueScript.anim.SetBool("Show", false);
     public void DeleteSentence()
     {
         if (dialogueText != null)
