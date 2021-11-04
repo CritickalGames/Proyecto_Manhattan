@@ -356,7 +356,7 @@ MonoBehaviour:
     loop: 0
   - name: Shoot
     clip: {fileID: 8300000, guid: a6852e0784a50b447a11b940f1894b2a, type: 3}
-    group: {fileID: 321012550716680038, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
+    group: {fileID: -902710241148830193, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
     volume: 1
     pitch: 1
     loop: 0
