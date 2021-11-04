@@ -19,7 +19,12 @@ public static class EN
         lang.Add("QuitButton", "Quit");
         lang.Add("Credits", "Credits");
         lang.Add("ConfigTitle", "Configuration");
-        lang.Add("VolumeText", "Volume");
+        lang.Add("GeneralVolumeText", "General Volume");
+        lang.Add("EffectsVolumeText", "Effects");
+        lang.Add("MusicVolumeText", "Music");
+        lang.Add("PlayerVolumeText", "Player");
+        lang.Add("EnemiesVolumeText", "Enemies");
+        lang.Add("UIVolumeText", "User Interface");
         lang.Add("ResolutionText", "Resolution");
         lang.Add("QualityText", "Quality");
         lang.Add("VeryLowQuality", "Very Low");
