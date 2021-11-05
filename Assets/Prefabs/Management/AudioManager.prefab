@@ -86,3 +86,39 @@ MonoBehaviour:
     volume: 0.138
     pitch: 1
     loop: 0
+  - name: Erika
+    clip: {fileID: 8300000, guid: 91fd0e3cafb30184baf6f387c2723c5d, type: 3}
+    group: {fileID: -6321087983221286768, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
+    volume: 0.3
+    pitch: 1
+    loop: 1
+  - name: Gopnik
+    clip: {fileID: 8300000, guid: c5e853db804513d41bccb3b30bd6557a, type: 3}
+    group: {fileID: -6321087983221286768, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
+    volume: 0.3
+    pitch: 1
+    loop: 1
+  - name: URSS
+    clip: {fileID: 8300000, guid: 6d982fd299dc96f4181742a78eac5971, type: 3}
+    group: {fileID: -6321087983221286768, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
+    volume: 0.3
+    pitch: 1
+    loop: 1
+  - name: Seafights
+    clip: {fileID: 8300000, guid: b40604901d85329439cc6ea9c6fece45, type: 3}
+    group: {fileID: -6321087983221286768, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
+    volume: 0.3
+    pitch: 1
+    loop: 1
+  - name: BarbaryJacks
+    clip: {fileID: 8300000, guid: 87806ca4dca2c14408a4254fee70a7cf, type: 3}
+    group: {fileID: -6321087983221286768, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
+    volume: 0.3
+    pitch: 1
+    loop: 1
+  - name: HardRock
+    clip: {fileID: 8300000, guid: d62c3cf4b1131284986d2dca9f3833fe, type: 3}
+    group: {fileID: -6321087983221286768, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
+    volume: 0.25
+    pitch: 1
+    loop: 1
