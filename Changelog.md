@@ -9,3 +9,4 @@
 >Nerfed Player Shot
 >Controls Shown In Germany
 >Changed Sounds Pitch
+>Added Game Icon
