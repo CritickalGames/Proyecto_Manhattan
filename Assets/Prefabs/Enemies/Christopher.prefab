@@ -352,19 +352,19 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 9de800620cd858142b70c82080ec608e, type: 3}
     group: {fileID: 1147615277765096762, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
     volume: 0.5
-    pitch: 1.15
+    pitch: 1
     loop: 0
   - name: EnemyHurt
     clip: {fileID: 8300000, guid: 28690ae52564a4349bb993560ad15a1b, type: 3}
     group: {fileID: 1147615277765096762, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
     volume: 0.5
-    pitch: 1.15
+    pitch: 1.1
     loop: 0
   - name: EnemyShoot
     clip: {fileID: 8300000, guid: a6852e0784a50b447a11b940f1894b2a, type: 3}
     group: {fileID: -902710241148830193, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
     volume: 0.5
-    pitch: 1.15
+    pitch: 0.9
     loop: 0
   - name: EnemyStep
     clip: {fileID: 8300000, guid: c9157a44ceba9e849b6db0daa9554a70, type: 3}

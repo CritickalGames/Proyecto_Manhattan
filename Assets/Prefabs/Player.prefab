@@ -346,13 +346,13 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 9de800620cd858142b70c82080ec608e, type: 3}
     group: {fileID: 321012550716680038, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
     volume: 1
-    pitch: 1.15
+    pitch: 1
     loop: 0
   - name: Hurt
     clip: {fileID: 8300000, guid: 28690ae52564a4349bb993560ad15a1b, type: 3}
     group: {fileID: 321012550716680038, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
     volume: 1
-    pitch: 1.15
+    pitch: 1.1
     loop: 0
   - name: Shoot
     clip: {fileID: 8300000, guid: a6852e0784a50b447a11b940f1894b2a, type: 3}
@@ -364,7 +364,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: c9157a44ceba9e849b6db0daa9554a70, type: 3}
     group: {fileID: 321012550716680038, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
     volume: 1
-    pitch: 1
+    pitch: 0.9
     loop: 0
   - name: Drink
     clip: {fileID: 8300000, guid: f73e95fb7b03b5a4daab4eaf8ea7f607, type: 3}
@@ -376,7 +376,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 178ee0a6955727f4f9d66c19ec916a09, type: 3}
     group: {fileID: 321012550716680038, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
     volume: 1
-    pitch: 1
+    pitch: 0.95
     loop: 0
   - name: Dash
     clip: {fileID: 8300000, guid: 72d4031c5cc6cad4d84c8583009db50b, type: 3}
