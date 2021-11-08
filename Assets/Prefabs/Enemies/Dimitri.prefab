@@ -147,7 +147,7 @@ SpriteRenderer:
   m_SortingLayer: 8
   m_SortingOrder: 0
   m_Sprite: {fileID: 2192450021786810173, guid: 6d13d9343b9fc794185e9b5f0a5b9c7f, type: 3}
-  m_Color: {r: 1, g: 0.7028302, b: 0.7028302, a: 1}
+  m_Color: {r: 1, g: 0.47227323, b: 0.4575472, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -280,7 +280,6 @@ MonoBehaviour:
     m_Bits: 2816
   colideWithPlatforms: 0
   detectingPoint: {fileID: 2736423676495109801}
-  followRange: 19
   throwingRange: 11
   meleeFollowRange: 3.5
   meleeRange: 1
@@ -324,6 +323,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyScript: {fileID: 0}
   movementSpeed: 6
+  facingRight: 0
 --- !u!114 &8219362152955130833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -354,19 +354,19 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 9de800620cd858142b70c82080ec608e, type: 3}
     group: {fileID: 1147615277765096762, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
     volume: 0.5
-    pitch: 1.15
+    pitch: 1
     loop: 0
   - name: EnemyHurt
     clip: {fileID: 8300000, guid: 28690ae52564a4349bb993560ad15a1b, type: 3}
     group: {fileID: 1147615277765096762, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
     volume: 0.5
-    pitch: 1.15
+    pitch: 1.1
     loop: 0
   - name: EnemyThrow
     clip: {fileID: 8300000, guid: 7fc1c669fa3e27b4da415f0256448b14, type: 3}
-    group: {fileID: 1147615277765096762, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
+    group: {fileID: -902710241148830193, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
     volume: 0.5
-    pitch: 1.15
+    pitch: 0.9
     loop: 0
   - name: EnemyStep
     clip: {fileID: 8300000, guid: c9157a44ceba9e849b6db0daa9554a70, type: 3}
@@ -388,7 +388,7 @@ MonoBehaviour:
     loop: 0
   - name: EnemyHeal
     clip: {fileID: 8300000, guid: b0756c54b955b8c4ea0c27c7add0aee0, type: 3}
-    group: {fileID: 1147615277765096762, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
+    group: {fileID: -902710241148830193, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
     volume: 0.5
     pitch: 1
     loop: 0

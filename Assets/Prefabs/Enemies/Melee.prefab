@@ -144,7 +144,7 @@ SpriteRenderer:
   m_SortingLayer: 8
   m_SortingOrder: 0
   m_Sprite: {fileID: 2192450021786810173, guid: 6d13d9343b9fc794185e9b5f0a5b9c7f, type: 3}
-  m_Color: {r: 1, g: 0.6084906, b: 0.8725575, a: 1}
+  m_Color: {r: 0.7921562, g: 0.514151, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -269,6 +269,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyScript: {fileID: 0}
   movementSpeed: 7
+  facingRight: 0
 --- !u!114 &5616440117558290485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -345,19 +346,19 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 9de800620cd858142b70c82080ec608e, type: 3}
     group: {fileID: 1147615277765096762, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
     volume: 0.5
-    pitch: 1.15
+    pitch: 1
     loop: 0
   - name: EnemyHurt
     clip: {fileID: 8300000, guid: 28690ae52564a4349bb993560ad15a1b, type: 3}
     group: {fileID: 1147615277765096762, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
     volume: 0.5
-    pitch: 1.15
+    pitch: 1.1
     loop: 0
   - name: EnemyStep
     clip: {fileID: 8300000, guid: c9157a44ceba9e849b6db0daa9554a70, type: 3}
     group: {fileID: 1147615277765096762, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
     volume: 0.5
-    pitch: 1
+    pitch: 0.9
     loop: 0
   - name: EnemyDie
     clip: {fileID: 8300000, guid: 178ee0a6955727f4f9d66c19ec916a09, type: 3}
