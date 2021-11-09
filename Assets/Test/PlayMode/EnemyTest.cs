@@ -39,4 +39,32 @@ public class EnemyTest
         yield return new WaitForSeconds(1f);
         Assert.AreNotEqual(bottle, GameObject.Find("Bottle(Clone)"));
     }
+    [UnityTest]
+    public IEnumerator TestEnemyHit()
+    {
+        SceneManager.LoadScene(14);
+        yield return new WaitForSeconds(0.5f);
+        DialogueManager.dM.EndDialogue();
+        GameObject dimitri = GameObject.Find("Dimitri");
+        DimitriAttack dimitriAttack = dimitri.GetComponent<DimitriAttack>();
+        dimitri.GetComponent<DimitriAI>().enabled = false;
+        GameObject player = GameObject.Find("Player(Clone)");
+        dimitri.transform.position = player.transform.position;
+        dimitriAttack.Hit();
+        yield return new WaitForSeconds(0.5f);
+        Assert.AreNotEqual(GameManager.gM.maxPlayerHealth, GameManager.gM.currentPlayerHealth);
+    }
+    [UnityTest]
+    public IEnumerator TestChristopherShoot()
+    {
+        SceneManager.LoadScene(23);
+        yield return new WaitForSeconds(0.5f);
+        DialogueManager.dM.EndDialogue();
+        ChristopherAttack christopher = GameObject.Find("Christopher Prorstata").GetComponent<ChristopherAttack>();
+        yield return new WaitForSeconds(0.5f);
+        christopher.Shoot();
+        yield return new WaitForSeconds(0.5f);
+        GameObject bullet = GameObject.Find("Bullet(Clone)");
+        Assert.IsNotNull(bullet);
+    }
 }
