@@ -278,6 +278,7 @@ MonoBehaviour:
     m_Bits: 2816
   colideWithPlatforms: 0
   detectingPoint: {fileID: 2736423676495109801}
+  followRange: 19
   shootingRange: 12
   meleeFollowRange: 5.5
   meleeRange: 1
@@ -321,7 +322,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyScript: {fileID: 0}
   movementSpeed: 6
-  facingRight: 0
 --- !u!114 &8219362152955130833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -362,7 +362,7 @@ MonoBehaviour:
     loop: 0
   - name: EnemyShoot
     clip: {fileID: 8300000, guid: a6852e0784a50b447a11b940f1894b2a, type: 3}
-    group: {fileID: -902710241148830193, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
+    group: {fileID: 1147615277765096762, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
     volume: 0.5
     pitch: 1.15
     loop: 0
@@ -380,7 +380,7 @@ MonoBehaviour:
     loop: 0
   - name: EnemyHeal
     clip: {fileID: 8300000, guid: b0756c54b955b8c4ea0c27c7add0aee0, type: 3}
-    group: {fileID: -902710241148830193, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
+    group: {fileID: 1147615277765096762, guid: e62a81243f86ecc4e9a2e130a36aecac, type: 2}
     volume: 0.5
     pitch: 1
     loop: 0
