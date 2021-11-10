@@ -26,4 +26,15 @@ public class AudioTest
             AudioManager.aM.Pause(sound.name);
         }
     }
+    [UnityTest]
+    public IEnumerator TestPlayerAudio()
+    {
+        yield return new WaitForSeconds(0.5f);
+        foreach (Sound sound in GameManager.gM.pM.playerScript.playerAudio.sounds)
+        {
+            GameManager.gM.pM.playerScript.playerAudio.Play(sound.name);
+            yield return null;
+            Assert.IsTrue(sound.source.isPlaying);
+        }
+    }
 }
