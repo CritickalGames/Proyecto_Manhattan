@@ -45,13 +45,16 @@ public class BottleScript : MonoBehaviour
     }
     void OnDestroy()
     {
-        AudioManager.aM.Play("BrokenGlass");
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(this.transform.position, this.explodeRange);
-        foreach (Collider2D col in colliders)
-            if (col.tag == "Player")
-                col.gameObject.GetComponent<Player>().Damaged(this.damage);
-        Instantiate(explosionObject,this.transform.position, Quaternion.identity);
-        Instantiate(fireObject, this.transform.position, Quaternion.identity, this.transform.parent);
+        if (SceneManager.GetActiveScene().isLoaded)
+        {
+            AudioManager.aM.Play("BrokenGlass");
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(this.transform.position, this.explodeRange);
+            foreach (Collider2D col in colliders)
+                if (col.tag == "Player")
+                    col.gameObject.GetComponent<Player>().Damaged(this.damage);
+            Instantiate(explosionObject,this.transform.position, Quaternion.identity);
+            Instantiate(fireObject, this.transform.position, Quaternion.identity, this.transform.parent);
+        }
     }
     void OnDrawGizmosSelected()
     {

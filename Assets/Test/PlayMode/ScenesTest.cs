@@ -45,6 +45,7 @@ public class ScenesTest
     [UnityTest]
     public IEnumerator TestNotFinishedSign()
     {
+        SceneManager.LoadScene(3);
         yield return new WaitForSeconds(0.5f);
         DialogueManager.dM.EndDialogue();
         GameObject.Find("Player(Clone)").transform.position = GameObject.Find("PassLevel").transform.position - new Vector3(1,0,0);

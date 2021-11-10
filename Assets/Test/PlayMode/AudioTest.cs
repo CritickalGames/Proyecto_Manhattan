@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class AudioTest
 {
-     [OneTimeSetUp]
+    [OneTimeSetUp]
     public void LoadScene()
     {
         SceneManager.LoadScene(3);
