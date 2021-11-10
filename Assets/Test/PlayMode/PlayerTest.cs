@@ -22,6 +22,7 @@ public class PlayerTest
     [UnityTest]
     public IEnumerator TestPlayerDamaged()
     {
+        GameManager.gM.SetMaxHealth();
         GameObject player = GameObject.Find("Player(Clone)");
         Player script = player.GetComponent<Player>();
         script.Damaged(20);
@@ -33,6 +34,7 @@ public class PlayerTest
     {
         GameObject player = GameObject.Find("Player(Clone)");
         Player script = player.GetComponent<Player>();
+        yield return new WaitUntil(() => script.stateScript.GetState("Grounded"));
         float initialYPos = player.transform.position.y;
         script.movementScript.Jump();
         yield return new WaitForSeconds(0.5f);
@@ -71,5 +73,6 @@ public class PlayerTest
         script.Damaged(100);
         yield return new WaitUntil(() => script.stateScript.GetState("IsDead"));
         Assert.IsTrue(script.stateScript.GetState("IsDead"));
+        LoadScene();
     }
 }

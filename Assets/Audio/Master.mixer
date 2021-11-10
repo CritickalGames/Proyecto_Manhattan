@@ -6,7 +6,7 @@ AudioMixerGroupController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: UI
+  m_Name: Menu
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: 146f9394c353a454cbb38ae61b576854
   m_Children: []
@@ -111,8 +111,6 @@ AudioMixerController:
     name: Music
   - guid: 6a1dc71f3ec40be4eb773930d12fe116
     name: Player
-  - guid: 6a81106a1606369448983ac3115c7900
-    name: UI
   m_AudioMixerGroupViews:
   - guids:
     - 755fbbd6eead3ff4b9039a854b464590
@@ -175,7 +173,6 @@ AudioMixerSnapshotController:
     5c1549c28982cc54f8851eadafb8dcd4: 1
     626f5865719fbae4996c2c6363e8b154: 0
     7dcfd3c8a7fa8414591828c0235ecb2d: 0
-    6a81106a1606369448983ac3115c7900: 0
   m_TransitionOverrides: {}
 --- !u!243 &321012550716680038
 AudioMixerGroupController:
