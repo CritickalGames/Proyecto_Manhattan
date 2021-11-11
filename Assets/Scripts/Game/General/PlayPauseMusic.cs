@@ -13,10 +13,4 @@ public class PlayPauseMusic : MonoBehaviour
             else
                 AudioManager.aM.Play(sound);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
