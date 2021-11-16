@@ -69,9 +69,9 @@ public class InputManager : MonoBehaviour
     }
     void OnPause()
     {
-        if (SceneManager.GetActiveScene().buildIndex > 2 && SceneManager.GetActiveScene().name != "Credits" && !LevelManager.lM.transitioning && !DialogueManager.dM.InCutscene && GameManager.gM.pauseScript.isPaused && GameManager.gM.pM.playerObject != null && !GameManager.gM.pM.playerScript.stateScript.GetState("IsDead"))
+        if (SceneManager.GetActiveScene().buildIndex > 2 && SceneManager.GetActiveScene().buildIndex < 25 && SceneManager.GetActiveScene().name != "Credits" && !LevelManager.lM.transitioning && !DialogueManager.dM.InCutscene && GameManager.gM.pauseScript.isPaused && GameManager.gM.pM.playerObject != null && !GameManager.gM.pM.playerScript.stateScript.GetState("IsDead"))
             GameManager.gM.pauseScript.Resume();
-        else if (SceneManager.GetActiveScene().buildIndex > 2 && SceneManager.GetActiveScene().name != "Credits" && !GameManager.gM.pauseScript.isPaused && !DialogueManager.dM.InCutscene && !GameManager.gM.pM.playerScript.stateScript.GetState("IsDead"))
+        else if (SceneManager.GetActiveScene().buildIndex > 2 && SceneManager.GetActiveScene().buildIndex < 25 && SceneManager.GetActiveScene().name != "Credits" && !GameManager.gM.pauseScript.isPaused && !DialogueManager.dM.InCutscene && !GameManager.gM.pM.playerScript.stateScript.GetState("IsDead"))
         {
             GameManager.gM.pauseScript.Pause();
             GameManager.gM.pauseScript.firstButton.Select();
