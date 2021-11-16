@@ -136,6 +136,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   direction: 0
   speed: 15
-  maxTime: 4
-  damage: 60
+  maxTime: 1.5
+  damage: 30
   objectiveLayer: Enemy

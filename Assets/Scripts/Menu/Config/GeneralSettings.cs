@@ -11,7 +11,12 @@ public class GeneralSettings : MonoBehaviour
     [SerializeField]private TMP_Dropdown resolutionDropDown;
     [SerializeField]private TMP_Dropdown qualityDropDown;
     [SerializeField]private TMP_Dropdown languageDropDown;
-    [SerializeField]private Slider volumeSlider;
+    [SerializeField]private Slider generalVolumeSlider;
+    [SerializeField]private Slider effectsVolumeSlider;
+    [SerializeField]private Slider musicVolumeSlider;
+    [SerializeField]private Slider playerVolumeSlider;
+    [SerializeField]private Slider enemiesVolumeSlider;
+    [SerializeField]private Slider UIVolumeSlider;
     [SerializeField]private Toggle fullScreenToggle;
     private int savedRes;
 
@@ -28,10 +33,12 @@ public class GeneralSettings : MonoBehaviour
     {
         return Screen.fullScreen;
     }
-    public float GetVolume()
-    {
-        return this.volumeSlider.value;
-    }
+    public float GetGeneralVolume() { return this.generalVolumeSlider.value; }
+    public float GetEffectsVolume() { return this.effectsVolumeSlider.value; }
+    public float GetMusicVolume() { return this.musicVolumeSlider.value; }
+    public float GetPlayerVolume() { return this.playerVolumeSlider.value; }
+    public float GetEnemiesVolume() { return this.enemiesVolumeSlider.value; }
+    public float GetUIVolume() { return this.UIVolumeSlider.value; }
     #endregion
 
     void Awake()
@@ -50,8 +57,13 @@ public class GeneralSettings : MonoBehaviour
             this.savedRes = data.resolutionIndex;
             SetQuality(data.qualityIndex);
             SetLang(data.langIndex);
-            Volume(data.volume);
             FullScreen(data.fullScreen);
+            this.generalVolumeSlider.value = data.generalVolume ;
+            this.effectsVolumeSlider.value = data.effectsVolume ;
+            this.musicVolumeSlider.value = data.musicVolume ;
+            this.playerVolumeSlider.value = data.playerVolume ;
+            this.enemiesVolumeSlider.value = data.enemiesVolume ;
+            this.UIVolumeSlider.value = data.UIVolume ;
             LoadData();
         } else
             SaveConfiguration();
@@ -163,10 +175,13 @@ public class GeneralSettings : MonoBehaviour
         qualityDropDown.value = qualitySelected;
         qualityDropDown.RefreshShownValue();
     }
-    public void Volume(float sliderValue)
-    {
-        this.audioControl.SetFloat("Master", Mathf.Log10(sliderValue) * 20);
-    }
+    public void MasterVolume(float sliderValue) => this.audioControl.SetFloat("Master", Mathf.Log10(sliderValue) * 20);
+    public void EffectsVolume(float sliderValue) => this.audioControl.SetFloat("Effects", Mathf.Log10(sliderValue) * 20);
+    public void MusicVolume(float sliderValue) => this.audioControl.SetFloat("Music", Mathf.Log10(sliderValue) * 20);
+    public void PlayerVolume(float sliderValue) => this.audioControl.SetFloat("Player", Mathf.Log10(sliderValue) * 20);
+    public void EnemiesVolume(float sliderValue) => this.audioControl.SetFloat("Enemies", Mathf.Log10(sliderValue) * 20);
+    public void UIVolume(float sliderValue) => this.audioControl.SetFloat("UI", Mathf.Log10(sliderValue) * 20);
+
     public void FullScreen(bool fullScreen)
     {
         Screen.fullScreen = fullScreen;
@@ -180,9 +195,17 @@ public class GeneralSettings : MonoBehaviour
         this.resolutionDropDown.value = this.savedRes;
         this.qualityDropDown.value = QualitySettings.GetQualityLevel();
         this.languageDropDown.value = GameManager.gM.lang;
-        float volume;
-        this.audioControl.GetFloat("Master", out volume);
-        this.volumeSlider.value = Mathf.Pow(10, volume / 20) ;
         this.fullScreenToggle.isOn = Screen.fullScreen;
+        StartCoroutine(SetVolume());
+    }
+    private IEnumerator SetVolume()
+    {
+        yield return 0;
+        MasterVolume(generalVolumeSlider.value);
+        EffectsVolume(effectsVolumeSlider.value);
+        MusicVolume(musicVolumeSlider.value);
+        PlayerVolume(playerVolumeSlider.value);
+        EnemiesVolume(enemiesVolumeSlider.value);
+        UIVolume(UIVolumeSlider.value);
     }
 }
