@@ -18,6 +18,10 @@ public class EntityAudio : MonoBehaviour
             sound.source.outputAudioMixerGroup = sound.group;
         }
     }
+    void Start()
+    {
+        Play("MenuMusic");
+    }
     public void Play(string name)
     {
         Sound sound = Array.Find(sounds, sound => sound.name == name);
